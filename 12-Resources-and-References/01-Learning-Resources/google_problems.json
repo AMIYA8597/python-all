@@ -1,0 +1,117 @@
+{
+  "company": "Google",
+  "problems": [
+    {
+      "id": "lc1",
+      "title": "Two Sum",
+      "difficulty": "easy",
+      "category": "array",
+      "platform": "leetcode",
+      "url": "https://leetcode.com/problems/two-sum/",
+      "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+      "constraints": [],
+      "examples": [
+        {
+          "input": "nums = [2,7,11,15], target = 9",
+          "output": "[0,1]",
+          "explanation": "nums[0] + nums[1] = 2 + 7 = 9"
+        }
+      ],
+      "tags": [
+        "hash-table",
+        "array"
+      ],
+      "companies": [
+        "Amazon",
+        "Google",
+        "Microsoft",
+        "Facebook"
+      ],
+      "pattern": "Hash Table Lookup",
+      "solution_approach": "Use hash map to store complements",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)",
+      "hints": [],
+      "related_problems": [],
+      "frequency": 10,
+      "acceptance_rate": 0.49
+    },
+    {
+      "id": "lc20",
+      "title": "Valid Parentheses",
+      "difficulty": "easy",
+      "category": "stack",
+      "platform": "leetcode",
+      "url": "https://leetcode.com/problems/valid-parentheses/",
+      "description": "Determine if the input string of parentheses is valid.",
+      "constraints": [],
+      "examples": [],
+      "tags": [],
+      "companies": [
+        "Amazon",
+        "Microsoft",
+        "Google"
+      ],
+      "pattern": "Stack",
+      "solution_approach": "Use stack to match opening and closing brackets",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)",
+      "hints": [],
+      "related_problems": [],
+      "frequency": 9,
+      "acceptance_rate": 0.4
+    },
+    {
+      "id": "lc226",
+      "title": "Invert Binary Tree",
+      "difficulty": "easy",
+      "category": "tree",
+      "platform": "leetcode",
+      "url": "https://leetcode.com/problems/invert-binary-tree/",
+      "description": "Invert a binary tree.",
+      "constraints": [],
+      "examples": [],
+      "tags": [],
+      "companies": [
+        "Google",
+        "Amazon",
+        "Microsoft"
+      ],
+      "pattern": "Tree DFS",
+      "solution_approach": "Recursively swap left and right children",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(h)",
+      "hints": [],
+      "related_problems": [],
+      "frequency": 7,
+      "acceptance_rate": 0.7
+    },
+    {
+      "id": "lc322",
+      "title": "Coin Change",
+      "difficulty": "medium",
+      "category": "dynamic_programming",
+      "platform": "leetcode",
+      "url": "https://leetcode.com/problems/coin-change/",
+      "description": "Find minimum coins needed to make amount.",
+      "constraints": [],
+      "examples": [],
+      "tags": [],
+      "companies": [
+        "Amazon",
+        "Google",
+        "Microsoft"
+      ],
+      "pattern": "Dynamic Programming",
+      "solution_approach": "Bottom-up DP with coin combinations",
+      "time_complexity": "O(amount * coins)",
+      "space_complexity": "O(amount)",
+      "hints": [],
+      "related_problems": [],
+      "frequency": 8,
+      "acceptance_rate": 0.4
+    }
+  ],
+  "total_count": 4,
+  "export_date": "2025-09-07T21:57:50.949733"
+}

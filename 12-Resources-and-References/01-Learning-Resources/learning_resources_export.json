@@ -1,0 +1,556 @@
+{
+  "resources": [
+    {
+      "title": "Cracking the Coding Interview",
+      "type": "book",
+      "url": null,
+      "difficulty": "intermediate",
+      "rating": 4.8,
+      "description": "The gold standard for technical interview preparation. 189+ programming questions and solutions.",
+      "topics": [
+        "interviews",
+        "algorithms",
+        "data-structures",
+        "system-design"
+      ],
+      "cost": "paid",
+      "language": "english",
+      "estimated_hours": 100,
+      "prerequisites": [
+        "basic-programming"
+      ],
+      "author": "Gayle Laakmann McDowell",
+      "last_updated": ""
+    },
+    {
+      "title": "Introduction to Algorithms (CLRS)",
+      "type": "book",
+      "url": null,
+      "difficulty": "advanced",
+      "rating": 4.7,
+      "description": "The definitive algorithms textbook. Comprehensive and rigorous treatment of algorithms.",
+      "topics": [
+        "algorithms",
+        "complexity-analysis",
+        "mathematical-foundations"
+      ],
+      "cost": "paid",
+      "language": "english",
+      "estimated_hours": 200,
+      "prerequisites": [
+        "mathematics",
+        "programming-experience"
+      ],
+      "author": "Cormen, Leiserson, Rivest, Stein",
+      "last_updated": ""
+    },
+    {
+      "title": "Elements of Programming Interviews in Python",
+      "type": "book",
+      "url": null,
+      "difficulty": "intermediate",
+      "rating": 4.6,
+      "description": "Python-specific interview preparation with 300+ solved problems.",
+      "topics": [
+        "python",
+        "interviews",
+        "algorithms",
+        "problem-solving"
+      ],
+      "cost": "paid",
+      "language": "english",
+      "estimated_hours": 80,
+      "prerequisites": [
+        "python-basics"
+      ],
+      "author": "Aziz, Lee, Prakash",
+      "last_updated": ""
+    },
+    {
+      "title": "Grokking Algorithms",
+      "type": "book",
+      "url": null,
+      "difficulty": "beginner",
+      "rating": 4.5,
+      "description": "Visual and intuitive approach to algorithms. Great for beginners.",
+      "topics": [
+        "algorithms",
+        "data-structures",
+        "visual-learning"
+      ],
+      "cost": "paid",
+      "language": "english",
+      "estimated_hours": 40,
+      "prerequisites": [
+        "basic-programming"
+      ],
+      "author": "Aditya Bhargava",
+      "last_updated": ""
+    },
+    {
+      "title": "Effective Python",
+      "type": "book",
+      "url": null,
+      "difficulty": "intermediate",
+      "rating": 4.7,
+      "description": "90 specific ways to write better Python. Essential for Python developers.",
+      "topics": [
+        "python",
+        "best-practices",
+        "performance",
+        "idioms"
+      ],
+      "cost": "paid",
+      "language": "english",
+      "estimated_hours": 50,
+      "prerequisites": [
+        "python-basics"
+      ],
+      "author": "Brett Slatkin",
+      "last_updated": ""
+    },
+    {
+      "title": "Algorithms Specialization - Stanford",
+      "type": "course",
+      "url": "https://coursera.org/specializations/algorithms",
+      "difficulty": "intermediate",
+      "rating": 4.8,
+      "description": "4-course specialization covering divide-and-conquer, graph algorithms, greedy algorithms, and dynamic programming.",
+      "topics": [
+        "algorithms",
+        "graph-theory",
+        "dynamic-programming",
+        "complexity-analysis"
+      ],
+      "cost": "freemium",
+      "language": "english",
+      "estimated_hours": 80,
+      "prerequisites": [
+        "basic-programming",
+        "mathematics"
+      ],
+      "author": "Tim Roughgarden",
+      "last_updated": ""
+    },
+    {
+      "title": "Data Structures and Algorithms - UC San Diego",
+      "type": "course",
+      "url": "https://coursera.org/specializations/data-structures-algorithms",
+      "difficulty": "intermediate",
+      "rating": 4.6,
+      "description": "6-course specialization with hands-on programming assignments in multiple languages.",
+      "topics": [
+        "data-structures",
+        "algorithms",
+        "implementation",
+        "problem-solving"
+      ],
+      "cost": "freemium",
+      "language": "english",
+      "estimated_hours": 120,
+      "prerequisites": [
+        "programming-experience"
+      ],
+      "author": "UC San Diego",
+      "last_updated": ""
+    },
+    {
+      "title": "Python for Everybody - University of Michigan",
+      "type": "course",
+      "url": "https://coursera.org/specializations/python",
+      "difficulty": "beginner",
+      "rating": 4.8,
+      "description": "Complete Python specialization from basics to data analysis.",
+      "topics": [
+        "python",
+        "programming-fundamentals",
+        "data-analysis"
+      ],
+      "cost": "freemium",
+      "language": "english",
+      "estimated_hours": 60,
+      "prerequisites": [],
+      "author": "Charles Severance",
+      "last_updated": ""
+    },
+    {
+      "title": "AlgoExpert",
+      "type": "course",
+      "url": "https://algoexpert.io",
+      "difficulty": "intermediate",
+      "rating": 4.7,
+      "description": "160+ coding interview questions with video explanations and optimal solutions.",
+      "topics": [
+        "interviews",
+        "algorithms",
+        "data-structures",
+        "system-design"
+      ],
+      "cost": "paid",
+      "language": "english",
+      "estimated_hours": 100,
+      "prerequisites": [
+        "programming-experience"
+      ],
+      "author": "Clement Mihailescu",
+      "last_updated": ""
+    },
+    {
+      "title": "LeetCode",
+      "type": "practice",
+      "url": "https://leetcode.com",
+      "difficulty": "intermediate",
+      "rating": 4.7,
+      "description": "2000+ coding problems with detailed solutions. Popular for interview prep.",
+      "topics": [
+        "algorithms",
+        "data-structures",
+        "interviews",
+        "contests"
+      ],
+      "cost": "freemium",
+      "language": "english",
+      "estimated_hours": 500,
+      "prerequisites": [
+        "programming-basics"
+      ],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "HackerRank",
+      "type": "practice",
+      "url": "https://hackerrank.com",
+      "difficulty": "beginner",
+      "rating": 4.5,
+      "description": "Skills-based coding challenges and interview preparation platform.",
+      "topics": [
+        "programming",
+        "algorithms",
+        "data-structures",
+        "mathematics"
+      ],
+      "cost": "freemium",
+      "language": "english",
+      "estimated_hours": 200,
+      "prerequisites": [
+        "basic-programming"
+      ],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "Codeforces",
+      "type": "practice",
+      "url": "https://codeforces.com",
+      "difficulty": "advanced",
+      "rating": 4.8,
+      "description": "Competitive programming platform with regular contests.",
+      "topics": [
+        "competitive-programming",
+        "algorithms",
+        "mathematics"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 1000,
+      "prerequisites": [
+        "strong-programming",
+        "mathematics"
+      ],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "AtCoder",
+      "type": "practice",
+      "url": "https://atcoder.jp",
+      "difficulty": "intermediate",
+      "rating": 4.6,
+      "description": "Japanese competitive programming platform with English support.",
+      "topics": [
+        "competitive-programming",
+        "algorithms",
+        "implementation"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 300,
+      "prerequisites": [
+        "programming-experience"
+      ],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "CodeChef",
+      "type": "practice",
+      "url": "https://codechef.com",
+      "difficulty": "intermediate",
+      "rating": 4.4,
+      "description": "Indian competitive programming platform with monthly contests.",
+      "topics": [
+        "competitive-programming",
+        "algorithms",
+        "data-structures"
+      ],
+      "cost": "freemium",
+      "language": "english",
+      "estimated_hours": 200,
+      "prerequisites": [
+        "programming-basics"
+      ],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "MIT 6.006 Introduction to Algorithms",
+      "type": "video",
+      "url": "https://youtube.com/playlist?list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb",
+      "difficulty": "advanced",
+      "rating": 4.9,
+      "description": "MIT's introductory algorithms course. Rigorous and comprehensive.",
+      "topics": [
+        "algorithms",
+        "data-structures",
+        "complexity-analysis"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 40,
+      "prerequisites": [
+        "mathematics",
+        "programming"
+      ],
+      "author": "MIT OpenCourseWare",
+      "last_updated": ""
+    },
+    {
+      "title": "CS Dojo",
+      "type": "video",
+      "url": "https://youtube.com/c/CSDojo",
+      "difficulty": "beginner",
+      "rating": 4.6,
+      "description": "Beginner-friendly programming and algorithm tutorials.",
+      "topics": [
+        "algorithms",
+        "programming",
+        "interviews",
+        "python"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 50,
+      "prerequisites": [
+        "basic-programming"
+      ],
+      "author": "YK Sugi",
+      "last_updated": ""
+    },
+    {
+      "title": "Back to Back SWE",
+      "type": "video",
+      "url": "https://youtube.com/c/BackToBackSWE",
+      "difficulty": "intermediate",
+      "rating": 4.7,
+      "description": "In-depth algorithm explanations for interview preparation.",
+      "topics": [
+        "algorithms",
+        "interviews",
+        "leetcode",
+        "explanations"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 100,
+      "prerequisites": [
+        "programming-experience"
+      ],
+      "author": "Ben Awad",
+      "last_updated": ""
+    },
+    {
+      "title": "Abdul Bari Algorithms",
+      "type": "video",
+      "url": "https://youtube.com/watch?v=0IAPZzGSbME&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O",
+      "difficulty": "intermediate",
+      "rating": 4.8,
+      "description": "Comprehensive algorithms course with clear explanations.",
+      "topics": [
+        "algorithms",
+        "data-structures",
+        "analysis"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 80,
+      "prerequisites": [
+        "programming-basics"
+      ],
+      "author": "Abdul Bari",
+      "last_updated": ""
+    },
+    {
+      "title": "Visual Studio Code",
+      "type": "tool",
+      "url": "https://code.visualstudio.com",
+      "difficulty": "beginner",
+      "rating": 4.8,
+      "description": "Free, powerful code editor with Python support and debugging.",
+      "topics": [
+        "development",
+        "python",
+        "debugging",
+        "productivity"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 0,
+      "prerequisites": [],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "PyCharm Community Edition",
+      "type": "tool",
+      "url": "https://jetbrains.com/pycharm",
+      "difficulty": "beginner",
+      "rating": 4.7,
+      "description": "Professional Python IDE with advanced debugging and refactoring.",
+      "topics": [
+        "development",
+        "python",
+        "debugging",
+        "refactoring"
+      ],
+      "cost": "freemium",
+      "language": "english",
+      "estimated_hours": 0,
+      "prerequisites": [],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "Jupyter Notebook",
+      "type": "tool",
+      "url": "https://jupyter.org",
+      "difficulty": "beginner",
+      "rating": 4.6,
+      "description": "Interactive computing environment perfect for learning and experimentation.",
+      "topics": [
+        "development",
+        "data-science",
+        "learning",
+        "visualization"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 0,
+      "prerequisites": [
+        "python-basics"
+      ],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "Git",
+      "type": "tool",
+      "url": "https://git-scm.com",
+      "difficulty": "beginner",
+      "rating": 4.9,
+      "description": "Version control system essential for software development.",
+      "topics": [
+        "version-control",
+        "collaboration",
+        "development"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 0,
+      "prerequisites": [],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "r/Python",
+      "type": "community",
+      "url": "https://reddit.com/r/Python",
+      "difficulty": "beginner",
+      "rating": 4.6,
+      "description": "Large Python community on Reddit with news, tutorials, and help.",
+      "topics": [
+        "python",
+        "community",
+        "help",
+        "news"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 0,
+      "prerequisites": [],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "Stack Overflow",
+      "type": "community",
+      "url": "https://stackoverflow.com/questions/tagged/python",
+      "difficulty": "beginner",
+      "rating": 4.8,
+      "description": "Programming Q&A site with millions of Python-related questions.",
+      "topics": [
+        "programming",
+        "help",
+        "problem-solving"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 0,
+      "prerequisites": [],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "Python Discord",
+      "type": "community",
+      "url": "https://discord.gg/python",
+      "difficulty": "beginner",
+      "rating": 4.5,
+      "description": "Active Python community on Discord for real-time help and discussions.",
+      "topics": [
+        "python",
+        "community",
+        "real-time-help"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 0,
+      "prerequisites": [],
+      "author": "",
+      "last_updated": ""
+    },
+    {
+      "title": "Competitive Programming Discord",
+      "type": "community",
+      "url": "https://discord.gg/algorithms",
+      "difficulty": "intermediate",
+      "rating": 4.4,
+      "description": "Community focused on competitive programming and algorithms.",
+      "topics": [
+        "competitive-programming",
+        "algorithms",
+        "contests"
+      ],
+      "cost": "free",
+      "language": "english",
+      "estimated_hours": 0,
+      "prerequisites": [
+        "programming-experience"
+      ],
+      "author": "",
+      "last_updated": ""
+    }
+  ],
+  "export_date": "2025-09-07T21:57:41.513345",
+  "total_count": 26
+}

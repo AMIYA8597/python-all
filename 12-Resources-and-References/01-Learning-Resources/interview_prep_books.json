@@ -1,0 +1,220 @@
+{
+  "category": "interview_prep",
+  "books": [
+    {
+      "title": "Cracking the Coding Interview: 189 Programming Questions and Solutions",
+      "authors": [
+        {
+          "name": "Gayle Laakmann McDowell",
+          "credentials": [
+            "Former Google Engineer",
+            "Former Microsoft Engineer",
+            "Former Apple Engineer"
+          ],
+          "affiliations": [
+            "CareerCup"
+          ],
+          "notable_works": [
+            "Cracking the Coding Interview",
+            "Cracking the PM Interview"
+          ],
+          "expertise_areas": [
+            "Technical Interviews",
+            "Software Engineering",
+            "Career Development"
+          ]
+        }
+      ],
+      "category": "interview_prep",
+      "skill_level": "intermediate",
+      "isbn": "978-0984782857",
+      "publisher": "CareerCup",
+      "publication_year": 2015,
+      "pages": 696,
+      "edition": "6th",
+      "description": "The gold standard for technical interview preparation. Contains 189 programming questions with detailed solutions, interview strategies, and behind-the-scenes insights from hiring managers.",
+      "key_topics": [
+        "Data Structures",
+        "Algorithms",
+        "System Design",
+        "Interview Strategy",
+        "Behavioral Questions",
+        "Negotiation",
+        "Big O Analysis"
+      ],
+      "prerequisites": [
+        "Basic programming knowledge",
+        "Understanding of fundamental data structures"
+      ],
+      "learning_outcomes": [
+        "Master common interview question patterns",
+        "Develop systematic problem-solving approach",
+        "Understand what interviewers look for",
+        "Build confidence for technical interviews"
+      ],
+      "review": {
+        "overall_rating": 4.8,
+        "content_quality": 4.9,
+        "readability": 4.7,
+        "practical_value": 5.0,
+        "depth_coverage": 4.6,
+        "pros": [
+          "Comprehensive coverage of interview topics",
+          "Real interview questions from top companies",
+          "Excellent explanations and multiple solutions",
+          "Great insights into interview process",
+          "Includes system design and behavioral prep"
+        ],
+        "cons": [
+          "Can be overwhelming for beginners",
+          "Some solutions could be more optimized",
+          "Heavy focus on traditional tech companies"
+        ],
+        "best_for": [
+          "Software engineers preparing for FAANG interviews",
+          "CS students entering job market",
+          "Anyone wanting systematic interview prep"
+        ],
+        "avoid_if": [
+          "Complete programming beginner",
+          "Looking for language-specific prep only"
+        ]
+      },
+      "price_range": "$35-45",
+      "availability": [
+        "Physical",
+        "eBook",
+        "Audiobook"
+      ],
+      "online_resources": {
+        "Official Website": "https://www.crackingthecodinginterview.com/",
+        "GitHub": "https://github.com/careercup/CtCI-6th-Edition"
+      },
+      "estimated_reading_time": 80,
+      "companion_resources": [
+        "Video solutions",
+        "Online practice platform"
+      ]
+    },
+    {
+      "title": "Elements of Programming Interviews in Python: The Insiders' Guide",
+      "authors": [
+        {
+          "name": "Adnan Aziz",
+          "credentials": [],
+          "affiliations": [
+            "University of Texas"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Algorithms",
+            "Software Engineering"
+          ]
+        },
+        {
+          "name": "Tsung-Hsien Lee",
+          "credentials": [],
+          "affiliations": [
+            "Google"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Software Engineering"
+          ]
+        },
+        {
+          "name": "Amit Prakash",
+          "credentials": [],
+          "affiliations": [
+            "Google"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Software Engineering"
+          ]
+        }
+      ],
+      "category": "interview_prep",
+      "skill_level": "intermediate",
+      "isbn": "978-1537713946",
+      "publisher": "CreateSpace",
+      "publication_year": 2016,
+      "pages": 424,
+      "edition": "1st",
+      "description": "Python-specific interview preparation with 300+ solved problems. Focuses on problem-solving patterns and Python-specific techniques.",
+      "key_topics": [
+        "Arrays",
+        "Strings",
+        "Linked Lists",
+        "Stacks and Queues",
+        "Binary Trees",
+        "Heaps",
+        "Searching",
+        "Hash Tables",
+        "Sorting",
+        "Binary Search Trees",
+        "Recursion",
+        "Dynamic Programming",
+        "Greedy Algorithms",
+        "Graphs",
+        "Parallel Computing"
+      ],
+      "prerequisites": [
+        "Python programming experience",
+        "Basic data structures knowledge"
+      ],
+      "learning_outcomes": [
+        "Master Python-specific interview techniques",
+        "Learn to implement algorithms efficiently in Python",
+        "Understand Python's standard library for interviews",
+        "Develop systematic approach to problem-solving"
+      ],
+      "review": {
+        "overall_rating": 4.6,
+        "content_quality": 4.7,
+        "readability": 4.4,
+        "practical_value": 4.8,
+        "depth_coverage": 4.5,
+        "pros": [
+          "Python-specific focus",
+          "Comprehensive problem coverage",
+          "Good explanations of solutions",
+          "Leverages Python's strengths",
+          "Written by industry experts"
+        ],
+        "cons": [
+          "Less popular than language-agnostic books",
+          "Some problems are quite challenging",
+          "Could use more system design content"
+        ],
+        "best_for": [
+          "Python developers preparing for interviews",
+          "Those wanting Python-specific techniques",
+          "Experienced programmers switching to Python"
+        ],
+        "avoid_if": [
+          "Prefer language-agnostic approach",
+          "Complete programming beginner",
+          "Not using Python in interviews"
+        ]
+      },
+      "price_range": "$50-60",
+      "availability": [
+        "Physical",
+        "eBook"
+      ],
+      "online_resources": {
+        "Official Website": "https://elementsofprogramminginterviews.com/",
+        "Judge Platform": "Available for additional practice"
+      },
+      "estimated_reading_time": 70,
+      "companion_resources": [
+        "Online judge",
+        "Additional problems",
+        "Solution videos"
+      ]
+    }
+  ],
+  "count": 2,
+  "export_date": "2025-09-07T21:58:08.717004"
+}

@@ -1,0 +1,143 @@
+{
+  "category": "beginner_resources",
+  "count": 7,
+  "items": [
+    {
+      "name": "r/Python",
+      "type": "reddit",
+      "url": "https://reddit.com/r/Python",
+      "description": "The largest Python community on Reddit with news, tutorials, discussions, and help for all skill levels.",
+      "focus_areas": [
+        "python",
+        "general-programming",
+        "news",
+        "tutorials",
+        "help"
+      ],
+      "member_count": 900000,
+      "activity_level": "very_high",
+      "entry_barrier": "open",
+      "primary_language": "english",
+      "moderators_quality": "excellent",
+      "content_quality": "good",
+      "beginner_friendly": true
+    },
+    {
+      "name": "Python Discord",
+      "type": "discord",
+      "url": "https://discord.gg/python",
+      "description": "Official Python Discord server with real-time help, code reviews, and active discussions.",
+      "focus_areas": [
+        "python",
+        "help",
+        "code-review",
+        "real-time-chat"
+      ],
+      "member_count": 150000,
+      "activity_level": "very_high",
+      "entry_barrier": "open",
+      "primary_language": "english",
+      "moderators_quality": "excellent",
+      "content_quality": "excellent",
+      "beginner_friendly": true
+    },
+    {
+      "name": "Python Software Foundation",
+      "type": "open_source",
+      "url": "https://python.org/community",
+      "description": "Official Python community hub with mailing lists, forums, and local user groups.",
+      "focus_areas": [
+        "python",
+        "official",
+        "development",
+        "governance"
+      ],
+      "member_count": null,
+      "activity_level": "high",
+      "entry_barrier": "open",
+      "primary_language": "english",
+      "moderators_quality": "excellent",
+      "content_quality": "excellent",
+      "beginner_friendly": true
+    },
+    {
+      "name": "r/cscareerquestions",
+      "type": "reddit",
+      "url": "https://reddit.com/r/cscareerquestions",
+      "description": "Career advice, interview experiences, and job market discussions for software engineers.",
+      "focus_areas": [
+        "careers",
+        "interviews",
+        "job-market",
+        "advice",
+        "salary"
+      ],
+      "member_count": 800000,
+      "activity_level": "very_high",
+      "entry_barrier": "open",
+      "primary_language": "english",
+      "moderators_quality": "good",
+      "content_quality": "fair",
+      "beginner_friendly": true
+    },
+    {
+      "name": "Leetcode Discord",
+      "type": "discord",
+      "url": "https://discord.gg/leetcode",
+      "description": "Community focused on LeetCode problem discussions and interview preparation.",
+      "focus_areas": [
+        "leetcode",
+        "interview-prep",
+        "problem-solving",
+        "algorithms"
+      ],
+      "member_count": 80000,
+      "activity_level": "high",
+      "entry_barrier": "open",
+      "primary_language": "english",
+      "moderators_quality": "good",
+      "content_quality": "good",
+      "beginner_friendly": true
+    },
+    {
+      "name": "Python Meetup Groups",
+      "type": "meetup",
+      "url": "https://meetup.com/topics/python",
+      "description": "Local Python meetup groups worldwide for networking and knowledge sharing.",
+      "focus_areas": [
+        "python",
+        "networking",
+        "local-events",
+        "presentations"
+      ],
+      "member_count": null,
+      "activity_level": "medium",
+      "entry_barrier": "open",
+      "primary_language": "english",
+      "moderators_quality": "good",
+      "content_quality": "good",
+      "beginner_friendly": true
+    },
+    {
+      "name": "freeCodeCamp Forum",
+      "type": "forum",
+      "url": "https://forum.freecodecamp.org",
+      "description": "Supportive learning community with study groups and project collaboration.",
+      "focus_areas": [
+        "learning",
+        "web-development",
+        "python",
+        "projects",
+        "beginners"
+      ],
+      "member_count": 400000,
+      "activity_level": "high",
+      "entry_barrier": "open",
+      "primary_language": "english",
+      "moderators_quality": "excellent",
+      "content_quality": "good",
+      "beginner_friendly": true
+    }
+  ],
+  "export_date": "2025-09-07T22:03:19.748748"
+}

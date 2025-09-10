@@ -1,0 +1,121 @@
+# Python Fundamentals Complete Guide
+
+1. Introduction to Python
+- High-level, interpreted, general-purpose. Emphasizes readability and versatility.
+- Key features: dynamic typing, garbage collection, batteries-included standard library, multi-paradigm (procedural, OOP, functional).
+- History Timeline:
+  - 1991: Python 0.9.0
+  - 2000: Python 2.0 (GC)
+  - 2008: Python 3.0 (Unicode, cleanup)
+  - 3.6: f-strings; 3.8: walrus; 3.9: typing std; 3.10: pattern matching; 3.11: speed; 3.12: error messages
+- Why Python: easy to learn, huge ecosystem (AI, web, data), cross-platform.
+
+ASCII Diagram: Python Execution Model
++----------------------+      +-------------------+
+| Source .py           |  ->  | CPython Compiler  | -> Bytecode (.pyc)
++----------------------+      +-------------------+
+                                     |
+                                     v
+                             +----------------+
+                             | Python VM      |
+                             | eval loop      |
+                             +----------------+
+
+2. Basic Syntax and Structure
+- Indentation defines blocks, no braces.
+- Example:
+  print("Hello, World!")
+- Shebang for Unix scripts: #!/usr/bin/env python3
+- Modules: import math; Packages: directories with __init__.py
+
+3. Variables and Data Types
+- Dynamic typing: x = 5; y = 3.14; s = "Hello"; b = True
+- Collections: list, tuple, set, dict; NoneType: None
+- Conceptual Memory Model:
+  Python Heap (Garbage Collected):
+  +-----------------+
+  | int x = 5      |  <- Immutable, ref-counted
+  +-----------------+
+  | float y = 3.14 |  <- Immutable
+  +-----------------+
+  | list l = [1,2] |  <- Mutable, holds references
+  +-----------------+
+- Inspecting:
+  type(x), isinstance(x, int), id(x)
+
+4. Operators and Expressions
+- Arithmetic: + - * / // % **
+- Relational: == != > < >= <=
+- Logical: and or not; Bitwise: & | ^ ~ << >>
+- Precedence: () > ** > unary > * / // % > + - > comparisons > and > or
+- Example: (5 + 3) * 2 == 16
+
+5. Control Structures
+- if/elif/else
+- for i in range(n), while condition
+- break, continue, pass
+- Comprehensions: [x*x for x in range(5)]
+
+6. Functions
+- def add(a, b=0): return a + b
+- Positional, keyword, *args, **kwargs
+- Lambda: lambda x: x*2; Decorators: @dec
+- Docstrings and type hints
+
+7. Collections APIs
+- list: append, pop, sort, reverse, slicing
+- tuple: immutable sequences
+- set: unique unordered, add, remove, set ops
+- dict: key-value, get, items, keys, values, dict comps
+
+8. Strings
+- Immutable, methods: upper, lower, split, join, find, replace
+- Formatting: f"{x}", format, percent
+- Encoding and Unicode basics
+
+9. OOP Basics
+- class, __init__, methods, attributes
+- Inheritance, super, classmethod, staticmethod
+- Data classes for boilerplate reduction
+
+10. File Handling
+- with open('file.txt','r') as f: data = f.read()
+- Modes: r, w, a, b; json and csv basics
+
+11. Exceptions
+- try/except/else/finally; raising and custom exceptions
+
+12. Modules and Packages
+- import styles; __name__ == '__main__'
+- Packaging overview
+
+13. Best Practices and Performance
+- PEP 8, black, isort
+- Use comprehensions; prefer builtins; timeit for micro-benchmarks
+- Profiling: cProfile, line_profiler
+
+Benchmarks
+- Example micro-benchmark: list comprehension vs loop
+- Use: python -m timeit "[i*i for i in range(1000)]"
+
+Exercises and Quizzes
+- Quiz: What is the output of [x for x in range(3)]?
+- Exercise: Implement a function that counts word frequency from a file.
+- Exercise: Write a decorator that caches results (LRU) using functools.lru_cache.
+
+Proof Sketches and Reasoning
+- Amortized O(1) list append via geometric growth dynamic arrays (conceptual, though CPython details may vary).
+
+Practice Tips
+- Type out patterns daily: loops, comprehensions, dict manipulations
+- Build muscle memory: 15-minute drills with timeit and small tasks
+
+How to Run
+- Windows PowerShell:
+  py --version
+  py script.py
+- Create virtual env:
+  py -m venv .venv
+  .\.venv\Scripts\Activate.ps1
+  pip install -r requirements.txt
+

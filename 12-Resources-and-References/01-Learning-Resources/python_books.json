@@ -1,0 +1,101 @@
+{
+  "category": "python",
+  "books": [
+    {
+      "title": "Effective Python: 90 Specific Ways to Write Better Python",
+      "authors": [
+        {
+          "name": "Brett Slatkin",
+          "credentials": [
+            "Principal Software Engineer at Google"
+          ],
+          "affiliations": [
+            "Google"
+          ],
+          "notable_works": [
+            "Effective Python"
+          ],
+          "expertise_areas": [
+            "Python",
+            "Software Engineering",
+            "Distributed Systems"
+          ]
+        }
+      ],
+      "category": "python",
+      "skill_level": "intermediate",
+      "isbn": "978-0134853987",
+      "publisher": "Addison-Wesley",
+      "publication_year": 2019,
+      "pages": 352,
+      "edition": "2nd",
+      "description": "A collection of 90 best practices, tips, and shortcuts for writing effective Python code. Covers Python 3.7+ features and idiomatic Python programming.",
+      "key_topics": [
+        "Pythonic Thinking",
+        "Lists and Dictionaries",
+        "Functions",
+        "Comprehensions",
+        "Classes and Interfaces",
+        "Metaclasses",
+        "Concurrency and Parallelism",
+        "Robustness and Performance",
+        "Testing and Debugging",
+        "Collaboration"
+      ],
+      "prerequisites": [
+        "Basic Python programming experience",
+        "Familiarity with Python syntax and basic concepts"
+      ],
+      "learning_outcomes": [
+        "Write more Pythonic and efficient code",
+        "Master Python's advanced features",
+        "Avoid common Python pitfalls",
+        "Improve code readability and maintainability"
+      ],
+      "review": {
+        "overall_rating": 4.7,
+        "content_quality": 4.8,
+        "readability": 4.6,
+        "practical_value": 4.9,
+        "depth_coverage": 4.5,
+        "pros": [
+          "Excellent practical advice",
+          "Covers modern Python features",
+          "Clear examples and explanations",
+          "Written by Google engineer with real experience",
+          "Covers both basics and advanced topics"
+        ],
+        "cons": [
+          "Assumes some Python experience",
+          "Could benefit from more comprehensive examples",
+          "Some items are quite specific"
+        ],
+        "best_for": [
+          "Python developers wanting to improve their code",
+          "Intermediate Python programmers",
+          "Anyone serious about Python development"
+        ],
+        "avoid_if": [
+          "Complete Python beginner",
+          "Looking for language introduction"
+        ]
+      },
+      "price_range": "$40-50",
+      "availability": [
+        "Physical",
+        "eBook"
+      ],
+      "online_resources": {
+        "Author's Blog": "https://effectivepython.com/",
+        "Code Examples": "Available on publisher's website"
+      },
+      "estimated_reading_time": 45,
+      "companion_resources": [
+        "Online code examples",
+        "Author blog posts"
+      ]
+    }
+  ],
+  "count": 1,
+  "export_date": "2025-09-07T21:58:08.718240"
+}

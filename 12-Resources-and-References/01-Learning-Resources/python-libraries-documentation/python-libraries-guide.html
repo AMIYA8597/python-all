@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Guide to Python Libraries for AI, ML, and Data Science</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        .title-page {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: -20px -20px 40px -20px;
+            border-radius: 10px;
+        }
+        
+        .title-page h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .title-page h2 {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .title-page .meta {
+            font-size: 1.1em;
+            margin-top: 40px;
+        }
+        
+        .table-of-contents {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .table-of-contents h2 {
+            color: #4a5568;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+        
+        .chapter {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .chapter h1 {
+            color: #2d3748;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+        }
+        
+        .chapter h2 {
+            color: #4a5568;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        
+        .chapter h3 {
+            color: #718096;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        
+        .library-card {
+            background: #f7fafc;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .library-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .library-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2d3748;
+        }
+        
+        .library-version {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        
+        .installation {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .features-list {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .features-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .features-list li {
+            margin: 8px 0;
+            color: #4a5568;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #38b2ac;
+        }
+        
+        .tip {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .tip::before {
+            content: "💡 ";
+            font-size: 1.2em;
+        }
+        
+        .warning {
+            background: #fffaf0;
+            border: 1px solid #fbd38d;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning::before {
+            content: "⚠️ ";
+            font-size: 1.2em;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+            }
+            .chapter {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title-page">
+        <h1>Complete Guide to Python Libraries for AI, ML, and Data Science</h1>
+        <h2>Comprehensive Reference with Examples and Best Practices</h2>
+        <div class="meta">
+            <p><strong>Author:</strong> Python DSA Master</p>
+            <p><strong>Version:</strong> 1.0</p>
+            <p><strong>Date:</strong> September 2025</p>
+            <p><strong>Pages:</strong> 200+</p>
+        </div>
+    </div>
+
+    <div class="table-of-contents">
+        <h2>📚 Table of Contents</h2>
+
+        <div class="toc-item">
+            <span><strong>Chapter 1:</strong> Introduction</span>
+            <span>Page 1</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 2:</strong> Core Data Science Libraries</span>
+            <span>Page 8</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 3:</strong> Machine Learning Frameworks</span>
+            <span>Page 35</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 4:</strong> Deep Learning Frameworks</span>
+            <span>Page 62</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 5:</strong> Computer Vision Libraries</span>
+            <span>Page 89</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 6:</strong> Natural Language Processing</span>
+            <span>Page 106</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 7:</strong> Data Visualization</span>
+            <span>Page 123</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 8:</strong> Statistical Analysis</span>
+            <span>Page 140</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 9:</strong> Big Data & Distributed Computing</span>
+            <span>Page 152</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 10:</strong> Specialized ML Libraries</span>
+            <span>Page 164</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 11:</strong> Deployment & Production</span>
+            <span>Page 176</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 12:</strong> Best Practices & Workflows</span>
+            <span>Page 188</span>
+        </div>
+
+        <div class="toc-item">
+            <span><strong>Chapter 13:</strong> Appendices</span>
+            <span>Page 195</span>
+        </div>
+
+    </div>
+
+    <div class="chapter">
+        <h1>Introduction to Python Libraries Ecosystem</h1>
+
+        <h2>Why Python for Data Science and AI?</h2>
+        <div><br>Python has become the de facto language for data science, machine learning, and artificial intelligence due to several key advantages:<br><br>• **Simplicity and Readability**: Python's clean syntax makes it easy to learn and use<br>• **Rich Ecosystem**: Thousands of specialized libraries for every domain<br>• **Community Support**: Large, active community contributing to open-source projects  <br>• **Performance**: Optimized libraries built on C/C++ for computational efficiency<br>• **Versatility**: From data analysis to web development to AI research<br>• **Industry Adoption**: Used by major tech companies and research institutions<br><br>The Python data science stack consists of several layers:<br>- **Foundation Layer**: NumPy (numerical computing), Pandas (data manipulation)<br>- **Visualization Layer**: Matplotlib, Seaborn, Plotly (data visualization)<br>- **Machine Learning Layer**: Scikit-learn, XGBoost (traditional ML)<br>- **Deep Learning Layer**: TensorFlow, PyTorch (neural networks)<br>- **Specialized Layer**: OpenCV (computer vision), NLTK/spaCy (NLP)<br>- **Production Layer**: FastAPI, Streamlit (deployment)<br></div>
+
+        <h2>Installation and Environment Setup</h2>
+        <div><br>**Setting Up Your Python Environment**<br><br>1. **Install Python** (version 3.8+ recommended)<br>   - Download from python.org<br>   - Use Anaconda for data science (recommended)<br><br>2. **Virtual Environment Setup**<br>   ```bash<br>   # Using venv<br>   python -m venv ml_env<br>   source ml_env/bin/activate  # Linux/Mac<br>   ml_env\Scripts\activate   # Windows<br>   <br>   # Using conda<br>   conda create -n ml_env python=3.9<br>   conda activate ml_env<br>   ```<br><br>3. **Essential Package Installation**<br>   ```bash<br>   # Core data science stack<br>   pip install numpy pandas matplotlib seaborn jupyter<br>   <br>   # Machine learning<br>   pip install scikit-learn xgboost lightgbm<br>   <br>   # Deep learning<br>   pip install tensorflow torch torchvision<br>   <br>   # Additional tools<br>   pip install plotly opencv-python nltk spacy<br>   ```<br><br>4. **Development Environment**<br>   - **Jupyter Notebook**: Interactive development<br>   - **JupyterLab**: Advanced notebook interface  <br>   - **VS Code**: Full IDE with Python extensions<br>   - **PyCharm**: Professional Python IDE<br></div>
+
+    </div>
+
+    <div class="chapter">
+        <h1>Core Data Science Libraries</h1>
+
+        <p class="highlight">Essential libraries that form the foundation of data science in Python</p>
+
+        <div class="library-card">
+            <div class="library-header">
+                <span class="library-name">NumPy</span>
+                <span class="library-version">1.24+</span>
+            </div>
+            <p><strong>Description:</strong> The fundamental package for scientific computing with Python</p>
+            
+            <div class="installation">
+                <strong>Installation:</strong> pip install numpy
+            </div>
+            
+            <div class="installation">
+                <strong>Import:</strong> import numpy as np
+            </div>
+            
+            <div class="features-list">
+                <h3>Key Features:</h3>
+                <ul>
+                    <li>N-dimensional array objects</li>
+                    <li>Broadcasting functions</li>
+                    <li>Linear algebra operations</li>
+                    <li>Fourier transform functions</li>
+                    <li>Random number generation</li>
+
+                </ul>
+            </div>
+            
+            <div class="detailed-content">
+                <br>**NumPy: The Foundation of Scientific Computing**<br><br>NumPy (Numerical Python) provides the foundation for nearly all data science and machine learning libraries in Python. It introduces the powerful N-dimensional array object (ndarray) and functions to work with these arrays.<br><br>**Core Concepts:**<br><br>1. **NDArray Object**<br>   - Homogeneous array of elements (all same data type)<br>   - More efficient than Python lists for numerical operations<br>   - Support for broadcasting (operations on arrays of different shapes)<br><br>2. **Array Creation**<br>   <div class="code-block"><br>   import numpy as np<br>   <br>   # From lists<br>   arr1d = np.array([1, 2, 3, 4, 5])<br>   arr2d = np.array([[1, 2, 3], [4, 5, 6]])<br>   <br>   # Using built-in functions<br>   zeros = np.zeros((3, 4))        # 3x4 array of zeros<br>   ones = np.ones((2, 3))          # 2x3 array of ones<br>   identity = np.eye(3)            # 3x3 identity matrix<br>   range_arr = np.arange(0, 10, 2) # [0, 2, 4, 6, 8]<br>   linspace = np.linspace(0, 1, 5) # 5 points from 0 to 1<br>   </div><br><br>3. **Array Operations**<br>   <div class="code-block"><br>   a = np.array([1, 2, 3, 4])<br>   b = np.array([5, 6, 7, 8])<br>   <br>   # Element-wise operations<br>   print(a + b)      # [6, 8, 10, 12]<br>   print(a * b)      # [5, 12, 21, 32]<br>   print(a ** 2)     # [1, 4, 9, 16]<br>   <br>   # Universal functions (ufuncs)<br>   print(np.sqrt(a))     # Square root<br>   print(np.exp(a))      # Exponential<br>   print(np.sin(a))      # Sine<br>   </div><br><br>4. **Linear Algebra**<br>   <div class="code-block"><br>   # Matrix operations<br>   A = np.array([[1, 2], [3, 4]])<br>   B = np.array([[5, 6], [7, 8]])<br>   <br>   # Matrix multiplication<br>   C = np.dot(A, B)  # or A @ B<br>   <br>   # Eigenvalues and eigenvectors<br>   eigenvals, eigenvecs = np.linalg.eig(A)<br>   <br>   # Matrix inverse<br>   A_inv = np.linalg.inv(A)<br>   <br>   # Singular Value Decomposition<br>   U, s, Vt = np.linalg.svd(A)<br>   </div><br><br>5. **Statistical Operations**<br>   <div class="code-block"><br>   data = np.random.randn(1000)  # Random normal distribution<br>   <br>   # Descriptive statistics<br>   mean = np.mean(data)<br>   median = np.median(data)<br>   std = np.std(data)<br>   var = np.var(data)<br>   <br>   # Along specific axes<br>   matrix = np.random.randn(5, 3)<br>   col_means = np.mean(matrix, axis=0)  # Mean of each column<br>   row_means = np.mean(matrix, axis=1)  # Mean of each row<br>   </div><br><br>**Real-World Example: Image Processing**<br><div class="code-block"><br>import numpy as np<br>import matplotlib.pyplot as plt<br><br># Create a simple image (2D array)<br>height, width = 100, 100<br>image = np.zeros((height, width))<br><br># Add some patterns<br>for i in range(height):<br>    for j in range(width):<br>        image[i, j] = np.sin(i/10) * np.cos(j/10)<br><br># Apply filters<br># Gaussian blur (simplified)<br>kernel = np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]]) / 16<br># In real applications, use scipy.ndimage or OpenCV for convolution<br><br>plt.figure(figsize=(10, 4))<br>plt.subplot(1, 2, 1)<br>plt.imshow(image, cmap='gray')<br>plt.title('Original Image')<br>plt.subplot(1, 2, 2)<br>plt.imshow(image, cmap='hot')<br>plt.title('With Different Colormap')<br>plt.show()<br></div><br><br>**Performance Tips:**<br>- Use vectorized operations instead of loops<br>- Leverage broadcasting for operations on different shaped arrays<br>- Use appropriate data types (float32 vs float64) to save memory<br>- Utilize NumPy's built-in functions which are optimized in C<br>
+            </div>
+        </div>
+
+        <div class="library-card">
+            <div class="library-header">
+                <span class="library-name">Pandas</span>
+                <span class="library-version">2.0+</span>
+            </div>
+            <p><strong>Description:</strong> Powerful data structures and data analysis tools</p>
+            
+            <div class="installation">
+                <strong>Installation:</strong> pip install pandas
+            </div>
+            
+            <div class="installation">
+                <strong>Import:</strong> import pandas as pd
+            </div>
+            
+            <div class="features-list">
+                <h3>Key Features:</h3>
+                <ul>
+                    <li>DataFrame and Series objects</li>
+                    <li>Data cleaning and transformation</li>
+                    <li>File I/O operations</li>
+                    <li>Grouping and aggregation</li>
+                    <li>Time series analysis</li>
+
+                </ul>
+            </div>
+            
+            <div class="detailed-content">
+                <br>**Pandas: Data Manipulation and Analysis**<br><br>Pandas is the cornerstone library for data manipulation and analysis in Python. It provides two main data structures: DataFrame (2D) and Series (1D), which are built on top of NumPy arrays but offer much more functionality for data analysis.<br><br>**Core Data Structures:**<br><br>1. **Series - 1D labeled array**<br>   <div class="code-block"><br>   import pandas as pd<br>   import numpy as np<br>   <br>   # Create Series<br>   s = pd.Series([1, 3, 5, np.nan, 6, 8])<br>   print(s)<br>   <br>   # Series with custom index<br>   s2 = pd.Series({'a': 1, 'b': 2, 'c': 3})<br>   print(s2['a'])  # Access by label<br>   </div><br><br>2. **DataFrame - 2D labeled data structure**<br>   <div class="code-block"><br>   # Create DataFrame from dictionary<br>   data = {<br>       'Name': ['Alice', 'Bob', 'Charlie', 'Diana'],<br>       'Age': [25, 30, 35, 28],<br>       'City': ['New York', 'London', 'Tokyo', 'Paris'],<br>       'Salary': [50000, 60000, 70000, 55000]<br>   }<br>   df = pd.DataFrame(data)<br>   print(df)<br>   <br>   # DataFrame info<br>   print(df.info())        # Data types and memory usage<br>   print(df.describe())    # Statistical summary<br>   print(df.shape)         # Dimensions<br>   </div><br><br>**Data Loading and I/O:**<br><div class="code-block"><br># Reading data from various sources<br>df_csv = pd.read_csv('data.csv')<br>df_excel = pd.read_excel('data.xlsx', sheet_name='Sheet1')<br>df_json = pd.read_json('data.json')<br>df_sql = pd.read_sql('SELECT * FROM table', connection)<br><br># Writing data<br>df.to_csv('output.csv', index=False)<br>df.to_excel('output.xlsx', index=False)<br>df.to_json('output.json')<br>df.to_sql('table_name', connection, if_exists='replace')<br></div><br><br>**Data Selection and Indexing:**<br><div class="code-block"><br># Column selection<br>print(df['Name'])           # Single column (Series)<br>print(df[['Name', 'Age']])  # Multiple columns (DataFrame)<br><br># Row selection<br>print(df.iloc[0])           # By integer position<br>print(df.loc[0])            # By label<br>print(df.iloc[0:3])         # Slice by position<br>print(df.loc[0:2])          # Slice by label<br><br># Conditional selection<br>young_employees = df[df['Age'] < 30]<br>high_earners = df[df['Salary'] > 55000]<br>complex_filter = df[(df['Age'] > 25) & (df['Salary'] > 50000)]<br></div><br><br>**Data Cleaning and Transformation:**<br><div class="code-block"><br># Handling missing values<br>df_with_nan = df.copy()<br>df_with_nan.loc[1, 'Salary'] = np.nan<br><br># Check for missing values<br>print(df_with_nan.isnull().sum())<br><br># Fill missing values<br>df_filled = df_with_nan.fillna({<br>    'Salary': df_with_nan['Salary'].mean()<br>})<br><br># Drop rows with missing values<br>df_cleaned = df_with_nan.dropna()<br><br># Data type conversion<br>df['Age'] = df['Age'].astype('int32')<br>df['City'] = df['City'].astype('category')  # Save memory for categorical data<br><br># String operations<br>df['Name_Upper'] = df['Name'].str.upper()<br>df['Name_Length'] = df['Name'].str.len()<br><br># Apply custom functions<br>def salary_category(salary):<br>    if salary < 55000:<br>        return 'Low'<br>    elif salary < 65000:<br>        return 'Medium'<br>    else:<br>        return 'High'<br><br>df['Salary_Category'] = df['Salary'].apply(salary_category)<br></div><br><br>**Grouping and Aggregation:**<br><div class="code-block"><br># Add more data for grouping example<br>extended_data = {<br>    'Name': ['Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank'],<br>    'Department': ['IT', 'HR', 'IT', 'Finance', 'IT', 'HR'],<br>    'Age': [25, 30, 35, 28, 32, 45],<br>    'Salary': [50000, 60000, 70000, 55000, 65000, 80000]<br>}<br>df_ext = pd.DataFrame(extended_data)<br><br># Group by department<br>dept_stats = df_ext.groupby('Department').agg({<br>    'Age': ['mean', 'min', 'max'],<br>    'Salary': ['mean', 'sum'],<br>    'Name': 'count'<br>}).round(2)<br>print(dept_stats)<br><br># Multiple grouping<br>age_salary_stats = df_ext.groupby(['Department'])['Salary'].describe()<br></div><br><br>**Time Series Analysis:**<br><div class="code-block"><br># Create time series data<br>dates = pd.date_range('2023-01-01', periods=100, freq='D')<br>ts_data = pd.DataFrame({<br>    'Date': dates,<br>    'Value': np.random.randn(100).cumsum()<br>})<br>ts_data.set_index('Date', inplace=True)<br><br># Time-based operations<br>monthly_avg = ts_data.resample('M').mean()  # Monthly average<br>weekly_sum = ts_data.resample('W').sum()    # Weekly sum<br><br># Moving averages<br>ts_data['MA_7'] = ts_data['Value'].rolling(window=7).mean()<br>ts_data['MA_30'] = ts_data['Value'].rolling(window=30).mean()<br></div><br><br>**Merging and Joining:**<br><div class="code-block"><br># Create sample datasets<br>customers = pd.DataFrame({<br>    'customer_id': [1, 2, 3, 4],<br>    'name': ['Alice', 'Bob', 'Charlie', 'Diana'],<br>    'city': ['NY', 'LA', 'Chicago', 'Boston']<br>})<br><br>orders = pd.DataFrame({<br>    'order_id': [101, 102, 103, 104, 105],<br>    'customer_id': [1, 2, 2, 3, 1],<br>    'amount': [100, 150, 200, 175, 300]<br>})<br><br># Different types of joins<br>inner_join = pd.merge(customers, orders, on='customer_id', how='inner')<br>left_join = pd.merge(customers, orders, on='customer_id', how='left')<br>right_join = pd.merge(customers, orders, on='customer_id', how='right')<br>outer_join = pd.merge(customers, orders, on='customer_id', how='outer')<br></div><br><br>**Real-World Example: Sales Data Analysis**<br><div class="code-block"><br># Load and analyze sales data<br># (In practice, you'd load from CSV/database)<br>sales_data = pd.DataFrame({<br>    'Date': pd.date_range('2023-01-01', periods=365, freq='D'),<br>    'Product': np.random.choice(['A', 'B', 'C'], 365),<br>    'Region': np.random.choice(['North', 'South', 'East', 'West'], 365),<br>    'Sales': np.random.uniform(100, 1000, 365),<br>    'Units': np.random.randint(1, 50, 365)<br>})<br><br># Add derived columns<br>sales_data['Month'] = sales_data['Date'].dt.month<br>sales_data['Quarter'] = sales_data['Date'].dt.quarter<br>sales_data['Revenue_per_Unit'] = sales_data['Sales'] / sales_data['Units']<br><br># Monthly sales analysis<br>monthly_sales = sales_data.groupby(['Month', 'Product']).agg({<br>    'Sales': 'sum',<br>    'Units': 'sum'<br>}).reset_index()<br><br># Top performing products<br>top_products = sales_data.groupby('Product')['Sales'].sum().sort_values(ascending=False)<br><br># Regional performance<br>regional_performance = sales_data.groupby('Region').agg({<br>    'Sales': ['sum', 'mean'],<br>    'Units': 'sum'<br>})<br><br>print("Monthly Sales by Product:")<br>print(monthly_sales.head())<br>print("\nTop Products by Revenue:")<br>print(top_products)<br>print("\nRegional Performance:")<br>print(regional_performance)<br></div><br><br>**Performance Optimization Tips:**<br>- Use vectorized operations instead of apply() when possible<br>- Leverage categorical data types for string columns with few unique values<br>- Use chunking for large datasets that don't fit in memory<br>- Choose appropriate data types (int32 vs int64, float32 vs float64)<br>- Use pandas' built-in string methods for text processing<br>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="chapter">
+        <h1>Machine Learning Frameworks</h1>
+
+        <p class="highlight">Libraries for traditional machine learning algorithms and techniques</p>
+
+        <div class="library-card">
+            <div class="library-header">
+                <span class="library-name">Scikit-learn</span>
+                <span class="library-version">1.3+</span>
+            </div>
+            <p><strong>Description:</strong> Simple and efficient tools for predictive data analysis</p>
+            
+            <div class="installation">
+                <strong>Installation:</strong> pip install scikit-learn
+            </div>
+            
+            <div class="installation">
+                <strong>Import:</strong> from sklearn import *
+            </div>
+            
+            <div class="features-list">
+                <h3>Key Features:</h3>
+                <ul>
+                    <li>Wide range of ML algorithms</li>
+                    <li>Model evaluation and selection</li>
+                    <li>Data preprocessing utilities</li>
+                    <li>Pipeline construction</li>
+                    <li>Cross-validation tools</li>
+
+                </ul>
+            </div>
+            
+            <div class="detailed-content">
+                <br>**Scikit-learn: The Complete Machine Learning Toolkit**<br><br>Scikit-learn is the most popular machine learning library in Python, providing simple and efficient tools for data mining and data analysis. It's built on NumPy, SciPy, and matplotlib and follows a consistent API design across all algorithms.<br><br>**Core Philosophy:**<br>- **Consistency**: All objects share a common interface<br>- **Inspection**: Parameter values are accessible as public attributes<br>- **Limited object hierarchy**: Only algorithms are represented as classes<br>- **Composition**: Many tasks can be expressed as sequences of more fundamental algorithms<br>- **Sensible defaults**: Most parameters have default values<br><br>**Key Components:**<br><br>1. **Estimators**: Objects that fit models to data<br>2. **Predictors**: Estimators that can make predictions<br>3. **Transformers**: Estimators that can transform data<br>4. **Model selection**: Tools for comparing, validating and choosing parameters<br><br>**Classification Algorithms:**<br><br><div class="code-block"><br>from sklearn.datasets import load_iris, make_classification<br>from sklearn.model_selection import train_test_split, cross_val_score<br>from sklearn.linear_model import LogisticRegression<br>from sklearn.ensemble import RandomForestClassifier<br>from sklearn.svm import SVC<br>from sklearn.neighbors import KNeighborsClassifier<br>from sklearn.metrics import classification_report, confusion_matrix<br>import numpy as np<br><br># Load sample data<br>X, y = load_iris(return_X_y=True)<br>X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)<br><br># 1. Logistic Regression<br>log_reg = LogisticRegression()<br>log_reg.fit(X_train, y_train)<br>y_pred_lr = log_reg.predict(X_test)<br>print("Logistic Regression Accuracy:", log_reg.score(X_test, y_test))<br><br># 2. Random Forest<br>rf = RandomForestClassifier(n_estimators=100, random_state=42)<br>rf.fit(X_train, y_train)<br>y_pred_rf = rf.predict(X_test)<br>print("Random Forest Accuracy:", rf.score(X_test, y_test))<br><br># Feature importance<br>feature_importance = rf.feature_importances_<br>print("Feature Importance:", feature_importance)<br><br># 3. Support Vector Machine<br>svm = SVC(kernel='rbf', C=1.0)<br>svm.fit(X_train, y_train)<br>y_pred_svm = svm.predict(X_test)<br>print("SVM Accuracy:", svm.score(X_test, y_test))<br><br># 4. K-Nearest Neighbors<br>knn = KNeighborsClassifier(n_neighbors=5)<br>knn.fit(X_train, y_train)<br>y_pred_knn = knn.predict(X_test)<br>print("KNN Accuracy:", knn.score(X_test, y_test))<br><br># Detailed evaluation<br>print("\nDetailed Classification Report (Random Forest):")<br>print(classification_report(y_test, y_pred_rf))<br>print("\nConfusion Matrix:")<br>print(confusion_matrix(y_test, y_pred_rf))<br></div><br><br>**Regression Algorithms:**<br><br><div class="code-block"><br>from sklearn.datasets import load_boston, make_regression<br>from sklearn.linear_model import LinearRegression, Ridge, Lasso<br>from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor<br>from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error<br>import matplotlib.pyplot as plt<br><br># Generate sample regression data<br>X, y = make_regression(n_samples=1000, n_features=5, noise=10, random_state=42)<br>X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)<br><br># 1. Linear Regression<br>linear_reg = LinearRegression()<br>linear_reg.fit(X_train, y_train)<br>y_pred_linear = linear_reg.predict(X_test)<br>print("Linear Regression R²:", r2_score(y_test, y_pred_linear))<br>print("Linear Regression RMSE:", np.sqrt(mean_squared_error(y_test, y_pred_linear)))<br><br># 2. Ridge Regression (L2 regularization)<br>ridge = Ridge(alpha=1.0)<br>ridge.fit(X_train, y_train)<br>y_pred_ridge = ridge.predict(X_test)<br>print("Ridge Regression R²:", r2_score(y_test, y_pred_ridge))<br><br># 3. Lasso Regression (L1 regularization)<br>lasso = Lasso(alpha=1.0)<br>lasso.fit(X_train, y_train)<br>y_pred_lasso = lasso.predict(X_test)<br>print("Lasso Regression R²:", r2_score(y_test, y_pred_lasso))<br>print("Lasso Coefficients:", lasso.coef_)  # Some will be exactly 0<br><br># 4. Random Forest Regression<br>rf_reg = RandomForestRegressor(n_estimators=100, random_state=42)<br>rf_reg.fit(X_train, y_train)<br>y_pred_rf = rf_reg.predict(X_test)<br>print("Random Forest R²:", r2_score(y_test, y_pred_rf))<br></div><br><br>**Data Preprocessing:**<br><br><div class="code-block"><br>from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler<br>from sklearn.preprocessing import LabelEncoder, OneHotEncoder<br>from sklearn.impute import SimpleImputer<br>from sklearn.feature_selection import SelectKBest, f_classif<br>import pandas as pd<br><br># Sample data with missing values and categorical features<br>data = pd.DataFrame({<br>    'age': [25, 30, np.nan, 35, 28],<br>    'income': [50000, np.nan, 75000, 80000, 60000],<br>    'education': ['Bachelor', 'Master', 'PhD', 'Bachelor', 'Master'],<br>    'target': [0, 1, 1, 1, 0]<br>})<br><br># 1. Handling Missing Values<br>imputer = SimpleImputer(strategy='mean')<br>data[['age', 'income']] = imputer.fit_transform(data[['age', 'income']])<br><br># 2. Scaling Numerical Features<br>scaler = StandardScaler()<br>data[['age', 'income']] = scaler.fit_transform(data[['age', 'income']])<br><br># 3. Encoding Categorical Features<br>le = LabelEncoder()<br>data['education_encoded'] = le.fit_transform(data['education'])<br><br># One-hot encoding (alternative approach)<br>education_dummies = pd.get_dummies(data['education'], prefix='education')<br>data = pd.concat([data, education_dummies], axis=1)<br><br>print("Preprocessed Data:")<br>print(data)<br></div><br><br>**Model Selection and Evaluation:**<br><br><div class="code-block"><br>from sklearn.model_selection import GridSearchCV, RandomizedSearchCV<br>from sklearn.model_selection import cross_val_score, StratifiedKFold<br>from sklearn.pipeline import Pipeline<br>from sklearn.ensemble import RandomForestClassifier<br>from sklearn.preprocessing import StandardScaler<br><br># Sample data<br>X, y = make_classification(n_samples=1000, n_features=20, n_classes=2, random_state=42)<br><br># 1. Cross-Validation<br>rf = RandomForestClassifier(random_state=42)<br>cv_scores = cross_val_score(rf, X, y, cv=5, scoring='accuracy')<br>print(f"Cross-validation scores: {cv_scores}")<br>print(f"Mean CV score: {cv_scores.mean():.3f} (+/- {cv_scores.std() * 2:.3f})")<br><br># 2. Grid Search for Hyperparameter Tuning<br>param_grid = {<br>    'n_estimators': [50, 100, 200],<br>    'max_depth': [5, 10, None],<br>    'min_samples_split': [2, 5, 10]<br>}<br><br>grid_search = GridSearchCV(rf, param_grid, cv=5, scoring='accuracy', n_jobs=-1)<br>grid_search.fit(X, y)<br><br>print(f"Best parameters: {grid_search.best_params_}")<br>print(f"Best cross-validation score: {grid_search.best_score_:.3f}")<br><br># 3. Pipeline with Preprocessing<br>pipeline = Pipeline([<br>    ('scaler', StandardScaler()),<br>    ('classifier', RandomForestClassifier(random_state=42))<br>])<br><br># Grid search with pipeline<br>param_grid_pipeline = {<br>    'classifier__n_estimators': [50, 100],<br>    'classifier__max_depth': [5, 10]<br>}<br><br>grid_pipeline = GridSearchCV(pipeline, param_grid_pipeline, cv=5, scoring='accuracy')<br>grid_pipeline.fit(X, y)<br><br>print(f"Best pipeline score: {grid_pipeline.best_score_:.3f}")<br></div><br><br>**Clustering Algorithms:**<br><br><div class="code-block"><br>from sklearn.cluster import KMeans, DBSCAN, AgglomerativeClustering<br>from sklearn.mixture import GaussianMixture<br>from sklearn.metrics import silhouette_score, adjusted_rand_score<br>from sklearn.datasets import make_blobs<br>import matplotlib.pyplot as plt<br><br># Generate sample clustering data<br>X, y_true = make_blobs(n_samples=300, centers=4, n_features=2, <br>                      random_state=42, cluster_std=1.0)<br><br># 1. K-Means Clustering<br>kmeans = KMeans(n_clusters=4, random_state=42)<br>y_kmeans = kmeans.fit_predict(X)<br>print(f"K-Means Silhouette Score: {silhouette_score(X, y_kmeans):.3f}")<br><br># 2. DBSCAN<br>dbscan = DBSCAN(eps=0.5, min_samples=5)<br>y_dbscan = dbscan.fit_predict(X)<br>print(f"DBSCAN Silhouette Score: {silhouette_score(X, y_dbscan):.3f}")<br><br># 3. Hierarchical Clustering<br>hierarchical = AgglomerativeClustering(n_clusters=4)<br>y_hierarchical = hierarchical.fit_predict(X)<br>print(f"Hierarchical Silhouette Score: {silhouette_score(X, y_hierarchical):.3f}")<br><br># 4. Gaussian Mixture Model<br>gmm = GaussianMixture(n_components=4, random_state=42)<br>y_gmm = gmm.fit_predict(X)<br>print(f"GMM Silhouette Score: {silhouette_score(X, y_gmm):.3f}")<br><br># Visualize results<br>fig, axes = plt.subplots(2, 2, figsize=(12, 10))<br>algorithms = [('K-Means', y_kmeans), ('DBSCAN', y_dbscan), <br>              ('Hierarchical', y_hierarchical), ('GMM', y_gmm)]<br><br>for i, (name, labels) in enumerate(algorithms):<br>    row, col = i // 2, i % 2<br>    axes[row, col].scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis')<br>    axes[row, col].set_title(name)<br><br>plt.tight_layout()<br>plt.show()<br></div><br><br>**Dimensionality Reduction:**<br><br><div class="code-block"><br>from sklearn.decomposition import PCA, TruncatedSVD<br>from sklearn.manifold import TSNE<br>from sklearn.discriminant_analysis import LinearDiscriminantAnalysis<br>from sklearn.datasets import load_digits<br>import matplotlib.pyplot as plt<br><br># Load sample high-dimensional data<br>digits = load_digits()<br>X, y = digits.data, digits.target<br><br>print(f"Original data shape: {X.shape}")<br><br># 1. Principal Component Analysis (PCA)<br>pca = PCA(n_components=2)<br>X_pca = pca.fit_transform(X)<br>print(f"PCA explained variance ratio: {pca.explained_variance_ratio_}")<br>print(f"Total explained variance: {pca.explained_variance_ratio_.sum():.3f}")<br><br># 2. t-SNE<br>tsne = TSNE(n_components=2, random_state=42)<br>X_tsne = tsne.fit_transform(X)<br><br># 3. Linear Discriminant Analysis (supervised)<br>lda = LinearDiscriminantAnalysis(n_components=2)<br>X_lda = lda.fit_transform(X, y)<br><br># Visualize results<br>fig, axes = plt.subplots(1, 3, figsize=(15, 5))<br>techniques = [('PCA', X_pca), ('t-SNE', X_tsne), ('LDA', X_lda)]<br><br>for i, (name, X_reduced) in enumerate(techniques):<br>    axes[i].scatter(X_reduced[:, 0], X_reduced[:, 1], c=y, cmap='tab10')<br>    axes[i].set_title(f'{name} of Digits Dataset')<br><br>plt.tight_layout()<br>plt.show()<br></div><br><br>**Real-World Example: Complete ML Pipeline**<br><br><div class="code-block"><br>from sklearn.datasets import load_breast_cancer<br>from sklearn.model_selection import train_test_split<br>from sklearn.preprocessing import StandardScaler<br>from sklearn.feature_selection import SelectKBest, f_classif<br>from sklearn.ensemble import RandomForestClassifier<br>from sklearn.linear_model import LogisticRegression<br>from sklearn.svm import SVC<br>from sklearn.pipeline import Pipeline<br>from sklearn.model_selection import GridSearchCV<br>from sklearn.metrics import classification_report, roc_auc_score<br>import pandas as pd<br><br># Load breast cancer dataset<br>data = load_breast_cancer()<br>X, y = data.data, data.target<br><br># Split the data<br>X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)<br><br># Create pipelines for different algorithms<br>pipelines = {<br>    'Logistic Regression': Pipeline([<br>        ('scaler', StandardScaler()),<br>        ('feature_selection', SelectKBest(f_classif, k=10)),<br>        ('classifier', LogisticRegression(random_state=42))<br>    ]),<br>    <br>    'Random Forest': Pipeline([<br>        ('feature_selection', SelectKBest(f_classif, k=15)),<br>        ('classifier', RandomForestClassifier(random_state=42))<br>    ]),<br>    <br>    'SVM': Pipeline([<br>        ('scaler', StandardScaler()),<br>        ('feature_selection', SelectKBest(f_classif, k=10)),<br>        ('classifier', SVC(probability=True, random_state=42))<br>    ])<br>}<br><br># Hyperparameter grids<br>param_grids = {<br>    'Logistic Regression': {<br>        'classifier__C': [0.1, 1, 10],<br>        'feature_selection__k': [5, 10, 15]<br>    },<br>    'Random Forest': {<br>        'classifier__n_estimators': [50, 100, 200],<br>        'classifier__max_depth': [5, 10, None],<br>        'feature_selection__k': [10, 15, 20]<br>    },<br>    'SVM': {<br>        'classifier__C': [0.1, 1, 10],<br>        'classifier__gamma': ['scale', 'auto'],<br>        'feature_selection__k': [5, 10, 15]<br>    }<br>}<br><br># Evaluate each pipeline<br>results = {}<br>for name, pipeline in pipelines.items():<br>    # Grid search<br>    grid_search = GridSearchCV(pipeline, param_grids[name], <br>                              cv=5, scoring='roc_auc', n_jobs=-1)<br>    grid_search.fit(X_train, y_train)<br>    <br>    # Best model evaluation<br>    best_model = grid_search.best_estimator_<br>    y_pred = best_model.predict(X_test)<br>    y_pred_proba = best_model.predict_proba(X_test)[:, 1]<br>    <br>    results[name] = {<br>        'best_params': grid_search.best_params_,<br>        'best_cv_score': grid_search.best_score_,<br>        'test_auc': roc_auc_score(y_test, y_pred_proba),<br>        'classification_report': classification_report(y_test, y_pred)<br>    }<br><br># Display results<br>for name, result in results.items():<br>    print(f"\n{'='*50}")<br>    print(f"Algorithm: {name}")<br>    print(f"{'='*50}")<br>    print(f"Best Parameters: {result['best_params']}")<br>    print(f"Best CV AUC Score: {result['best_cv_score']:.4f}")<br>    print(f"Test AUC Score: {result['test_auc']:.4f}")<br>    print("\nClassification Report:")<br>    print(result['classification_report'])<br></div><br><br>**Best Practices:**<br><br>1. **Always use train/validation/test splits** or cross-validation<br>2. **Preprocess data consistently** between training and testing<br>3. **Use pipelines** to prevent data leakage<br>4. **Start with simple models** before trying complex ones<br>5. **Tune hyperparameters systematically** using grid search or random search<br>6. **Evaluate with appropriate metrics** for your problem type<br>7. **Consider feature scaling** for distance-based algorithms<br>8. **Handle imbalanced data** with appropriate techniques<br>9. **Document your preprocessing steps** for reproducibility<br>10. **Validate your model** on truly unseen data<br>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

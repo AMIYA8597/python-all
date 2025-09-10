@@ -1,0 +1,529 @@
+{
+  "books": [
+    {
+      "title": "Cracking the Coding Interview: 189 Programming Questions and Solutions",
+      "authors": [
+        {
+          "name": "Gayle Laakmann McDowell",
+          "credentials": [
+            "Former Google Engineer",
+            "Former Microsoft Engineer",
+            "Former Apple Engineer"
+          ],
+          "affiliations": [
+            "CareerCup"
+          ],
+          "notable_works": [
+            "Cracking the Coding Interview",
+            "Cracking the PM Interview"
+          ],
+          "expertise_areas": [
+            "Technical Interviews",
+            "Software Engineering",
+            "Career Development"
+          ]
+        }
+      ],
+      "category": "interview_prep",
+      "skill_level": "intermediate",
+      "isbn": "978-0984782857",
+      "publisher": "CareerCup",
+      "publication_year": 2015,
+      "pages": 696,
+      "edition": "6th",
+      "description": "The gold standard for technical interview preparation. Contains 189 programming questions with detailed solutions, interview strategies, and behind-the-scenes insights from hiring managers.",
+      "key_topics": [
+        "Data Structures",
+        "Algorithms",
+        "System Design",
+        "Interview Strategy",
+        "Behavioral Questions",
+        "Negotiation",
+        "Big O Analysis"
+      ],
+      "prerequisites": [
+        "Basic programming knowledge",
+        "Understanding of fundamental data structures"
+      ],
+      "learning_outcomes": [
+        "Master common interview question patterns",
+        "Develop systematic problem-solving approach",
+        "Understand what interviewers look for",
+        "Build confidence for technical interviews"
+      ],
+      "review": {
+        "overall_rating": 4.8,
+        "content_quality": 4.9,
+        "readability": 4.7,
+        "practical_value": 5.0,
+        "depth_coverage": 4.6,
+        "pros": [
+          "Comprehensive coverage of interview topics",
+          "Real interview questions from top companies",
+          "Excellent explanations and multiple solutions",
+          "Great insights into interview process",
+          "Includes system design and behavioral prep"
+        ],
+        "cons": [
+          "Can be overwhelming for beginners",
+          "Some solutions could be more optimized",
+          "Heavy focus on traditional tech companies"
+        ],
+        "best_for": [
+          "Software engineers preparing for FAANG interviews",
+          "CS students entering job market",
+          "Anyone wanting systematic interview prep"
+        ],
+        "avoid_if": [
+          "Complete programming beginner",
+          "Looking for language-specific prep only"
+        ]
+      },
+      "price_range": "$35-45",
+      "availability": [
+        "Physical",
+        "eBook",
+        "Audiobook"
+      ],
+      "online_resources": {
+        "Official Website": "https://www.crackingthecodinginterview.com/",
+        "GitHub": "https://github.com/careercup/CtCI-6th-Edition"
+      },
+      "estimated_reading_time": 80,
+      "companion_resources": [
+        "Video solutions",
+        "Online practice platform"
+      ]
+    },
+    {
+      "title": "Introduction to Algorithms",
+      "authors": [
+        {
+          "name": "Thomas H. Cormen",
+          "credentials": [],
+          "affiliations": [
+            "Dartmouth College"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Algorithms"
+          ]
+        },
+        {
+          "name": "Charles E. Leiserson",
+          "credentials": [],
+          "affiliations": [
+            "MIT"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Algorithms",
+            "Parallel Computing"
+          ]
+        },
+        {
+          "name": "Ronald L. Rivest",
+          "credentials": [],
+          "affiliations": [
+            "MIT"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Cryptography",
+            "Algorithms"
+          ]
+        },
+        {
+          "name": "Clifford Stein",
+          "credentials": [],
+          "affiliations": [
+            "Columbia University"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Algorithms"
+          ]
+        }
+      ],
+      "category": "algorithms",
+      "skill_level": "advanced",
+      "isbn": "978-0262033848",
+      "publisher": "MIT Press",
+      "publication_year": 2009,
+      "pages": 1312,
+      "edition": "3rd",
+      "description": "The definitive algorithms textbook, known as 'CLRS'. Provides comprehensive coverage of algorithms with rigorous mathematical analysis. Used in top universities worldwide.",
+      "key_topics": [
+        "Sorting and Order Statistics",
+        "Data Structures",
+        "Advanced Design Techniques",
+        "Graph Algorithms",
+        "Network Flow",
+        "String Algorithms",
+        "Computational Geometry",
+        "Linear Programming",
+        "Advanced Topics"
+      ],
+      "prerequisites": [
+        "Strong mathematical background",
+        "Discrete mathematics",
+        "Basic programming experience",
+        "Comfort with mathematical proofs"
+      ],
+      "learning_outcomes": [
+        "Deep understanding of algorithm design and analysis",
+        "Master advanced algorithmic techniques",
+        "Develop mathematical thinking about computation",
+        "Build foundation for research and advanced study"
+      ],
+      "review": {
+        "overall_rating": 4.7,
+        "content_quality": 5.0,
+        "readability": 3.8,
+        "practical_value": 4.2,
+        "depth_coverage": 5.0,
+        "pros": [
+          "Most comprehensive algorithms coverage",
+          "Rigorous mathematical treatment",
+          "Excellent for reference and deep study",
+          "Industry standard textbook",
+          "Covers both theory and practice"
+        ],
+        "cons": [
+          "Very dense and mathematical",
+          "Not beginner-friendly",
+          "Limited programming examples",
+          "Can be intimidating"
+        ],
+        "best_for": [
+          "CS graduate students",
+          "Researchers in algorithms",
+          "Advanced practitioners seeking depth",
+          "Those preparing for algorithm competitions"
+        ],
+        "avoid_if": [
+          "Beginner programmer",
+          "Looking for quick practical solutions",
+          "Weak mathematical background"
+        ]
+      },
+      "price_range": "$200-250",
+      "availability": [
+        "Physical",
+        "eBook"
+      ],
+      "online_resources": {
+        "MIT OpenCourseWare": "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2015/",
+        "Solutions Manual": "Available separately"
+      },
+      "estimated_reading_time": 200,
+      "companion_resources": [
+        "MIT lecture videos",
+        "Problem sets",
+        "Solutions manual"
+      ]
+    },
+    {
+      "title": "Effective Python: 90 Specific Ways to Write Better Python",
+      "authors": [
+        {
+          "name": "Brett Slatkin",
+          "credentials": [
+            "Principal Software Engineer at Google"
+          ],
+          "affiliations": [
+            "Google"
+          ],
+          "notable_works": [
+            "Effective Python"
+          ],
+          "expertise_areas": [
+            "Python",
+            "Software Engineering",
+            "Distributed Systems"
+          ]
+        }
+      ],
+      "category": "python",
+      "skill_level": "intermediate",
+      "isbn": "978-0134853987",
+      "publisher": "Addison-Wesley",
+      "publication_year": 2019,
+      "pages": 352,
+      "edition": "2nd",
+      "description": "A collection of 90 best practices, tips, and shortcuts for writing effective Python code. Covers Python 3.7+ features and idiomatic Python programming.",
+      "key_topics": [
+        "Pythonic Thinking",
+        "Lists and Dictionaries",
+        "Functions",
+        "Comprehensions",
+        "Classes and Interfaces",
+        "Metaclasses",
+        "Concurrency and Parallelism",
+        "Robustness and Performance",
+        "Testing and Debugging",
+        "Collaboration"
+      ],
+      "prerequisites": [
+        "Basic Python programming experience",
+        "Familiarity with Python syntax and basic concepts"
+      ],
+      "learning_outcomes": [
+        "Write more Pythonic and efficient code",
+        "Master Python's advanced features",
+        "Avoid common Python pitfalls",
+        "Improve code readability and maintainability"
+      ],
+      "review": {
+        "overall_rating": 4.7,
+        "content_quality": 4.8,
+        "readability": 4.6,
+        "practical_value": 4.9,
+        "depth_coverage": 4.5,
+        "pros": [
+          "Excellent practical advice",
+          "Covers modern Python features",
+          "Clear examples and explanations",
+          "Written by Google engineer with real experience",
+          "Covers both basics and advanced topics"
+        ],
+        "cons": [
+          "Assumes some Python experience",
+          "Could benefit from more comprehensive examples",
+          "Some items are quite specific"
+        ],
+        "best_for": [
+          "Python developers wanting to improve their code",
+          "Intermediate Python programmers",
+          "Anyone serious about Python development"
+        ],
+        "avoid_if": [
+          "Complete Python beginner",
+          "Looking for language introduction"
+        ]
+      },
+      "price_range": "$40-50",
+      "availability": [
+        "Physical",
+        "eBook"
+      ],
+      "online_resources": {
+        "Author's Blog": "https://effectivepython.com/",
+        "Code Examples": "Available on publisher's website"
+      },
+      "estimated_reading_time": 45,
+      "companion_resources": [
+        "Online code examples",
+        "Author blog posts"
+      ]
+    },
+    {
+      "title": "Grokking Algorithms: An Illustrated Guide for Programmers and Other Curious People",
+      "authors": [
+        {
+          "name": "Aditya Bhargava",
+          "credentials": [],
+          "affiliations": [],
+          "notable_works": [],
+          "expertise_areas": [
+            "Software Engineering",
+            "Technical Writing"
+          ]
+        }
+      ],
+      "category": "algorithms",
+      "skill_level": "beginner",
+      "isbn": "978-1617292231",
+      "publisher": "Manning Publications",
+      "publication_year": 2016,
+      "pages": 256,
+      "edition": "1st",
+      "description": "A visual and intuitive approach to learning algorithms. Uses illustrations and simple explanations to make complex concepts accessible to beginners.",
+      "key_topics": [
+        "Binary Search",
+        "Selection Sort",
+        "Recursion",
+        "Quicksort",
+        "Hash Tables",
+        "Breadth-First Search",
+        "Dijkstra's Algorithm",
+        "Greedy Algorithms",
+        "Dynamic Programming",
+        "K-Nearest Neighbors"
+      ],
+      "prerequisites": [
+        "Basic programming knowledge in any language"
+      ],
+      "learning_outcomes": [
+        "Understand fundamental algorithms intuitively",
+        "Develop algorithmic thinking",
+        "Learn to analyze algorithm performance",
+        "Build foundation for advanced study"
+      ],
+      "review": {
+        "overall_rating": 4.5,
+        "content_quality": 4.4,
+        "readability": 4.9,
+        "practical_value": 4.3,
+        "depth_coverage": 3.8,
+        "pros": [
+          "Excellent visual explanations",
+          "Very beginner-friendly",
+          "Makes complex topics accessible",
+          "Engaging writing style",
+          "Good practical examples"
+        ],
+        "cons": [
+          "Limited depth on advanced topics",
+          "Not comprehensive enough for advanced users",
+          "Some algorithms covered superficially"
+        ],
+        "best_for": [
+          "Programming beginners",
+          "Visual learners",
+          "Those intimidated by traditional algorithms books",
+          "Self-taught programmers"
+        ],
+        "avoid_if": [
+          "Already have strong algorithms background",
+          "Need comprehensive coverage",
+          "Prefer mathematical rigor"
+        ]
+      },
+      "price_range": "$35-45",
+      "availability": [
+        "Physical",
+        "eBook"
+      ],
+      "online_resources": {
+        "Manning Publications": "https://www.manning.com/books/grokking-algorithms",
+        "Code Examples": "Available on publisher's website"
+      },
+      "estimated_reading_time": 30,
+      "companion_resources": [
+        "Online code examples",
+        "Practice exercises"
+      ]
+    },
+    {
+      "title": "Elements of Programming Interviews in Python: The Insiders' Guide",
+      "authors": [
+        {
+          "name": "Adnan Aziz",
+          "credentials": [],
+          "affiliations": [
+            "University of Texas"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Algorithms",
+            "Software Engineering"
+          ]
+        },
+        {
+          "name": "Tsung-Hsien Lee",
+          "credentials": [],
+          "affiliations": [
+            "Google"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Software Engineering"
+          ]
+        },
+        {
+          "name": "Amit Prakash",
+          "credentials": [],
+          "affiliations": [
+            "Google"
+          ],
+          "notable_works": [],
+          "expertise_areas": [
+            "Software Engineering"
+          ]
+        }
+      ],
+      "category": "interview_prep",
+      "skill_level": "intermediate",
+      "isbn": "978-1537713946",
+      "publisher": "CreateSpace",
+      "publication_year": 2016,
+      "pages": 424,
+      "edition": "1st",
+      "description": "Python-specific interview preparation with 300+ solved problems. Focuses on problem-solving patterns and Python-specific techniques.",
+      "key_topics": [
+        "Arrays",
+        "Strings",
+        "Linked Lists",
+        "Stacks and Queues",
+        "Binary Trees",
+        "Heaps",
+        "Searching",
+        "Hash Tables",
+        "Sorting",
+        "Binary Search Trees",
+        "Recursion",
+        "Dynamic Programming",
+        "Greedy Algorithms",
+        "Graphs",
+        "Parallel Computing"
+      ],
+      "prerequisites": [
+        "Python programming experience",
+        "Basic data structures knowledge"
+      ],
+      "learning_outcomes": [
+        "Master Python-specific interview techniques",
+        "Learn to implement algorithms efficiently in Python",
+        "Understand Python's standard library for interviews",
+        "Develop systematic approach to problem-solving"
+      ],
+      "review": {
+        "overall_rating": 4.6,
+        "content_quality": 4.7,
+        "readability": 4.4,
+        "practical_value": 4.8,
+        "depth_coverage": 4.5,
+        "pros": [
+          "Python-specific focus",
+          "Comprehensive problem coverage",
+          "Good explanations of solutions",
+          "Leverages Python's strengths",
+          "Written by industry experts"
+        ],
+        "cons": [
+          "Less popular than language-agnostic books",
+          "Some problems are quite challenging",
+          "Could use more system design content"
+        ],
+        "best_for": [
+          "Python developers preparing for interviews",
+          "Those wanting Python-specific techniques",
+          "Experienced programmers switching to Python"
+        ],
+        "avoid_if": [
+          "Prefer language-agnostic approach",
+          "Complete programming beginner",
+          "Not using Python in interviews"
+        ]
+      },
+      "price_range": "$50-60",
+      "availability": [
+        "Physical",
+        "eBook"
+      ],
+      "online_resources": {
+        "Official Website": "https://elementsofprogramminginterviews.com/",
+        "Judge Platform": "Available for additional practice"
+      },
+      "estimated_reading_time": 70,
+      "companion_resources": [
+        "Online judge",
+        "Additional problems",
+        "Solution videos"
+      ]
+    }
+  ],
+  "export_date": "2025-09-07T21:58:08.715438",
+  "total_books": 5
+}

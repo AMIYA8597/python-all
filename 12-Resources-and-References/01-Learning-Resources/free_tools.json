@@ -1,0 +1,260 @@
+{
+  "category": "free_tools",
+  "count": 5,
+  "items": [
+    {
+      "name": "Visual Studio Code",
+      "category": "ide",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "description": "Free, open-source code editor with extensive Python support and rich extension ecosystem.",
+      "price": "free",
+      "license": "MIT",
+      "website": "https://code.visualstudio.com",
+      "installation_complexity": "easy",
+      "learning_curve": "easy",
+      "features": [
+        "IntelliSense",
+        "Debugging",
+        "Git Integration",
+        "Extensions",
+        "Integrated Terminal",
+        "Code Snippets",
+        "Refactoring",
+        "Testing Support"
+      ],
+      "extensions_available": true,
+      "plugin_ecosystem": "extensive",
+      "community_size": "very_large",
+      "documentation_quality": "excellent",
+      "support_channels": [
+        "GitHub",
+        "Discord",
+        "Stack Overflow"
+      ],
+      "resource_usage": "medium",
+      "startup_time": "fast",
+      "user_rating": 4.7,
+      "expert_rating": 4.6,
+      "pros": [
+        "Free and open source",
+        "Excellent Python extension",
+        "Fast and lightweight",
+        "Great debugging support",
+        "Huge extension marketplace",
+        "Regular updates"
+      ],
+      "cons": [
+        "Can become resource-heavy with many extensions",
+        "Not a full IDE out of the box",
+        "Configuration can be overwhelming for beginners"
+      ],
+      "alternatives": [
+        "PyCharm",
+        "Atom",
+        "Sublime Text"
+      ]
+    },
+    {
+      "name": "Git",
+      "category": "version_control",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "description": "Distributed version control system for tracking changes in source code.",
+      "price": "free",
+      "license": "GPL v2",
+      "website": "https://git-scm.com",
+      "installation_complexity": "easy",
+      "learning_curve": "medium",
+      "features": [
+        "Distributed Version Control",
+        "Branching and Merging",
+        "Lightweight Branching",
+        "Staging Area",
+        "Speed and Efficiency"
+      ],
+      "extensions_available": false,
+      "plugin_ecosystem": "none",
+      "community_size": "very_large",
+      "documentation_quality": "excellent",
+      "support_channels": [
+        "Official Docs",
+        "Stack Overflow",
+        "GitHub Community"
+      ],
+      "resource_usage": "low",
+      "startup_time": "fast",
+      "user_rating": 4.8,
+      "expert_rating": 4.9,
+      "pros": [
+        "Industry standard",
+        "Distributed architecture",
+        "Excellent branching model",
+        "Fast and efficient",
+        "Great integration with platforms"
+      ],
+      "cons": [
+        "Steep learning curve for beginners",
+        "Complex command-line interface",
+        "Can be confusing for non-technical users"
+      ],
+      "alternatives": [
+        "Mercurial",
+        "SVN",
+        "Bazaar"
+      ]
+    },
+    {
+      "name": "Python Debugger (pdb)",
+      "category": "debugger",
+      "platforms": [
+        "cross_platform"
+      ],
+      "description": "Built-in Python debugger for interactive debugging sessions.",
+      "price": "free",
+      "license": "Python Software Foundation",
+      "website": "https://docs.python.org/3/library/pdb.html",
+      "installation_complexity": "easy",
+      "learning_curve": "medium",
+      "features": [
+        "Interactive Debugging",
+        "Breakpoints",
+        "Step-through Execution",
+        "Variable Inspection",
+        "Stack Trace Analysis"
+      ],
+      "extensions_available": false,
+      "plugin_ecosystem": "none",
+      "community_size": "large",
+      "documentation_quality": "good",
+      "support_channels": [
+        "Python Docs",
+        "Stack Overflow"
+      ],
+      "resource_usage": "low",
+      "startup_time": "fast",
+      "user_rating": 4.0,
+      "expert_rating": 4.2,
+      "pros": [
+        "Built into Python",
+        "No additional installation",
+        "Works in any environment",
+        "Lightweight"
+      ],
+      "cons": [
+        "Command-line interface only",
+        "Limited visualization",
+        "Not beginner-friendly"
+      ],
+      "alternatives": [
+        "ipdb",
+        "pudb",
+        "IDE debuggers"
+      ]
+    },
+    {
+      "name": "cProfile",
+      "category": "profiler",
+      "platforms": [
+        "cross_platform"
+      ],
+      "description": "Built-in Python profiler for performance analysis and optimization.",
+      "price": "free",
+      "license": "Python Software Foundation",
+      "website": "https://docs.python.org/3/library/profile.html",
+      "installation_complexity": "easy",
+      "learning_curve": "easy",
+      "features": [
+        "Function Call Profiling",
+        "Execution Time Analysis",
+        "Memory Usage Tracking",
+        "Statistical Profiling"
+      ],
+      "extensions_available": false,
+      "plugin_ecosystem": "small",
+      "community_size": "medium",
+      "documentation_quality": "good",
+      "support_channels": [
+        "Python Docs",
+        "Stack Overflow"
+      ],
+      "resource_usage": "low",
+      "startup_time": "fast",
+      "user_rating": 4.1,
+      "expert_rating": 4.3,
+      "pros": [
+        "Built into Python",
+        "Comprehensive profiling data",
+        "Integration with visualization tools",
+        "Low overhead"
+      ],
+      "cons": [
+        "Text-based output",
+        "Requires additional tools for visualization",
+        "Limited real-time profiling"
+      ],
+      "alternatives": [
+        "line_profiler",
+        "memory_profiler",
+        "py-spy"
+      ]
+    },
+    {
+      "name": "pytest",
+      "category": "testing",
+      "platforms": [
+        "cross_platform"
+      ],
+      "description": "Feature-rich Python testing framework that makes it easy to write simple and scalable tests.",
+      "price": "free",
+      "license": "MIT",
+      "website": "https://pytest.org",
+      "installation_complexity": "easy",
+      "learning_curve": "easy",
+      "features": [
+        "Simple Test Writing",
+        "Fixtures",
+        "Parametrization",
+        "Plugin Architecture",
+        "Detailed Test Reports",
+        "Test Discovery"
+      ],
+      "extensions_available": true,
+      "plugin_ecosystem": "large",
+      "community_size": "large",
+      "documentation_quality": "excellent",
+      "support_channels": [
+        "GitHub",
+        "Stack Overflow",
+        "Discord"
+      ],
+      "resource_usage": "low",
+      "startup_time": "fast",
+      "user_rating": 4.6,
+      "expert_rating": 4.7,
+      "pros": [
+        "Simple and intuitive syntax",
+        "Excellent fixture system",
+        "Great plugin ecosystem",
+        "Detailed failure reports",
+        "Easy to get started"
+      ],
+      "cons": [
+        "Can be overwhelming with many plugins",
+        "Advanced features have learning curve"
+      ],
+      "alternatives": [
+        "unittest",
+        "nose2",
+        "doctest"
+      ]
+    }
+  ],
+  "export_date": "2025-09-07T22:03:19.748027"
+}
