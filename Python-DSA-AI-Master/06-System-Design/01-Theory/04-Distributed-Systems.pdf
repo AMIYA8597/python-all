@@ -1,0 +1,22 @@
+%PDF-1.4
+# Distributed Systems
+
+## 1. Core Concepts
+- Nodes communicating over a network to achieve a common goal.
+- CAP Theorem: Consistency, Availability, Partition Tolerance (Pick 2).
+- PACELC Theorem: Extension of CAP considering latency.
+
+## 2. Communication Protocols
+- HTTP/REST: Synchronous, resource-oriented.
+- gRPC: RPC framework, uses Protocol Buffers, efficient, supports streaming.
+- Message Queues (AMQP, Kafka): Asynchronous, decouples producers and consumers.
+
+## 3. Distributed Algorithms
+- Consensus: Paxos, Raft.
+- Leader Election.
+- Distributed Locking: Redis Redlock, ZooKeeper.
+
+## 4. Scaling and Reliability
+- Rate Limiting: Token bucket, Leaky bucket.
+- Circuit Breaker Pattern: Prevent cascading failures.
+- Retry with Exponential Backoff.

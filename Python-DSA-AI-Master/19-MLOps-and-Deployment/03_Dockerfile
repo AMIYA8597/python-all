@@ -1,0 +1,35 @@
+# Dockerfile for ML Model Serving
+# This Dockerfile packages the FastAPI application and its dependencies into a Docker image.
+
+# 1. Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# 2. Set the working directory in the container
+WORKDIR /app
+
+# 3. Install system dependencies (often required for ML libraries like scikit-learn or OpenCV)
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     build-essential \
+#     && rm -rf /var/lib/apt/lists/*
+
+# 4. Copy the requirements file into the container
+# For this example, we generate it directly here
+RUN echo "fastapi\nuvicorn\nscikit-learn\npydantic\nnumpy" > requirements.txt
+
+# 5. Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 6. Copy the current directory contents into the container at /app
+COPY 02_fastapi_serving.py /app/02_fastapi_serving.py
+
+# Optional: Copy a pre-trained model if you have one
+# COPY iris_model.pkl /app/iris_model.pkl
+
+# 7. Expose the port the app runs on
+EXPOSE 8000
+
+# 8. Define environment variables (if any)
+ENV PYTHONUNBUFFERED=1
+
+# 9. Run the application
+CMD ["uvicorn", "02_fastapi_serving:app", "--host", "0.0.0.0", "--port", "8000"]

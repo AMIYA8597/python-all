@@ -1,0 +1,3896 @@
+[
+  {
+    "PATH": "JOB-READINESS-MATRIX.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "MASTER-ROADMAP.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\01-Theory\\01-Python-Fundamentals-Complete.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\01-Theory\\02-Memory-Model-Guide.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\01-Theory\\03-OOP-Concepts-Advanced.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\01-Theory\\04-Standard-Library-Reference.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\01-Theory\\05-Modern-Python-Features.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\01-Theory\\06-Performance-Optimization.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\02-Basic\\01-variables-and-datatypes.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\02-Basic\\02-operators-and-expressions.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\02-Basic\\03-control-structures.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\02-Basic\\04-functions-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\02-Basic\\05-lists-tuples-sets-dicts.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\02-Basic\\06-strings-manipulation.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\02-Basic\\07-oop-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\02-Basic\\08-file-handling-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\03-Intermediate\\01-classes-objects-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\03-Intermediate\\02-decorators-generators.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\03-Intermediate\\03-modules-packages.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\03-Intermediate\\04-exception-handling.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\03-Intermediate\\05-collections-module.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\03-Intermediate\\06-itertools-functools.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\03-Intermediate\\07-threading-multiprocessing.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\03-Intermediate\\08-asyncio-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\01-metaclasses-descriptors.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\02-context-managers.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\03-type-hinting-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\04-pattern-matching.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\05-cython-extensions.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\06-profiling-debugging.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\07-design-patterns.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\08-performance-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "01-Python-Fundamentals\\04-Advanced\\09-concurrency-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\01-Theory\\01-DS-Fundamentals-Python.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\01-Theory\\02-Memory-Layout-Analysis.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\01-Theory\\03-Performance-Comparison.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\01-Theory\\04-Implementation-Strategies.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\01-lists-implementation.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\02-stacks.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\03-queues.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\04-linked-lists.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\05-arrays.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\01-doubly-linked-lists.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\02-circular-queues.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\03-priority-queues.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\04-deques.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\05-stack-applications.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\01-concurrent-queues.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\02-persistent-lists.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\03-cache-optimized-structures.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\04-lock-free-structures.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\01-Basic\\01-binary-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\01-Basic\\02-binary-search-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\01-Basic\\03-tree-traversals.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\01-Basic\\04-tree-operations.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\01-Basic\\05-heaps.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\02-Intermediate\\01-avl-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\02-Intermediate\\02-red-black-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\02-Intermediate\\03-tries.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\02-Intermediate\\04-segment-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\02-Intermediate\\05-fenwick-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\03-Advanced\\01-b-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\03-Advanced\\02-suffix-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\03-Advanced\\03-persistent-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\03-Advanced\\04-splay-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\03-Advanced\\05-treaps.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\03-Advanced\\06-heavy-light-decomposition.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\03-Trees\\03-Advanced\\07-link-cut-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\01-Basic\\01-graph-representation.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\01-Basic\\02-adjacency-matrix.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\01-Basic\\03-dfs-bfs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\01-Basic\\04-cycle-detection.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\01-Basic\\05-topological-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\02-Intermediate\\01-weighted-graphs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\02-Intermediate\\02-shortest-paths.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\02-Intermediate\\03-mst.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\02-Intermediate\\04-connected-components.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\02-Intermediate\\05-bellman-ford.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\03-Advanced\\01-floyd-warshall.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\03-Advanced\\02-max-flow.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\03-Advanced\\03-scc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\03-Advanced\\04-articulation-points.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\03-Advanced\\05-bipartite-matching.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\03-Advanced\\06-euler-path.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\04-Graphs\\03-Advanced\\07-advanced-graphs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\01-dictionaries.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\02-sets.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\03-hash-functions.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\04-collision-handling.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\01-custom-hash-tables.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\02-bloom-filters.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\03-cuckoo-hashing.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\04-consistent-hashing.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\01-concurrent-dicts.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\02-perfect-hashing.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\03-distributed-hashing.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\04-lock-free-hashing.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\06-Specialized-Structures\\01-disjoint-set-union.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\06-Specialized-Structures\\02-sparse-tables.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\06-Specialized-Structures\\03-sqrt-decomposition.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\06-Specialized-Structures\\04-mos-algorithm.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\06-Specialized-Structures\\05-persistent-structures.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "02-Data-Structures\\06-Specialized-Structures\\06-specialized-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\01-Theory\\01-Algorithm-Analysis-Python.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\01-Theory\\02-Complexity-Theory.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\01-Theory\\03-Design-Paradigms.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\01-Theory\\04-Optimization-Techniques.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\01-Theory\\05-Mathematical-Foundations.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\01-Basic\\01-linear-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\01-Basic\\02-binary-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\01-Basic\\03-jump-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\01-Basic\\04-ternary-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\02-Intermediate\\01-exponential-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\02-Intermediate\\02-interpolation-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\02-Intermediate\\03-fibonacci-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\02-Intermediate\\04-hash-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\03-Advanced\\01-van-emde-boas.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\03-Advanced\\02-fractional-cascading.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\03-Advanced\\03-y-fast-trie.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\02-Searching\\03-Advanced\\04-advanced-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\01-Basic\\01-bubble-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\01-Basic\\02-selection-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\01-Basic\\03-insertion-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\01-Basic\\04-merge-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\01-Basic\\05-quick-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\02-Intermediate\\01-heap-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\02-Intermediate\\02-counting-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\02-Intermediate\\03-radix-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\02-Intermediate\\04-bucket-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\02-Intermediate\\05-shell-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\03-Advanced\\01-tim-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\03-Advanced\\02-external-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\03-Advanced\\03-parallel-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\03-Advanced\\04-intro-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\03-Advanced\\05-cache-oblivious-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\03-Sorting\\03-Advanced\\06-sorting-networks.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\01-factorial-recursion.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\02-fibonacci-recursion.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\03-tower-of-hanoi.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\04-backtracking-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\01-n-queens.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\02-sudoku-solver.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\03-permutations.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\04-subsets.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\01-graph-coloring.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\02-knight-tour.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\03-hamiltonian-path.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\04-advanced-backtracking.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\01-fibonacci-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\02-coin-change.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\03-lcs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\04-0-1-knapsack.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\05-edit-distance.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\01-lis.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\02-matrix-chain.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\03-subset-sum.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\04-rod-cutting.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\05-min-path-sum.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\01-tree-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\02-digit-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\03-bitmask-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\04-prob-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\05-convex-hull-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\06-div-conq-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\07-knuth-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\01-Basic\\01-activity-selection.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\01-Basic\\02-fractional-knapsack.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\01-Basic\\03-job-scheduling.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\01-Basic\\04-min-coins.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\02-Intermediate\\01-huffman-coding.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\02-Intermediate\\02-dijkstra.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\02-Intermediate\\03-interval-sched.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\02-Intermediate\\04-mst-kruskal.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\03-Advanced\\01-approx-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\03-Advanced\\02-matroids.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\03-Advanced\\03-online-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\06-Greedy\\03-Advanced\\04-cp-greedy.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\01-binary-search-rec.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\02-merge-sort-dc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\03-quick-sort-dc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\04-max-subarray.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\01-closest-pair.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\02-strassen-matrix.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\03-inversion-count.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\04-convex-hull-dc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\01-fft.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\02-karatsuba.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\03-poly-mult.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\04-adv-dc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\01-dfs-variations.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\02-bfs-variations.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\03-iter-deep.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\04-bidir-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\01-dijkstra.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\02-bellman-ford.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\03-floyd-warshall.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\04-a-star.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\05-johnson.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\01-kruskal.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\02-prim.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\03-boruvka.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\04-mst-var.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\01-ford-fulk.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\02-edmonds-karp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\03-dinic.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\04-push-relabel.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\05-min-cost-flow.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\01-tarjan-scc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\02-kosaraju.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\03-artic-bridges.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\04-biconnect.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\05-eulerian.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\06-hamilton.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\07-graph-color.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\08-planar.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\01-Basic\\01-naive-match.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\01-Basic\\02-kmp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\01-Basic\\03-rabin-karp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\01-Basic\\04-boyer-moore.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\01-z-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\02-manacher.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\03-suffix-array.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\04-lcp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\01-suffix-tree.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\02-aho-corasick.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\03-rolling-hash.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\04-string-hash-adv.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\05-adv-string.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\01-prime-check.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\02-sieve.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\03-gcd-lcm.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\04-ext-euclid.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\05-mod-arith.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\06-fast-exp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\07-crt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\08-miller-rabin.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\01-perm-comb.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\02-catalan.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\03-fib-matrix.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\04-binomial.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\05-incl-excl.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\01-comp-geo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\02-convex-hull.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\03-line-intersect.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\04-polygon-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\05-closest-pair-geo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\01-rand-quicksort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\02-rand-select.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\03-monte-carlo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\04-las-vegas.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\01-tsp-bnb.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\02-knap-bnb.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\03-job-assign.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\04-bnb-frame.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\01-par-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\02-par-search.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\03-multiprocess-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\04-dask-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\01-approx-tsp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\02-genetic-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\03-sim-anneal.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\04-adv-approx.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\01-Theory\\01-Standard-Lib-Advanced.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\01-Theory\\02-Third-Party-Libs.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\01-Theory\\03-Data-Science-Libs.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\01-Theory\\04-ML-Libs.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\01-Theory\\05-Advanced-AI-Libs.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\01-Basic\\01-math-module.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\01-Basic\\02-fractions-decimal.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\01-Basic\\03-random-module.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\01-Basic\\04-statistics-module.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\01-sympy-symbolic.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\02-scipy-linear-algebra.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\03-scipy-optimize.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\04-scipy-integrate.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\01-scipy-signal.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\02-scipy-spatial.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\03-numba-jit-math.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\04-advanced-math.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\01-numpy-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\02-numpy-prob-dist.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\03-scipy-stats.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\04-statsmodels.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\05-prob-simulations.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\01-pandas-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\02-pandas-cleaning.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\03-pandas-merge.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\04-pandas-time-series.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\05-dask-parallel.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\01-matplotlib-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\02-seaborn-stats.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\03-plotly-interactive.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\04-bokeh.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\05-advanced-viz.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\01-sklearn-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\02-sklearn-regression.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\03-sklearn-classification.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\04-sklearn-clustering.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\05-sklearn-evaluation.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\01-sklearn-trees.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\02-sklearn-pipeline.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\03-sklearn-dim-red.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\04-tensorflow-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\05-pytorch-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\01-deep-learning-tf.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\02-pytorch-nn.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\03-autoencoders.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\04-reinforce-learn.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\05-mlops.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\01-huggingface-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\02-transformers-tokenize.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\03-llm-inference.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\04-fine-tuning-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\01-llm-prompt-eng.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\02-langchain-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\03-rag-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\04-faiss-vector-db.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\05-genai-text-gen.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\01-rag-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\02-genai-multimodal.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\03-llm-fine-tune-adv.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\04-agent-systems.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\05-ethics-bias.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\06-deployment.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\01-opencv-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\02-opencv-filters.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\03-yolo-object-det.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\04-cv-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\01-nltk-spacy.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\02-sentiment-analysis.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\03-topic-modeling.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\04-nlp-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\01-prophet.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\02-arima.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\03-lstm-ts.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\04-ts-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\01-pyspark-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\02-spark-ml.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\03-dask-ml.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\04-bigdata-advanced.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\01-Theory\\01-CP-Strategy-Python.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\01-Theory\\02-Contest-Prep.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\01-Theory\\03-Time-Mgmt.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\01-Theory\\04-Common-Mistakes.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\02-Templates\\01-fast-io-template.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\02-Templates\\02-cp-template.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\02-Templates\\03-debug-template.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\02-Templates\\04-mod-arith-template.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\02-Templates\\05-graph-template.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\01-impl-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\02-sim-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\03-string-manip.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\04-math-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\01-seg-tree-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\02-fenwick-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\03-dsu-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\04-adv-ds-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\01-sp-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\02-mst-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\03-flow-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\04-adv-graph-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\01-classical-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\02-opt-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\03-digit-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\04-adv-dp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\01-comp-geo-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\02-hull-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\03-adv-geo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\01-easy-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\02-med-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\03-hard-probs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\01-div3.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\02-div2.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\03-div1.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\01-beginner.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\02-reg.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\03-grand.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\01-long-chal.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\02-cookoff.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\03-lunch.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\05-Advanced-Topics\\01-hld.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\05-Advanced-Topics\\02-centroid-decomp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\05-Advanced-Topics\\03-mo-adv.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\05-Advanced-Topics\\04-sqrt-adv.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\05-Advanced-Topics\\05-pers-seg-tree.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\05-Advanced-Topics\\06-lct-adv.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "05-Competitive-Programming\\05-Advanced-Topics\\07-adv-nt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "06-System-Design\\01-Theory\\01-System-Design-Python.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\01-Theory\\02-High-Perf-Computing.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\01-Theory\\03-Concurrent-Systems.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\01-Theory\\04-Distributed-Systems.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\01-Theory\\05-ML-System-Design.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\02-Basic\\01-sys-design-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\02-Basic\\02-caching.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\02-Basic\\03-db-design.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\02-Basic\\04-api-design.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\02-Basic\\05-algo-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\03-Intermediate\\01-concurrent-ds.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\03-Intermediate\\02-async-prog.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\03-Intermediate\\03-mem-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\03-Intermediate\\04-custom-alloc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\03-Intermediate\\05-perf-prof.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\04-Advanced\\01-hpc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\04-Advanced\\02-par-algo-design.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\04-Advanced\\03-dist-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\04-Advanced\\04-real-time.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "06-System-Design\\04-Advanced\\05-embedded.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\01-Theory\\01-Python-Interview-Guide.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\01-Theory\\02-Tech-Strategy.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\01-Theory\\03-Prob-Patterns.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\01-Theory\\04-Sys-Design-Int.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\01-Theory\\05-Behavioral.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\01-py-basics-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\02-lists-dicts.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\03-mem-mgmt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\04-oop.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\05-std-lib-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\01-dec-gen-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\02-inherit-poly.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\03-exc-hand-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\04-async-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\05-adv-feat.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\01-meta-desc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\02-concurrency-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\03-type-hint-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\04-modern-py-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\05-perf-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\01-two-pointers.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\02-sliding-win.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\03-fast-slow.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\04-merge-int.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\05-cyclic-sort.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\01-tree-trav-pat.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\02-graph-trav.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\03-bin-search-pat.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\04-bt-pat.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\05-dp-pat.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\01-adv-tree.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\02-adv-graph.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\03-opt-pat.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\04-math-pat.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\05-sys-des-pat.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\01-google-py-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\02-amazon.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\03-ms.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\04-apple.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\05-fb.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\01-bloomberg.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\02-gs.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\03-nvidia.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\04-intel.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\05-adobe.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\01-startup-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\02-sys-prog-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\03-perf-q.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\01-array-easy.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\02-string-easy.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\03-ll-easy.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\04-tree-easy.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\05-algo-easy.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\01-array-med.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\02-string-med.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\03-tree-med.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\04-graph-med.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\05-dp-med.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\06-ds-med.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\01-algo-hard.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\02-ds-hard.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\03-opt-hard.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\04-sys-code.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\05-cp-hard.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\06-Mock-Interviews\\01-tech-mocks.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\06-Mock-Interviews\\02-sys-mocks.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\06-Mock-Interviews\\03-live-code.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "07-Interview-Preparation\\06-Mock-Interviews\\04-pair-prog.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\01-Theory\\01-Perf-Analysis.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\01-Theory\\02-Mem-Opt.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\01-Theory\\03-Cache-Opt.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\01-Theory\\04-Interp-Opt.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\01-Theory\\05-Profiling-Tech.pdf",
+    "FILE_TYPE": ".pdf",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\02-Memory-Management\\01-slots-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\02-Memory-Management\\02-gc-tuning.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\02-Memory-Management\\03-array-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\02-Memory-Management\\04-obj-pools.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\02-Memory-Management\\05-mem-prof.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\01-cache-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\02-vectorize.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\03-loop-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\04-branch-avoid.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\05-numba-simd.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\04-Concurrency\\01-threading.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\04-Concurrency\\02-multiproc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\04-Concurrency\\03-asyncio-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\04-Concurrency\\04-par-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\04-Concurrency\\05-thread-pools.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\05-Profiling-Tools\\01-cprofile.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\05-Profiling-Tools\\02-mem-prof.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\05-Profiling-Tools\\03-line-prof.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\05-Profiling-Tools\\04-pytest-bench.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "08-Performance-and-Optimization\\05-Profiling-Tools\\05-opt-verify.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\01-Web-Development\\01-flask-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\01-Web-Development\\02-django-basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\01-Web-Development\\03-api-fastapi.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\01-Web-Development\\04-web-scraping.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\01-Web-Development\\05-perf-web.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\02-Data-Science-Apps\\01-ds-pipeline.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\02-Data-Science-Apps\\02-ml-app.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\02-Data-Science-Apps\\03-dash-app.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\02-Data-Science-Apps\\04-bigdata-app.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\02-Data-Science-Apps\\05-ds-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\03-AI-ML-Apps\\01-cv-app.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\03-AI-ML-Apps\\02-nlp-app.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\03-AI-ML-Apps\\03-rl-app.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\03-AI-ML-Apps\\04-genai-app.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\03-AI-ML-Apps\\05-llm-rag-app.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\04-Automation-Scripts\\01-file-auto.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\04-Automation-Scripts\\02-email-auto.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\04-Automation-Scripts\\03-gui-auto.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\04-Automation-Scripts\\04-testing-auto.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\04-Automation-Scripts\\05-script-opt.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\05-Scientific-Computing\\01-num-algo.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\05-Scientific-Computing\\02-lin-alg.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\05-Scientific-Computing\\03-signal-proc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\05-Scientific-Computing\\04-ml-sci.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "09-Real-World-Applications\\05-Scientific-Computing\\05-par-sci.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "INCOMPLETE",
+    "COMPLETENESS": "0%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\generate_content.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\01-calculator-advanced\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\01-calculator-advanced\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\02-file-manager\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\02-file-manager\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\03-sorting-visualizer\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\03-sorting-visualizer\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\04-ds-library\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\04-ds-library\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\05-basic-game\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\01-Basic-Projects\\05-basic-game\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\01-compression-algo\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\01-compression-algo\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\02-simple-db\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\02-simple-db\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\03-web-server\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\03-web-server\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\04-compiler-lexer\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\04-compiler-lexer\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\05-data-viz-tool\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\02-Intermediate-Projects\\05-data-viz-tool\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\01-rag-system\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\01-rag-system\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\02-ml-framework\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\02-ml-framework\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\03-genai-chatbot\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\03-genai-chatbot\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\04-high-perf-ds\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\04-high-perf-ds\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\05-trading-bot\\main.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "10-Project-Based-Learning\\03-Advanced-Projects\\05-trading-bot\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\01-Testing-Frameworks\\01-unittest.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\01-Testing-Frameworks\\02-pytest.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\01-Testing-Frameworks\\03-hypothesis.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\01-Testing-Frameworks\\04-unit-best.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\01-Testing-Frameworks\\05-perf-test.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\02-Debugging-Techniques\\01-pdb-debug.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\02-Debugging-Techniques\\02-ipdb.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\02-Debugging-Techniques\\03-mem-debug.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\02-Debugging-Techniques\\04-perf-debug.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\02-Debugging-Techniques\\05-strategies.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\03-Code-Quality\\01-pylint.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\03-Code-Quality\\02-review-check.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\03-Code-Quality\\03-refactor.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\03-Code-Quality\\04-standards.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\03-Code-Quality\\05-doc.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\04-Profiling-Opt\\01-perf-prof.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\04-Profiling-Opt\\02-mem-prof.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\04-Profiling-Opt\\03-cache-prof.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\04-Profiling-Opt\\04-bench.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "11-Testing-and-Debugging\\04-Profiling-Opt\\05-opt-ver.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\01-Documentation\\01-Py-Ref.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\01-Documentation\\02-Lib-Cheat.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\01-Documentation\\03-DSA-Comp.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\01-Documentation\\04-CP-Ref.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\01-Documentation\\05-Int-Check.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\02-External-Resources\\01-books.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\02-External-Resources\\02-oj.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\02-External-Resources\\03-cp-sites.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\02-External-Resources\\04-py-comm.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\02-External-Resources\\05-learn-res.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\03-Tools-Env\\01-py-setup.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\03-Tools-Env\\02-ide-config.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\03-Tools-Env\\03-debug-tools.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\03-Tools-Env\\04-prof-tools.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\03-Tools-Env\\05-venv-pip.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\04-Progress-Tracking\\01-py-roadmap.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\04-Progress-Tracking\\02-dsa-assess.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\04-Progress-Tracking\\03-cp-progress.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\04-Progress-Tracking\\04-int-timeline.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "12-Resources-References\\04-Progress-Tracking\\05-proj-miles.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "13-SQL-and-Databases\\01-relational-databases-basics.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "13-SQL-and-Databases\\02-basic-sql.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "13-SQL-and-Databases\\03-advanced-sql.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "13-SQL-and-Databases\\04-query-optimization.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "13-SQL-and-Databases\\05-python-sql-integration.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "14-Data-Analytics\\01_pandas_fundamentals.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "14-Data-Analytics\\02_data_cleaning_eda.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "14-Data-Analytics\\03_data_visualization.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "14-Data-Analytics\\04_analytics_bi_concepts.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "14-Data-Analytics\\05_ab_testing_fundamentals.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "14-Data-Analytics\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "15-Machine-Learning\\01_math_for_ml.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "15-Machine-Learning\\02_classical_ml.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "15-Machine-Learning\\03_advanced_ml.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "15-Machine-Learning\\04_unsupervised_learning.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "15-Machine-Learning\\05_ml_pipelines_and_evaluation.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "16-Deep-Learning-and-CV-NLP\\01_deep_learning_foundations.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "16-Deep-Learning-and-CV-NLP\\02_pytorch_basics.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "16-Deep-Learning-and-CV-NLP\\03_computer_vision.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "16-Deep-Learning-and-CV-NLP\\04_nlp.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "16-Deep-Learning-and-CV-NLP\\README.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\01_transformers.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\01_transformers.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\02_llm_concepts.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\02_llm_concepts.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\03_prompt_engineering.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\03_prompt_engineering.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\04_embeddings.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\04_embeddings.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\05_rag.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\05_rag.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\06_finetuning.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "17-Generative-AI-and-LLMs\\06_finetuning.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\01_agents_vs_workflows.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\01_workflow_example.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\02_tool_calling.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\02_tool_calling_mechanics.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\03_agent_memory_react.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\03_memory_and_planning.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\04_multi_agent_systems.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\04_supervisor_architecture.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\05_autonomous_agent.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "18-Agentic-AI\\05_building_autonomous_agent.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\01_mlflow_example.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\01_mlops_foundations_mlflow.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\02_fastapi_serving.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\02_model_serving_fastapi.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\03_containerization_docker.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\03_Dockerfile",
+    "FILE_TYPE": "",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\04_llmops_genaiops.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\04_llm_eval.py",
+    "FILE_TYPE": ".py",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\05_ci_cd_for_ml.md",
+    "FILE_TYPE": ".md",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  },
+  {
+    "PATH": "19-MLOps-and-Deployment\\05_ml_pipeline.yml",
+    "FILE_TYPE": ".yml",
+    "STATUS": "COMPLETED",
+    "COMPLETENESS": "100%"
+  }
+]

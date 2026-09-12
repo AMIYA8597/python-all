@@ -272,3 +272,85 @@ The repository is well-positioned to become a comprehensive Python learning ecos
 
 **Last Updated**: January 2025  
 **Next Review**: After completion of 04-Python-Libraries module
+
+
+## Update: 2026-09-12 15:49:39.656178
+Batch 1 completed! 5 files successfully rewritten into textbook-grade interactive lessons:
+- 02-scipy-spatial.py
+- 04-scipy-integrate.py
+- 03-numba-jit-math.py
+- 01-scipy-signal.py
+- 03-scipy-optimize.py
+
+Batch 2 consisting of 5 .md theory files launched.
+- 03-Data-Science-Libs.md
+- 04-ML-Libs.md
+- 01-Standard-Lib-Advanced.md
+- 05-Advanced-AI-Libs.md
+- 02-Third-Party-Libs.md
+
+Batch 2 is complete! Launched 5 subagents for Batch 3 (math-module, fractions-decimal, random-module, statistics-module, sympy-symbolic).
+- 01-math-module.py
+- 02-fractions-decimal.py
+- 03-random-module.py
+- 04-statistics-module.py
+- 01-sympy-symbolic.py
+
+Batch 3 is complete! Launched 3 new subagents to keep the concurrency at 5.
+- 04-advanced-math.py
+- 02-scipy-linear-algebra.py
+- 01-numpy-basics.py
+- 02-numpy-prob-dist.py
+- 03-scipy-stats.py
+- 04-statsmodels.py
+- 05-prob-simulations.py
+- 03-pandas-merge.py
+- 01-pandas-basics.py
+- 02-pandas-cleaning.py
+- 04-pandas-time-series.py
+- 05-dask-parallel.py
+- 01-matplotlib-basics.py
+- 02-seaborn-stats.py
+- 03-plotly-interactive.py
+- 04-bokeh.py
+- 05-advanced-viz.py
+- 04-sklearn-clustering.py
+- 01-sklearn-basics.py
+- 02-sklearn-regression.py
+- 03-sklearn-classification.py
+- 05-sklearn-evaluation.py
+- 01-sklearn-trees.py
+- 05-pytorch-basics.py
+- 03-sklearn-dim-red.py
+- 02-sklearn-pipeline.py
+- 04-tensorflow-basics.py
+- 02-pytorch-nn.py
+- 03-autoencoders.py
+- 04-reinforce-learn.py
+- 05-mlops.py
+- 01-llm-prompt-eng.py
+- 02-transformers-tokenize.py
+- 03-llm-inference.py
+- 05-genai-text-gen.py
+- 03-rag-basics.py
+- 05-ethics-bias.py
+- 02-genai-multimodal.py
+- 06-deployment.py
+- 02-opencv-filters.py
+- 04-cv-advanced.py
+- 01-nltk-spacy.py
+- 04-nlp-advanced.py
+- 03-topic-modeling.py
+- 02-spark-ml.py
+- 04-bigdata-advanced.py
+- 03-lstm-ts.py
+- 03-dask-ml.py
+- 04-ts-advanced.py
+- 01-CP-Strategy-Python.md
+- 02-cp-template.py
+- 03-Time-Mgmt.md
+- 03-debug-template.py
+- 01-seg-tree.py
+- 02-fenwick.py
+- 01-sp-probs.py
+- 04-adv-graph-probs.py

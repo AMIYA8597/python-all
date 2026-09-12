@@ -1,0 +1,17 @@
+%PDF-1.4
+# Concurrent Systems
+
+## 1. Concurrency vs Parallelism
+- Concurrency: Dealing with lots of things at once (e.g., I/O bound tasks).
+- Parallelism: Doing lots of things at once (e.g., CPU bound tasks).
+
+## 2. Concurrency Models in Python
+- Threading: Best for I/O bound tasks (Network requests, File I/O). Shared memory space.
+- Multiprocessing: Best for CPU bound tasks. Separate memory space.
+- Asyncio: Single-threaded, event-loop based concurrency. Excellent for highly concurrent I/O bound tasks (WebSockets, APIs).
+
+## 3. Synchronization Primitives
+- Locks / Mutexes: Prevent race conditions.
+- Semaphores: Control access to a shared resource with capacity.
+- Events: Communication between threads/processes.
+- Queues: Thread-safe and process-safe data exchange.

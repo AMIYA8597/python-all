@@ -1,0 +1,28 @@
+%PDF-1.4
+%This is a textual representation of system design concepts since we are overwriting files.
+# System Design in Python
+
+## 1. Architectures
+Python can be used in various architectures:
+- Monolithic: Simple but hard to scale.
+- Microservices: Scalable, independent deployment, but complex orchestration.
+- Serverless: AWS Lambda, scaling is managed, good for event-driven.
+
+## 2. Components
+- Load Balancers: Distribute traffic (e.g., Nginx, HAProxy).
+- Web Servers: Gunicorn, uWSGI for Python.
+- App Servers: Django, FastAPI, Flask.
+- Databases: PostgreSQL (Relational), MongoDB (NoSQL).
+- Caching: Redis, Memcached.
+- Message Queues: Celery with RabbitMQ or Redis.
+
+## 3. Scaling
+- Vertical Scaling: Adding more CPU/RAM.
+- Horizontal Scaling: Adding more instances.
+- Database Replication: Master-Slave setups.
+- Database Sharding: Partitioning data across multiple databases.
+
+## 4. System Design Principles
+- Single Responsibility Principle.
+- Statelessness: Keep the app servers stateless to allow horizontal scaling.
+- Redundancy: Eliminate single points of failure.

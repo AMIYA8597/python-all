@@ -1,0 +1,1494 @@
+<USER_REQUEST>
+Python-DSA-AI-Master/
+├── 01-Python-Fundamentals/
+│   ├── 01-Theory/
+│   │   ├── 01-Python-Fundamentals-Complete.pdf
+│   │   │   # Content of 01-Python-Fundamentals-Complete.pdf (Text Representation for Learning):
+│   │   │   ## Python Fundamentals Complete Guide
+│   │   │   
+│   │   │   ### 1. Introduction to Python
+│   │   │   Python is a high-level, interpreted, general-purpose programming language created by Guido van Rossum in 1991. It emphasizes readability, simplicity, and versatility. Key features: dynamic typing, garbage collection, extensive standard library, and support for multiple paradigms (procedural, OOP, functional).
+│   │   │   
+│   │   │   #### History and Evolution
+│   │   │   - 1991: Python 0.9.0 released.
+│   │   │   - 2000: Python 2.0 (with garbage collection).
+│   │   │   - 2008: Python 3.0 (breaking changes for Unicode, etc.).
+│   │   │   - Versions: Python 3.6 (f-strings), 3.8 (walrus operator), 3.9 (type hints), 3.10 (pattern matching), 3.11 (faster runtime), 3.12 (improved errors).
+│   │   │   Why Python? Easy to learn, vast ecosystem (e.g., for AI/ML), cross-platform.
+│   │   │   
+│   │   │   ### 2. Basic Syntax and Structure
+│   │   │   A basic Python program:
+│   │   │   ```
+│   │   │   print("Hello, World!")
+│   │   │   ```
+│   │   │   - No semicolons; indentation defines blocks.
+│   │   │   - Shebang: #!/usr/bin/env python3 for scripts.
+│   │   │   - Modules: import math.
+│   │   │   
+│   │   │   ### 3. Variables and Data Types
+│   │   │   - Dynamic typing: x = 5 (int), y = 3.14 (float), z = "Hello" (str), b = True (bool).
+│   │   │   - Collections: list [1,2,3], tuple (1,2,3), set {1,2,3}, dict {'a':1}.
+│   │   │   - NoneType: None (null equivalent).
+│   │   │   Memory Model (Conceptual Diagram in ASCII):
+│   │   │   ```
+│   │   │   Python Heap (Garbage Collected):
+│   │   │   +-----------------+
+│   │   │   | int x = 5      |  <- Immutable, reference-counted
+│   │   │   +-----------------+
+│   │   │   | float y = 3.14 |  <- Immutable
+│   │   │   +-----------------+
+│   │   │   | list l = [1,2] |  <- Mutable, references to objects
+│   │   │   +-----------------+
+│   │   │   ```
+│   │   │   - Constants: Conventionally uppercase, e.g., MAX = 100 (not enforced).
+│   │   │   Step-by-Step Learning: Start with type(x) to inspect, id(x) for memory address.
+│   │   │   
+│   │   │   ### 4. Operators and Expressions
+│   │   │   - Arithmetic: +, -, *, /, // (floor div), % (mod), ** (power).
+│   │   │   - Relational: ==, !=, >, <, >=, <=.
+│   │   │   - Logical: and, or, not.
+│   │   │   - Bitwise: &, |, ^, ~, <<, >>.
+│   │   │   - Assignment: =, +=, etc.
+│   │   │   Precedence: Parentheses > Exponent > Unary > Multiplicative > Additive > Relational > Logical.
+│   │   │   Example: (5 + 3) * 2 == 16.
+│   │   │   
+│   │   │   ### 5. Control Structures
+│   │   │   - If-elif-else: if x > 0: ...
+│   │   │   - Loops: for i in range(5): ..., while x < 10: ...
+│   │   │   - Break, continue, pass.
+│   │   │   - Comprehensions: [x**2 for x in range(5)] (list comp).
+│   │   │   
+│   │   │   ### 6. Functions
+│   │   │   - Definition: def add(a, b=0): return a + b
+│   │   │   - Args: Positional, keyword, *args (var args), **kwargs (var kwargs).
+│   │   │   - Lambda: lambda x: x*2
+│   │   │   - Decorators: @decorator def func(): ...
+│   │   │   
+│   │   │   ### 7. Lists, Tuples, Sets, Dicts
+│   │   │   - List: Mutable, indexed, l.append(4)
+│   │   │   - Tuple: Immutable, t = (1,2)
+│   │   │   - Set: Unordered unique, s.add(3)
+│   │   │   - Dict: Key-value, d['key'] = value
+│   │   │   Operations: Slicing l[1:3], membership 'a' in d.
+│   │   │   
+│   │   │   ### 8. Strings
+│   │   │   - Immutable: s = "Hello", s.upper()
+│   │   │   - Formatting: f"{x=5}", "Hello {}".format(name)
+│   │   │   - Operations: split, join, find, replace.
+│   │   │   
+│   │   │   ### 9. OOP Basics
+│   │   │   - Class: class Person: def __init__(self, name): self.name = name
+│   │   │   - Inheritance: class Student(Person): ...
+│   │   │   - Methods: Instance, class (@classmethod), static (@staticmethod).
+│   │   │   
+│   │   │   ### 10. File Handling
+│   │   │   - with open('file.txt', 'r') as f: content = f.read()
+│   │   │   - Modes: r, w, a, b (binary).
+│   │   │   
+│   │   │   ### 11. Exceptions
+│   │   │   - try: ... except ValueError: ... else: ... finally: ...
+│   │   │   - Raise: raise Exception("Msg")
+│   │   │   
+│   │   │   ### 12. Modules and Packages
+│   │   │   - import math; from os import path
+│   │   │   - Packages: Folders with __init__.py
+│   │   │   
+│   │   │   ### 13. Best Practices and Performance
+│   │   │   - PEP 8 style guide.
+│   │   │   - Use list comps for speed.
+│   │   │   - Benchmarks: timeit module.
+│   │   │   Step-by-Step: Practice with interactive shell (python -i).
+│   │   │   
+│   │   │   (This is summarized; full PDF includes diagrams, examples, exercises, quizzes for step-by-step understanding.)
+│   │   ├── 02-Memory-Model-Guide.pdf
+│   │   │   # Content: Python's object model, reference counting, GC (cycles), sys.getsizeof(), weakrefs. Diagrams of heap, interning (small ints/strings). Benchmarks: Memory usage for lists vs arrays.
+│   │   ├── 03-OOP-Concepts-Advanced.pdf
+│   │   │   # Content: Inheritance (MRO), polymorphism, encapsulation, abstraction. Metaclasses, descriptors, slots for memory opt. Examples with diagrams.
+│   │   ├── 04-Standard-Library-Reference.pdf
+│   │   │   # Content: math, os, sys, datetime, collections (deque, Counter), itertools, functools. Performance comparisons.
+│   │   ├── 05-Modern-Python-Features.pdf
+│   │   │   # Content: Type hints (typing), async/await (asyncio), walrus :=, match-case (3.10+), dataclass, f-strings. Benchmarks on async vs sync.
+│   │   └── 06-Performance-Optimization.pdf
+│   │       # Content: Profiling (cProfile), JIT (PyPy), C extensions (cython), multiprocessing. Cache-friendly code, avoid globals.
+│   ├── 02-Basic/
+│   │   ├── 01-variables-and-datatypes.py
+│   │   │   # Detailed Comments: Demonstrates variables/data types.
+│   │   │   # Multiple Implementations: Basic, with type hints, comprehensions.
+│   │   │   # Performance: timeit for access.
+│   │   │   # Modern Python: Type hints, f-strings.
+│   │   │   # Test Cases: At bottom.
+│   │   │   # Real-World: Data storage in apps.
+│   │   │   import timeit
+│   │   │   
+│   │   │   # Basic
+│   │   │   x = 5  # int
+│   │   │   y = 3.14  # float
+│   │   │   s = "Hello"  # str
+│   │   │   l = [1, 2, 3]  # list
+│   │   │   
+│   │   │   # With type hints (Modern Python)
+│   │   │   from typing import List
+│   │   │   def print_types(x: int, y: float) -> None:
+│   │   │       print(f"{type(x)}: {x}")
+│   │   │   
+│   │   │   print_types(x, y)
+│   │   │   
+│   │   │   # Comprehension
+│   │   │   squares = [i**2 for i in range(5)]
+│   │   │   
+│   │   │   # Benchmark
+│   │   │   time = timeit.timeit('x = 5', number=1000000)
+│   │   │   print(f"Time: {time} sec")
+│   │   │   
+│   │   │   # Test Cases
+│   │   │   assert type(x) == int, "Type error"
+│   │   │   # Edge: Large int (Python handles arbitrary size)
+│   │   │   big = 10**100
+│   │   ├── 02-operators-and-expressions.py
+│   │   │   # Similar: Operators, with examples, benchmarks, tests.
+│   │   ├── 03-control-structures.py
+│   │   │   # If-else, loops, comps, with step-by-step comments.
+│   │   ├── 04-functions-basics.py
+│   │   │   # Def, lambda, args/kwargs, decorators intro.
+│   │   ├── 05-lists-tuples-sets-dicts.py
+│   │   │   # Operations, slicing, memory usage.
+│   │   ├── 06-strings-manipulation.py
+│   │   │   # Format, regex intro (re module).
+│   │   ├── 07-oop-basics.py
+│   │   │   # Classes, init, methods.
+│   │   └── 08-file-handling-basics.py
+│   │       # Open, with, json/csv.
+│   ├── 03-Intermediate/
+│   │   ├── 01-classes-objects-advanced.py
+│   │   │   # Inheritance, super().
+│   │   ├── 02-decorators-generators.py
+│   │   │   # @, yield.
+│   │   ├── 03-modules-packages.py
+│   │   │   # Import, __name__.
+│   │   ├── 04-exception-handling.py
+│   │   │   # Try-except, custom exc.
+│   │   ├── 05-collections-module.py
+│   │   │   # Deque, Counter.
+│   │   ├── 06-itertools-functools.py
+│   │   │   # Chain, partial.
+│   │   ├── 07-threading-multiprocessing.py
+│   │   │   # Thread, Process.
+│   │   └── 08-asyncio-basics.py
+│   │       # Async def, await.
+│   └── 04-Advanced/
+│       ├── 01-metaclasses-descriptors.py
+│       │   # Type, __get__.
+│       ├── 02-context-managers.py
+│       │   # __enter__, __exit__.
+│       ├── 03-type-hinting-advanced.py
+│       │   # Generics, protocols.
+│       ├── 04-pattern-matching.py
+│       │   # Match-case (3.10+).
+│       ├── 05-cython-extensions.py
+│       │   # For performance.
+│       ├── 06-profiling-debugging.py
+│       │   # pdb, cProfile.
+│       ├── 07-design-patterns.py
+│       │   # Singleton, factory.
+│       ├── 08-performance-advanced.py
+│       │   # Numba, pypy.
+│       └── 09-concurrency-advanced.py
+│           # Asyncio loops, queues.
+│
+├── 02-Data-Structures/
+│   ├── 01-Theory/
+│   │   ├── 01-DS-Fundamentals-Python.pdf
+│   │   │   # Content: ADTs, complexity (Big O), Python's built-in vs custom. Mathematical proofs for operations. Benchmarks: List vs deque insert.
+│   │   ├── 02-Memory-Layout-Analysis.pdf
+│   │   │   # Content: CPython internals, object overhead, sys.getsizeof diagrams.
+│   │   ├── 03-Performance-Comparison.pdf
+│   │   │   # Content: Built-in vs custom, time/space tradeoffs.
+│   │   └── 04-Implementation-Strategies.pdf
+│   │       # Content: Pythonic ways, when to use arrays (array module) vs lists.
+│   ├── 02-Linear-Structures/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-lists-implementation.py
+│   │   │   # Built-in list ops, custom dynamic list simulation.
+│   │   │   # Concept: Dynamic array, amortized O(1) append.
+│   │   │   # Visual: ASCII array growth.
+│   │   │   # Multiple: Basic, with type hints, generator.
+│   │   │   # Performance: timeit for append/pop.
+│   │   │   # CP: Fast input (sys.stdin.read).
+│   │   │   # Interview: Reverse list.
+│   │   │   # Real-World: Data processing.
+│   │   │   ├── 02-stacks.py
+│   │   │   # List as stack, collections.deque.
+│   │   │   ├── 03-queues.py
+│   │   │   # Deque, queue.Queue.
+│   │   │   ├── 04-linked-lists.py
+│   │   │   # Custom class Node.
+│   │   │   └── 05-arrays.py
+│   │   │       # array module for fixed type.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-doubly-linked-lists.py
+│   │   │   # Custom DLL.
+│   │   │   ├── 02-circular-queues.py
+│   │   │   # Modulo index.
+│   │   │   ├── 03-priority-queues.py
+│   │   │   # heapq.
+│   │   │   ├── 04-deques.py
+│   │   │   # collections.deque.
+│   │   │   └── 05-stack-applications.py
+│   │   │       # Paren check.
+│   │   └── 03-Advanced/
+│   │       ├── 01-concurrent-queues.py
+│   │       # queue.Queue thread-safe.
+│   │       ├── 02-persistent-lists.py
+│   │       # Copy on write sim.
+│   │       ├── 03-cache-optimized-structures.py
+│   │       # NumPy arrays for locality.
+│   │       └── 04-lock-free-structures.py
+│   │           # Multiprocessing queues.
+│   ├── 03-Trees/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-binary-trees.py
+│   │   │   # Node class, traversals (rec/iter).
+│   │   │   ├── 02-binary-search-trees.py
+│   │   │   # Insert, search, delete. Balanced? Use sortedcontainers.
+│   │   │   # Concept: O(log n) avg, diagrams.
+│   │   │   ├── 03-tree-traversals.py
+│   │   │   # In/pre/post, level (BFS).
+│   │   │   ├── 04-tree-operations.py
+│   │   │   # Height, size.
+│   │   │   └── 05-heaps.py
+│   │   │       # heapq for min-heap.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-avl-trees.py
+│   │   │   # Custom rotations.
+│   │   │   ├── 02-red-black-trees.py
+│   │   │   # Sim with rules.
+│   │   │   ├── 03-tries.py
+│   │   │   # Dict of dicts for prefix.
+│   │   │   ├── 04-segment-trees.py
+│   │   │   # Array-based range queries.
+│   │   │   └── 05-fenwick-trees.py
+│   │   │       # Binary indexed.
+│   │   └── 03-Advanced/
+│   │       ├── 01-b-trees.py
+│   │       # Multi-key nodes.
+│   │       ├── 02-suffix-trees.py
+│   │       # String search.
+│   │       ├── 03-persistent-trees.py
+│   │       # Versioned copies.
+│   │       ├── 04-splay-trees.py
+│   │       # Self-adjust.
+│   │       ├── 05-treaps.py
+│   │       # Randomized.
+│   │       ├── 06-heavy-light-decomposition.py
+│   │       # Path queries.
+│   │       └── 07-link-cut-trees.py
+│   │           # Dynamic.
+│   ├── 04-Graphs/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-graph-representation.py
+│   │   │   # Dict of lists (adj list).
+│   │   │   ├── 02-adjacency-matrix.py
+│   │   │   # 2D list.
+│   │   │   ├── 03-dfs-bfs.py
+│   │   │   # Rec/iter traversals.
+│   │   │   ├── 04-cycle-detection.py
+│   │   │   # DFS visited.
+│   │   │   └── 05-topological-sort.py
+│   │   │       # Kahn's algo.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-weighted-graphs.py
+│   │   │   # Dict of dicts.
+│   │   │   ├── 02-shortest-paths.py
+│   │   │   # Dijkstra (heapq).
+│   │   │   ├── 03-mst.py
+│   │   │   # Kruskal (union-find).
+│   │   │   ├── 04-connected-components.py
+│   │   │   # Union-find.
+│   │   │   └── 05-bellman-ford.py
+│   │   │       # Negative weights.
+│   │   └── 03-Advanced/
+│   │       ├── 01-floyd-warshall.py
+│   │       # All pairs.
+│   │       ├── 02-max-flow.py
+│   │       # Ford-Fulkerson.
+│   │       ├── 03-scc.py
+│   │       # Kosaraju.
+│   │       ├── 04-articulation-points.py
+│   │       # DFS disc/low.
+│   │       ├── 05-bipartite-matching.py
+│   │       # Hopcroft-Karp.
+│   │       ├── 06-euler-path.py
+│   │       # Hierholzer.
+│   │       └── 07-advanced-graphs.py
+│   │           # Networkx integration for complex.
+│   ├── 05-Hash-Structures/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-dictionaries.py
+│   │   │   # Built-in dict (hash table).
+│   │   │   ├── 02-sets.py
+│   │   │   # Built-in set.
+│   │   │   ├── 03-hash-functions.py
+│   │   │   # hash() built-in.
+│   │   │   └── 04-collision-handling.py
+│   │   │       # CPython open addressing.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-custom-hash-tables.py
+│   │   │   # List of lists (chaining).
+│   │   │   ├── 02-bloom-filters.py
+│   │   │   # bitarray module.
+│   │   │   ├── 03-cuckoo-hashing.py
+│   │   │   # Multiple hashes.
+│   │   │   └── 04-consistent-hashing.py
+│   │   │       # For distributed.
+│   │   └── 03-Advanced/
+│   │       ├── 01-concurrent-dicts.py
+│   │       # Thread-safe sim.
+│   │       ├── 02-perfect-hashing.py
+│   │       # No collisions.
+│   │       ├── 03-distributed-hashing.py
+│   │       # Redis-like.
+│   │       └── 04-lock-free-hashing.py
+│   │           # Multiprocessing.
+│   └── 06-Specialized-Structures/
+│       ├── 01-disjoint-set-union.py
+│       # Union-find with path comp.
+│       ├── 02-sparse-tables.py
+│       # Range min.
+│       ├── 03-sqrt-decomposition.py
+│       # Range sum.
+│       ├── 04-mos-algorithm.py
+│       # Offline queries.
+│       ├── 05-persistent-structures.py
+│       # Versioned lists.
+│       └── 06-specialized-trees.py
+│           # Various hybrids.
+│
+├── 03-Algorithms/
+│   ├── 01-Theory/
+│   │   ├── 01-Algorithm-Analysis-Python.pdf
+│   │   │   # Content: Big O/Theta/Omega, amortized, Python's loop overhead. Proofs for sort complexities.
+│   │   ├── 02-Complexity-Theory.pdf
+│   │   │   # NP-complete, reductions.
+│   │   ├── 03-Design-Paradigms.pdf
+│   │   │   # Greedy, DP, D&C, backtracking.
+│   │   ├── 04-Optimization-Techniques.pdf
+│   │   │   # Memo, pruning, Numba for speed.
+│   │   └── 05-Mathematical-Foundations.pdf
+│   │       # Graph theory, proofs.
+│   ├── 02-Searching/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-linear-search.py
+│   │   │   # Sequential.
+│   │   │   ├── 02-binary-search.py
+│   │   │   # bisect module, custom.
+│   │   │   # Concept: O(log n), sorted array.
+│   │   │   # Visual: ASCII halves.
+│   │   │   # Multiple: Rec, iter, bisect_left.
+│   │   │   # Performance: timeit.
+│   │   │   # CP: Optimized.
+│   │   │   # Interview: First occurrence.
+│   │   │   # Real-World: DB search.
+│   │   │   ├── 03-jump-search.py
+│   │   │   # Blocks.
+│   │   │   └── 04-ternary-search.py
+│   │   │       # Two mids.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-exponential-search.py
+│   │   │   # Unbounded.
+│   │   │   ├── 02-interpolation-search.py
+│   │   │   # Probed.
+│   │   │   ├── 03-fibonacci-search.py
+│   │   │   # Fib.
+│   │   │   └── 04-hash-search.py
+│   │   │       # Dict lookup.
+│   │   └── 03-Advanced/
+│   │       ├── 01-van-emde-boas.py
+│   │       # Universe.
+│   │       ├── 02-fractional-cascading.py
+│   │       # Multi.
+│   │       ├── 03-y-fast-trie.py
+│   │       # Balanced.
+│   │       └── 04-advanced-search.py
+│   │           # Various.
+│   ├── 03-Sorting/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-bubble-sort.py
+│   │   │   # Swaps.
+│   │   │   ├── 02-selection-sort.py
+│   │   │   # Min.
+│   │   │   ├── 03-insertion-sort.py
+│   │   │   # Insert.
+│   │   │   ├── 04-merge-sort.py
+│   │   │   # Divide.
+│   │   │   └── 05-quick-sort.py
+│   │   │       # Partition.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-heap-sort.py
+│   │   │   # heapq.
+│   │   │   ├── 02-counting-sort.py
+│   │   │   # Range.
+│   │   │   ├── 03-radix-sort.py
+│   │   │   # Digits.
+│   │   │   ├── 04-bucket-sort.py
+│   │   │   # Buckets.
+│   │   │   └── 05-shell-sort.py
+│   │   │       # Gaps.
+│   │   └── 03-Advanced/
+│   │       ├── 01-tim-sort.py
+│   │       # Python's sorted().
+│   │       ├── 02-external-sort.py
+│   │       # Disk.
+│   │       ├── 03-parallel-sort.py
+│   │       # Multiprocess.
+│   │       ├── 04-intro-sort.py
+│   │       # Hybrid.
+│   │       ├── 05-cache-oblivious-sort.py
+│   │       # Rec.
+│   │       └── 06-sorting-networks.py
+│   │           # Comparators.
+│   ├── 04-Recursion-Backtracking/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-factorial-recursion.py
+│   │   │   # Base case.
+│   │   │   ├── 02-fibonacci-recursion.py
+│   │   │   # Memo @lru_cache.
+│   │   │   ├── 03-tower-of-hanoi.py
+│   │   │   # Moves.
+│   │   │   └── 04-backtracking-basics.py
+│   │   │       # Maze solve.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-n-queens.py
+│   │   │   # Placement.
+│   │   │   ├── 02-sudoku-solver.py
+│   │   │   # 9x9.
+│   │   │   ├── 03-permutations.py
+│   │   │   # All perms.
+│   │   │   └── 04-subsets.py
+│   │   │       # Power set.
+│   │   └── 03-Advanced/
+│   │       ├── 01-graph-coloring.py
+│   │       # M colors.
+│   │       ├── 02-knight-tour.py
+│   │       # Chess.
+│   │       ├── 03-hamiltonian-path.py
+│   │       # Paths.
+│   │       └── 04-advanced-backtracking.py
+│   │           # Optim pruning.
+│   ├── 05-Dynamic-Programming/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-fibonacci-dp.py
+│   │   │   # Memo, bottom-up.
+│   │   │   ├── 02-coin-change.py
+│   │   │   # Min coins.
+│   │   │   ├── 03-lcs.py
+│   │   │   # 2D table.
+│   │   │   ├── 04-0-1-knapsack.py
+│   │   │   # Value.
+│   │   │   └── 05-edit-distance.py
+│   │   │       # Lev.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-lis.py
+│   │   │   # O(n log n).
+│   │   │   ├── 02-matrix-chain.py
+│   │   │   # Opt.
+│   │   │   ├── 03-subset-sum.py
+│   │   │   # Bool.
+│   │   │   ├── 04-rod-cutting.py
+│   │   │   # Profit.
+│   │   │   └── 05-min-path-sum.py
+│   │   │       # Grid.
+│   │   └── 03-Advanced/
+│   │       ├── 01-tree-dp.py
+│   │       # Diameter.
+│   │       ├── 02-digit-dp.py
+│   │       # Counts.
+│   │       ├── 03-bitmask-dp.py
+│   │       # TSP.
+│   │       ├── 04-prob-dp.py
+│   │       # Expected.
+│   │       ├── 05-convex-hull-opt.py
+│   │       # Lines.
+│   │       ├── 06-div-conq-opt.py
+│   │       # Monotone.
+│   │       └── 07-knuth-opt.py
+│   │           # Quad.
+│   ├── 06-Greedy/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-activity-selection.py
+│   │   │   # End sort.
+│   │   │   ├── 02-fractional-knapsack.py
+│   │   │   # Ratio.
+│   │   │   ├── 03-job-scheduling.py
+│   │   │   # Deadline.
+│   │   │   └── 04-min-coins.py
+│   │   │       # Greedy.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-huffman-coding.py
+│   │   │   # Heap.
+│   │   │   ├── 02-dijkstra.py
+│   │   │   # Heapq.
+│   │   │   ├── 03-interval-sched.py
+│   │   │   # Similar.
+│   │   │   └── 04-mst-kruskal.py
+│   │   │       # Union.
+│   │   └── 03-Advanced/
+│   │       ├── 01-approx-algo.py
+│   │       # TSP.
+│   │       ├── 02-matroids.py
+│   │       # Theory.
+│   │       ├── 03-online-algo.py
+│   │       # Ski.
+│   │       └── 04-cp-greedy.py
+│   │           # Problems.
+│   ├── 07-Divide-Conquer/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-binary-search-rec.py
+│   │   │   # Halve.
+│   │   │   ├── 02-merge-sort-dc.py
+│   │   │   # Merge.
+│   │   │   ├── 03-quick-sort-dc.py
+│   │   │   # Part.
+│   │   │   └── 04-max-subarray.py
+│   │   │       # DC var.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-closest-pair.py
+│   │   │   # Plane.
+│   │   │   ├── 02-strassen-matrix.py
+│   │   │   # Mult.
+│   │   │   ├── 03-inversion-count.py
+│   │   │   # Merge.
+│   │   │   └── 04-convex-hull-dc.py
+│   │   │       # Quickhull.
+│   │   └── 03-Advanced/
+│   │       ├── 01-fft.py
+│   │       # SciPy or custom.
+│   │       ├── 02-karatsuba.py
+│   │       # Big int.
+│   │       ├── 03-poly-mult.py
+│   │       # FFT.
+│   │       └── 04-adv-dc.py
+│   │           # General.
+│   ├── 08-Graph-Algorithms/
+│   │   ├── 01-Traversal/
+│   │   │   ├── 01-dfs-variations.py
+│   │   │   # Rec/iter.
+│   │   │   ├── 02-bfs-variations.py
+│   │   │   # Level.
+│   │   │   ├── 03-iter-deep.py
+│   │   │   # Limit.
+│   │   │   └── 04-bidir-search.py
+│   │   │       # Two.
+│   │   ├── 02-Shortest-Path/
+│   │   │   ├── 01-dijkstra.py
+│   │   │   # Heapq.
+│   │   │   ├── 02-bellman-ford.py
+│   │   │   # Relax.
+│   │   │   ├── 03-floyd-warshall.py
+│   │   │   # All.
+│   │   │   ├── 04-a-star.py
+│   │   │   # Heur.
+│   │   │   └── 05-johnson.py
+│   │   │       # Reweight.
+│   │   ├── 03-MST/
+│   │   │   ├── 01-kruskal.py
+│   │   │   # UF.
+│   │   │   ├── 02-prim.py
+│   │   │   # PQ.
+│   │   │   ├── 03-boruvka.py
+│   │   │   # Comp.
+│   │   │   └── 04-mst-var.py
+│   │   │       # Second.
+│   │   ├── 04-Network-Flow/
+│   │   │   ├── 01-ford-fulk.py
+│   │   │   # DFS.
+│   │   │   ├── 02-edmonds-karp.py
+│   │   │   # BFS.
+│   │   │   ├── 03-dinic.py
+│   │   │   # Level.
+│   │   │   ├── 04-push-relabel.py
+│   │   │   # Preflow.
+│   │   │   └── 05-min-cost-flow.py
+│   │   │       # SP.
+│   │   └── 05-Advanced/
+│   │       ├── 01-tarjan-scc.py
+│   │       # Low.
+│   │       ├── 02-kosaraju.py
+│   │       # Two DFS.
+│   │       ├── 03-artic-bridges.py
+│   │       # Disc.
+│   │       ├── 04-biconnect.py
+│   │       # Stack.
+│   │       ├── 05-eulerian.py
+│   │       # Hier.
+│   │       ├── 06-hamilton.py
+│   │       # BT.
+│   │       ├── 07-graph-color.py
+│   │       # Greedy.
+│   │       └── 08-planar.py
+│   │           # Euler.
+│   ├── 09-String-Algorithms/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-naive-match.py
+│   │   │   # Brute.
+│   │   │   ├── 02-kmp.py
+│   │   │   # LPS.
+│   │   │   ├── 03-rabin-karp.py
+│   │   │   # Hash.
+│   │   │   └── 04-boyer-moore.py
+│   │   │       # Bad char.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-z-algo.py
+│   │   │   # Z box.
+│   │   │   ├── 02-manacher.py
+│   │   │   # Pal.
+│   │   │   ├── 03-suffix-array.py
+│   │   │   # Sort.
+│   │   │   └── 04-lcp.py
+│   │   │       # Prefix.
+│   │   └── 03-Advanced/
+│   │       ├── 01-suffix-tree.py
+│   │       # Ukkonen.
+│   │       ├── 02-aho-corasick.py
+│   │       # Multi.
+│   │       ├── 03-rolling-hash.py
+│   │       # Double.
+│   │       ├── 04-string-hash-adv.py
+│   │       # Anti-coll.
+│   │       └── 05-adv-string.py
+│   │           # Various.
+│   ├── 10-Mathematical-Algorithms/
+│   │   ├── 01-Number-Theory/
+│   │   │   ├── 01-prime-check.py
+│   │   │   # Trial.
+│   │   │   ├── 02-sieve.py
+│   │   │   # Erato.
+│   │   │   ├── 03-gcd-lcm.py
+│   │   │   # Math.gcd.
+│   │   │   ├── 04-ext-euclid.py
+│   │   │   # Bezout.
+│   │   │   ├── 05-mod-arith.py
+│   │   │   # Ops.
+│   │   │   ├── 06-fast-exp.py
+│   │   │   # Pow.
+│   │   │   ├── 07-crt.py
+│   │   │   # Chinese.
+│   │   │   └── 08-miller-rabin.py
+│   │   │       # Prob.
+│   │   ├── 02-Combinatorics/
+│   │   │   ├── 01-perm-comb.py
+│   │   │   # Factorial.
+│   │   │   ├── 02-catalan.py
+│   │   │   # DP.
+│   │   │   ├── 03-fib-matrix.py
+│   │   │   # Exp.
+│   │   │   ├── 04-binomial.py
+│   │   │   # Pascal.
+│   │   │   └── 05-incl-excl.py
+│   │   │       # Unions.
+│   │   └── 03-Geometry/
+│   │       ├── 01-comp-geo.py
+│   │       # Points.
+│   │       ├── 02-convex-hull.py
+│   │       # Graham.
+│   │       ├── 03-line-intersect.py
+│   │       # Cross.
+│   │       ├── 04-polygon-algo.py
+│   │       # Area.
+│   │       └── 05-closest-pair-geo.py
+│   │           # DC.
+│   └── 11-Advanced-Techniques/
+│       ├── 01-Randomized/
+│       │   ├── 01-rand-quicksort.py
+│       │   # Pivot.
+│       │   ├── 02-rand-select.py
+│       │   # Kth.
+│       │   ├── 03-monte-carlo.py
+│       │   # Pi.
+│       │   └── 04-las-vegas.py
+│       │       # Success.
+│       ├── 02-Branch-Bound/
+│       │   ├── 01-tsp-bnb.py
+│       │   # TSP.
+│       │   ├── 02-knap-bnb.py
+│       │   # Bound.
+│       │   ├── 03-job-assign.py
+│       │   # Hung.
+│       │   └── 04-bnb-frame.py
+│       │       # Gen.
+│       ├── 03-Parallel/
+│       │   ├── 01-par-sort.py
+│       │   # Merge.
+│       │   ├── 02-par-search.py
+│       │   # Divide.
+│       │   ├── 03-multiprocess-algo.py
+│       │   # Pool.
+│       │   └── 04-dask-algo.py
+│       │       # Distributed.
+│       └── 04-Approximation/
+│           ├── 01-approx-tsp.py
+│           # Greedy.
+│           ├── 02-genetic-algo.py
+│           # Evo.
+│           ├── 03-sim-anneal.py
+│           # Anneal.
+│           └── 04-adv-approx.py
+│               # Various.
+│
+├── 04-Python-Libraries/
+│   ├── 01-Theory/
+│   │   ├── 01-Standard-Lib-Advanced.pdf
+│   │   │   # Deep dive: os, sys, threading, asyncio, etc. Performance tips.
+│   │   ├── 02-Third-Party-Libs.pdf
+│   │   │   # Pip, virtualenv, popular libs overview.
+│   │   ├── 03-Data-Science-Libs.pdf
+│   │   │   # NumPy, Pandas, Matplotlib: Math foundations, vectorization proofs.
+│   │   ├── 04-ML-Libs.pdf
+│   │   │   # Scikit, TF, PyTorch: Algorithms, gradients math.
+│   │   └── 05-Advanced-AI-Libs.pdf
+│   │       # Huggingface, LangChain: LLM internals, RAG pipelines.
+│   ├── 02-Mathematics/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-math-module.py
+│   │   │   # sin, cos, log.
+│   │   │   ├── 02-fractions-decimal.py
+│   │   │   # Exact.
+│   │   │   ├── 03-random-module.py
+│   │   │   # Randint, shuffle.
+│   │   │   └── 04-statistics-module.py
+│   │   │       # Mean, variance.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-sympy-symbolic.py
+│   │   │   # Solve eq.
+│   │   │   ├── 02-scipy-linear-algebra.py
+│   │   │   # Matrices.
+│   │   │   ├── 03-scipy-optimize.py
+│   │   │   # Minimize.
+│   │   │   └── 04-scipy-integrate.py
+│   │   │       # Quad.
+│   │   └── 03-Advanced/
+│   │       ├── 01-scipy-signal.py
+│   │       # FFT.
+│   │       ├── 02-scipy-spatial.py
+│   │       # KD-tree.
+│   │       ├── 03-numba-jit-math.py
+│   │       # Speedup.
+│   │       └── 04-advanced-math.py
+│   │           # Custom proofs.
+│   ├── 03-Data-Science/
+│   │   ├── 01-Probability-Statistics/
+│   │   │   ├── 01-numpy-basics.py
+│   │   │   # Arrays, vectorize.
+│   │   │   ├── 02-numpy-prob-dist.py
+│   │   │   # Normal, binom.
+│   │   │   ├── 03-scipy-stats.py
+│   │   │   # T-test, chi2.
+│   │   │   ├── 04-statsmodels.py
+│   │   │   # Regression.
+│   │   │   └── 05-prob-simulations.py
+│   │   │       # Monte Carlo.
+│   │   ├── 02-Data-Processing/
+│   │   │   ├── 01-pandas-basics.py
+│   │   │   # DataFrame, series.
+│   │   │   ├── 02-pandas-cleaning.py
+│   │   │   # Nulls, groupby.
+│   │   │   ├── 03-pandas-merge.py
+│   │   │   # Joins.
+│   │   │   ├── 04-pandas-time-series.py
+│   │   │   # Resample.
+│   │   │   └── 05-dask-parallel.py
+│   │   │       # Big data.
+│   │   └── 03-Visualization/
+│   │       ├── 01-matplotlib-basics.py
+│   │       # Plots.
+│   │       ├── 02-seaborn-stats.py
+│   │       # Heatmap.
+│   │       ├── 03-plotly-interactive.py
+│   │       # Dash.
+│   │       ├── 04-bokeh.py
+│   │       # Web.
+│   │       └── 05-advanced-viz.py
+│   │           # 3D.
+│   ├── 04-Machine-Learning/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-sklearn-basics.py
+│   │   │   # Fit, predict.
+│   │   │   ├── 02-sklearn-regression.py
+│   │   │   # Linear.
+│   │   │   ├── 03-sklearn-classification.py
+│   │   │   # KNN, SVM.
+│   │   │   ├── 04-sklearn-clustering.py
+│   │   │   # KMeans.
+│   │   │   └── 05-sklearn-evaluation.py
+│   │   │       # Metrics.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-sklearn-trees.py
+│   │   │   # RF, GB.
+│   │   │   ├── 02-sklearn-pipeline.py
+│   │   │   # Grid search.
+│   │   │   ├── 03-sklearn-dim-red.py
+│   │   │   # PCA.
+│   │   │   ├── 04-tensorflow-basics.py
+│   │   │   # Layers.
+│   │   │   └── 05-pytorch-basics.py
+│   │   │       # Tensors.
+│   │   └── 03-Advanced/
+│   │       ├── 01-deep-learning-tf.py
+│   │       # CNN, RNN.
+│   │       ├── 02-pytorch-nn.py
+│   │       # Custom loss.
+│   │       ├── 03-autoencoders.py
+│   │       # Unsup.
+│   │       ├── 04-reinforce-learn.py
+│   │       # Gym.
+│   │       └── 05-mlops.py
+│   │           # MLflow.
+│   ├── 05-LLM-and-GenAI/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-huggingface-basics.py
+│   │   │   # Pipeline NLP.
+│   │   │   ├── 02-transformers-tokenize.py
+│   │   │   # BERT.
+│   │   │   ├── 03-llm-inference.py
+│   │   │   # GPT-2 gen.
+│   │   │   └── 04-fine-tuning-basics.py
+│   │   │       # Trainer.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-llm-prompt-eng.py
+│   │   │   # Chain of thought.
+│   │   │   ├── 02-langchain-basics.py
+│   │   │   # Chains.
+│   │   │   ├── 03-rag-basics.py
+│   │   │   # Retrieval + gen.
+│   │   │   ├── 04-faiss-vector-db.py
+│   │   │   # Embed search.
+│   │   │   └── 05-genai-text-gen.py
+│   │   │       # Stable diff text.
+│   │   └── 03-Advanced/
+│   │       ├── 01-rag-advanced.py
+│   │       # Pinecone + LLM.
+│   │       ├── 02-genai-multimodal.py
+│   │       # CLIP.
+│   │       ├── 03-llm-fine-tune-adv.py
+│   │       # PEFT, LoRA.
+│   │       ├── 04-agent-systems.py
+│   │       # LangGraph.
+│   │       ├── 05-ethics-bias.py
+│   │       # Fairlearn.
+│   │       └── 06-deployment.py
+│   │           # FastAPI + LLM.
+│   └── 06-Other-Advanced-Usage/
+│       ├── 01-Computer-Vision/
+│       │   ├── 01-opencv-basics.py
+│       │   # Image load.
+│       │   ├── 02-opencv-filters.py
+│       │   # Edges.
+│       │   ├── 03-yolo-object-det.py
+│       │   # Ultralytics.
+│       │   └── 04-cv-advanced.py
+│       │       # Segmentation.
+│       ├── 02-NLP/
+│       │   ├── 01-nltk-spacy.py
+│       │   # Token, POS.
+│       │   ├── 02-sentiment-analysis.py
+│       │   # VADER.
+│       │   ├── 03-topic-modeling.py
+│       │   # LDA.
+│       │   └── 04-nlp-advanced.py
+│       │       # Seq2seq.
+│       ├── 03-Time-Series/
+│       │   ├── 01-prophet.py
+│       │   # Forecast.
+│       │   ├── 02-arima.py
+│       │   # Statsmodels.
+│       │   ├── 03-lstm-ts.py
+│       │   # Keras.
+│       │   └── 04-ts-advanced.py
+│       │       # Anomaly.
+│       └── 04-Big-Data/
+│           ├── 01-pyspark-basics.py
+│           # RDD.
+│           ├── 02-spark-ml.py
+│           # Pipeline.
+│           ├── 03-dask-ml.py
+│           # Parallel.
+│           └── 04-bigdata-advanced.py
+│               # Kafka integ.
+│
+├── 05-Competitive-Programming/
+│   ├── 01-Theory/
+│   │   ├── 01-CP-Strategy-Python.pdf
+│   │   │   # Practice, time limits (Python slower), platforms.
+│   │   ├── 02-Contest-Prep.pdf
+│   │   │   # Topics, LeetCode, CF.
+│   │   ├── 03-Time-Mgmt.pdf
+│   │   │   # During contest.
+│   │   └── 04-Common-Mistakes.pdf
+│   │       # Slow loops, recursion depth.
+│   ├── 02-Templates/
+│   │   ├── 01-fast-io-template.py
+│   │   # sys.stdin.read().
+│   │   ├── 02-cp-template.py
+│   │   # Mod, defines.
+│   │   ├── 03-debug-template.py
+│   │   # Print debug.
+│   │   ├── 04-mod-arith-template.py
+│   │   # Class.
+│   │   └── 05-graph-template.py
+│   │       # Adj.
+│   ├── 03-Problem-Categories/
+│   │   ├── 01-Ad-Hoc/
+│   │   │   ├── 01-impl-probs.py
+│   │   │   # Sim.
+│   │   │   ├── 02-sim-probs.py
+│   │   │   # Games.
+│   │   │   ├── 03-string-manip.py
+│   │   │   # Parse.
+│   │   │   └── 04-math-probs.py
+│   │   │       # Formulas.
+│   │   ├── 02-Data-Structures/
+│   │   │   ├── 01-seg-tree-probs.py
+│   │   │   # Queries.
+│   │   │   ├── 02-fenwick-probs.py
+│   │   │   # Updates.
+│   │   │   ├── 03-dsu-probs.py
+│   │   │   # Unions.
+│   │   │   └── 04-adv-ds-probs.py
+│   │   │       # Mixed.
+│   │   ├── 03-Graph-Theory/
+│   │   │   ├── 01-sp-probs.py
+│   │   │   # SP.
+│   │   │   ├── 02-mst-probs.py
+│   │   │   # MST.
+│   │   │   ├── 03-flow-probs.py
+│   │   │   # Flow.
+│   │   │   └── 04-adv-graph-probs.py
+│   │   │       # SCC.
+│   │   ├── 04-DP/
+│   │   │   ├── 01-classical-dp.py
+│   │   │   # Knap.
+│   │   │   ├── 02-opt-dp.py
+│   │   │   # Convex.
+│   │   │   ├── 03-digit-dp.py
+│   │   │   # Digits.
+│   │   │   └── 04-adv-dp.py
+│   │   │       # Trees.
+│   │   └── 05-Geometry/
+│   │       ├── 01-comp-geo-probs.py
+│   │       # Points.
+│   │       ├── 02-hull-probs.py
+│   │       # Hull.
+│   │       └── 03-adv-geo.py
+│   │           # Inter.
+│   ├── 04-Contest-Practice/
+│   │   ├── 01-LeetCode/
+│   │   │   ├── 01-easy-probs.py
+│   │   │   # Solved.
+│   │   │   ├── 02-med-probs.py
+│   │   │   # Med.
+│   │   │   └── 03-hard-probs.py
+│   │   │       # Hard.
+│   │   ├── 02-Codeforces/
+│   │   │   ├── 01-div3.py
+│   │   │   # Easy.
+│   │   │   ├── 02-div2.py
+│   │   │   # Med.
+│   │   │   └── 03-div1.py
+│   │   │       # Hard.
+│   │   ├── 03-AtCoder/
+│   │   │   ├── 01-beginner.py
+│   │   │   # Beg.
+│   │   │   ├── 02-reg.py
+│   │   │   # Reg.
+│   │   │   └── 03-grand.py
+│   │   │       # Grand.
+│   │   └── 04-CodeChef/
+│   │       ├── 01-long-chal.py
+│   │       # Long.
+│   │       ├── 02-cookoff.py
+│   │       # Cook.
+│   │       └── 03-lunch.py
+│   │           # Lunch.
+│   └── 05-Advanced-Topics/
+│       ├── 01-hld.py
+│       # HLD.
+│       ├── 02-centroid-decomp.py
+│       # Cent.
+│       ├── 03-mo-adv.py
+│       # Mo.
+│       ├── 04-sqrt-adv.py
+│       # Sqrt.
+│       ├── 05-pers-seg-tree.py
+│       # Pers.
+│       ├── 06-lct-adv.py
+│       # LCT.
+│       └── 07-adv-nt.py
+│           # NT.
+│
+├── 06-System-Design/
+│   ├── 01-Theory/
+│   │   ├── 01-System-Design-Python.pdf
+│   │   │   # Scalability, Flask/Django.
+│   │   ├── 02-High-Perf-Computing.pdf
+│   │   │   # Numba, MPI4py.
+│   │   ├── 03-Concurrent-Systems.pdf
+│   │   │   # Asyncio, GIL issues.
+│   │   ├── 04-Distributed-Systems.pdf
+│   │   │   # Celery, Ray.
+│   │   └── 05-ML-System-Design.pdf
+│   │       # Pipelines, serving.
+│   ├── 02-Basic/
+│   │   ├── 01-sys-design-basics.py
+│   │   # Microservices sim.
+│   │   ├── 02-caching.py
+│   │   # Redis.
+│   │   ├── 03-db-design.py
+│   │   # SQLAlchemy.
+│   │   ├── 04-api-design.py
+│   │   # FastAPI.
+│   │   └── 05-algo-opt.py
+│   │       # Opt.
+│   ├── 03-Intermediate/
+│   │   ├── 01-concurrent-ds.py
+│   │   # Queue.
+│   │   ├── 02-async-prog.py
+│   │   # Aiohttp.
+│   │   ├── 03-mem-opt.py
+│   │   # Slots.
+│   │   ├── 04-custom-alloc.py
+│   │   # Not applicable, GC tips.
+│   │   └── 05-perf-prof.py
+│   │       # cProfile.
+│   └── 04-Advanced/
+│       ├── 01-hpc.py
+│       # Ray cluster.
+│       ├── 02-par-algo-design.py
+│       # Dask.
+│       ├── 03-dist-algo.py
+│       # Celery.
+│       ├── 04-real-time.py
+│       # Websockets.
+│       └── 05-embedded.py
+│           # MicroPython.
+│
+├── 07-Interview-Preparation/
+│   ├── 01-Theory/
+│   │   ├── 01-Python-Interview-Guide.pdf
+│   │   │   # Common Qs.
+│   │   ├── 02-Tech-Strategy.pdf
+│   │   │   # Approach.
+│   │   ├── 03-Prob-Patterns.pdf
+│   │   │   # Patterns.
+│   │   ├── 04-Sys-Design-Int.pdf
+│   │   │   # SD Qs.
+│   │   └── 05-Behavioral.pdf
+│   │       # STAR.
+│   ├── 02-Python-Specific/
+│   │   ├── 01-Basic/
+│   │   │   ├── 01-py-basics-q.py
+│   │   │   # Q&A.
+│   │   │   ├── 02-lists-dicts.py
+│   │   │   # Diff.
+│   │   │   ├── 03-mem-mgmt.py
+│   │   │   # GC.
+│   │   │   ├── 04-oop.py
+│   │   │   # Inherit.
+│   │   │   └── 05-std-lib-q.py
+│   │   │       # Collections.
+│   │   ├── 02-Intermediate/
+│   │   │   ├── 01-dec-gen-q.py
+│   │   │   # Yield.
+│   │   │   ├── 02-inherit-poly.py
+│   │   │   # MRO.
+│   │   │   ├── 03-exc-hand-q.py
+│   │   │   # Try.
+│   │   │   ├── 04-async-q.py
+│   │   │   # Await.
+│   │   │   └── 05-adv-feat.py
+│   │   │       # Walrus.
+│   │   └── 03-Advanced/
+│   │       ├── 01-meta-desc.py
+│   │       # Metaclass.
+│   │       ├── 02-concurrency-q.py
+│   │       # GIL.
+│   │       ├── 03-type-hint-q.py
+│   │       # Typing.
+│   │       ├── 04-modern-py-q.py
+│   │       # 3.10+.
+│   │       └── 05-perf-q.py
+│   │           # Opt.
+│   ├── 03-Coding-Patterns/
+│   │   ├── 01-Basic-Patterns/
+│   │   │   ├── 01-two-pointers.py
+│   │   │   # Sum.
+│   │   │   ├── 02-sliding-win.py
+│   │   │   # Max.
+│   │   │   ├── 03-fast-slow.py
+│   │   │   # Cycle.
+│   │   │   ├── 04-merge-int.py
+│   │   │   # Merge.
+│   │   │   └── 05-cyclic-sort.py
+│   │   │       # Cycle.
+│   │   ├── 02-Intermediate-Patterns/
+│   │   │   ├── 01-tree-trav-pat.py
+│   │   │   # Levels.
+│   │   │   ├── 02-graph-trav.py
+│   │   │   # Islands.
+│   │   │   ├── 03-bin-search-pat.py
+│   │   │   # Rotated.
+│   │   │   ├── 04-bt-pat.py
+│   │   │   # Subsets.
+│   │   │   └── 05-dp-pat.py
+│   │   │       # Stairs.
+│   │   └── 03-Advanced-Patterns/
+│   │       ├── 01-adv-tree.py
+│   │       # Diam.
+│   │       ├── 02-adv-graph.py
+│   │       # Bridges.
+│   │       ├── 03-opt-pat.py
+│   │       # Greedy DP.
+│   │       ├── 04-math-pat.py
+│   │       # NT.
+│   │       └── 05-sys-des-pat.py
+│   │           # Cache.
+│   ├── 04-Company-Specific/
+│   │   ├── 01-FAANG/
+│   │   │   ├── 01-google-py-q.py
+│   │   │   # Google.
+│   │   │   ├── 02-amazon.py
+│   │   │   # Amazon.
+│   │   │   ├── 03-ms.py
+│   │   │   # MS.
+│   │   │   ├── 04-apple.py
+│   │   │   # Apple.
+│   │   │   └── 05-fb.py
+│   │   │       # FB.
+│   │   ├── 02-Tech-Companies/
+│   │   │   ├── 01-bloomberg.py
+│   │   │   # Bloom.
+│   │   │   ├── 02-gs.py
+│   │   │   # GS.
+│   │   │   ├── 03-nvidia.py
+│   │   │   # Nvidia.
+│   │   │   ├── 04-intel.py
+│   │   │   # Intel.
+│   │   │   └── 05-adobe.py
+│   │   │       # Adobe.
+│   │   └── 03-Startups/
+│   │       ├── 01-startup-q.py
+│   │       # Gen.
+│   │       ├── 02-sys-prog-q.py
+│   │       # Sys.
+│   │       └── 03-perf-q.py
+│   │           # Perf.
+│   ├── 05-Problem-Sets/
+│   │   ├── 01-Easy/
+│   │   │   ├── 01-array-easy.py
+│   │   │   # Max.
+│   │   │   ├── 02-string-easy.py
+│   │   │   # Rev.
+│   │   │   ├── 03-ll-easy.py
+│   │   │   # Rev.
+│   │   │   ├── 04-tree-easy.py
+│   │   │   # Height.
+│   │   │   └── 05-algo-easy.py
+│   │   │       # Sort.
+│   │   ├── 02-Medium/
+│   │   │   ├── 01-array-med.py
+│   │   │   # Kadane.
+│   │   │   ├── 02-string-med.py
+│   │   │   # LPS.
+│   │   │   ├── 03-tree-med.py
+│   │   │   # LCA.
+│   │   │   ├── 04-graph-med.py
+│   │   │   # Short.
+│   │   │   ├── 05-dp-med.py
+│   │   │   # LIS.
+│   │   │   └── 06-ds-med.py
+│   │   │       # Trie.
+│   │   └── 03-Hard/
+│   │       ├── 01-algo-hard.py
+│   │       # Flow.
+│   │       ├── 02-ds-hard.py
+│   │       # Suffix.
+│   │       ├── 03-opt-hard.py
+│   │       # TSP.
+│   │       ├── 04-sys-code.py
+│   │       # Cache.
+│   │       └── 05-cp-hard.py
+│   │           # Adv.
+│   └── 06-Mock-Interviews/
+│       ├── 01-tech-mocks.py
+│       # Mock.
+│       ├── 02-sys-mocks.py
+│       # SD.
+│       ├── 03-live-code.py
+│       # Live.
+│       └── 04-pair-prog.py
+│           # Pair.
+│
+├── 08-Performance-and-Optimization/
+│   ├── 01-Theory/
+│   │   ├── 01-Perf-Analysis.pdf
+│   │   │   # Profiling.
+│   │   ├── 02-Mem-Opt.pdf
+│   │   │   # GC.
+│   │   ├── 03-Cache-Opt.pdf
+│   │   │   # Locality.
+│   │   ├── 04-Interp-Opt.pdf
+│   │   │   # PyPy.
+│   │   └── 05-Profiling-Tech.pdf
+│   │       # Tools.
+│   ├── 02-Memory-Management/
+│   │   ├── 01-slots-opt.py
+│   │   # __slots__.
+│   │   ├── 02-gc-tuning.py
+│   │   # gc module.
+│   │   ├── 03-array-opt.py
+│   │   # Numpy.
+│   │   ├── 04-obj-pools.py
+│   │   # Pools.
+│   │   └── 05-mem-prof.py
+│   │       # Memory_profiler.
+│   ├── 03-Algorithm-Optimization/
+│   │   ├── 01-cache-opt.py
+│   │   # Locality.
+│   │   ├── 02-vectorize.py
+│   │   # Numpy.
+│   │   ├── 03-loop-opt.py
+│   │   # Comp.
+│   │   ├── 04-branch-avoid.py
+│   │   # Avoid.
+│   │   └── 05-numba-simd.py
+│   │       # JIT.
+│   ├── 04-Concurrency/
+│   │   ├── 01-threading.py
+│   │   # Threads.
+│   │   ├── 02-multiproc.py
+│   │   # Processes.
+│   │   ├── 03-asyncio-opt.py
+│   │   # Async.
+│   │   ├── 04-par-algo.py
+│   │   # Par.
+│   │   └── 05-thread-pools.py
+│   │       # Executors.
+│   └── 05-Profiling-Tools/
+│       ├── 01-cprofile.py
+│       # Prof.
+│       ├── 02-mem-prof.py
+│       # Mem.
+│       ├── 03-line-prof.py
+│       # Line.
+│       ├── 04-pytest-bench.py
+│       # Bench.
+│       └── 05-opt-verify.py
+│           # Verify.
+│
+├── 09-Real-World-Applications/
+│   ├── 01-Web-Development/
+│   │   ├── 01-flask-basics.py
+│   │   # Routes.
+│   │   ├── 02-django-basics.py
+│   │   # Models.
+│   │   ├── 03-api-fastapi.py
+│   │   # Async API.
+│   │   ├── 04-web-scraping.py
+│   │   # BeautifulSoup.
+│   │   └── 05-perf-web.py
+│   │       # Gunicorn.
+│   ├── 02-Data-Science-Apps/
+│   │   ├── 01-ds-pipeline.py
+│   │   # ETL.
+│   │   ├── 02-ml-app.py
+│   │   # Predict app.
+│   │   ├── 03-dash-app.py
+│   │   # Viz dash.
+│   │   ├── 04-bigdata-app.py
+│   │   # Spark.
+│   │   └── 05-ds-opt.py
+│   │       # Opt.
+│   ├── 03-AI-ML-Apps/
+│   │   ├── 01-cv-app.py
+│   │   # Face det.
+│   │   ├── 02-nlp-app.py
+│   │   # Chatbot.
+│   │   ├── 03-rl-app.py
+│   │   # Game agent.
+│   │   ├── 04-genai-app.py
+│   │   # Text gen.
+│   │   └── 05-llm-rag-app.py
+│   │       # Custom RAG.
+│   ├── 04-Automation-Scripts/
+│   │   ├── 01-file-auto.py
+│   │   # Os ops.
+│   │   ├── 02-email-auto.py
+│   │   # Smtplib.
+│   │   ├── 03-gui-auto.py
+│   │   # PyAutoGUI.
+│   │   ├── 04-testing-auto.py
+│   │   # Selenium.
+│   │   └── 05-script-opt.py
+│   │       # Opt.
+│   └── 05-Scientific-Computing/
+│       ├── 01-num-algo.py
+│       # Newton.
+│       ├── 02-lin-alg.py
+│       # Scipy.
+│       ├── 03-signal-proc.py
+│       # Filters.
+│       ├── 04-ml-sci.py
+│       # Custom.
+│       └── 05-par-sci.py
+│           # Dask.
+│
+├── 10-Project-Based-Learning/
+│   ├── 01-Basic-Projects/
+│   │   ├── 01-calculator-advanced/
+│   │   # GUI with Tkinter.
+│   │   ├── 02-file-manager/
+│   │   # CLI file ops.
+│   │   ├── 03-sorting-visualizer/
+│   │   # Matplot anim.
+│   │   ├── 04-ds-library/
+│   │   # Custom DS.
+│   │   └── 05-basic-game/
+│   │       # Pygame.
+│   ├── 02-Intermediate-Projects/
+│   │   ├── 01-compression-algo/
+│   │   # Huffman.
+│   │   ├── 02-simple-db/
+│   │   # SQLite.
+│   │   ├── 03-web-server/
+│   │   # Flask.
+│   │   ├── 04-compiler-lexer/
+│   │   # Simple parser.
+│   │   └── 05-data-viz-tool/
+│   │       # Dash app.
+│   └── 03-Advanced-Projects/
+│       ├── 01-rag-system/
+│       # Doc search + LLM.
+│       ├── 02-ml-framework/
+│       # Custom NN.
+│       ├── 03-genai-chatbot/
+│       # LangChain.
+│       ├── 04-high-perf-ds/
+│       # Numba opt.
+│       └── 05-trading-bot/
+│           # Algo trade.
+│
+├── 11-Testing-and-Debugging/
+│   ├── 01-Testing-Frameworks/
+│   │   ├── 01-unittest.py
+│   │   # Unit.
+│   │   ├── 02-pytest.py
+│   │   # Pytest.
+│   │   ├── 03-hypothesis.py
+│   │   # Prop test.
+│   │   ├── 04-unit-best.py
+│   │   # Practices.
+│   │   └── 05-perf-test.py
+│   │       # Perf.
+│   ├── 02-Debugging-Techniques/
+│   │   ├── 01-pdb-debug.py
+│   │   # Pdb.
+│   │   ├── 02-ipdb.py
+│   │   # Ipd.
+│   │   ├── 03-mem-debug.py
+│   │   # Leaks.
+│   │   ├── 04-perf-debug.py
+│   │   # Prof.
+│   │   └── 05-strategies.py
+│   │       # Strat.
+│   ├── 03-Code-Quality/
+│   │   ├── 01-pylint.py
+│   │   # Lint.
+│   │   ├── 02-review-check.py
+│   │   # Check.
+│   │   ├── 03-refactor.py
+│   │   # Ref.
+│   │   ├── 04-standards.py
+│   │   # PEP8.
+│   │   └── 05-doc.py
+│   │       # Sphinx.
+│   └── 04-Profiling-Opt/
+│       ├── 01-perf-prof.py
+│       # Prof.
+│       ├── 02-mem-prof.py
+│       # Mem.
+│       ├── 03-cache-prof.py
+│       # Cache.
+│       ├── 04-bench.py
+│       # Bench.
+│       └── 05-opt-ver.py
+│           # Ver.
+│
+└── 12-Resources-References/
+    ├── 01-Documentation/
+    │   ├── 01-Py-Ref.pdf
+    │   │   # Full.
+    │   ├── 02-Lib-Cheat.pdf
+    │   │   # Cheat.
+    │   ├── 03-DSA-Comp.pdf
+    │   │   # Big O.
+    │   ├── 04-CP-Ref.pdf
+    │   │   # CP.
+    │   └── 05-Int-Check.pdf
+    │       # Check.
+    ├── 02-External-Resources/
+    │   ├── 01-books.md
+    │   │   # Fluent Py, Py Cookbook.
+    │   ├── 02-oj.md
+    │   │   # LC, CF.
+    │   ├── 03-cp-sites.md
+    │   │   # Sites.
+    │   ├── 04-py-comm.md
+    │   │   # Reddit.
+    │   └── 05-learn-res.md
+    │       # Tuts.
+    ├── 03-Tools-Env/
+    │   ├── 01-py-setup.md
+    │   │   # Install.
+    │   ├── 02-ide-config.md
+    │   │   # VSCode, PyCharm.
+    │   ├── 03-debug-tools.md
+    │   │   # Pdb.
+    │   ├── 04-prof-tools.md
+    │   │   # cProfile.
+    │   └── 05-venv-pip.md
+    │       # Env.
+    └── 04-Progress-Tracking/
+        ├── 01-py-roadmap.md
+        │   # Roadmap.
+        ├── 02-dsa-assess.md
+        │   # Assess.
+        ├── 03-cp-progress.md
+        │   # Prog.
+        ├── 04-int-timeline.md
+        │   # Time.
+        └── 05-proj-miles.md
+            # Miles.
+            
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+DO everythings with purely premium way
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-09-11T13:35:30+05:30.
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from None to Gemini 3.1 Pro (High). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

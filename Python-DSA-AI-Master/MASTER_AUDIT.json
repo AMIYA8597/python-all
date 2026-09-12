@@ -1,0 +1,3456 @@
+{
+    "files": [
+        {
+            "path": "advanced_audit.py",
+            "status": "PLACEHOLDER",
+            "lines": 77
+        },
+        {
+            "path": "AUDIT-REPORT.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 33
+        },
+        {
+            "path": "audit.py",
+            "status": "PARTIAL",
+            "lines": 23
+        },
+        {
+            "path": "JOB-READINESS-MATRIX.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 61
+        },
+        {
+            "path": "KNOWLEDGE-MAP.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 181
+        },
+        {
+            "path": "LEARNING-SYSTEM.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 44
+        },
+        {
+            "path": "MASTER-CAPABILITY-TEST.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 51
+        },
+        {
+            "path": "MASTER-ROADMAP.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 72
+        },
+        {
+            "path": "QUALITY-AUDIT.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 38
+        },
+        {
+            "path": "01-Python-Fundamentals\\01-Theory\\01-Python-Fundamentals-Complete.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 159
+        },
+        {
+            "path": "01-Python-Fundamentals\\01-Theory\\02-Memory-Model-Guide.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 225
+        },
+        {
+            "path": "01-Python-Fundamentals\\01-Theory\\03-OOP-Concepts-Advanced.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 211
+        },
+        {
+            "path": "01-Python-Fundamentals\\01-Theory\\04-Standard-Library-Reference.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 218
+        },
+        {
+            "path": "01-Python-Fundamentals\\01-Theory\\05-Modern-Python-Features.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 213
+        },
+        {
+            "path": "01-Python-Fundamentals\\01-Theory\\06-Performance-Optimization.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 137
+        },
+        {
+            "path": "01-Python-Fundamentals\\02-Basic\\01-variables-and-datatypes.py",
+            "status": "GOOD",
+            "lines": 216
+        },
+        {
+            "path": "01-Python-Fundamentals\\02-Basic\\02-operators-and-expressions.py",
+            "status": "GOOD",
+            "lines": 208
+        },
+        {
+            "path": "01-Python-Fundamentals\\02-Basic\\03-control-structures.py",
+            "status": "GOOD",
+            "lines": 238
+        },
+        {
+            "path": "01-Python-Fundamentals\\02-Basic\\04-functions-basics.py",
+            "status": "GOOD",
+            "lines": 194
+        },
+        {
+            "path": "01-Python-Fundamentals\\02-Basic\\05-lists-tuples-sets-dicts.py",
+            "status": "PARTIAL",
+            "lines": 265
+        },
+        {
+            "path": "01-Python-Fundamentals\\02-Basic\\06-strings-manipulation.py",
+            "status": "GOOD",
+            "lines": 234
+        },
+        {
+            "path": "01-Python-Fundamentals\\02-Basic\\07-oop-basics.py",
+            "status": "PARTIAL",
+            "lines": 280
+        },
+        {
+            "path": "01-Python-Fundamentals\\02-Basic\\08-file-handling-basics.py",
+            "status": "PARTIAL",
+            "lines": 261
+        },
+        {
+            "path": "01-Python-Fundamentals\\03-Intermediate\\01-classes-objects-advanced.py",
+            "status": "PARTIAL",
+            "lines": 346
+        },
+        {
+            "path": "01-Python-Fundamentals\\03-Intermediate\\02-decorators-generators.py",
+            "status": "GOOD",
+            "lines": 443
+        },
+        {
+            "path": "01-Python-Fundamentals\\03-Intermediate\\03-modules-packages.py",
+            "status": "PARTIAL",
+            "lines": 250
+        },
+        {
+            "path": "01-Python-Fundamentals\\03-Intermediate\\04-exception-handling.py",
+            "status": "GOOD",
+            "lines": 249
+        },
+        {
+            "path": "01-Python-Fundamentals\\03-Intermediate\\05-collections-module.py",
+            "status": "GOOD",
+            "lines": 229
+        },
+        {
+            "path": "01-Python-Fundamentals\\03-Intermediate\\06-itertools-functools.py",
+            "status": "GOOD",
+            "lines": 244
+        },
+        {
+            "path": "01-Python-Fundamentals\\03-Intermediate\\07-threading-multiprocessing.py",
+            "status": "PARTIAL",
+            "lines": 285
+        },
+        {
+            "path": "01-Python-Fundamentals\\03-Intermediate\\08-asyncio-basics.py",
+            "status": "PARTIAL",
+            "lines": 215
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\01-metaclasses-descriptors.py",
+            "status": "GOOD",
+            "lines": 246
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\02-context-managers.py",
+            "status": "GOOD",
+            "lines": 224
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\03-type-hinting-advanced.py",
+            "status": "GOOD",
+            "lines": 247
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\04-pattern-matching.py",
+            "status": "GOOD",
+            "lines": 230
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\05-cython-extensions.py",
+            "status": "GOOD",
+            "lines": 212
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\06-profiling-debugging.py",
+            "status": "GOOD",
+            "lines": 210
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\07-design-patterns.py",
+            "status": "GOOD",
+            "lines": 254
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\08-performance-advanced.py",
+            "status": "GOOD",
+            "lines": 239
+        },
+        {
+            "path": "01-Python-Fundamentals\\04-Advanced\\09-concurrency-advanced.py",
+            "status": "GOOD",
+            "lines": 244
+        },
+        {
+            "path": "02-Data-Structures\\01-Theory\\01-DS-Fundamentals-Python.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 124
+        },
+        {
+            "path": "02-Data-Structures\\01-Theory\\02-Memory-Layout-Analysis.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 127
+        },
+        {
+            "path": "02-Data-Structures\\01-Theory\\03-Performance-Comparison.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 154
+        },
+        {
+            "path": "02-Data-Structures\\01-Theory\\04-Implementation-Strategies.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 117
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\01-lists-implementation.py",
+            "status": "GOOD",
+            "lines": 188
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\02-stacks.py",
+            "status": "GOOD",
+            "lines": 229
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\03-queues.py",
+            "status": "GOOD",
+            "lines": 205
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\04-linked-lists.py",
+            "status": "GOOD",
+            "lines": 214
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\05-arrays.py",
+            "status": "GOOD",
+            "lines": 173
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\01-doubly-linked-lists.py",
+            "status": "GOOD",
+            "lines": 256
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\02-circular-queues.py",
+            "status": "GOOD",
+            "lines": 218
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\03-priority-queues.py",
+            "status": "GOOD",
+            "lines": 173
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\04-deques.py",
+            "status": "GOOD",
+            "lines": 195
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\05-stack-applications.py",
+            "status": "GOOD",
+            "lines": 180
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\01-concurrent-queues.py",
+            "status": "GOOD",
+            "lines": 195
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\02-persistent-lists.py",
+            "status": "GOOD",
+            "lines": 172
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\03-cache-optimized-structures.py",
+            "status": "GOOD",
+            "lines": 124
+        },
+        {
+            "path": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\04-lock-free-structures.py",
+            "status": "GOOD",
+            "lines": 148
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\01-Basic\\01-binary-trees.py",
+            "status": "PARTIAL",
+            "lines": 190
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\01-Basic\\01-trees.py",
+            "status": "PARTIAL",
+            "lines": 151
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\01-Basic\\02-binary-search-trees.py",
+            "status": "PARTIAL",
+            "lines": 182
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\01-Basic\\03-tree-traversals.py",
+            "status": "PARTIAL",
+            "lines": 205
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\01-Basic\\04-tree-operations.py",
+            "status": "PARTIAL",
+            "lines": 177
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\01-Basic\\05-heaps.py",
+            "status": "PARTIAL",
+            "lines": 197
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\01-avl-trees.py",
+            "status": "GOOD",
+            "lines": 216
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\02-red-black-trees.py",
+            "status": "GOOD",
+            "lines": 265
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\03-tries.py",
+            "status": "GOOD",
+            "lines": 195
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\04-segment-trees.py",
+            "status": "GOOD",
+            "lines": 177
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\05-fenwick-trees.py",
+            "status": "GOOD",
+            "lines": 166
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\03-Advanced\\01-b-trees.py",
+            "status": "PARTIAL",
+            "lines": 228
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\03-Advanced\\02-suffix-trees.py",
+            "status": "PARTIAL",
+            "lines": 119
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\03-Advanced\\03-persistent-trees.py",
+            "status": "PARTIAL",
+            "lines": 205
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\03-Advanced\\04-splay-trees.py",
+            "status": "PARTIAL",
+            "lines": 225
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\03-Advanced\\05-treaps.py",
+            "status": "PARTIAL",
+            "lines": 151
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\03-Advanced\\06-heavy-light-decomposition.py",
+            "status": "PARTIAL",
+            "lines": 189
+        },
+        {
+            "path": "02-Data-Structures\\03-Trees\\03-Advanced\\07-link-cut-trees.py",
+            "status": "PARTIAL",
+            "lines": 180
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\01-Basic\\01-graph-representation.py",
+            "status": "GOOD",
+            "lines": 133
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\01-Basic\\01-graphs.py",
+            "status": "PARTIAL",
+            "lines": 186
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\01-Basic\\02-adjacency-matrix.py",
+            "status": "GOOD",
+            "lines": 134
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\01-Basic\\02-bfs.py",
+            "status": "PARTIAL",
+            "lines": 183
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\01-Basic\\03-dfs-bfs.py",
+            "status": "GOOD",
+            "lines": 135
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\01-Basic\\03-dfs.py",
+            "status": "PARTIAL",
+            "lines": 120
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\01-Basic\\04-cycle-detection.py",
+            "status": "GOOD",
+            "lines": 164
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\01-Basic\\05-topological-sort.py",
+            "status": "GOOD",
+            "lines": 231
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\01-dijkstra.py",
+            "status": "PARTIAL",
+            "lines": 89
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\01-weighted-graphs.py",
+            "status": "GOOD",
+            "lines": 198
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\02-shortest-paths.py",
+            "status": "GOOD",
+            "lines": 184
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\02-topological-sort.py",
+            "status": "PARTIAL",
+            "lines": 85
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\03-mst.py",
+            "status": "GOOD",
+            "lines": 224
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\04-connected-components.py",
+            "status": "GOOD",
+            "lines": 222
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\05-bellman-ford.py",
+            "status": "GOOD",
+            "lines": 173
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\01-floyd-warshall.py",
+            "status": "GOOD",
+            "lines": 178
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\02-max-flow.py",
+            "status": "GOOD",
+            "lines": 121
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\03-bipartite-matching.py",
+            "status": "PARTIAL",
+            "lines": 201
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\03-scc.py",
+            "status": "GOOD",
+            "lines": 222
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\04-articulation-points.py",
+            "status": "GOOD",
+            "lines": 140
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\05-bipartite-matching.py",
+            "status": "GOOD",
+            "lines": 108
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\06-euler-path.py",
+            "status": "GOOD",
+            "lines": 167
+        },
+        {
+            "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\07-advanced-graphs.py",
+            "status": "GOOD",
+            "lines": 177
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\01-dictionaries.py",
+            "status": "GOOD",
+            "lines": 262
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\01-hash-tables.py",
+            "status": "PARTIAL",
+            "lines": 166
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\02-sets.py",
+            "status": "GOOD",
+            "lines": 245
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\03-hash-functions.py",
+            "status": "GOOD",
+            "lines": 240
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\04-collision-handling.py",
+            "status": "GOOD",
+            "lines": 258
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\01-custom-hash-tables.py",
+            "status": "GOOD",
+            "lines": 137
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\02-bloom-filters.py",
+            "status": "GOOD",
+            "lines": 142
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\03-cuckoo-hashing.py",
+            "status": "GOOD",
+            "lines": 147
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\04-consistent-hashing.py",
+            "status": "GOOD",
+            "lines": 140
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\01-concurrent-dicts.py",
+            "status": "GOOD",
+            "lines": 125
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\02-perfect-hashing.py",
+            "status": "GOOD",
+            "lines": 169
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\03-distributed-hashing.py",
+            "status": "GOOD",
+            "lines": 136
+        },
+        {
+            "path": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\04-lock-free-hashing.py",
+            "status": "GOOD",
+            "lines": 161
+        },
+        {
+            "path": "02-Data-Structures\\06-Specialized-Structures\\01-disjoint-set-union.py",
+            "status": "GOOD",
+            "lines": 89
+        },
+        {
+            "path": "02-Data-Structures\\06-Specialized-Structures\\02-sparse-tables.py",
+            "status": "GOOD",
+            "lines": 152
+        },
+        {
+            "path": "02-Data-Structures\\06-Specialized-Structures\\03-sqrt-decomposition.py",
+            "status": "GOOD",
+            "lines": 87
+        },
+        {
+            "path": "02-Data-Structures\\06-Specialized-Structures\\04-mos-algorithm.py",
+            "status": "GOOD",
+            "lines": 104
+        },
+        {
+            "path": "02-Data-Structures\\06-Specialized-Structures\\05-persistent-structures.py",
+            "status": "GOOD",
+            "lines": 76
+        },
+        {
+            "path": "02-Data-Structures\\06-Specialized-Structures\\06-specialized-trees.py",
+            "status": "GOOD",
+            "lines": 166
+        },
+        {
+            "path": "03-Algorithms\\01-Algorithm-Analysis\\01-Basic\\01-big-o.py",
+            "status": "GOOD",
+            "lines": 875
+        },
+        {
+            "path": "03-Algorithms\\01-Theory\\01-Algorithm-Analysis-Python.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 165
+        },
+        {
+            "path": "03-Algorithms\\01-Theory\\02-Complexity-Theory.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 125
+        },
+        {
+            "path": "03-Algorithms\\01-Theory\\03-Design-Paradigms.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 181
+        },
+        {
+            "path": "03-Algorithms\\01-Theory\\04-Optimization-Techniques.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 112
+        },
+        {
+            "path": "03-Algorithms\\01-Theory\\05-Mathematical-Foundations.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 102
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\01-Basic\\01-linear-search.py",
+            "status": "GOOD",
+            "lines": 636
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\01-Basic\\02-binary-search.py",
+            "status": "GOOD",
+            "lines": 241
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\01-Basic\\03-jump-search.py",
+            "status": "GOOD",
+            "lines": 585
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\01-Basic\\04-ternary-search.py",
+            "status": "GOOD",
+            "lines": 581
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\02-Intermediate\\01-exponential-search.py",
+            "status": "GOOD",
+            "lines": 823
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\02-Intermediate\\02-interpolation-search.py",
+            "status": "GOOD",
+            "lines": 730
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\02-Intermediate\\03-fibonacci-search.py",
+            "status": "GOOD",
+            "lines": 769
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\02-Intermediate\\04-hash-search.py",
+            "status": "GOOD",
+            "lines": 877
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\03-Advanced\\01-van-emde-boas.py",
+            "status": "GOOD",
+            "lines": 1046
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\03-Advanced\\02-fractional-cascading.py",
+            "status": "GOOD",
+            "lines": 714
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\03-Advanced\\03-y-fast-trie.py",
+            "status": "GOOD",
+            "lines": 268
+        },
+        {
+            "path": "03-Algorithms\\02-Searching\\03-Advanced\\04-advanced-search.py",
+            "status": "GOOD",
+            "lines": 240
+        },
+        {
+            "path": "03-Algorithms\\02-Sorting\\01-Basic\\01-bubble-sort.py",
+            "status": "GOOD",
+            "lines": 849
+        },
+        {
+            "path": "03-Algorithms\\02-Sorting\\01-Basic\\02-selection-sort.py",
+            "status": "PARTIAL",
+            "lines": 112
+        },
+        {
+            "path": "03-Algorithms\\02-Sorting\\01-Basic\\03-insertion-sort.py",
+            "status": "GOOD",
+            "lines": 723
+        },
+        {
+            "path": "03-Algorithms\\02-Sorting\\02-Intermediate\\01-merge-sort.py",
+            "status": "PARTIAL",
+            "lines": 121
+        },
+        {
+            "path": "03-Algorithms\\02-Sorting\\02-Intermediate\\02-quick-sort.py",
+            "status": "PARTIAL",
+            "lines": 112
+        },
+        {
+            "path": "03-Algorithms\\03-Searching\\01-Basic\\01-linear-search.py",
+            "status": "PARTIAL",
+            "lines": 112
+        },
+        {
+            "path": "03-Algorithms\\03-Searching\\01-Basic\\02-binary-search.py",
+            "status": "PARTIAL",
+            "lines": 112
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\01-Basic\\01-bubble-sort.py",
+            "status": "GOOD",
+            "lines": 487
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\01-Basic\\02-selection-sort.py",
+            "status": "GOOD",
+            "lines": 177
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\01-Basic\\03-insertion-sort.py",
+            "status": "GOOD",
+            "lines": 241
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\01-Basic\\04-merge-sort.py",
+            "status": "GOOD",
+            "lines": 209
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\01-Basic\\05-quick-sort.py",
+            "status": "GOOD",
+            "lines": 241
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\01-heap-sort.py",
+            "status": "GOOD",
+            "lines": 153
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\02-counting-sort.py",
+            "status": "GOOD",
+            "lines": 269
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\03-radix-sort.py",
+            "status": "GOOD",
+            "lines": 170
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\04-bucket-sort.py",
+            "status": "GOOD",
+            "lines": 213
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\05-shell-sort.py",
+            "status": "GOOD",
+            "lines": 156
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\03-Advanced\\01-tim-sort.py",
+            "status": "GOOD",
+            "lines": 192
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\03-Advanced\\02-external-sort.py",
+            "status": "GOOD",
+            "lines": 117
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\03-Advanced\\03-parallel-sort.py",
+            "status": "GOOD",
+            "lines": 95
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\03-Advanced\\04-intro-sort.py",
+            "status": "GOOD",
+            "lines": 171
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\03-Advanced\\05-cache-oblivious-sort.py",
+            "status": "GOOD",
+            "lines": 139
+        },
+        {
+            "path": "03-Algorithms\\03-Sorting\\03-Advanced\\06-sorting-networks.py",
+            "status": "GOOD",
+            "lines": 134
+        },
+        {
+            "path": "03-Algorithms\\04-Divide-and-Conquer\\01-Basic\\01-dc-intro.py",
+            "status": "PARTIAL",
+            "lines": 103
+        },
+        {
+            "path": "03-Algorithms\\04-Divide-and-Conquer\\01-Basic\\02-max-subarray.py",
+            "status": "PARTIAL",
+            "lines": 83
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\01-factorial-recursion.py",
+            "status": "GOOD",
+            "lines": 111
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\02-fibonacci-recursion.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\03-tower-of-hanoi.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\04-backtracking-basics.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\01-n-queens.py",
+            "status": "GOOD",
+            "lines": 109
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\02-sudoku-solver.py",
+            "status": "GOOD",
+            "lines": 204
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\03-permutations.py",
+            "status": "GOOD",
+            "lines": 191
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\04-subsets.py",
+            "status": "GOOD",
+            "lines": 117
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\01-graph-coloring.py",
+            "status": "GOOD",
+            "lines": 239
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\02-knight-tour.py",
+            "status": "GOOD",
+            "lines": 206
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\03-hamiltonian-path.py",
+            "status": "GOOD",
+            "lines": 72
+        },
+        {
+            "path": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\04-advanced-backtracking.py",
+            "status": "GOOD",
+            "lines": 68
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\01-fibonacci-dp.py",
+            "status": "GOOD",
+            "lines": 283
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\02-coin-change.py",
+            "status": "GOOD",
+            "lines": 75
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\03-lcs.py",
+            "status": "GOOD",
+            "lines": 84
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\04-0-1-knapsack.py",
+            "status": "GOOD",
+            "lines": 77
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\05-edit-distance.py",
+            "status": "GOOD",
+            "lines": 92
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\01-lis.py",
+            "status": "GOOD",
+            "lines": 119
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\02-matrix-chain.py",
+            "status": "GOOD",
+            "lines": 68
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\03-subset-sum.py",
+            "status": "GOOD",
+            "lines": 119
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\04-rod-cutting.py",
+            "status": "GOOD",
+            "lines": 147
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\05-min-path-sum.py",
+            "status": "GOOD",
+            "lines": 66
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\01-tree-dp.py",
+            "status": "GOOD",
+            "lines": 176
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\02-digit-dp.py",
+            "status": "GOOD",
+            "lines": 75
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\03-bitmask-dp.py",
+            "status": "GOOD",
+            "lines": 135
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\04-prob-dp.py",
+            "status": "GOOD",
+            "lines": 89
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\05-convex-hull-opt.py",
+            "status": "GOOD",
+            "lines": 87
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\06-div-conq-opt.py",
+            "status": "GOOD",
+            "lines": 70
+        },
+        {
+            "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\07-knuth-opt.py",
+            "status": "PARTIAL",
+            "lines": 123
+        },
+        {
+            "path": "03-Algorithms\\05-Greedy-Algorithms\\01-Basic\\01-greedy-intro.py",
+            "status": "PARTIAL",
+            "lines": 123
+        },
+        {
+            "path": "03-Algorithms\\05-Greedy-Algorithms\\01-Basic\\02-activity-sel.py",
+            "status": "PARTIAL",
+            "lines": 57
+        },
+        {
+            "path": "03-Algorithms\\06-Dynamic-Programming\\01-Basic\\01-dp-intro.py",
+            "status": "PARTIAL",
+            "lines": 125
+        },
+        {
+            "path": "03-Algorithms\\06-Dynamic-Programming\\01-Basic\\02-fibonacci.py",
+            "status": "PARTIAL",
+            "lines": 119
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\01-Basic\\01-activity-selection.py",
+            "status": "GOOD",
+            "lines": 99
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\01-Basic\\02-fractional-knapsack.py",
+            "status": "GOOD",
+            "lines": 119
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\01-Basic\\03-job-scheduling.py",
+            "status": "GOOD",
+            "lines": 135
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\01-Basic\\04-min-coins.py",
+            "status": "GOOD",
+            "lines": 86
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\02-Intermediate\\01-huffman-coding.py",
+            "status": "GOOD",
+            "lines": 170
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\02-Intermediate\\02-dijkstra.py",
+            "status": "GOOD",
+            "lines": 132
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\02-Intermediate\\03-interval-sched.py",
+            "status": "GOOD",
+            "lines": 106
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\02-Intermediate\\04-mst-kruskal.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\03-Advanced\\01-approx-algo.py",
+            "status": "GOOD",
+            "lines": 111
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\03-Advanced\\02-matroids.py",
+            "status": "GOOD",
+            "lines": 92
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\03-Advanced\\03-online-algo.py",
+            "status": "GOOD",
+            "lines": 118
+        },
+        {
+            "path": "03-Algorithms\\06-Greedy\\03-Advanced\\04-cp-greedy.py",
+            "status": "GOOD",
+            "lines": 103
+        },
+        {
+            "path": "03-Algorithms\\07-Backtracking\\01-Basic\\01-backtrack-intro.py",
+            "status": "PARTIAL",
+            "lines": 125
+        },
+        {
+            "path": "03-Algorithms\\07-Backtracking\\01-Basic\\02-permutations.py",
+            "status": "PARTIAL",
+            "lines": 54
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\01-binary-search-rec.py",
+            "status": "GOOD",
+            "lines": 77
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\02-merge-sort-dc.py",
+            "status": "GOOD",
+            "lines": 98
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\03-quick-sort-dc.py",
+            "status": "GOOD",
+            "lines": 73
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\04-max-subarray.py",
+            "status": "GOOD",
+            "lines": 82
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\01-closest-pair.py",
+            "status": "GOOD",
+            "lines": 112
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\02-strassen-matrix.py",
+            "status": "GOOD",
+            "lines": 84
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\03-inversion-count.py",
+            "status": "GOOD",
+            "lines": 99
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\04-convex-hull-dc.py",
+            "status": "GOOD",
+            "lines": 94
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\01-fft.py",
+            "status": "GOOD",
+            "lines": 83
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\02-karatsuba.py",
+            "status": "PARTIAL",
+            "lines": 85
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\03-poly-mult.py",
+            "status": "GOOD",
+            "lines": 95
+        },
+        {
+            "path": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\04-adv-dc.py",
+            "status": "GOOD",
+            "lines": 98
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\01-dfs-variations.py",
+            "status": "GOOD",
+            "lines": 96
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\02-bfs-variations.py",
+            "status": "GOOD",
+            "lines": 97
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\03-iter-deep.py",
+            "status": "PARTIAL",
+            "lines": 93
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\04-bidir-search.py",
+            "status": "GOOD",
+            "lines": 209
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\01-dijkstra.py",
+            "status": "GOOD",
+            "lines": 183
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\02-bellman-ford.py",
+            "status": "GOOD",
+            "lines": 62
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\03-floyd-warshall.py",
+            "status": "GOOD",
+            "lines": 178
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\04-a-star.py",
+            "status": "GOOD",
+            "lines": 74
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\05-johnson.py",
+            "status": "GOOD",
+            "lines": 99
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\01-kruskal.py",
+            "status": "GOOD",
+            "lines": 133
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\02-prim.py",
+            "status": "GOOD",
+            "lines": 164
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\03-boruvka.py",
+            "status": "GOOD",
+            "lines": 80
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\04-mst-var.py",
+            "status": "GOOD",
+            "lines": 70
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\01-ford-fulk.py",
+            "status": "GOOD",
+            "lines": 81
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\02-edmonds-karp.py",
+            "status": "GOOD",
+            "lines": 82
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\03-dinic.py",
+            "status": "GOOD",
+            "lines": 96
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\04-push-relabel.py",
+            "status": "GOOD",
+            "lines": 101
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\05-min-cost-flow.py",
+            "status": "GOOD",
+            "lines": 93
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\01-tarjan-scc.py",
+            "status": "GOOD",
+            "lines": 106
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\02-kosaraju.py",
+            "status": "GOOD",
+            "lines": 103
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\03-artic-bridges.py",
+            "status": "GOOD",
+            "lines": 113
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\04-biconnect.py",
+            "status": "GOOD",
+            "lines": 100
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\05-eulerian.py",
+            "status": "GOOD",
+            "lines": 113
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\06-hamilton.py",
+            "status": "GOOD",
+            "lines": 94
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\07-graph-color.py",
+            "status": "GOOD",
+            "lines": 113
+        },
+        {
+            "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\08-planar.py",
+            "status": "GOOD",
+            "lines": 91
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\01-Basic\\01-naive-match.py",
+            "status": "GOOD",
+            "lines": 80
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\01-Basic\\02-kmp.py",
+            "status": "GOOD",
+            "lines": 220
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\01-Basic\\03-rabin-karp.py",
+            "status": "GOOD",
+            "lines": 87
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\01-Basic\\04-boyer-moore.py",
+            "status": "GOOD",
+            "lines": 79
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\01-z-algo.py",
+            "status": "GOOD",
+            "lines": 80
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\02-manacher.py",
+            "status": "GOOD",
+            "lines": 159
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\03-suffix-array.py",
+            "status": "GOOD",
+            "lines": 93
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\04-lcp.py",
+            "status": "GOOD",
+            "lines": 79
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\01-suffix-tree.py",
+            "status": "GOOD",
+            "lines": 116
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\02-aho-corasick.py",
+            "status": "GOOD",
+            "lines": 146
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\03-rolling-hash.py",
+            "status": "GOOD",
+            "lines": 117
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\04-string-hash-adv.py",
+            "status": "GOOD",
+            "lines": 111
+        },
+        {
+            "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\05-adv-string.py",
+            "status": "GOOD",
+            "lines": 89
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\01-prime-check.py",
+            "status": "GOOD",
+            "lines": 82
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\02-sieve.py",
+            "status": "GOOD",
+            "lines": 66
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\03-gcd-lcm.py",
+            "status": "GOOD",
+            "lines": 143
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\04-ext-euclid.py",
+            "status": "GOOD",
+            "lines": 84
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\05-mod-arith.py",
+            "status": "GOOD",
+            "lines": 82
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\06-fast-exp.py",
+            "status": "GOOD",
+            "lines": 88
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\07-crt.py",
+            "status": "GOOD",
+            "lines": 81
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\08-miller-rabin.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\01-perm-comb.py",
+            "status": "GOOD",
+            "lines": 98
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\02-catalan.py",
+            "status": "GOOD",
+            "lines": 87
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\03-fib-matrix.py",
+            "status": "GOOD",
+            "lines": 88
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\04-binomial.py",
+            "status": "GOOD",
+            "lines": 88
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\05-incl-excl.py",
+            "status": "GOOD",
+            "lines": 97
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\01-comp-geo.py",
+            "status": "GOOD",
+            "lines": 106
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\02-convex-hull.py",
+            "status": "GOOD",
+            "lines": 89
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\03-line-intersect.py",
+            "status": "GOOD",
+            "lines": 103
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\04-polygon-algo.py",
+            "status": "GOOD",
+            "lines": 120
+        },
+        {
+            "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\05-closest-pair-geo.py",
+            "status": "GOOD",
+            "lines": 103
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\01-rand-quicksort.py",
+            "status": "GOOD",
+            "lines": 145
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\02-rand-select.py",
+            "status": "GOOD",
+            "lines": 132
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\03-monte-carlo.py",
+            "status": "GOOD",
+            "lines": 123
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\04-las-vegas.py",
+            "status": "GOOD",
+            "lines": 117
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\01-tsp-bnb.py",
+            "status": "GOOD",
+            "lines": 145
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\02-knap-bnb.py",
+            "status": "GOOD",
+            "lines": 135
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\03-job-assign.py",
+            "status": "GOOD",
+            "lines": 123
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\04-bnb-frame.py",
+            "status": "GOOD",
+            "lines": 158
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\01-par-sort.py",
+            "status": "GOOD",
+            "lines": 116
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\02-par-search.py",
+            "status": "GOOD",
+            "lines": 94
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\03-multiprocess-algo.py",
+            "status": "GOOD",
+            "lines": 86
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\04-dask-algo.py",
+            "status": "GOOD",
+            "lines": 75
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\01-approx-tsp.py",
+            "status": "GOOD",
+            "lines": 92
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\02-genetic-algo.py",
+            "status": "GOOD",
+            "lines": 120
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\03-sim-anneal.py",
+            "status": "GOOD",
+            "lines": 90
+        },
+        {
+            "path": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\04-adv-approx.py",
+            "status": "GOOD",
+            "lines": 93
+        },
+        {
+            "path": "04-Python-Libraries\\01-Theory\\01-Standard-Lib-Advanced.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 405
+        },
+        {
+            "path": "04-Python-Libraries\\01-Theory\\02-Third-Party-Libs.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 375
+        },
+        {
+            "path": "04-Python-Libraries\\01-Theory\\03-Data-Science-Libs.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 345
+        },
+        {
+            "path": "04-Python-Libraries\\01-Theory\\04-ML-Libs.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 359
+        },
+        {
+            "path": "04-Python-Libraries\\01-Theory\\05-Advanced-AI-Libs.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 334
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\01-Basic\\01-math-module.py",
+            "status": "GOOD",
+            "lines": 463
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\01-Basic\\02-fractions-decimal.py",
+            "status": "GOOD",
+            "lines": 481
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\01-Basic\\03-random-module.py",
+            "status": "GOOD",
+            "lines": 320
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\01-Basic\\04-statistics-module.py",
+            "status": "GOOD",
+            "lines": 457
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\01-sympy-symbolic.py",
+            "status": "GOOD",
+            "lines": 479
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\02-scipy-linear-algebra.py",
+            "status": "GOOD",
+            "lines": 361
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\03-scipy-optimize.py",
+            "status": "PARTIAL",
+            "lines": 710
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\04-scipy-integrate.py",
+            "status": "PARTIAL",
+            "lines": 409
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\01-scipy-signal.py",
+            "status": "GOOD",
+            "lines": 429
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\02-scipy-spatial.py",
+            "status": "GOOD",
+            "lines": 333
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\03-numba-jit-math.py",
+            "status": "GOOD",
+            "lines": 281
+        },
+        {
+            "path": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\04-advanced-math.py",
+            "status": "GOOD",
+            "lines": 366
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\01-numpy-basics.py",
+            "status": "PARTIAL",
+            "lines": 393
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\02-numpy-prob-dist.py",
+            "status": "GOOD",
+            "lines": 491
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\03-scipy-stats.py",
+            "status": "GOOD",
+            "lines": 432
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\04-statsmodels.py",
+            "status": "GOOD",
+            "lines": 382
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\05-prob-simulations.py",
+            "status": "GOOD",
+            "lines": 647
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\01-pandas-basics.py",
+            "status": "GOOD",
+            "lines": 431
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\02-pandas-cleaning.py",
+            "status": "GOOD",
+            "lines": 427
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\03-pandas-merge.py",
+            "status": "GOOD",
+            "lines": 242
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\04-pandas-time-series.py",
+            "status": "GOOD",
+            "lines": 562
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\05-dask-parallel.py",
+            "status": "GOOD",
+            "lines": 391
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\01-matplotlib-basics.py",
+            "status": "PARTIAL",
+            "lines": 352
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\02-seaborn-stats.py",
+            "status": "GOOD",
+            "lines": 463
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\03-plotly-interactive.py",
+            "status": "GOOD",
+            "lines": 423
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\04-bokeh.py",
+            "status": "GOOD",
+            "lines": 343
+        },
+        {
+            "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\05-advanced-viz.py",
+            "status": "GOOD",
+            "lines": 291
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\01-sklearn-basics.py",
+            "status": "GOOD",
+            "lines": 464
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\02-sklearn-regression.py",
+            "status": "GOOD",
+            "lines": 423
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\03-sklearn-classification.py",
+            "status": "PARTIAL",
+            "lines": 456
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\04-sklearn-clustering.py",
+            "status": "PARTIAL",
+            "lines": 275
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\05-sklearn-evaluation.py",
+            "status": "PARTIAL",
+            "lines": 310
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\01-sklearn-trees.py",
+            "status": "GOOD",
+            "lines": 557
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\02-sklearn-pipeline.py",
+            "status": "GOOD",
+            "lines": 438
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\03-sklearn-dim-red.py",
+            "status": "GOOD",
+            "lines": 413
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\04-tensorflow-basics.py",
+            "status": "GOOD",
+            "lines": 552
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\05-pytorch-basics.py",
+            "status": "GOOD",
+            "lines": 408
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\01-deep-learning-tf.py",
+            "status": "GOOD",
+            "lines": 203
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\02-pytorch-nn.py",
+            "status": "GOOD",
+            "lines": 587
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\03-autoencoders.py",
+            "status": "GOOD",
+            "lines": 525
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\04-reinforce-learn.py",
+            "status": "GOOD",
+            "lines": 569
+        },
+        {
+            "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\05-mlops.py",
+            "status": "GOOD",
+            "lines": 573
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\01-huggingface-basics.py",
+            "status": "GOOD",
+            "lines": 181
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\02-transformers-tokenize.py",
+            "status": "GOOD",
+            "lines": 401
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\03-llm-inference.py",
+            "status": "GOOD",
+            "lines": 523
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\04-fine-tuning-basics.py",
+            "status": "GOOD",
+            "lines": 208
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\01-llm-prompt-eng.py",
+            "status": "PARTIAL",
+            "lines": 135
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\02-langchain-basics.py",
+            "status": "GOOD",
+            "lines": 151
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\03-rag-basics.py",
+            "status": "GOOD",
+            "lines": 455
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\04-faiss-vector-db.py",
+            "status": "GOOD",
+            "lines": 194
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\05-genai-text-gen.py",
+            "status": "GOOD",
+            "lines": 386
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\01-rag-advanced.py",
+            "status": "GOOD",
+            "lines": 156
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\02-genai-multimodal.py",
+            "status": "GOOD",
+            "lines": 562
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\03-llm-fine-tune-adv.py",
+            "status": "GOOD",
+            "lines": 193
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\04-agent-systems.py",
+            "status": "GOOD",
+            "lines": 240
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\05-ethics-bias.py",
+            "status": "GOOD",
+            "lines": 383
+        },
+        {
+            "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\06-deployment.py",
+            "status": "GOOD",
+            "lines": 434
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\01-opencv-basics.py",
+            "status": "PARTIAL",
+            "lines": 229
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\02-opencv-filters.py",
+            "status": "GOOD",
+            "lines": 300
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\03-yolo-object-det.py",
+            "status": "GOOD",
+            "lines": 221
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\04-cv-advanced.py",
+            "status": "GOOD",
+            "lines": 416
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\01-nltk-spacy.py",
+            "status": "GOOD",
+            "lines": 394
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\02-sentiment-analysis.py",
+            "status": "GOOD",
+            "lines": 437
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\03-topic-modeling.py",
+            "status": "GOOD",
+            "lines": 662
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\04-nlp-advanced.py",
+            "status": "GOOD",
+            "lines": 548
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\01-prophet.py",
+            "status": "GOOD",
+            "lines": 195
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\02-arima.py",
+            "status": "GOOD",
+            "lines": 321
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\03-lstm-ts.py",
+            "status": "GOOD",
+            "lines": 595
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\04-ts-advanced.py",
+            "status": "GOOD",
+            "lines": 425
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\01-pyspark-basics.py",
+            "status": "GOOD",
+            "lines": 223
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\02-spark-ml.py",
+            "status": "PARTIAL",
+            "lines": 319
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\03-dask-ml.py",
+            "status": "GOOD",
+            "lines": 535
+        },
+        {
+            "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\04-bigdata-advanced.py",
+            "status": "GOOD",
+            "lines": 461
+        },
+        {
+            "path": "05-Competitive-Programming\\01-Theory\\01-CP-Strategy-Python.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 323
+        },
+        {
+            "path": "05-Competitive-Programming\\01-Theory\\02-Contest-Prep.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 266
+        },
+        {
+            "path": "05-Competitive-Programming\\01-Theory\\03-Time-Mgmt.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 286
+        },
+        {
+            "path": "05-Competitive-Programming\\01-Theory\\04-Common-Mistakes.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 170
+        },
+        {
+            "path": "05-Competitive-Programming\\02-Templates\\01-fast-io-template.py",
+            "status": "GOOD",
+            "lines": 154
+        },
+        {
+            "path": "05-Competitive-Programming\\02-Templates\\02-cp-template.py",
+            "status": "PARTIAL",
+            "lines": 495
+        },
+        {
+            "path": "05-Competitive-Programming\\02-Templates\\03-debug-template.py",
+            "status": "PARTIAL",
+            "lines": 495
+        },
+        {
+            "path": "05-Competitive-Programming\\02-Templates\\04-mod-arith-template.py",
+            "status": "GOOD",
+            "lines": 201
+        },
+        {
+            "path": "05-Competitive-Programming\\02-Templates\\05-graph-template.py",
+            "status": "GOOD",
+            "lines": 307
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\01-impl-probs.py",
+            "status": "GOOD",
+            "lines": 186
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\02-sim-probs.py",
+            "status": "GOOD",
+            "lines": 221
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\03-string-manip.py",
+            "status": "GOOD",
+            "lines": 175
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\04-math-probs.py",
+            "status": "GOOD",
+            "lines": 248
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\01-seg-tree-probs.py",
+            "status": "GOOD",
+            "lines": 211
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\01-seg-tree.py",
+            "status": "GOOD",
+            "lines": 416
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\02-fenwick-probs.py",
+            "status": "GOOD",
+            "lines": 206
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\02-fenwick.py",
+            "status": "GOOD",
+            "lines": 450
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\03-dsu-probs.py",
+            "status": "GOOD",
+            "lines": 210
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\04-adv-ds-probs.py",
+            "status": "GOOD",
+            "lines": 682
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\04-adv-ds.py",
+            "status": "GOOD",
+            "lines": 607
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\01-sp-probs.py",
+            "status": "GOOD",
+            "lines": 474
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\02-mst-probs.py",
+            "status": "GOOD",
+            "lines": 233
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\03-flow-probs.py",
+            "status": "GOOD",
+            "lines": 207
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\04-adv-graph-probs.py",
+            "status": "GOOD",
+            "lines": 410
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\04-adv-graph.py",
+            "status": "GOOD",
+            "lines": 216
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\01-classical-dp.py",
+            "status": "GOOD",
+            "lines": 409
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\02-opt-dp.py",
+            "status": "GOOD",
+            "lines": 160
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\03-digit-dp.py",
+            "status": "GOOD",
+            "lines": 361
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\04-adv-dp.py",
+            "status": "GOOD",
+            "lines": 217
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\01-comp-geo-probs.py",
+            "status": "GOOD",
+            "lines": 243
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\02-hull-probs.py",
+            "status": "GOOD",
+            "lines": 178
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\03-adv-geo.py",
+            "status": "GOOD",
+            "lines": 262
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\04-sweepline.py",
+            "status": "GOOD",
+            "lines": 388
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\06-Math-Number-Theory\\01-prime-probs.py",
+            "status": "PARTIAL",
+            "lines": 55
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\06-Math-Number-Theory\\02-modular-probs.py",
+            "status": "PARTIAL",
+            "lines": 127
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\06-Math-Number-Theory\\03-combinatorics.py",
+            "status": "PARTIAL",
+            "lines": 119
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\06-Math-Number-Theory\\04-game-theory.py",
+            "status": "PARTIAL",
+            "lines": 70
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\07-Advanced-Strings\\01-trie-probs.py",
+            "status": "GOOD",
+            "lines": 124
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\07-Advanced-Strings\\02-kmp-probs.py",
+            "status": "PARTIAL",
+            "lines": 170
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\07-Advanced-Strings\\03-suffix-trees.py",
+            "status": "PARTIAL",
+            "lines": 79
+        },
+        {
+            "path": "05-Competitive-Programming\\03-Problem-Categories\\07-Advanced-Strings\\04-aho-corasick.py",
+            "status": "PARTIAL",
+            "lines": 174
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\01-easy-probs.py",
+            "status": "GOOD",
+            "lines": 153
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\02-med-probs.py",
+            "status": "GOOD",
+            "lines": 205
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\03-hard-probs.py",
+            "status": "GOOD",
+            "lines": 181
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\01-div3.py",
+            "status": "GOOD",
+            "lines": 121
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\02-div2.py",
+            "status": "GOOD",
+            "lines": 141
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\03-div1.py",
+            "status": "GOOD",
+            "lines": 112
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\01-beginner.py",
+            "status": "PARTIAL",
+            "lines": 49
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\02-reg.py",
+            "status": "GOOD",
+            "lines": 87
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\03-grand.py",
+            "status": "GOOD",
+            "lines": 135
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\01-long-chal.py",
+            "status": "GOOD",
+            "lines": 136
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\02-cookoff.py",
+            "status": "GOOD",
+            "lines": 128
+        },
+        {
+            "path": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\03-lunch.py",
+            "status": "PARTIAL",
+            "lines": 128
+        },
+        {
+            "path": "05-Competitive-Programming\\05-Advanced-Topics\\01-hld.py",
+            "status": "PARTIAL",
+            "lines": 179
+        },
+        {
+            "path": "05-Competitive-Programming\\05-Advanced-Topics\\02-centroid-decomp.py",
+            "status": "PARTIAL",
+            "lines": 122
+        },
+        {
+            "path": "05-Competitive-Programming\\05-Advanced-Topics\\03-mo-adv.py",
+            "status": "GOOD",
+            "lines": 166
+        },
+        {
+            "path": "05-Competitive-Programming\\05-Advanced-Topics\\04-sqrt-adv.py",
+            "status": "GOOD",
+            "lines": 160
+        },
+        {
+            "path": "05-Competitive-Programming\\05-Advanced-Topics\\05-pers-seg-tree.py",
+            "status": "GOOD",
+            "lines": 180
+        },
+        {
+            "path": "05-Competitive-Programming\\05-Advanced-Topics\\06-lct-adv.py",
+            "status": "PARTIAL",
+            "lines": 207
+        },
+        {
+            "path": "05-Competitive-Programming\\05-Advanced-Topics\\07-adv-nt.py",
+            "status": "PARTIAL",
+            "lines": 162
+        },
+        {
+            "path": "06-System-Design\\02-Basic\\01-sys-design-basics.py",
+            "status": "GOOD",
+            "lines": 134
+        },
+        {
+            "path": "06-System-Design\\02-Basic\\02-caching.py",
+            "status": "GOOD",
+            "lines": 220
+        },
+        {
+            "path": "06-System-Design\\02-Basic\\03-db-design.py",
+            "status": "GOOD",
+            "lines": 232
+        },
+        {
+            "path": "06-System-Design\\02-Basic\\04-api-design.py",
+            "status": "GOOD",
+            "lines": 206
+        },
+        {
+            "path": "06-System-Design\\02-Basic\\05-algo-opt.py",
+            "status": "GOOD",
+            "lines": 151
+        },
+        {
+            "path": "06-System-Design\\03-Intermediate\\01-concurrent-ds.py",
+            "status": "GOOD",
+            "lines": 144
+        },
+        {
+            "path": "06-System-Design\\03-Intermediate\\02-async-prog.py",
+            "status": "GOOD",
+            "lines": 148
+        },
+        {
+            "path": "06-System-Design\\03-Intermediate\\03-mem-opt.py",
+            "status": "GOOD",
+            "lines": 138
+        },
+        {
+            "path": "06-System-Design\\03-Intermediate\\04-custom-alloc.py",
+            "status": "GOOD",
+            "lines": 151
+        },
+        {
+            "path": "06-System-Design\\03-Intermediate\\05-perf-prof.py",
+            "status": "PARTIAL",
+            "lines": 137
+        },
+        {
+            "path": "06-System-Design\\04-Advanced\\01-hpc.py",
+            "status": "GOOD",
+            "lines": 172
+        },
+        {
+            "path": "06-System-Design\\04-Advanced\\02-par-algo-design.py",
+            "status": "GOOD",
+            "lines": 198
+        },
+        {
+            "path": "06-System-Design\\04-Advanced\\03-dist-algo.py",
+            "status": "PARTIAL",
+            "lines": 220
+        },
+        {
+            "path": "06-System-Design\\04-Advanced\\04-real-time.py",
+            "status": "PARTIAL",
+            "lines": 187
+        },
+        {
+            "path": "06-System-Design\\04-Advanced\\05-embedded.py",
+            "status": "PARTIAL",
+            "lines": 176
+        },
+        {
+            "path": "07-Interview-Preparation\\01-Theory\\01-Python-Interview-Guide.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 154
+        },
+        {
+            "path": "07-Interview-Preparation\\01-Theory\\02-Tech-Strategy.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 90
+        },
+        {
+            "path": "07-Interview-Preparation\\01-Theory\\03-Prob-Patterns.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 338
+        },
+        {
+            "path": "07-Interview-Preparation\\01-Theory\\04-Sys-Design-Int.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 129
+        },
+        {
+            "path": "07-Interview-Preparation\\01-Theory\\05-Behavioral.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 59
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\01-py-basics-q.py",
+            "status": "GOOD",
+            "lines": 142
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\02-lists-dicts.py",
+            "status": "GOOD",
+            "lines": 194
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\03-mem-mgmt.py",
+            "status": "GOOD",
+            "lines": 129
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\04-oop.py",
+            "status": "GOOD",
+            "lines": 170
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\05-std-lib-q.py",
+            "status": "GOOD",
+            "lines": 128
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\01-dec-gen-q.py",
+            "status": "PARTIAL",
+            "lines": 71
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\02-inherit-poly.py",
+            "status": "PARTIAL",
+            "lines": 96
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\03-exc-hand-q.py",
+            "status": "PARTIAL",
+            "lines": 78
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\04-async-q.py",
+            "status": "PARTIAL",
+            "lines": 62
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\05-adv-feat.py",
+            "status": "PARTIAL",
+            "lines": 84
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\01-meta-desc.py",
+            "status": "GOOD",
+            "lines": 198
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\02-concurrency-q.py",
+            "status": "GOOD",
+            "lines": 113
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\03-type-hint-q.py",
+            "status": "GOOD",
+            "lines": 132
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\04-modern-py-q.py",
+            "status": "GOOD",
+            "lines": 120
+        },
+        {
+            "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\05-perf-q.py",
+            "status": "GOOD",
+            "lines": 113
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\01-two-pointers.py",
+            "status": "GOOD",
+            "lines": 108
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\02-sliding-win.py",
+            "status": "GOOD",
+            "lines": 103
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\03-fast-slow.py",
+            "status": "GOOD",
+            "lines": 120
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\04-merge-int.py",
+            "status": "GOOD",
+            "lines": 112
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\05-cyclic-sort.py",
+            "status": "GOOD",
+            "lines": 95
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\01-tree-trav-pat.py",
+            "status": "GOOD",
+            "lines": 144
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\02-graph-trav.py",
+            "status": "GOOD",
+            "lines": 135
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\03-bin-search-pat.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\04-bt-pat.py",
+            "status": "GOOD",
+            "lines": 125
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\05-dp-pat.py",
+            "status": "GOOD",
+            "lines": 90
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\01-adv-tree.py",
+            "status": "GOOD",
+            "lines": 127
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\02-adv-graph.py",
+            "status": "GOOD",
+            "lines": 102
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\03-opt-pat.py",
+            "status": "GOOD",
+            "lines": 99
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\04-math-pat.py",
+            "status": "GOOD",
+            "lines": 109
+        },
+        {
+            "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\05-sys-des-pat.py",
+            "status": "GOOD",
+            "lines": 101
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\01-google-py-q.py",
+            "status": "GOOD",
+            "lines": 91
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\02-amazon.py",
+            "status": "GOOD",
+            "lines": 130
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\03-ms.py",
+            "status": "GOOD",
+            "lines": 104
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\04-apple.py",
+            "status": "GOOD",
+            "lines": 75
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\05-fb.py",
+            "status": "GOOD",
+            "lines": 77
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\01-bloomberg.py",
+            "status": "GOOD",
+            "lines": 126
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\02-gs.py",
+            "status": "GOOD",
+            "lines": 93
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\03-nvidia.py",
+            "status": "GOOD",
+            "lines": 132
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\04-intel.py",
+            "status": "GOOD",
+            "lines": 215
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\05-adobe.py",
+            "status": "GOOD",
+            "lines": 103
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\01-startup-q.py",
+            "status": "PARTIAL",
+            "lines": 88
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\02-sys-prog-q.py",
+            "status": "PARTIAL",
+            "lines": 79
+        },
+        {
+            "path": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\03-perf-q.py",
+            "status": "PARTIAL",
+            "lines": 115
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\01-array-easy.py",
+            "status": "GOOD",
+            "lines": 94
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\02-string-easy.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\03-ll-easy.py",
+            "status": "GOOD",
+            "lines": 129
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\04-tree-easy.py",
+            "status": "GOOD",
+            "lines": 110
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\05-algo-easy.py",
+            "status": "GOOD",
+            "lines": 112
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\01-array-med.py",
+            "status": "GOOD",
+            "lines": 186
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\02-string-med.py",
+            "status": "GOOD",
+            "lines": 176
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\03-tree-med.py",
+            "status": "PARTIAL",
+            "lines": 247
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\04-graph-med.py",
+            "status": "PARTIAL",
+            "lines": 265
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\05-dp-med.py",
+            "status": "PARTIAL",
+            "lines": 197
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\06-ds-med.py",
+            "status": "GOOD",
+            "lines": 224
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\01-algo-hard.py",
+            "status": "GOOD",
+            "lines": 107
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\02-ds-hard.py",
+            "status": "GOOD",
+            "lines": 151
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\03-opt-hard.py",
+            "status": "GOOD",
+            "lines": 86
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\04-sys-code.py",
+            "status": "GOOD",
+            "lines": 76
+        },
+        {
+            "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\05-cp-hard.py",
+            "status": "GOOD",
+            "lines": 82
+        },
+        {
+            "path": "07-Interview-Preparation\\06-Mock-Interviews\\01-tech-mocks.py",
+            "status": "GOOD",
+            "lines": 135
+        },
+        {
+            "path": "07-Interview-Preparation\\06-Mock-Interviews\\02-sys-mocks.py",
+            "status": "GOOD",
+            "lines": 101
+        },
+        {
+            "path": "07-Interview-Preparation\\06-Mock-Interviews\\03-live-code.py",
+            "status": "GOOD",
+            "lines": 85
+        },
+        {
+            "path": "07-Interview-Preparation\\06-Mock-Interviews\\04-pair-prog.py",
+            "status": "GOOD",
+            "lines": 86
+        },
+        {
+            "path": "08-Performance-and-Optimization\\01-Basic\\01-profiling-basics.py",
+            "status": "PARTIAL",
+            "lines": 67
+        },
+        {
+            "path": "08-Performance-and-Optimization\\01-Theory\\01-Perf-Analysis.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 110
+        },
+        {
+            "path": "08-Performance-and-Optimization\\01-Theory\\02-Mem-Opt.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 21
+        },
+        {
+            "path": "08-Performance-and-Optimization\\01-Theory\\03-Cache-Opt.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 22
+        },
+        {
+            "path": "08-Performance-and-Optimization\\01-Theory\\04-Interp-Opt.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 22
+        },
+        {
+            "path": "08-Performance-and-Optimization\\01-Theory\\05-Profiling-Tech.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 21
+        },
+        {
+            "path": "08-Performance-and-Optimization\\02-Memory-Management\\01-slots-opt.py",
+            "status": "GOOD",
+            "lines": 117
+        },
+        {
+            "path": "08-Performance-and-Optimization\\02-Memory-Management\\02-gc-tuning.py",
+            "status": "GOOD",
+            "lines": 110
+        },
+        {
+            "path": "08-Performance-and-Optimization\\02-Memory-Management\\03-array-opt.py",
+            "status": "GOOD",
+            "lines": 103
+        },
+        {
+            "path": "08-Performance-and-Optimization\\02-Memory-Management\\04-obj-pools.py",
+            "status": "GOOD",
+            "lines": 134
+        },
+        {
+            "path": "08-Performance-and-Optimization\\02-Memory-Management\\05-mem-prof.py",
+            "status": "PARTIAL",
+            "lines": 118
+        },
+        {
+            "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\01-cache-opt.py",
+            "status": "GOOD",
+            "lines": 133
+        },
+        {
+            "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\02-vectorize.py",
+            "status": "GOOD",
+            "lines": 131
+        },
+        {
+            "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\03-loop-opt.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\04-branch-avoid.py",
+            "status": "GOOD",
+            "lines": 113
+        },
+        {
+            "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\05-numba-simd.py",
+            "status": "GOOD",
+            "lines": 123
+        },
+        {
+            "path": "08-Performance-and-Optimization\\04-Concurrency\\01-threading.py",
+            "status": "GOOD",
+            "lines": 133
+        },
+        {
+            "path": "08-Performance-and-Optimization\\04-Concurrency\\02-multiproc.py",
+            "status": "GOOD",
+            "lines": 108
+        },
+        {
+            "path": "08-Performance-and-Optimization\\04-Concurrency\\03-asyncio-opt.py",
+            "status": "GOOD",
+            "lines": 116
+        },
+        {
+            "path": "08-Performance-and-Optimization\\04-Concurrency\\04-par-algo.py",
+            "status": "GOOD",
+            "lines": 114
+        },
+        {
+            "path": "08-Performance-and-Optimization\\04-Concurrency\\05-thread-pools.py",
+            "status": "GOOD",
+            "lines": 110
+        },
+        {
+            "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\01-cprofile.py",
+            "status": "GOOD",
+            "lines": 121
+        },
+        {
+            "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\02-mem-prof.py",
+            "status": "GOOD",
+            "lines": 115
+        },
+        {
+            "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\03-line-prof.py",
+            "status": "GOOD",
+            "lines": 116
+        },
+        {
+            "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\04-pytest-bench.py",
+            "status": "GOOD",
+            "lines": 111
+        },
+        {
+            "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\05-opt-verify.py",
+            "status": "GOOD",
+            "lines": 119
+        },
+        {
+            "path": "09-Real-World-Applications\\01-Web-Development\\01-flask-basics.py",
+            "status": "GOOD",
+            "lines": 204
+        },
+        {
+            "path": "09-Real-World-Applications\\01-Web-Development\\02-django-basics.py",
+            "status": "GOOD",
+            "lines": 191
+        },
+        {
+            "path": "09-Real-World-Applications\\01-Web-Development\\03-api-fastapi.py",
+            "status": "GOOD",
+            "lines": 175
+        },
+        {
+            "path": "09-Real-World-Applications\\01-Web-Development\\04-web-scraping.py",
+            "status": "GOOD",
+            "lines": 183
+        },
+        {
+            "path": "09-Real-World-Applications\\01-Web-Development\\05-perf-web.py",
+            "status": "PARTIAL",
+            "lines": 151
+        },
+        {
+            "path": "09-Real-World-Applications\\02-Data-Science-Apps\\01-ds-pipeline.py",
+            "status": "PARTIAL",
+            "lines": 143
+        },
+        {
+            "path": "09-Real-World-Applications\\02-Data-Science-Apps\\02-ml-app.py",
+            "status": "PARTIAL",
+            "lines": 141
+        },
+        {
+            "path": "09-Real-World-Applications\\02-Data-Science-Apps\\03-dash-app.py",
+            "status": "GOOD",
+            "lines": 199
+        },
+        {
+            "path": "09-Real-World-Applications\\02-Data-Science-Apps\\04-bigdata-app.py",
+            "status": "GOOD",
+            "lines": 182
+        },
+        {
+            "path": "09-Real-World-Applications\\02-Data-Science-Apps\\05-ds-opt.py",
+            "status": "GOOD",
+            "lines": 168
+        },
+        {
+            "path": "09-Real-World-Applications\\03-AI-ML-Apps\\01-cv-app.py",
+            "status": "PARTIAL",
+            "lines": 280
+        },
+        {
+            "path": "09-Real-World-Applications\\03-AI-ML-Apps\\02-nlp-app.py",
+            "status": "PARTIAL",
+            "lines": 257
+        },
+        {
+            "path": "09-Real-World-Applications\\03-AI-ML-Apps\\03-rl-app.py",
+            "status": "PARTIAL",
+            "lines": 70
+        },
+        {
+            "path": "09-Real-World-Applications\\03-AI-ML-Apps\\04-genai-app.py",
+            "status": "PARTIAL",
+            "lines": 65
+        },
+        {
+            "path": "09-Real-World-Applications\\03-AI-ML-Apps\\05-llm-rag-app.py",
+            "status": "PARTIAL",
+            "lines": 69
+        },
+        {
+            "path": "09-Real-World-Applications\\04-Automation-Scripts\\01-file-auto.py",
+            "status": "PARTIAL",
+            "lines": 238
+        },
+        {
+            "path": "09-Real-World-Applications\\04-Automation-Scripts\\02-email-auto.py",
+            "status": "GOOD",
+            "lines": 175
+        },
+        {
+            "path": "09-Real-World-Applications\\04-Automation-Scripts\\03-gui-auto.py",
+            "status": "GOOD",
+            "lines": 147
+        },
+        {
+            "path": "09-Real-World-Applications\\04-Automation-Scripts\\04-testing-auto.py",
+            "status": "GOOD",
+            "lines": 139
+        },
+        {
+            "path": "09-Real-World-Applications\\04-Automation-Scripts\\05-script-opt.py",
+            "status": "GOOD",
+            "lines": 175
+        },
+        {
+            "path": "09-Real-World-Applications\\05-Scientific-Computing\\01-num-algo.py",
+            "status": "GOOD",
+            "lines": 177
+        },
+        {
+            "path": "09-Real-World-Applications\\05-Scientific-Computing\\02-lin-alg.py",
+            "status": "GOOD",
+            "lines": 187
+        },
+        {
+            "path": "09-Real-World-Applications\\05-Scientific-Computing\\03-signal-proc.py",
+            "status": "PARTIAL",
+            "lines": 226
+        },
+        {
+            "path": "09-Real-World-Applications\\05-Scientific-Computing\\04-ml-sci.py",
+            "status": "PARTIAL",
+            "lines": 158
+        },
+        {
+            "path": "09-Real-World-Applications\\05-Scientific-Computing\\05-par-sci.py",
+            "status": "PARTIAL",
+            "lines": 95
+        },
+        {
+            "path": "10-Project-Based-Learning\\generate_content.py",
+            "status": "PARTIAL",
+            "lines": 106
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\01-calculator-advanced\\main.py",
+            "status": "GOOD",
+            "lines": 219
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\01-calculator-advanced\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 115
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\02-file-manager\\main.py",
+            "status": "GOOD",
+            "lines": 285
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\02-file-manager\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 55
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\03-sorting-visualizer\\main.py",
+            "status": "GOOD",
+            "lines": 271
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\03-sorting-visualizer\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 58
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\04-ds-library\\main.py",
+            "status": "GOOD",
+            "lines": 289
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\04-ds-library\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 67
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\05-basic-game\\main.py",
+            "status": "PARTIAL",
+            "lines": 198
+        },
+        {
+            "path": "10-Project-Based-Learning\\01-Basic-Projects\\05-basic-game\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 49
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\01-compression-algo\\main.py",
+            "status": "GOOD",
+            "lines": 157
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\01-compression-algo\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 35
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\02-simple-db\\main.py",
+            "status": "PARTIAL",
+            "lines": 198
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\02-simple-db\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 42
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\03-web-server\\main.py",
+            "status": "PARTIAL",
+            "lines": 182
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\03-web-server\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 71
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\04-compiler-lexer\\main.py",
+            "status": "PARTIAL",
+            "lines": 158
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\04-compiler-lexer\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 84
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\05-data-viz-tool\\main.py",
+            "status": "PARTIAL",
+            "lines": 195
+        },
+        {
+            "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\05-data-viz-tool\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 80
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\01-rag-system\\main.py",
+            "status": "PARTIAL",
+            "lines": 161
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\01-rag-system\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 45
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\02-ml-framework\\main.py",
+            "status": "PARTIAL",
+            "lines": 275
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\02-ml-framework\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 73
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\03-genai-chatbot\\main.py",
+            "status": "PARTIAL",
+            "lines": 208
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\03-genai-chatbot\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 78
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\04-high-perf-ds\\main.py",
+            "status": "PARTIAL",
+            "lines": 223
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\04-high-perf-ds\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 47
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\05-trading-bot\\main.py",
+            "status": "PARTIAL",
+            "lines": 183
+        },
+        {
+            "path": "10-Project-Based-Learning\\03-Advanced-Projects\\05-trading-bot\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 60
+        },
+        {
+            "path": "11-Testing-and-Debugging\\01-Basic\\01-unittest-basics.py",
+            "status": "GOOD",
+            "lines": 113
+        },
+        {
+            "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\01-unittest.py",
+            "status": "GOOD",
+            "lines": 172
+        },
+        {
+            "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\02-pytest.py",
+            "status": "GOOD",
+            "lines": 138
+        },
+        {
+            "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\03-hypothesis.py",
+            "status": "GOOD",
+            "lines": 138
+        },
+        {
+            "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\04-unit-best.py",
+            "status": "GOOD",
+            "lines": 139
+        },
+        {
+            "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\05-perf-test.py",
+            "status": "GOOD",
+            "lines": 140
+        },
+        {
+            "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\01-pdb-debug.py",
+            "status": "GOOD",
+            "lines": 132
+        },
+        {
+            "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\02-ipdb.py",
+            "status": "GOOD",
+            "lines": 113
+        },
+        {
+            "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\03-mem-debug.py",
+            "status": "GOOD",
+            "lines": 127
+        },
+        {
+            "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\04-perf-debug.py",
+            "status": "GOOD",
+            "lines": 138
+        },
+        {
+            "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\05-strategies.py",
+            "status": "GOOD",
+            "lines": 163
+        },
+        {
+            "path": "11-Testing-and-Debugging\\03-Code-Quality\\01-pylint.py",
+            "status": "GOOD",
+            "lines": 149
+        },
+        {
+            "path": "11-Testing-and-Debugging\\03-Code-Quality\\02-review-check.py",
+            "status": "GOOD",
+            "lines": 144
+        },
+        {
+            "path": "11-Testing-and-Debugging\\03-Code-Quality\\03-refactor.py",
+            "status": "GOOD",
+            "lines": 172
+        },
+        {
+            "path": "11-Testing-and-Debugging\\03-Code-Quality\\04-standards.py",
+            "status": "GOOD",
+            "lines": 138
+        },
+        {
+            "path": "11-Testing-and-Debugging\\03-Code-Quality\\05-doc.py",
+            "status": "GOOD",
+            "lines": 146
+        },
+        {
+            "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\01-perf-prof.py",
+            "status": "GOOD",
+            "lines": 131
+        },
+        {
+            "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\02-mem-prof.py",
+            "status": "GOOD",
+            "lines": 135
+        },
+        {
+            "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\03-cache-prof.py",
+            "status": "GOOD",
+            "lines": 131
+        },
+        {
+            "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\04-bench.py",
+            "status": "GOOD",
+            "lines": 124
+        },
+        {
+            "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\05-opt-ver.py",
+            "status": "GOOD",
+            "lines": 122
+        },
+        {
+            "path": "12-Resources-References\\01-Documentation\\01-Py-Ref.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 113
+        },
+        {
+            "path": "12-Resources-References\\01-Documentation\\02-Lib-Cheat.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 143
+        },
+        {
+            "path": "12-Resources-References\\01-Documentation\\03-DSA-Comp.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 101
+        },
+        {
+            "path": "12-Resources-References\\01-Documentation\\04-CP-Ref.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 160
+        },
+        {
+            "path": "12-Resources-References\\01-Documentation\\05-Int-Check.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 146
+        },
+        {
+            "path": "12-Resources-References\\02-External-Resources\\01-books.md",
+            "status": "COMPLETE",
+            "lines": 107
+        },
+        {
+            "path": "12-Resources-References\\02-External-Resources\\02-oj.md",
+            "status": "COMPLETE",
+            "lines": 124
+        },
+        {
+            "path": "12-Resources-References\\02-External-Resources\\03-cp-sites.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 116
+        },
+        {
+            "path": "12-Resources-References\\02-External-Resources\\04-py-comm.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 93
+        },
+        {
+            "path": "12-Resources-References\\02-External-Resources\\05-learn-res.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 75
+        },
+        {
+            "path": "12-Resources-References\\03-Tools-Env\\01-py-setup.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 170
+        },
+        {
+            "path": "12-Resources-References\\03-Tools-Env\\02-ide-config.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 163
+        },
+        {
+            "path": "12-Resources-References\\03-Tools-Env\\03-debug-tools.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 169
+        },
+        {
+            "path": "12-Resources-References\\03-Tools-Env\\04-prof-tools.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 190
+        },
+        {
+            "path": "12-Resources-References\\03-Tools-Env\\05-venv-pip.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 113
+        },
+        {
+            "path": "12-Resources-References\\04-Progress-Tracking\\01-py-roadmap.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 85
+        },
+        {
+            "path": "12-Resources-References\\04-Progress-Tracking\\02-dsa-assess.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 80
+        },
+        {
+            "path": "12-Resources-References\\04-Progress-Tracking\\03-cp-progress.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 57
+        },
+        {
+            "path": "12-Resources-References\\04-Progress-Tracking\\04-int-timeline.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 65
+        },
+        {
+            "path": "12-Resources-References\\04-Progress-Tracking\\05-proj-miles.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 99
+        },
+        {
+            "path": "13-SQL-and-Databases\\01-relational-databases-basics.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 113
+        },
+        {
+            "path": "13-SQL-and-Databases\\02-basic-sql.py",
+            "status": "PARTIAL",
+            "lines": 292
+        },
+        {
+            "path": "13-SQL-and-Databases\\03-advanced-sql.py",
+            "status": "PARTIAL",
+            "lines": 101
+        },
+        {
+            "path": "13-SQL-and-Databases\\04-query-optimization.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 84
+        },
+        {
+            "path": "13-SQL-and-Databases\\05-python-sql-integration.py",
+            "status": "PARTIAL",
+            "lines": 105
+        },
+        {
+            "path": "14-Data-Analytics\\01_pandas_fundamentals.py",
+            "status": "PARTIAL",
+            "lines": 132
+        },
+        {
+            "path": "14-Data-Analytics\\02_data_cleaning_eda.py",
+            "status": "PARTIAL",
+            "lines": 109
+        },
+        {
+            "path": "14-Data-Analytics\\03_data_visualization.py",
+            "status": "PARTIAL",
+            "lines": 133
+        },
+        {
+            "path": "14-Data-Analytics\\04_analytics_bi_concepts.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 110
+        },
+        {
+            "path": "14-Data-Analytics\\05_ab_testing_fundamentals.py",
+            "status": "PARTIAL",
+            "lines": 120
+        },
+        {
+            "path": "14-Data-Analytics\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 81
+        },
+        {
+            "path": "15-Machine-Learning\\01_math_for_ml.py",
+            "status": "PARTIAL",
+            "lines": 162
+        },
+        {
+            "path": "15-Machine-Learning\\02_classical_ml.py",
+            "status": "GOOD",
+            "lines": 195
+        },
+        {
+            "path": "15-Machine-Learning\\03_advanced_ml.py",
+            "status": "GOOD",
+            "lines": 217
+        },
+        {
+            "path": "15-Machine-Learning\\04_unsupervised_learning.py",
+            "status": "PARTIAL",
+            "lines": 68
+        },
+        {
+            "path": "15-Machine-Learning\\05_ml_pipelines_and_evaluation.py",
+            "status": "PARTIAL",
+            "lines": 97
+        },
+        {
+            "path": "16-Deep-Learning-and-CV-NLP\\01_deep_learning_foundations.py",
+            "status": "PARTIAL",
+            "lines": 169
+        },
+        {
+            "path": "16-Deep-Learning-and-CV-NLP\\02_pytorch_basics.py",
+            "status": "PARTIAL",
+            "lines": 145
+        },
+        {
+            "path": "16-Deep-Learning-and-CV-NLP\\03_computer_vision.py",
+            "status": "PARTIAL",
+            "lines": 125
+        },
+        {
+            "path": "16-Deep-Learning-and-CV-NLP\\04_nlp.py",
+            "status": "PARTIAL",
+            "lines": 142
+        },
+        {
+            "path": "16-Deep-Learning-and-CV-NLP\\README.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 85
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\01_transformers.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 93
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\01_transformers.py",
+            "status": "GOOD",
+            "lines": 141
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\02_llm_concepts.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 149
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\02_llm_concepts.py",
+            "status": "PARTIAL",
+            "lines": 123
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\03_prompt_engineering.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 154
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\03_prompt_engineering.py",
+            "status": "PARTIAL",
+            "lines": 83
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\04_embeddings.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 29
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\04_embeddings.py",
+            "status": "PARTIAL",
+            "lines": 222
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\05_rag.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 39
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\05_rag.py",
+            "status": "PARTIAL",
+            "lines": 115
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\06_finetuning.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 29
+        },
+        {
+            "path": "17-Generative-AI-and-LLMs\\06_finetuning.py",
+            "status": "PARTIAL",
+            "lines": 92
+        },
+        {
+            "path": "18-Agentic-AI\\01_agents_vs_workflows.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 133
+        },
+        {
+            "path": "18-Agentic-AI\\01_workflow_example.py",
+            "status": "PARTIAL",
+            "lines": 234
+        },
+        {
+            "path": "18-Agentic-AI\\02_tool_calling.py",
+            "status": "PARTIAL",
+            "lines": 79
+        },
+        {
+            "path": "18-Agentic-AI\\02_tool_calling_mechanics.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 144
+        },
+        {
+            "path": "18-Agentic-AI\\03_agent_memory_react.py",
+            "status": "PARTIAL",
+            "lines": 143
+        },
+        {
+            "path": "18-Agentic-AI\\03_memory_and_planning.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 105
+        },
+        {
+            "path": "18-Agentic-AI\\04_multi_agent_systems.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 105
+        },
+        {
+            "path": "18-Agentic-AI\\04_supervisor_architecture.py",
+            "status": "PARTIAL",
+            "lines": 55
+        },
+        {
+            "path": "18-Agentic-AI\\05_autonomous_agent.py",
+            "status": "PARTIAL",
+            "lines": 112
+        },
+        {
+            "path": "18-Agentic-AI\\05_building_autonomous_agent.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 103
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\01_mlflow_example.py",
+            "status": "PARTIAL",
+            "lines": 79
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\01_mlops_foundations_mlflow.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 108
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\02_fastapi_serving.py",
+            "status": "PARTIAL",
+            "lines": 98
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\02_model_serving_fastapi.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 165
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\03_containerization_docker.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 39
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\04_llmops_genaiops.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 148
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\04_llm_eval.py",
+            "status": "PARTIAL",
+            "lines": 117
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\05_ci_cd_for_ml.md",
+            "status": "NEEDS-DEEPENING",
+            "lines": 33
+        },
+        {
+            "path": "19-MLOps-and-Deployment\\01-Basic\\01-fastapi-deployment.py",
+            "status": "PARTIAL",
+            "lines": 63
+        }
+    ],
+    "stats": {
+        "PLACEHOLDER": 1,
+        "NEEDS-DEEPENING": 95,
+        "PARTIAL": 137,
+        "GOOD": 454,
+        "COMPLETE": 2
+    }
+}

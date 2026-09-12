@@ -1,0 +1,3352 @@
+[
+    {
+        "path": "AUDIT-REPORT.md",
+        "size": 2737,
+        "lines": 32
+    },
+    {
+        "path": "audit.py",
+        "size": 753,
+        "lines": 22
+    },
+    {
+        "path": "JOB-READINESS-MATRIX.md",
+        "size": 3804,
+        "lines": 60
+    },
+    {
+        "path": "KNOWLEDGE-MAP.md",
+        "size": 6934,
+        "lines": 180
+    },
+    {
+        "path": "LEARNING-SYSTEM.md",
+        "size": 2284,
+        "lines": 36
+    },
+    {
+        "path": "MASTER-CAPABILITY-TEST.md",
+        "size": 4033,
+        "lines": 50
+    },
+    {
+        "path": "MASTER-ROADMAP.md",
+        "size": 4569,
+        "lines": 43
+    },
+    {
+        "path": "QUALITY-AUDIT.md",
+        "size": 2098,
+        "lines": 37
+    },
+    {
+        "path": "01-Python-Fundamentals\\01-Theory\\01-Python-Fundamentals-Complete.md",
+        "size": 7884,
+        "lines": 158
+    },
+    {
+        "path": "01-Python-Fundamentals\\01-Theory\\02-Memory-Model-Guide.md",
+        "size": 9341,
+        "lines": 224
+    },
+    {
+        "path": "01-Python-Fundamentals\\01-Theory\\03-OOP-Concepts-Advanced.md",
+        "size": 10185,
+        "lines": 210
+    },
+    {
+        "path": "01-Python-Fundamentals\\01-Theory\\04-Standard-Library-Reference.md",
+        "size": 11092,
+        "lines": 217
+    },
+    {
+        "path": "01-Python-Fundamentals\\01-Theory\\05-Modern-Python-Features.md",
+        "size": 10124,
+        "lines": 212
+    },
+    {
+        "path": "01-Python-Fundamentals\\01-Theory\\06-Performance-Optimization.md",
+        "size": 9514,
+        "lines": 136
+    },
+    {
+        "path": "01-Python-Fundamentals\\02-Basic\\01-variables-and-datatypes.py",
+        "size": 8466,
+        "lines": 215
+    },
+    {
+        "path": "01-Python-Fundamentals\\02-Basic\\02-operators-and-expressions.py",
+        "size": 8704,
+        "lines": 207
+    },
+    {
+        "path": "01-Python-Fundamentals\\02-Basic\\03-control-structures.py",
+        "size": 9367,
+        "lines": 237
+    },
+    {
+        "path": "01-Python-Fundamentals\\02-Basic\\04-functions-basics.py",
+        "size": 10251,
+        "lines": 193
+    },
+    {
+        "path": "01-Python-Fundamentals\\02-Basic\\05-lists-tuples-sets-dicts.py",
+        "size": 12307,
+        "lines": 264
+    },
+    {
+        "path": "01-Python-Fundamentals\\02-Basic\\06-strings-manipulation.py",
+        "size": 10040,
+        "lines": 233
+    },
+    {
+        "path": "01-Python-Fundamentals\\02-Basic\\07-oop-basics.py",
+        "size": 15273,
+        "lines": 279
+    },
+    {
+        "path": "01-Python-Fundamentals\\02-Basic\\08-file-handling-basics.py",
+        "size": 15544,
+        "lines": 260
+    },
+    {
+        "path": "01-Python-Fundamentals\\03-Intermediate\\01-classes-objects-advanced.py",
+        "size": 15797,
+        "lines": 345
+    },
+    {
+        "path": "01-Python-Fundamentals\\03-Intermediate\\02-decorators-generators.py",
+        "size": 20049,
+        "lines": 442
+    },
+    {
+        "path": "01-Python-Fundamentals\\03-Intermediate\\03-modules-packages.py",
+        "size": 12960,
+        "lines": 249
+    },
+    {
+        "path": "01-Python-Fundamentals\\03-Intermediate\\04-exception-handling.py",
+        "size": 9692,
+        "lines": 248
+    },
+    {
+        "path": "01-Python-Fundamentals\\03-Intermediate\\05-collections-module.py",
+        "size": 9720,
+        "lines": 228
+    },
+    {
+        "path": "01-Python-Fundamentals\\03-Intermediate\\06-itertools-functools.py",
+        "size": 10940,
+        "lines": 243
+    },
+    {
+        "path": "01-Python-Fundamentals\\03-Intermediate\\07-threading-multiprocessing.py",
+        "size": 11866,
+        "lines": 284
+    },
+    {
+        "path": "01-Python-Fundamentals\\03-Intermediate\\08-asyncio-basics.py",
+        "size": 9733,
+        "lines": 214
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\01-metaclasses-descriptors.py",
+        "size": 10578,
+        "lines": 245
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\02-context-managers.py",
+        "size": 9136,
+        "lines": 223
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\03-type-hinting-advanced.py",
+        "size": 10292,
+        "lines": 246
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\04-pattern-matching.py",
+        "size": 9157,
+        "lines": 229
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\05-cython-extensions.py",
+        "size": 10062,
+        "lines": 211
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\06-profiling-debugging.py",
+        "size": 8911,
+        "lines": 209
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\07-design-patterns.py",
+        "size": 10292,
+        "lines": 253
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\08-performance-advanced.py",
+        "size": 11152,
+        "lines": 238
+    },
+    {
+        "path": "01-Python-Fundamentals\\04-Advanced\\09-concurrency-advanced.py",
+        "size": 11417,
+        "lines": 243
+    },
+    {
+        "path": "02-Data-Structures\\01-Theory\\01-DS-Fundamentals-Python.md",
+        "size": 6223,
+        "lines": 123
+    },
+    {
+        "path": "02-Data-Structures\\01-Theory\\02-Memory-Layout-Analysis.md",
+        "size": 7333,
+        "lines": 126
+    },
+    {
+        "path": "02-Data-Structures\\01-Theory\\03-Performance-Comparison.md",
+        "size": 8004,
+        "lines": 153
+    },
+    {
+        "path": "02-Data-Structures\\01-Theory\\04-Implementation-Strategies.md",
+        "size": 6784,
+        "lines": 116
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\01-lists-implementation.py",
+        "size": 6626,
+        "lines": 187
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\02-stacks.py",
+        "size": 7961,
+        "lines": 228
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\03-queues.py",
+        "size": 6839,
+        "lines": 204
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\04-linked-lists.py",
+        "size": 7498,
+        "lines": 213
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\01-Basic\\05-arrays.py",
+        "size": 6895,
+        "lines": 172
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\01-doubly-linked-lists.py",
+        "size": 9159,
+        "lines": 255
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\02-circular-queues.py",
+        "size": 9458,
+        "lines": 217
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\03-priority-queues.py",
+        "size": 7002,
+        "lines": 172
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\04-deques.py",
+        "size": 7659,
+        "lines": 194
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\02-Intermediate\\05-stack-applications.py",
+        "size": 9940,
+        "lines": 179
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\01-concurrent-queues.py",
+        "size": 3080,
+        "lines": 110
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\02-persistent-lists.py",
+        "size": 3858,
+        "lines": 111
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\03-cache-optimized-structures.py",
+        "size": 3732,
+        "lines": 110
+    },
+    {
+        "path": "02-Data-Structures\\02-Linear-Structures\\03-Advanced\\04-lock-free-structures.py",
+        "size": 4227,
+        "lines": 135
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\01-Basic\\01-binary-trees.py",
+        "size": 7772,
+        "lines": 189
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\01-Basic\\01-trees.py",
+        "size": 6092,
+        "lines": 150
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\01-Basic\\02-binary-search-trees.py",
+        "size": 7638,
+        "lines": 181
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\01-Basic\\03-tree-traversals.py",
+        "size": 10357,
+        "lines": 204
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\01-Basic\\04-tree-operations.py",
+        "size": 8022,
+        "lines": 176
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\01-Basic\\05-heaps.py",
+        "size": 8205,
+        "lines": 196
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\01-avl-trees.py",
+        "size": 8195,
+        "lines": 215
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\02-red-black-trees.py",
+        "size": 12015,
+        "lines": 264
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\03-tries.py",
+        "size": 8617,
+        "lines": 194
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\04-segment-trees.py",
+        "size": 3410,
+        "lines": 105
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\02-Intermediate\\05-fenwick-trees.py",
+        "size": 2939,
+        "lines": 87
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\03-Advanced\\01-b-trees.py",
+        "size": 5591,
+        "lines": 177
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\03-Advanced\\02-suffix-trees.py",
+        "size": 4041,
+        "lines": 116
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\03-Advanced\\03-persistent-trees.py",
+        "size": 5392,
+        "lines": 139
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\03-Advanced\\04-splay-trees.py",
+        "size": 5749,
+        "lines": 166
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\03-Advanced\\05-treaps.py",
+        "size": 5240,
+        "lines": 157
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\03-Advanced\\06-heavy-light-decomposition.py",
+        "size": 5916,
+        "lines": 184
+    },
+    {
+        "path": "02-Data-Structures\\03-Trees\\03-Advanced\\07-link-cut-trees.py",
+        "size": 5405,
+        "lines": 163
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\01-Basic\\01-graph-representation.py",
+        "size": 4455,
+        "lines": 130
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\01-Basic\\01-graphs.py",
+        "size": 7149,
+        "lines": 185
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\01-Basic\\02-adjacency-matrix.py",
+        "size": 4631,
+        "lines": 133
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\01-Basic\\03-dfs-bfs.py",
+        "size": 4839,
+        "lines": 134
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\01-Basic\\04-cycle-detection.py",
+        "size": 5831,
+        "lines": 163
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\01-Basic\\05-topological-sort.py",
+        "size": 9043,
+        "lines": 230
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\01-weighted-graphs.py",
+        "size": 7784,
+        "lines": 197
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\02-shortest-paths.py",
+        "size": 6459,
+        "lines": 183
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\03-mst.py",
+        "size": 4709,
+        "lines": 141
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\04-connected-components.py",
+        "size": 5006,
+        "lines": 159
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\02-Intermediate\\05-bellman-ford.py",
+        "size": 5761,
+        "lines": 158
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\01-floyd-warshall.py",
+        "size": 3770,
+        "lines": 117
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\02-max-flow.py",
+        "size": 3919,
+        "lines": 116
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\03-scc.py",
+        "size": 4797,
+        "lines": 153
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\04-articulation-points.py",
+        "size": 4444,
+        "lines": 127
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\05-bipartite-matching.py",
+        "size": 3547,
+        "lines": 107
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\06-euler-path.py",
+        "size": 3933,
+        "lines": 108
+    },
+    {
+        "path": "02-Data-Structures\\04-Graphs\\03-Advanced\\07-advanced-graphs.py",
+        "size": 3986,
+        "lines": 115
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\01-dictionaries.py",
+        "size": 2351,
+        "lines": 70
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\01-hash-tables.py",
+        "size": 6384,
+        "lines": 165
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\02-sets.py",
+        "size": 9586,
+        "lines": 244
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\03-hash-functions.py",
+        "size": 8714,
+        "lines": 239
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\01-Basic\\04-collision-handling.py",
+        "size": 3361,
+        "lines": 76
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\01-custom-hash-tables.py",
+        "size": 2530,
+        "lines": 78
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\02-bloom-filters.py",
+        "size": 5772,
+        "lines": 141
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\03-cuckoo-hashing.py",
+        "size": 2723,
+        "lines": 83
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\02-Intermediate\\04-consistent-hashing.py",
+        "size": 4572,
+        "lines": 139
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\01-concurrent-dicts.py",
+        "size": 2075,
+        "lines": 69
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\02-perfect-hashing.py",
+        "size": 2769,
+        "lines": 73
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\03-distributed-hashing.py",
+        "size": 2432,
+        "lines": 76
+    },
+    {
+        "path": "02-Data-Structures\\05-Hash-Structures\\03-Advanced\\04-lock-free-hashing.py",
+        "size": 2847,
+        "lines": 88
+    },
+    {
+        "path": "02-Data-Structures\\06-Specialized-Structures\\01-disjoint-set-union.py",
+        "size": 2558,
+        "lines": 79
+    },
+    {
+        "path": "02-Data-Structures\\06-Specialized-Structures\\02-sparse-tables.py",
+        "size": 2208,
+        "lines": 66
+    },
+    {
+        "path": "02-Data-Structures\\06-Specialized-Structures\\03-sqrt-decomposition.py",
+        "size": 2956,
+        "lines": 82
+    },
+    {
+        "path": "02-Data-Structures\\06-Specialized-Structures\\04-mos-algorithm.py",
+        "size": 2975,
+        "lines": 97
+    },
+    {
+        "path": "02-Data-Structures\\06-Specialized-Structures\\05-persistent-structures.py",
+        "size": 2385,
+        "lines": 68
+    },
+    {
+        "path": "02-Data-Structures\\06-Specialized-Structures\\06-specialized-trees.py",
+        "size": 3240,
+        "lines": 92
+    },
+    {
+        "path": "03-Algorithms\\01-Algorithm-Analysis\\01-Basic\\01-big-o.py",
+        "size": 4321,
+        "lines": 116
+    },
+    {
+        "path": "03-Algorithms\\01-Theory\\01-Algorithm-Analysis-Python.md",
+        "size": 7047,
+        "lines": 164
+    },
+    {
+        "path": "03-Algorithms\\01-Theory\\02-Complexity-Theory.md",
+        "size": 7505,
+        "lines": 124
+    },
+    {
+        "path": "03-Algorithms\\01-Theory\\03-Design-Paradigms.md",
+        "size": 8307,
+        "lines": 180
+    },
+    {
+        "path": "03-Algorithms\\01-Theory\\04-Optimization-Techniques.md",
+        "size": 6890,
+        "lines": 111
+    },
+    {
+        "path": "03-Algorithms\\01-Theory\\05-Mathematical-Foundations.md",
+        "size": 5453,
+        "lines": 101
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\01-Basic\\01-linear-search.py",
+        "size": 5175,
+        "lines": 146
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\01-Basic\\02-binary-search.py",
+        "size": 2879,
+        "lines": 102
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\01-Basic\\03-jump-search.py",
+        "size": 5673,
+        "lines": 155
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\01-Basic\\04-ternary-search.py",
+        "size": 2201,
+        "lines": 64
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\02-Intermediate\\01-exponential-search.py",
+        "size": 2349,
+        "lines": 74
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\02-Intermediate\\02-interpolation-search.py",
+        "size": 2421,
+        "lines": 71
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\02-Intermediate\\03-fibonacci-search.py",
+        "size": 2393,
+        "lines": 80
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\02-Intermediate\\04-hash-search.py",
+        "size": 2577,
+        "lines": 83
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\03-Advanced\\01-van-emde-boas.py",
+        "size": 3310,
+        "lines": 96
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\03-Advanced\\02-fractional-cascading.py",
+        "size": 3275,
+        "lines": 94
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\03-Advanced\\03-y-fast-trie.py",
+        "size": 7834,
+        "lines": 201
+    },
+    {
+        "path": "03-Algorithms\\02-Searching\\03-Advanced\\04-advanced-search.py",
+        "size": 6546,
+        "lines": 173
+    },
+    {
+        "path": "03-Algorithms\\02-Sorting\\01-Basic\\01-bubble-sort.py",
+        "size": 2419,
+        "lines": 97
+    },
+    {
+        "path": "03-Algorithms\\02-Sorting\\01-Basic\\02-selection-sort.py",
+        "size": 3716,
+        "lines": 111
+    },
+    {
+        "path": "03-Algorithms\\02-Sorting\\01-Basic\\03-insertion-sort.py",
+        "size": 4071,
+        "lines": 123
+    },
+    {
+        "path": "03-Algorithms\\02-Sorting\\02-Intermediate\\01-merge-sort.py",
+        "size": 4413,
+        "lines": 120
+    },
+    {
+        "path": "03-Algorithms\\02-Sorting\\02-Intermediate\\02-quick-sort.py",
+        "size": 5120,
+        "lines": 111
+    },
+    {
+        "path": "03-Algorithms\\03-Searching\\01-Basic\\01-linear-search.py",
+        "size": 4737,
+        "lines": 111
+    },
+    {
+        "path": "03-Algorithms\\03-Searching\\01-Basic\\02-binary-search.py",
+        "size": 3450,
+        "lines": 111
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\01-Basic\\01-bubble-sort.py",
+        "size": 2138,
+        "lines": 71
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\01-Basic\\02-selection-sort.py",
+        "size": 5992,
+        "lines": 128
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\01-Basic\\03-insertion-sort.py",
+        "size": 5586,
+        "lines": 121
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\01-Basic\\04-merge-sort.py",
+        "size": 6115,
+        "lines": 140
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\01-Basic\\05-quick-sort.py",
+        "size": 2460,
+        "lines": 82
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\01-heap-sort.py",
+        "size": 2077,
+        "lines": 79
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\02-counting-sort.py",
+        "size": 7484,
+        "lines": 211
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\03-radix-sort.py",
+        "size": 2464,
+        "lines": 91
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\04-bucket-sort.py",
+        "size": 2103,
+        "lines": 77
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\02-Intermediate\\05-shell-sort.py",
+        "size": 6058,
+        "lines": 155
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\03-Advanced\\01-tim-sort.py",
+        "size": 3519,
+        "lines": 123
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\03-Advanced\\02-external-sort.py",
+        "size": 4221,
+        "lines": 116
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\03-Advanced\\03-parallel-sort.py",
+        "size": 3416,
+        "lines": 94
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\03-Advanced\\04-intro-sort.py",
+        "size": 6119,
+        "lines": 170
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\03-Advanced\\05-cache-oblivious-sort.py",
+        "size": 4860,
+        "lines": 138
+    },
+    {
+        "path": "03-Algorithms\\03-Sorting\\03-Advanced\\06-sorting-networks.py",
+        "size": 5447,
+        "lines": 133
+    },
+    {
+        "path": "03-Algorithms\\04-Divide-and-Conquer\\01-Basic\\01-dc-intro.py",
+        "size": 3213,
+        "lines": 102
+    },
+    {
+        "path": "03-Algorithms\\04-Divide-and-Conquer\\01-Basic\\02-max-subarray.py",
+        "size": 2806,
+        "lines": 82
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\01-factorial-recursion.py",
+        "size": 3600,
+        "lines": 110
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\02-fibonacci-recursion.py",
+        "size": 3699,
+        "lines": 114
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\03-tower-of-hanoi.py",
+        "size": 3716,
+        "lines": 114
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\01-Basic\\04-backtracking-basics.py",
+        "size": 3671,
+        "lines": 114
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\01-n-queens.py",
+        "size": 3443,
+        "lines": 108
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\02-sudoku-solver.py",
+        "size": 2549,
+        "lines": 78
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\03-permutations.py",
+        "size": 6972,
+        "lines": 190
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\02-Intermediate\\04-subsets.py",
+        "size": 4453,
+        "lines": 116
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\01-graph-coloring.py",
+        "size": 2330,
+        "lines": 69
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\02-knight-tour.py",
+        "size": 2074,
+        "lines": 61
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\03-hamiltonian-path.py",
+        "size": 2255,
+        "lines": 71
+    },
+    {
+        "path": "03-Algorithms\\04-Recursion-Backtracking\\03-Advanced\\04-advanced-backtracking.py",
+        "size": 2469,
+        "lines": 67
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\01-fibonacci-dp.py",
+        "size": 2231,
+        "lines": 79
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\02-coin-change.py",
+        "size": 2172,
+        "lines": 74
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\03-lcs.py",
+        "size": 2228,
+        "lines": 83
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\04-0-1-knapsack.py",
+        "size": 2186,
+        "lines": 76
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\01-Basic\\05-edit-distance.py",
+        "size": 2819,
+        "lines": 91
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\01-lis.py",
+        "size": 4566,
+        "lines": 118
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\02-matrix-chain.py",
+        "size": 2040,
+        "lines": 67
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\03-subset-sum.py",
+        "size": 4461,
+        "lines": 118
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\04-rod-cutting.py",
+        "size": 5182,
+        "lines": 146
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\02-Intermediate\\05-min-path-sum.py",
+        "size": 2091,
+        "lines": 65
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\01-tree-dp.py",
+        "size": 6064,
+        "lines": 175
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\02-digit-dp.py",
+        "size": 2444,
+        "lines": 74
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\03-bitmask-dp.py",
+        "size": 4664,
+        "lines": 134
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\04-prob-dp.py",
+        "size": 2705,
+        "lines": 88
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\05-convex-hull-opt.py",
+        "size": 2650,
+        "lines": 86
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\06-div-conq-opt.py",
+        "size": 2083,
+        "lines": 69
+    },
+    {
+        "path": "03-Algorithms\\05-Dynamic-Programming\\03-Advanced\\07-knuth-opt.py",
+        "size": 3935,
+        "lines": 122
+    },
+    {
+        "path": "03-Algorithms\\05-Greedy-Algorithms\\01-Basic\\01-greedy-intro.py",
+        "size": 4560,
+        "lines": 122
+    },
+    {
+        "path": "03-Algorithms\\05-Greedy-Algorithms\\01-Basic\\02-activity-sel.py",
+        "size": 2420,
+        "lines": 56
+    },
+    {
+        "path": "03-Algorithms\\06-Dynamic-Programming\\01-Basic\\01-dp-intro.py",
+        "size": 3510,
+        "lines": 124
+    },
+    {
+        "path": "03-Algorithms\\06-Dynamic-Programming\\01-Basic\\02-fibonacci.py",
+        "size": 4771,
+        "lines": 119
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\01-Basic\\01-activity-selection.py",
+        "size": 3959,
+        "lines": 98
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\01-Basic\\02-fractional-knapsack.py",
+        "size": 4254,
+        "lines": 118
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\01-Basic\\03-job-scheduling.py",
+        "size": 4484,
+        "lines": 134
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\01-Basic\\04-min-coins.py",
+        "size": 2878,
+        "lines": 85
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\02-Intermediate\\01-huffman-coding.py",
+        "size": 5092,
+        "lines": 169
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\02-Intermediate\\02-dijkstra.py",
+        "size": 4290,
+        "lines": 131
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\02-Intermediate\\03-interval-sched.py",
+        "size": 3527,
+        "lines": 105
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\02-Intermediate\\04-mst-kruskal.py",
+        "size": 3580,
+        "lines": 114
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\03-Advanced\\01-approx-algo.py",
+        "size": 3749,
+        "lines": 110
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\03-Advanced\\02-matroids.py",
+        "size": 3585,
+        "lines": 91
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\03-Advanced\\03-online-algo.py",
+        "size": 3478,
+        "lines": 117
+    },
+    {
+        "path": "03-Algorithms\\06-Greedy\\03-Advanced\\04-cp-greedy.py",
+        "size": 3383,
+        "lines": 102
+    },
+    {
+        "path": "03-Algorithms\\07-Backtracking\\01-Basic\\01-backtrack-intro.py",
+        "size": 4841,
+        "lines": 124
+    },
+    {
+        "path": "03-Algorithms\\07-Backtracking\\01-Basic\\02-permutations.py",
+        "size": 1838,
+        "lines": 53
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\01-binary-search-rec.py",
+        "size": 2408,
+        "lines": 76
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\02-merge-sort-dc.py",
+        "size": 2387,
+        "lines": 97
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\03-quick-sort-dc.py",
+        "size": 2159,
+        "lines": 72
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\01-Basic\\04-max-subarray.py",
+        "size": 2140,
+        "lines": 81
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\01-closest-pair.py",
+        "size": 3282,
+        "lines": 111
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\02-strassen-matrix.py",
+        "size": 2521,
+        "lines": 83
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\03-inversion-count.py",
+        "size": 2722,
+        "lines": 98
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\02-Intermediate\\04-convex-hull-dc.py",
+        "size": 2755,
+        "lines": 93
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\01-fft.py",
+        "size": 2282,
+        "lines": 82
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\02-karatsuba.py",
+        "size": 2500,
+        "lines": 84
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\03-poly-mult.py",
+        "size": 2638,
+        "lines": 94
+    },
+    {
+        "path": "03-Algorithms\\07-Divide-Conquer\\03-Advanced\\04-adv-dc.py",
+        "size": 2722,
+        "lines": 97
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\01-dfs-variations.py",
+        "size": 3024,
+        "lines": 95
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\02-bfs-variations.py",
+        "size": 2813,
+        "lines": 96
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\03-iter-deep.py",
+        "size": 3124,
+        "lines": 92
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\01-Traversal\\04-bidir-search.py",
+        "size": 8118,
+        "lines": 208
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\01-dijkstra.py",
+        "size": 6575,
+        "lines": 182
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\02-bellman-ford.py",
+        "size": 2021,
+        "lines": 61
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\03-floyd-warshall.py",
+        "size": 6825,
+        "lines": 177
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\04-a-star.py",
+        "size": 2366,
+        "lines": 73
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\02-Shortest-Path\\05-johnson.py",
+        "size": 3536,
+        "lines": 98
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\01-kruskal.py",
+        "size": 4007,
+        "lines": 132
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\02-prim.py",
+        "size": 6396,
+        "lines": 163
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\03-boruvka.py",
+        "size": 2571,
+        "lines": 79
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\03-MST\\04-mst-var.py",
+        "size": 2104,
+        "lines": 69
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\01-ford-fulk.py",
+        "size": 2452,
+        "lines": 80
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\02-edmonds-karp.py",
+        "size": 2459,
+        "lines": 81
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\03-dinic.py",
+        "size": 2911,
+        "lines": 95
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\04-push-relabel.py",
+        "size": 3146,
+        "lines": 100
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\04-Network-Flow\\05-min-cost-flow.py",
+        "size": 3170,
+        "lines": 92
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\01-tarjan-scc.py",
+        "size": 3880,
+        "lines": 105
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\02-kosaraju.py",
+        "size": 3418,
+        "lines": 102
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\03-artic-bridges.py",
+        "size": 3811,
+        "lines": 112
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\04-biconnect.py",
+        "size": 3313,
+        "lines": 99
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\05-eulerian.py",
+        "size": 3566,
+        "lines": 112
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\06-hamilton.py",
+        "size": 3090,
+        "lines": 93
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\07-graph-color.py",
+        "size": 3364,
+        "lines": 112
+    },
+    {
+        "path": "03-Algorithms\\08-Graph-Algorithms\\05-Advanced\\08-planar.py",
+        "size": 2725,
+        "lines": 90
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\01-Basic\\01-naive-match.py",
+        "size": 2746,
+        "lines": 79
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\01-Basic\\02-kmp.py",
+        "size": 6533,
+        "lines": 219
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\01-Basic\\03-rabin-karp.py",
+        "size": 2599,
+        "lines": 86
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\01-Basic\\04-boyer-moore.py",
+        "size": 2482,
+        "lines": 78
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\01-z-algo.py",
+        "size": 2336,
+        "lines": 79
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\02-manacher.py",
+        "size": 5800,
+        "lines": 158
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\03-suffix-array.py",
+        "size": 2973,
+        "lines": 92
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\02-Intermediate\\04-lcp.py",
+        "size": 2178,
+        "lines": 78
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\01-suffix-tree.py",
+        "size": 4192,
+        "lines": 115
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\02-aho-corasick.py",
+        "size": 5021,
+        "lines": 145
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\03-rolling-hash.py",
+        "size": 4031,
+        "lines": 116
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\04-string-hash-adv.py",
+        "size": 3885,
+        "lines": 110
+    },
+    {
+        "path": "03-Algorithms\\09-String-Algorithms\\03-Advanced\\05-adv-string.py",
+        "size": 2921,
+        "lines": 88
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\01-prime-check.py",
+        "size": 2511,
+        "lines": 81
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\02-sieve.py",
+        "size": 2049,
+        "lines": 65
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\03-gcd-lcm.py",
+        "size": 5305,
+        "lines": 142
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\04-ext-euclid.py",
+        "size": 2305,
+        "lines": 83
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\05-mod-arith.py",
+        "size": 2358,
+        "lines": 81
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\06-fast-exp.py",
+        "size": 2529,
+        "lines": 87
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\07-crt.py",
+        "size": 2306,
+        "lines": 80
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\01-Number-Theory\\08-miller-rabin.py",
+        "size": 3258,
+        "lines": 114
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\01-perm-comb.py",
+        "size": 3149,
+        "lines": 97
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\02-catalan.py",
+        "size": 2526,
+        "lines": 86
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\03-fib-matrix.py",
+        "size": 2587,
+        "lines": 87
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\04-binomial.py",
+        "size": 2889,
+        "lines": 87
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\02-Combinatorics\\05-incl-excl.py",
+        "size": 2853,
+        "lines": 96
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\01-comp-geo.py",
+        "size": 3412,
+        "lines": 105
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\02-convex-hull.py",
+        "size": 2903,
+        "lines": 88
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\03-line-intersect.py",
+        "size": 3273,
+        "lines": 102
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\04-polygon-algo.py",
+        "size": 3805,
+        "lines": 119
+    },
+    {
+        "path": "03-Algorithms\\10-Mathematical-Algorithms\\03-Geometry\\05-closest-pair-geo.py",
+        "size": 3300,
+        "lines": 102
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\01-rand-quicksort.py",
+        "size": 5004,
+        "lines": 144
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\02-rand-select.py",
+        "size": 3992,
+        "lines": 131
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\03-monte-carlo.py",
+        "size": 3495,
+        "lines": 122
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\01-Randomized\\04-las-vegas.py",
+        "size": 3542,
+        "lines": 116
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\01-tsp-bnb.py",
+        "size": 4553,
+        "lines": 144
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\02-knap-bnb.py",
+        "size": 3863,
+        "lines": 134
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\03-job-assign.py",
+        "size": 3653,
+        "lines": 122
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\02-Branch-Bound\\04-bnb-frame.py",
+        "size": 5412,
+        "lines": 157
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\01-par-sort.py",
+        "size": 4045,
+        "lines": 115
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\02-par-search.py",
+        "size": 3041,
+        "lines": 93
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\03-multiprocess-algo.py",
+        "size": 2804,
+        "lines": 85
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\03-Parallel\\04-dask-algo.py",
+        "size": 2555,
+        "lines": 74
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\01-approx-tsp.py",
+        "size": 3128,
+        "lines": 91
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\02-genetic-algo.py",
+        "size": 4073,
+        "lines": 119
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\03-sim-anneal.py",
+        "size": 3024,
+        "lines": 89
+    },
+    {
+        "path": "03-Algorithms\\11-Advanced-Techniques\\04-Approximation\\04-adv-approx.py",
+        "size": 3044,
+        "lines": 92
+    },
+    {
+        "path": "04-Python-Libraries\\01-Theory\\01-Standard-Lib-Advanced.md",
+        "size": 2429,
+        "lines": 23
+    },
+    {
+        "path": "04-Python-Libraries\\01-Theory\\02-Third-Party-Libs.md",
+        "size": 2005,
+        "lines": 24
+    },
+    {
+        "path": "04-Python-Libraries\\01-Theory\\03-Data-Science-Libs.md",
+        "size": 2407,
+        "lines": 21
+    },
+    {
+        "path": "04-Python-Libraries\\01-Theory\\04-ML-Libs.md",
+        "size": 2075,
+        "lines": 23
+    },
+    {
+        "path": "04-Python-Libraries\\01-Theory\\05-Advanced-AI-Libs.md",
+        "size": 2241,
+        "lines": 25
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\01-Basic\\01-math-module.py",
+        "size": 4245,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\01-Basic\\02-fractions-decimal.py",
+        "size": 4323,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\01-Basic\\03-random-module.py",
+        "size": 4271,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\01-Basic\\04-statistics-module.py",
+        "size": 4323,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\01-sympy-symbolic.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\02-scipy-linear-algebra.py",
+        "size": 4362,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\03-scipy-optimize.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\02-Intermediate\\04-scipy-integrate.py",
+        "size": 4297,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\01-scipy-signal.py",
+        "size": 4258,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\02-scipy-spatial.py",
+        "size": 4271,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\03-numba-jit-math.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\02-Mathematics\\03-Advanced\\04-advanced-math.py",
+        "size": 4271,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\01-numpy-basics.py",
+        "size": 4258,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\02-numpy-prob-dist.py",
+        "size": 4297,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\03-scipy-stats.py",
+        "size": 4245,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\04-statsmodels.py",
+        "size": 4245,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\01-Probability-Statistics\\05-prob-simulations.py",
+        "size": 4310,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\01-pandas-basics.py",
+        "size": 4271,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\02-pandas-cleaning.py",
+        "size": 4297,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\03-pandas-merge.py",
+        "size": 4258,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\04-pandas-time-series.py",
+        "size": 4336,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\02-Data-Processing\\05-dask-parallel.py",
+        "size": 4271,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\01-matplotlib-basics.py",
+        "size": 4323,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\02-seaborn-stats.py",
+        "size": 4271,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\03-plotly-interactive.py",
+        "size": 4336,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\04-bokeh.py",
+        "size": 4167,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\03-Data-Science\\03-Visualization\\05-advanced-viz.py",
+        "size": 4258,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\01-sklearn-basics.py",
+        "size": 4726,
+        "lines": 144
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\02-sklearn-regression.py",
+        "size": 4336,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\03-sklearn-classification.py",
+        "size": 4388,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\04-sklearn-clustering.py",
+        "size": 4336,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\01-Basic\\05-sklearn-evaluation.py",
+        "size": 4336,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\01-sklearn-trees.py",
+        "size": 4271,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\02-sklearn-pipeline.py",
+        "size": 4310,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\03-sklearn-dim-red.py",
+        "size": 4297,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\04-tensorflow-basics.py",
+        "size": 4323,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\02-Intermediate\\05-pytorch-basics.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\01-deep-learning-tf.py",
+        "size": 6367,
+        "lines": 202
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\02-pytorch-nn.py",
+        "size": 5144,
+        "lines": 148
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\03-autoencoders.py",
+        "size": 4258,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\04-reinforce-learn.py",
+        "size": 4297,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\04-Machine-Learning\\03-Advanced\\05-mlops.py",
+        "size": 4167,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\01-huggingface-basics.py",
+        "size": 6638,
+        "lines": 180
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\02-transformers-tokenize.py",
+        "size": 4375,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\03-llm-inference.py",
+        "size": 4271,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\01-Basic\\04-fine-tuning-basics.py",
+        "size": 7974,
+        "lines": 207
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\01-llm-prompt-eng.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\02-langchain-basics.py",
+        "size": 5693,
+        "lines": 150
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\03-rag-basics.py",
+        "size": 5935,
+        "lines": 148
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\04-faiss-vector-db.py",
+        "size": 7519,
+        "lines": 193
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\02-Intermediate\\05-genai-text-gen.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\01-rag-advanced.py",
+        "size": 5024,
+        "lines": 155
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\02-genai-multimodal.py",
+        "size": 4310,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\03-llm-fine-tune-adv.py",
+        "size": 6327,
+        "lines": 192
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\04-agent-systems.py",
+        "size": 10022,
+        "lines": 239
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\05-ethics-bias.py",
+        "size": 4245,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\05-LLM-and-GenAI\\03-Advanced\\06-deployment.py",
+        "size": 4232,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\01-opencv-basics.py",
+        "size": 6443,
+        "lines": 196
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\02-opencv-filters.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\03-yolo-object-det.py",
+        "size": 8309,
+        "lines": 218
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\01-Computer-Vision\\04-cv-advanced.py",
+        "size": 4245,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\01-nltk-spacy.py",
+        "size": 4232,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\02-sentiment-analysis.py",
+        "size": 4336,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\03-topic-modeling.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\02-NLP\\04-nlp-advanced.py",
+        "size": 4258,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\01-prophet.py",
+        "size": 4200,
+        "lines": 137
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\02-arima.py",
+        "size": 4167,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\03-lstm-ts.py",
+        "size": 4193,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\03-Time-Series\\04-ts-advanced.py",
+        "size": 4245,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\01-pyspark-basics.py",
+        "size": 4284,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\02-spark-ml.py",
+        "size": 4206,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\03-dask-ml.py",
+        "size": 4193,
+        "lines": 131
+    },
+    {
+        "path": "04-Python-Libraries\\06-Other-Advanced-Usage\\04-Big-Data\\04-bigdata-advanced.py",
+        "size": 4310,
+        "lines": 131
+    },
+    {
+        "path": "05-Competitive-Programming\\01-Theory\\01-CP-Strategy-Python.md",
+        "size": 4529,
+        "lines": 74
+    },
+    {
+        "path": "05-Competitive-Programming\\01-Theory\\02-Contest-Prep.md",
+        "size": 4908,
+        "lines": 83
+    },
+    {
+        "path": "05-Competitive-Programming\\01-Theory\\03-Time-Mgmt.md",
+        "size": 5145,
+        "lines": 74
+    },
+    {
+        "path": "05-Competitive-Programming\\01-Theory\\04-Common-Mistakes.md",
+        "size": 5789,
+        "lines": 169
+    },
+    {
+        "path": "05-Competitive-Programming\\02-Templates\\01-fast-io-template.py",
+        "size": 5752,
+        "lines": 153
+    },
+    {
+        "path": "05-Competitive-Programming\\02-Templates\\02-cp-template.py",
+        "size": 4655,
+        "lines": 135
+    },
+    {
+        "path": "05-Competitive-Programming\\02-Templates\\03-debug-template.py",
+        "size": 5261,
+        "lines": 130
+    },
+    {
+        "path": "05-Competitive-Programming\\02-Templates\\04-mod-arith-template.py",
+        "size": 7157,
+        "lines": 200
+    },
+    {
+        "path": "05-Competitive-Programming\\02-Templates\\05-graph-template.py",
+        "size": 11786,
+        "lines": 306
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\01-impl-probs.py",
+        "size": 8026,
+        "lines": 185
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\02-sim-probs.py",
+        "size": 6131,
+        "lines": 176
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\03-string-manip.py",
+        "size": 6998,
+        "lines": 180
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\01-Ad-Hoc\\04-math-probs.py",
+        "size": 8969,
+        "lines": 222
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\01-seg-tree-probs.py",
+        "size": 8582,
+        "lines": 210
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\02-fenwick-probs.py",
+        "size": 7945,
+        "lines": 205
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\03-dsu-probs.py",
+        "size": 5256,
+        "lines": 148
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\02-Data-Structures\\04-adv-ds-probs.py",
+        "size": 4619,
+        "lines": 129
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\01-sp-probs.py",
+        "size": 4872,
+        "lines": 124
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\02-mst-probs.py",
+        "size": 7267,
+        "lines": 231
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\03-flow-probs.py",
+        "size": 6305,
+        "lines": 203
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\03-Graph-Theory\\04-adv-graph-probs.py",
+        "size": 4911,
+        "lines": 147
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\01-classical-dp.py",
+        "size": 5865,
+        "lines": 147
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\02-opt-dp.py",
+        "size": 4699,
+        "lines": 146
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\03-digit-dp.py",
+        "size": 4267,
+        "lines": 122
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\04-DP\\04-adv-dp.py",
+        "size": 7063,
+        "lines": 213
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\01-comp-geo-probs.py",
+        "size": 6395,
+        "lines": 185
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\02-hull-probs.py",
+        "size": 6296,
+        "lines": 163
+    },
+    {
+        "path": "05-Competitive-Programming\\03-Problem-Categories\\05-Geometry\\03-adv-geo.py",
+        "size": 7213,
+        "lines": 197
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\01-easy-probs.py",
+        "size": 5129,
+        "lines": 152
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\02-med-probs.py",
+        "size": 6933,
+        "lines": 204
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\01-LeetCode\\03-hard-probs.py",
+        "size": 7570,
+        "lines": 180
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\01-div3.py",
+        "size": 4987,
+        "lines": 120
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\02-div2.py",
+        "size": 5869,
+        "lines": 140
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\02-Codeforces\\03-div1.py",
+        "size": 4369,
+        "lines": 111
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\01-beginner.py",
+        "size": 1625,
+        "lines": 48
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\02-reg.py",
+        "size": 2636,
+        "lines": 86
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\03-AtCoder\\03-grand.py",
+        "size": 4971,
+        "lines": 134
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\01-long-chal.py",
+        "size": 4976,
+        "lines": 135
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\02-cookoff.py",
+        "size": 4672,
+        "lines": 127
+    },
+    {
+        "path": "05-Competitive-Programming\\04-Contest-Practice\\04-CodeChef\\03-lunch.py",
+        "size": 4611,
+        "lines": 127
+    },
+    {
+        "path": "05-Competitive-Programming\\05-Advanced-Topics\\01-hld.py",
+        "size": 5801,
+        "lines": 178
+    },
+    {
+        "path": "05-Competitive-Programming\\05-Advanced-Topics\\02-centroid-decomp.py",
+        "size": 4459,
+        "lines": 121
+    },
+    {
+        "path": "05-Competitive-Programming\\05-Advanced-Topics\\03-mo-adv.py",
+        "size": 6322,
+        "lines": 165
+    },
+    {
+        "path": "05-Competitive-Programming\\05-Advanced-Topics\\04-sqrt-adv.py",
+        "size": 5998,
+        "lines": 159
+    },
+    {
+        "path": "05-Competitive-Programming\\05-Advanced-Topics\\05-pers-seg-tree.py",
+        "size": 7207,
+        "lines": 179
+    },
+    {
+        "path": "05-Competitive-Programming\\05-Advanced-Topics\\06-lct-adv.py",
+        "size": 6961,
+        "lines": 206
+    },
+    {
+        "path": "05-Competitive-Programming\\05-Advanced-Topics\\07-adv-nt.py",
+        "size": 5319,
+        "lines": 161
+    },
+    {
+        "path": "06-System-Design\\02-Basic\\01-sys-design-basics.py",
+        "size": 5772,
+        "lines": 133
+    },
+    {
+        "path": "06-System-Design\\02-Basic\\02-caching.py",
+        "size": 9126,
+        "lines": 219
+    },
+    {
+        "path": "06-System-Design\\02-Basic\\03-db-design.py",
+        "size": 9850,
+        "lines": 231
+    },
+    {
+        "path": "06-System-Design\\02-Basic\\04-api-design.py",
+        "size": 8706,
+        "lines": 205
+    },
+    {
+        "path": "06-System-Design\\02-Basic\\05-algo-opt.py",
+        "size": 5704,
+        "lines": 150
+    },
+    {
+        "path": "06-System-Design\\03-Intermediate\\01-concurrent-ds.py",
+        "size": 4913,
+        "lines": 143
+    },
+    {
+        "path": "06-System-Design\\03-Intermediate\\02-async-prog.py",
+        "size": 5250,
+        "lines": 147
+    },
+    {
+        "path": "06-System-Design\\03-Intermediate\\03-mem-opt.py",
+        "size": 5881,
+        "lines": 137
+    },
+    {
+        "path": "06-System-Design\\03-Intermediate\\04-custom-alloc.py",
+        "size": 5683,
+        "lines": 150
+    },
+    {
+        "path": "06-System-Design\\03-Intermediate\\05-perf-prof.py",
+        "size": 5164,
+        "lines": 136
+    },
+    {
+        "path": "06-System-Design\\04-Advanced\\01-hpc.py",
+        "size": 6759,
+        "lines": 171
+    },
+    {
+        "path": "06-System-Design\\04-Advanced\\02-par-algo-design.py",
+        "size": 7782,
+        "lines": 197
+    },
+    {
+        "path": "06-System-Design\\04-Advanced\\03-dist-algo.py",
+        "size": 8993,
+        "lines": 219
+    },
+    {
+        "path": "06-System-Design\\04-Advanced\\04-real-time.py",
+        "size": 8220,
+        "lines": 186
+    },
+    {
+        "path": "06-System-Design\\04-Advanced\\05-embedded.py",
+        "size": 7597,
+        "lines": 175
+    },
+    {
+        "path": "07-Interview-Preparation\\01-Theory\\01-Python-Interview-Guide.md",
+        "size": 8831,
+        "lines": 153
+    },
+    {
+        "path": "07-Interview-Preparation\\01-Theory\\02-Tech-Strategy.md",
+        "size": 6689,
+        "lines": 89
+    },
+    {
+        "path": "07-Interview-Preparation\\01-Theory\\03-Prob-Patterns.md",
+        "size": 11137,
+        "lines": 337
+    },
+    {
+        "path": "07-Interview-Preparation\\01-Theory\\04-Sys-Design-Int.md",
+        "size": 7922,
+        "lines": 128
+    },
+    {
+        "path": "07-Interview-Preparation\\01-Theory\\05-Behavioral.md",
+        "size": 5881,
+        "lines": 58
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\01-py-basics-q.py",
+        "size": 5094,
+        "lines": 141
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\02-lists-dicts.py",
+        "size": 6680,
+        "lines": 193
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\03-mem-mgmt.py",
+        "size": 4061,
+        "lines": 128
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\04-oop.py",
+        "size": 5137,
+        "lines": 169
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\01-Basic\\05-std-lib-q.py",
+        "size": 4367,
+        "lines": 127
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\01-dec-gen-q.py",
+        "size": 2651,
+        "lines": 70
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\02-inherit-poly.py",
+        "size": 2853,
+        "lines": 95
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\03-exc-hand-q.py",
+        "size": 2830,
+        "lines": 77
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\04-async-q.py",
+        "size": 2285,
+        "lines": 61
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\02-Intermediate\\05-adv-feat.py",
+        "size": 3080,
+        "lines": 83
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\01-meta-desc.py",
+        "size": 6481,
+        "lines": 197
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\02-concurrency-q.py",
+        "size": 4498,
+        "lines": 112
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\03-type-hint-q.py",
+        "size": 4050,
+        "lines": 131
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\04-modern-py-q.py",
+        "size": 4081,
+        "lines": 119
+    },
+    {
+        "path": "07-Interview-Preparation\\02-Python-Specific\\03-Advanced\\05-perf-q.py",
+        "size": 3946,
+        "lines": 112
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\01-two-pointers.py",
+        "size": 3778,
+        "lines": 107
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\02-sliding-win.py",
+        "size": 3719,
+        "lines": 102
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\03-fast-slow.py",
+        "size": 3723,
+        "lines": 119
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\04-merge-int.py",
+        "size": 3745,
+        "lines": 111
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\01-Basic-Patterns\\05-cyclic-sort.py",
+        "size": 3222,
+        "lines": 94
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\01-tree-trav-pat.py",
+        "size": 4411,
+        "lines": 143
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\02-graph-trav.py",
+        "size": 4180,
+        "lines": 134
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\03-bin-search-pat.py",
+        "size": 3535,
+        "lines": 114
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\04-bt-pat.py",
+        "size": 3542,
+        "lines": 124
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\02-Intermediate-Patterns\\05-dp-pat.py",
+        "size": 2974,
+        "lines": 89
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\01-adv-tree.py",
+        "size": 4251,
+        "lines": 126
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\02-adv-graph.py",
+        "size": 3712,
+        "lines": 101
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\03-opt-pat.py",
+        "size": 3338,
+        "lines": 98
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\04-math-pat.py",
+        "size": 3053,
+        "lines": 108
+    },
+    {
+        "path": "07-Interview-Preparation\\03-Coding-Patterns\\03-Advanced-Patterns\\05-sys-des-pat.py",
+        "size": 3465,
+        "lines": 100
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\01-google-py-q.py",
+        "size": 3175,
+        "lines": 90
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\02-amazon.py",
+        "size": 3622,
+        "lines": 129
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\03-ms.py",
+        "size": 3105,
+        "lines": 103
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\04-apple.py",
+        "size": 2342,
+        "lines": 74
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\01-FAANG\\05-fb.py",
+        "size": 2350,
+        "lines": 76
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\01-bloomberg.py",
+        "size": 4367,
+        "lines": 125
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\02-gs.py",
+        "size": 2976,
+        "lines": 92
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\03-nvidia.py",
+        "size": 4035,
+        "lines": 131
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\04-intel.py",
+        "size": 7943,
+        "lines": 214
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\02-Tech-Companies\\05-adobe.py",
+        "size": 3216,
+        "lines": 102
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\01-startup-q.py",
+        "size": 2985,
+        "lines": 87
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\02-sys-prog-q.py",
+        "size": 2605,
+        "lines": 78
+    },
+    {
+        "path": "07-Interview-Preparation\\04-Company-Specific\\03-Startups\\03-perf-q.py",
+        "size": 3777,
+        "lines": 114
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\01-array-easy.py",
+        "size": 3064,
+        "lines": 93
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\02-string-easy.py",
+        "size": 3371,
+        "lines": 114
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\03-ll-easy.py",
+        "size": 3779,
+        "lines": 128
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\04-tree-easy.py",
+        "size": 3345,
+        "lines": 109
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\01-Easy\\05-algo-easy.py",
+        "size": 3344,
+        "lines": 111
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\01-array-med.py",
+        "size": 6280,
+        "lines": 185
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\02-string-med.py",
+        "size": 6387,
+        "lines": 175
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\03-tree-med.py",
+        "size": 9740,
+        "lines": 246
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\04-graph-med.py",
+        "size": 9716,
+        "lines": 264
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\05-dp-med.py",
+        "size": 7603,
+        "lines": 196
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\02-Medium\\06-ds-med.py",
+        "size": 9249,
+        "lines": 223
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\01-algo-hard.py",
+        "size": 3053,
+        "lines": 106
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\02-ds-hard.py",
+        "size": 4249,
+        "lines": 150
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\03-opt-hard.py",
+        "size": 2886,
+        "lines": 85
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\04-sys-code.py",
+        "size": 2282,
+        "lines": 75
+    },
+    {
+        "path": "07-Interview-Preparation\\05-Problem-Sets\\03-Hard\\05-cp-hard.py",
+        "size": 2411,
+        "lines": 81
+    },
+    {
+        "path": "07-Interview-Preparation\\06-Mock-Interviews\\01-tech-mocks.py",
+        "size": 4386,
+        "lines": 134
+    },
+    {
+        "path": "07-Interview-Preparation\\06-Mock-Interviews\\02-sys-mocks.py",
+        "size": 3398,
+        "lines": 100
+    },
+    {
+        "path": "07-Interview-Preparation\\06-Mock-Interviews\\03-live-code.py",
+        "size": 2779,
+        "lines": 84
+    },
+    {
+        "path": "07-Interview-Preparation\\06-Mock-Interviews\\04-pair-prog.py",
+        "size": 2893,
+        "lines": 85
+    },
+    {
+        "path": "08-Performance-and-Optimization\\01-Basic\\01-profiling-basics.py",
+        "size": 2044,
+        "lines": 66
+    },
+    {
+        "path": "08-Performance-and-Optimization\\01-Theory\\01-Perf-Analysis.md",
+        "size": 5969,
+        "lines": 109
+    },
+    {
+        "path": "08-Performance-and-Optimization\\01-Theory\\02-Mem-Opt.md",
+        "size": 2110,
+        "lines": 20
+    },
+    {
+        "path": "08-Performance-and-Optimization\\01-Theory\\03-Cache-Opt.md",
+        "size": 2070,
+        "lines": 21
+    },
+    {
+        "path": "08-Performance-and-Optimization\\01-Theory\\04-Interp-Opt.md",
+        "size": 2142,
+        "lines": 21
+    },
+    {
+        "path": "08-Performance-and-Optimization\\01-Theory\\05-Profiling-Tech.md",
+        "size": 2113,
+        "lines": 20
+    },
+    {
+        "path": "08-Performance-and-Optimization\\02-Memory-Management\\01-slots-opt.py",
+        "size": 3754,
+        "lines": 116
+    },
+    {
+        "path": "08-Performance-and-Optimization\\02-Memory-Management\\02-gc-tuning.py",
+        "size": 3391,
+        "lines": 109
+    },
+    {
+        "path": "08-Performance-and-Optimization\\02-Memory-Management\\03-array-opt.py",
+        "size": 3680,
+        "lines": 102
+    },
+    {
+        "path": "08-Performance-and-Optimization\\02-Memory-Management\\04-obj-pools.py",
+        "size": 4170,
+        "lines": 133
+    },
+    {
+        "path": "08-Performance-and-Optimization\\02-Memory-Management\\05-mem-prof.py",
+        "size": 3450,
+        "lines": 117
+    },
+    {
+        "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\01-cache-opt.py",
+        "size": 4207,
+        "lines": 132
+    },
+    {
+        "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\02-vectorize.py",
+        "size": 4239,
+        "lines": 130
+    },
+    {
+        "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\03-loop-opt.py",
+        "size": 3996,
+        "lines": 114
+    },
+    {
+        "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\04-branch-avoid.py",
+        "size": 3955,
+        "lines": 112
+    },
+    {
+        "path": "08-Performance-and-Optimization\\03-Algorithm-Optimization\\05-numba-simd.py",
+        "size": 3926,
+        "lines": 122
+    },
+    {
+        "path": "08-Performance-and-Optimization\\04-Concurrency\\01-threading.py",
+        "size": 4173,
+        "lines": 132
+    },
+    {
+        "path": "08-Performance-and-Optimization\\04-Concurrency\\02-multiproc.py",
+        "size": 3855,
+        "lines": 107
+    },
+    {
+        "path": "08-Performance-and-Optimization\\04-Concurrency\\03-asyncio-opt.py",
+        "size": 3918,
+        "lines": 115
+    },
+    {
+        "path": "08-Performance-and-Optimization\\04-Concurrency\\04-par-algo.py",
+        "size": 4006,
+        "lines": 113
+    },
+    {
+        "path": "08-Performance-and-Optimization\\04-Concurrency\\05-thread-pools.py",
+        "size": 4267,
+        "lines": 109
+    },
+    {
+        "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\01-cprofile.py",
+        "size": 3502,
+        "lines": 120
+    },
+    {
+        "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\02-mem-prof.py",
+        "size": 3780,
+        "lines": 114
+    },
+    {
+        "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\03-line-prof.py",
+        "size": 3813,
+        "lines": 115
+    },
+    {
+        "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\04-pytest-bench.py",
+        "size": 4032,
+        "lines": 110
+    },
+    {
+        "path": "08-Performance-and-Optimization\\05-Profiling-Tools\\05-opt-verify.py",
+        "size": 4273,
+        "lines": 118
+    },
+    {
+        "path": "09-Real-World-Applications\\01-Web-Development\\01-flask-basics.py",
+        "size": 8051,
+        "lines": 203
+    },
+    {
+        "path": "09-Real-World-Applications\\01-Web-Development\\02-django-basics.py",
+        "size": 7921,
+        "lines": 190
+    },
+    {
+        "path": "09-Real-World-Applications\\01-Web-Development\\03-api-fastapi.py",
+        "size": 7185,
+        "lines": 174
+    },
+    {
+        "path": "09-Real-World-Applications\\01-Web-Development\\04-web-scraping.py",
+        "size": 8081,
+        "lines": 182
+    },
+    {
+        "path": "09-Real-World-Applications\\01-Web-Development\\05-perf-web.py",
+        "size": 5728,
+        "lines": 150
+    },
+    {
+        "path": "09-Real-World-Applications\\02-Data-Science-Apps\\01-ds-pipeline.py",
+        "size": 5591,
+        "lines": 142
+    },
+    {
+        "path": "09-Real-World-Applications\\02-Data-Science-Apps\\02-ml-app.py",
+        "size": 5555,
+        "lines": 140
+    },
+    {
+        "path": "09-Real-World-Applications\\02-Data-Science-Apps\\03-dash-app.py",
+        "size": 7962,
+        "lines": 198
+    },
+    {
+        "path": "09-Real-World-Applications\\02-Data-Science-Apps\\04-bigdata-app.py",
+        "size": 7729,
+        "lines": 181
+    },
+    {
+        "path": "09-Real-World-Applications\\02-Data-Science-Apps\\05-ds-opt.py",
+        "size": 7403,
+        "lines": 167
+    },
+    {
+        "path": "09-Real-World-Applications\\03-AI-ML-Apps\\01-cv-app.py",
+        "size": 11566,
+        "lines": 279
+    },
+    {
+        "path": "09-Real-World-Applications\\03-AI-ML-Apps\\02-nlp-app.py",
+        "size": 10846,
+        "lines": 256
+    },
+    {
+        "path": "09-Real-World-Applications\\03-AI-ML-Apps\\03-rl-app.py",
+        "size": 2174,
+        "lines": 69
+    },
+    {
+        "path": "09-Real-World-Applications\\03-AI-ML-Apps\\04-genai-app.py",
+        "size": 2185,
+        "lines": 64
+    },
+    {
+        "path": "09-Real-World-Applications\\03-AI-ML-Apps\\05-llm-rag-app.py",
+        "size": 2238,
+        "lines": 68
+    },
+    {
+        "path": "09-Real-World-Applications\\04-Automation-Scripts\\01-file-auto.py",
+        "size": 10893,
+        "lines": 237
+    },
+    {
+        "path": "09-Real-World-Applications\\04-Automation-Scripts\\02-email-auto.py",
+        "size": 7057,
+        "lines": 174
+    },
+    {
+        "path": "09-Real-World-Applications\\04-Automation-Scripts\\03-gui-auto.py",
+        "size": 6075,
+        "lines": 146
+    },
+    {
+        "path": "09-Real-World-Applications\\04-Automation-Scripts\\04-testing-auto.py",
+        "size": 6209,
+        "lines": 138
+    },
+    {
+        "path": "09-Real-World-Applications\\04-Automation-Scripts\\05-script-opt.py",
+        "size": 6929,
+        "lines": 174
+    },
+    {
+        "path": "09-Real-World-Applications\\05-Scientific-Computing\\01-num-algo.py",
+        "size": 6966,
+        "lines": 176
+    },
+    {
+        "path": "09-Real-World-Applications\\05-Scientific-Computing\\02-lin-alg.py",
+        "size": 6824,
+        "lines": 186
+    },
+    {
+        "path": "09-Real-World-Applications\\05-Scientific-Computing\\03-signal-proc.py",
+        "size": 10131,
+        "lines": 225
+    },
+    {
+        "path": "09-Real-World-Applications\\05-Scientific-Computing\\04-ml-sci.py",
+        "size": 8881,
+        "lines": 157
+    },
+    {
+        "path": "09-Real-World-Applications\\05-Scientific-Computing\\05-par-sci.py",
+        "size": 2913,
+        "lines": 94
+    },
+    {
+        "path": "10-Project-Based-Learning\\generate_content.py",
+        "size": 19533,
+        "lines": 105
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\01-calculator-advanced\\main.py",
+        "size": 8583,
+        "lines": 218
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\01-calculator-advanced\\README.md",
+        "size": 7265,
+        "lines": 114
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\02-file-manager\\main.py",
+        "size": 10422,
+        "lines": 284
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\02-file-manager\\README.md",
+        "size": 4424,
+        "lines": 54
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\03-sorting-visualizer\\main.py",
+        "size": 9451,
+        "lines": 270
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\03-sorting-visualizer\\README.md",
+        "size": 4121,
+        "lines": 57
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\04-ds-library\\main.py",
+        "size": 9579,
+        "lines": 288
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\04-ds-library\\README.md",
+        "size": 4053,
+        "lines": 66
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\05-basic-game\\main.py",
+        "size": 6938,
+        "lines": 197
+    },
+    {
+        "path": "10-Project-Based-Learning\\01-Basic-Projects\\05-basic-game\\README.md",
+        "size": 2885,
+        "lines": 48
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\01-compression-algo\\main.py",
+        "size": 5174,
+        "lines": 156
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\01-compression-algo\\README.md",
+        "size": 3613,
+        "lines": 34
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\02-simple-db\\main.py",
+        "size": 6796,
+        "lines": 197
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\02-simple-db\\README.md",
+        "size": 4059,
+        "lines": 41
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\03-web-server\\main.py",
+        "size": 6406,
+        "lines": 181
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\03-web-server\\README.md",
+        "size": 3608,
+        "lines": 70
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\04-compiler-lexer\\main.py",
+        "size": 5845,
+        "lines": 157
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\04-compiler-lexer\\README.md",
+        "size": 4639,
+        "lines": 83
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\05-data-viz-tool\\main.py",
+        "size": 6993,
+        "lines": 194
+    },
+    {
+        "path": "10-Project-Based-Learning\\02-Intermediate-Projects\\05-data-viz-tool\\README.md",
+        "size": 5317,
+        "lines": 79
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\01-rag-system\\main.py",
+        "size": 5852,
+        "lines": 160
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\01-rag-system\\README.md",
+        "size": 3038,
+        "lines": 44
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\02-ml-framework\\main.py",
+        "size": 9926,
+        "lines": 274
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\02-ml-framework\\README.md",
+        "size": 4752,
+        "lines": 72
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\03-genai-chatbot\\main.py",
+        "size": 8185,
+        "lines": 207
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\03-genai-chatbot\\README.md",
+        "size": 5724,
+        "lines": 77
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\04-high-perf-ds\\main.py",
+        "size": 7918,
+        "lines": 222
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\04-high-perf-ds\\README.md",
+        "size": 4657,
+        "lines": 46
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\05-trading-bot\\main.py",
+        "size": 6775,
+        "lines": 182
+    },
+    {
+        "path": "10-Project-Based-Learning\\03-Advanced-Projects\\05-trading-bot\\README.md",
+        "size": 4576,
+        "lines": 59
+    },
+    {
+        "path": "11-Testing-and-Debugging\\01-Basic\\01-unittest-basics.py",
+        "size": 4076,
+        "lines": 112
+    },
+    {
+        "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\01-unittest.py",
+        "size": 6504,
+        "lines": 171
+    },
+    {
+        "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\02-pytest.py",
+        "size": 4701,
+        "lines": 137
+    },
+    {
+        "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\03-hypothesis.py",
+        "size": 5050,
+        "lines": 137
+    },
+    {
+        "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\04-unit-best.py",
+        "size": 5112,
+        "lines": 138
+    },
+    {
+        "path": "11-Testing-and-Debugging\\01-Testing-Frameworks\\05-perf-test.py",
+        "size": 4562,
+        "lines": 139
+    },
+    {
+        "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\01-pdb-debug.py",
+        "size": 4478,
+        "lines": 131
+    },
+    {
+        "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\02-ipdb.py",
+        "size": 4012,
+        "lines": 112
+    },
+    {
+        "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\03-mem-debug.py",
+        "size": 4131,
+        "lines": 126
+    },
+    {
+        "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\04-perf-debug.py",
+        "size": 4625,
+        "lines": 137
+    },
+    {
+        "path": "11-Testing-and-Debugging\\02-Debugging-Techniques\\05-strategies.py",
+        "size": 5685,
+        "lines": 162
+    },
+    {
+        "path": "11-Testing-and-Debugging\\03-Code-Quality\\01-pylint.py",
+        "size": 4682,
+        "lines": 148
+    },
+    {
+        "path": "11-Testing-and-Debugging\\03-Code-Quality\\02-review-check.py",
+        "size": 5242,
+        "lines": 143
+    },
+    {
+        "path": "11-Testing-and-Debugging\\03-Code-Quality\\03-refactor.py",
+        "size": 5856,
+        "lines": 171
+    },
+    {
+        "path": "11-Testing-and-Debugging\\03-Code-Quality\\04-standards.py",
+        "size": 4399,
+        "lines": 137
+    },
+    {
+        "path": "11-Testing-and-Debugging\\03-Code-Quality\\05-doc.py",
+        "size": 4594,
+        "lines": 145
+    },
+    {
+        "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\01-perf-prof.py",
+        "size": 4438,
+        "lines": 130
+    },
+    {
+        "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\02-mem-prof.py",
+        "size": 4422,
+        "lines": 134
+    },
+    {
+        "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\03-cache-prof.py",
+        "size": 4419,
+        "lines": 130
+    },
+    {
+        "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\04-bench.py",
+        "size": 4642,
+        "lines": 123
+    },
+    {
+        "path": "11-Testing-and-Debugging\\04-Profiling-Opt\\05-opt-ver.py",
+        "size": 4568,
+        "lines": 121
+    },
+    {
+        "path": "12-Resources-References\\01-Documentation\\01-Py-Ref.md",
+        "size": 5446,
+        "lines": 112
+    },
+    {
+        "path": "12-Resources-References\\01-Documentation\\02-Lib-Cheat.md",
+        "size": 6197,
+        "lines": 142
+    },
+    {
+        "path": "12-Resources-References\\01-Documentation\\03-DSA-Comp.md",
+        "size": 6050,
+        "lines": 100
+    },
+    {
+        "path": "12-Resources-References\\01-Documentation\\04-CP-Ref.md",
+        "size": 5190,
+        "lines": 159
+    },
+    {
+        "path": "12-Resources-References\\01-Documentation\\05-Int-Check.md",
+        "size": 8408,
+        "lines": 145
+    },
+    {
+        "path": "12-Resources-References\\02-External-Resources\\01-books.md",
+        "size": 7157,
+        "lines": 106
+    },
+    {
+        "path": "12-Resources-References\\02-External-Resources\\02-oj.md",
+        "size": 6783,
+        "lines": 123
+    },
+    {
+        "path": "12-Resources-References\\02-External-Resources\\03-cp-sites.md",
+        "size": 6229,
+        "lines": 115
+    },
+    {
+        "path": "12-Resources-References\\02-External-Resources\\04-py-comm.md",
+        "size": 4923,
+        "lines": 92
+    },
+    {
+        "path": "12-Resources-References\\02-External-Resources\\05-learn-res.md",
+        "size": 5415,
+        "lines": 74
+    },
+    {
+        "path": "12-Resources-References\\03-Tools-Env\\01-py-setup.md",
+        "size": 6330,
+        "lines": 169
+    },
+    {
+        "path": "12-Resources-References\\03-Tools-Env\\02-ide-config.md",
+        "size": 5943,
+        "lines": 162
+    },
+    {
+        "path": "12-Resources-References\\03-Tools-Env\\03-debug-tools.md",
+        "size": 6436,
+        "lines": 168
+    },
+    {
+        "path": "12-Resources-References\\03-Tools-Env\\04-prof-tools.md",
+        "size": 6277,
+        "lines": 189
+    },
+    {
+        "path": "12-Resources-References\\03-Tools-Env\\05-venv-pip.md",
+        "size": 6390,
+        "lines": 112
+    },
+    {
+        "path": "12-Resources-References\\04-Progress-Tracking\\01-py-roadmap.md",
+        "size": 4723,
+        "lines": 84
+    },
+    {
+        "path": "12-Resources-References\\04-Progress-Tracking\\02-dsa-assess.md",
+        "size": 5349,
+        "lines": 79
+    },
+    {
+        "path": "12-Resources-References\\04-Progress-Tracking\\03-cp-progress.md",
+        "size": 4680,
+        "lines": 56
+    },
+    {
+        "path": "12-Resources-References\\04-Progress-Tracking\\04-int-timeline.md",
+        "size": 4944,
+        "lines": 64
+    },
+    {
+        "path": "12-Resources-References\\04-Progress-Tracking\\05-proj-miles.md",
+        "size": 6083,
+        "lines": 98
+    },
+    {
+        "path": "13-SQL-and-Databases\\01-relational-databases-basics.md",
+        "size": 5529,
+        "lines": 112
+    },
+    {
+        "path": "13-SQL-and-Databases\\02-basic-sql.py",
+        "size": 10147,
+        "lines": 291
+    },
+    {
+        "path": "13-SQL-and-Databases\\03-advanced-sql.py",
+        "size": 3579,
+        "lines": 100
+    },
+    {
+        "path": "13-SQL-and-Databases\\04-query-optimization.md",
+        "size": 4641,
+        "lines": 83
+    },
+    {
+        "path": "13-SQL-and-Databases\\05-python-sql-integration.py",
+        "size": 4437,
+        "lines": 104
+    },
+    {
+        "path": "14-Data-Analytics\\01_pandas_fundamentals.py",
+        "size": 5462,
+        "lines": 131
+    },
+    {
+        "path": "14-Data-Analytics\\02_data_cleaning_eda.py",
+        "size": 4568,
+        "lines": 108
+    },
+    {
+        "path": "14-Data-Analytics\\03_data_visualization.py",
+        "size": 5212,
+        "lines": 132
+    },
+    {
+        "path": "14-Data-Analytics\\04_analytics_bi_concepts.md",
+        "size": 6116,
+        "lines": 109
+    },
+    {
+        "path": "14-Data-Analytics\\05_ab_testing_fundamentals.py",
+        "size": 5298,
+        "lines": 119
+    },
+    {
+        "path": "14-Data-Analytics\\README.md",
+        "size": 5577,
+        "lines": 80
+    },
+    {
+        "path": "15-Machine-Learning\\01_math_for_ml.py",
+        "size": 6378,
+        "lines": 161
+    },
+    {
+        "path": "15-Machine-Learning\\02_classical_ml.py",
+        "size": 4646,
+        "lines": 148
+    },
+    {
+        "path": "15-Machine-Learning\\03_advanced_ml.py",
+        "size": 8250,
+        "lines": 216
+    },
+    {
+        "path": "15-Machine-Learning\\04_unsupervised_learning.py",
+        "size": 2230,
+        "lines": 67
+    },
+    {
+        "path": "15-Machine-Learning\\05_ml_pipelines_and_evaluation.py",
+        "size": 3295,
+        "lines": 96
+    },
+    {
+        "path": "16-Deep-Learning-and-CV-NLP\\01_deep_learning_foundations.py",
+        "size": 5743,
+        "lines": 168
+    },
+    {
+        "path": "16-Deep-Learning-and-CV-NLP\\02_pytorch_basics.py",
+        "size": 4565,
+        "lines": 144
+    },
+    {
+        "path": "16-Deep-Learning-and-CV-NLP\\03_computer_vision.py",
+        "size": 4022,
+        "lines": 124
+    },
+    {
+        "path": "16-Deep-Learning-and-CV-NLP\\04_nlp.py",
+        "size": 5067,
+        "lines": 141
+    },
+    {
+        "path": "16-Deep-Learning-and-CV-NLP\\README.md",
+        "size": 6378,
+        "lines": 84
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\01_transformers.md",
+        "size": 2000,
+        "lines": 30
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\01_transformers.py",
+        "size": 6518,
+        "lines": 140
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\02_llm_concepts.md",
+        "size": 8734,
+        "lines": 148
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\02_llm_concepts.py",
+        "size": 4553,
+        "lines": 122
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\03_prompt_engineering.md",
+        "size": 7576,
+        "lines": 153
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\03_prompt_engineering.py",
+        "size": 2962,
+        "lines": 82
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\04_embeddings.md",
+        "size": 2257,
+        "lines": 28
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\04_embeddings.py",
+        "size": 3236,
+        "lines": 90
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\05_rag.md",
+        "size": 2573,
+        "lines": 38
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\05_rag.py",
+        "size": 4724,
+        "lines": 114
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\06_finetuning.md",
+        "size": 2209,
+        "lines": 28
+    },
+    {
+        "path": "17-Generative-AI-and-LLMs\\06_finetuning.py",
+        "size": 3774,
+        "lines": 91
+    },
+    {
+        "path": "18-Agentic-AI\\01_agents_vs_workflows.md",
+        "size": 7403,
+        "lines": 132
+    },
+    {
+        "path": "18-Agentic-AI\\01_workflow_example.py",
+        "size": 8811,
+        "lines": 233
+    },
+    {
+        "path": "18-Agentic-AI\\02_tool_calling.py",
+        "size": 3571,
+        "lines": 78
+    },
+    {
+        "path": "18-Agentic-AI\\02_tool_calling_mechanics.md",
+        "size": 8603,
+        "lines": 143
+    },
+    {
+        "path": "18-Agentic-AI\\03_agent_memory_react.py",
+        "size": 4683,
+        "lines": 142
+    },
+    {
+        "path": "18-Agentic-AI\\03_memory_and_planning.md",
+        "size": 8420,
+        "lines": 104
+    },
+    {
+        "path": "18-Agentic-AI\\04_multi_agent_systems.md",
+        "size": 5807,
+        "lines": 104
+    },
+    {
+        "path": "18-Agentic-AI\\04_supervisor_architecture.py",
+        "size": 2132,
+        "lines": 54
+    },
+    {
+        "path": "18-Agentic-AI\\05_autonomous_agent.py",
+        "size": 4757,
+        "lines": 111
+    },
+    {
+        "path": "18-Agentic-AI\\05_building_autonomous_agent.md",
+        "size": 6178,
+        "lines": 102
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\01_mlflow_example.py",
+        "size": 2751,
+        "lines": 78
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\01_mlops_foundations_mlflow.md",
+        "size": 6515,
+        "lines": 107
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\02_fastapi_serving.py",
+        "size": 2893,
+        "lines": 97
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\02_model_serving_fastapi.md",
+        "size": 10720,
+        "lines": 164
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\03_containerization_docker.md",
+        "size": 2079,
+        "lines": 38
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\04_llmops_genaiops.md",
+        "size": 10571,
+        "lines": 147
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\04_llm_eval.py",
+        "size": 4091,
+        "lines": 116
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\05_ci_cd_for_ml.md",
+        "size": 2077,
+        "lines": 32
+    },
+    {
+        "path": "19-MLOps-and-Deployment\\01-Basic\\01-fastapi-deployment.py",
+        "size": 1912,
+        "lines": 62
+    }
+]

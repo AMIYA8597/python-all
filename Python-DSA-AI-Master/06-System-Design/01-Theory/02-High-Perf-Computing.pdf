@@ -1,0 +1,18 @@
+%PDF-1.4
+# High-Performance Computing (HPC)
+
+## 1. Principles of HPC
+- Parallelism: Breaking down tasks into smaller sub-tasks.
+- Concurrency: Handling multiple tasks at once.
+- Throughput vs Latency.
+
+## 2. HPC in Python
+- CPython GIL (Global Interpreter Lock) restricts multi-threading for CPU-bound tasks.
+- Multiprocessing module bypasses the GIL by using separate processes.
+- C Extensions: Cython, PyBind11, ctypes to speed up execution.
+- JIT Compilers: Numba, PyPy.
+- NumPy and SciPy: Vectorized operations implemented in C/Fortran.
+
+## 3. Architectures
+- Cluster Computing: MPI (Message Passing Interface) with mpi4py.
+- GPU Computing: CUDA with PyCUDA, CuPy.

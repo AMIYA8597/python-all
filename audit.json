@@ -1,0 +1,2898 @@
+[
+  {
+    "path": "/builder.py",
+    "size": 2757
+  },
+  {
+    "path": "/COMPLETION-STATUS.md",
+    "size": 12676
+  },
+  {
+    "path": "/COMPREHENSIVE_REPOSITORY_ANALYSIS.md",
+    "size": 18732
+  },
+  {
+    "path": "/get_next_batch.py",
+    "size": 518
+  },
+  {
+    "path": "/init_state.py",
+    "size": 1445
+  },
+  {
+    "path": "/init_state2.py",
+    "size": 2047
+  },
+  {
+    "path": "/init_state3.py",
+    "size": 1626
+  },
+  {
+    "path": "/orchestrator.py",
+    "size": 2041
+  },
+  {
+    "path": "/PROGRESS-SUMMARY.md",
+    "size": 11509
+  },
+  {
+    "path": "/progress.py",
+    "size": 354
+  },
+  {
+    "path": "/README.md",
+    "size": 14790
+  },
+  {
+    "path": "/script.py",
+    "size": 557
+  },
+  {
+    "path": "/test_manifest.py",
+    "size": 523
+  },
+  {
+    "path": "/01-Python-Fundamentals/01-Theory/01-Python-Fundamentals-Complete.pdf",
+    "size": 4142
+  },
+  {
+    "path": "/01-Python-Fundamentals/01-Theory/02-Memory-Model-Guide.pdf",
+    "size": 8584
+  },
+  {
+    "path": "/01-Python-Fundamentals/02-Basic/01-variables-and-datatypes.py",
+    "size": 24522
+  },
+  {
+    "path": "/01-Python-Fundamentals/02-Basic/02-operators-and-expressions.py",
+    "size": 34807
+  },
+  {
+    "path": "/01-Python-Fundamentals/02-Basic/03-control-structures.py",
+    "size": 41577
+  },
+  {
+    "path": "/02-Data-Structures/01-Theory/01-DS-Fundamentals-Python.pdf",
+    "size": 10178
+  },
+  {
+    "path": "/02-Data-Structures/02-Linear-Structures/01-Basic/01-lists-implementation.py",
+    "size": 35811
+  },
+  {
+    "path": "/02-Data-Structures/02-Linear-Structures/01-Basic/02-stacks.py",
+    "size": 26518
+  },
+  {
+    "path": "/02-Data-Structures/02-Linear-Structures/01-Basic/03-queues.py",
+    "size": 18406
+  },
+  {
+    "path": "/02-Data-Structures/02-Linear-Structures/01-Basic/04-linked-lists.py",
+    "size": 30116
+  },
+  {
+    "path": "/02-Data-Structures/03-Trees/01-Basic/01-binary-search-trees.py",
+    "size": 35169
+  },
+  {
+    "path": "/02-Data-Structures/03-Trees/02-Intermediate/01-avl-trees.py",
+    "size": 31337
+  },
+  {
+    "path": "/02-Data-Structures/03-Trees/03-Advanced/01-heaps-priority-queues.py",
+    "size": 37615
+  },
+  {
+    "path": "/02-Data-Structures/04-Graphs/01-Basic/01-graph-representations.py",
+    "size": 41036
+  },
+  {
+    "path": "/02-Data-Structures/05-Hash-Structures/01-Basic/01-hash-tables.py",
+    "size": 39449
+  },
+  {
+    "path": "/02-Python-Basics/04-Advanced-Python-Concepts/01-advanced-python-fundamentals.py",
+    "size": 40247
+  },
+  {
+    "path": "/03-Algorithms/01-Searching-Algorithms/01-Basic/01-linear-and-binary-search.py",
+    "size": 28969
+  },
+  {
+    "path": "/03-Algorithms/02-Sorting-Algorithms/01-Basic/01-sorting-fundamentals.py",
+    "size": 35454
+  },
+  {
+    "path": "/03-Algorithms/03-Dynamic-Programming/01-Basic/01-dynamic-programming-fundamentals.py",
+    "size": 28733
+  },
+  {
+    "path": "/04-Python-Libraries/01-Standard-Library/01-core-modules.py",
+    "size": 44100
+  },
+  {
+    "path": "/04-Python-Libraries/01-Standard-Library/README.md",
+    "size": 12012
+  },
+  {
+    "path": "/04-Python-Libraries/01-Standard-Library/test_core_modules.py",
+    "size": 23572
+  },
+  {
+    "path": "/04-Python-Libraries/02-Data-Science/01-data-science-fundamentals.py",
+    "size": 41163
+  },
+  {
+    "path": "/04-Python-Libraries/03-Machine-Learning/01-ml-fundamentals.py",
+    "size": 45502
+  },
+  {
+    "path": "/04-Python-Libraries/04-Advanced-AI-ML/00-AI-ML-libraries-reference.py",
+    "size": 40399
+  },
+  {
+    "path": "/04-Python-Libraries/04-Advanced-AI-ML/01-scikit-learn-comprehensive.py",
+    "size": 31012
+  },
+  {
+    "path": "/04-Python-Libraries/04-Advanced-AI-ML/02-tensorflow-keras-comprehensive.py",
+    "size": 41149
+  },
+  {
+    "path": "/04-Python-Libraries/04-Advanced-AI-ML/03-pytorch-comprehensive.py",
+    "size": 43531
+  },
+  {
+    "path": "/05-Competitive-Programming/01-Common-Patterns/01-two-pointers-technique.py",
+    "size": 27599
+  },
+  {
+    "path": "/06-System-Design/01-Fundamentals/01-system-design-principles.py",
+    "size": 29312
+  },
+  {
+    "path": "/07-Interview-Preparation/01-Coding-Interviews/01-arrays-and-strings.py",
+    "size": 27510
+  },
+  {
+    "path": "/08-Performance-and-Optimization/01-Profiling-and-Analysis/01-python-performance-profiling.py",
+    "size": 26167
+  },
+  {
+    "path": "/09-Real-World-Applications/01-Web-Development/01-web-apps-with-dsa.py",
+    "size": 31541
+  },
+  {
+    "path": "/09-Real-World-Applications/02-Data-Science-Apps/01-data-analysis-with-dsa.py",
+    "size": 33408
+  },
+  {
+    "path": "/09-Real-World-Applications/03-Distributed-Systems/01-distributed-computing-with-dsa.py",
+    "size": 37280
+  },
+  {
+    "path": "/10-Project-Based-Learning/01-Basic-Projects/01-dsa-projects-collection.py",
+    "size": 48011
+  },
+  {
+    "path": "/10-Project-Based-Learning/02-Intermediate-Projects/01-advanced-projects-collection.py",
+    "size": 29381
+  },
+  {
+    "path": "/10-Project-Based-Learning/03-Advanced-Projects/01-ai-ml-data-science-projects.py",
+    "size": 56871
+  },
+  {
+    "path": "/10-Project-Based-Learning/03-Advanced-Projects/02-advanced-ai-applications.py",
+    "size": 55128
+  },
+  {
+    "path": "/10-Project-Based-Learning/03-Advanced-Projects/README.md",
+    "size": 15751
+  },
+  {
+    "path": "/11-Testing-and-Debugging/01-Testing-Strategies/01-comprehensive-testing-framework.py",
+    "size": 31735
+  },
+  {
+    "path": "/12-Resources-and-References/DETAILED-GAP-ANALYSIS.md",
+    "size": 7659
+  },
+  {
+    "path": "/12-Resources-and-References/IMPLEMENTATION-STATUS-REPORT.md",
+    "size": 9043
+  },
+  {
+    "path": "/12-Resources-and-References/README.md",
+    "size": 12075
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/01-comprehensive-study-guide.py",
+    "size": 36658
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/complete-python-libraries-guide.py",
+    "size": 45389
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/interactive_math_tutorial.py",
+    "size": 34328
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/mathematics_for_ml_ai_datascience.py",
+    "size": 69910
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/Mathematics_Reference_Guide.md",
+    "size": 42188
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/PROJECT_COMPLETION_SUMMARY.md",
+    "size": 11557
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/python-libraries-pdf-generator.py",
+    "size": 48705
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/run_math_demo.py",
+    "size": 13124
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/complete-python-libraries-guide/README.md",
+    "size": 9950
+  },
+  {
+    "path": "/12-Resources-and-References/01-Learning-Resources/python-libraries-documentation/python-libraries-guide.md",
+    "size": 28115
+  },
+  {
+    "path": "/12-Resources-and-References/02-Practice-Problems/01-coding-challenges-catalog.py",
+    "size": 45868
+  },
+  {
+    "path": "/12-Resources-and-References/03-Books-and-Publications/01-essential-books-guide.py",
+    "size": 36213
+  },
+  {
+    "path": "/12-Resources-and-References/04-Online-Courses/01-courses-and-tutorials-guide.py",
+    "size": 46065
+  },
+  {
+    "path": "/12-Resources-and-References/05-Community-and-Tools/01-communities-and-tools-guide.py",
+    "size": 48985
+  },
+  {
+    "path": "/leetcode/3871.py",
+    "size": 5000
+  },
+  {
+    "path": "/Python-DSA-AI-Master/AUDIT-REPORT.md",
+    "size": 2737
+  },
+  {
+    "path": "/Python-DSA-AI-Master/audit.py",
+    "size": 753
+  },
+  {
+    "path": "/Python-DSA-AI-Master/JOB-READINESS-MATRIX.md",
+    "size": 3804
+  },
+  {
+    "path": "/Python-DSA-AI-Master/KNOWLEDGE-MAP.md",
+    "size": 5618
+  },
+  {
+    "path": "/Python-DSA-AI-Master/LEARNING-SYSTEM.md",
+    "size": 2284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/MASTER-CAPABILITY-TEST.md",
+    "size": 4033
+  },
+  {
+    "path": "/Python-DSA-AI-Master/MASTER-ROADMAP.md",
+    "size": 4569
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/01-Theory/01-Python-Fundamentals-Complete.md",
+    "size": 11176
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/01-Theory/02-Memory-Model-Guide.md",
+    "size": 9808
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/01-Theory/03-OOP-Concepts-Advanced.md",
+    "size": 14584
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/01-Theory/04-Standard-Library-Reference.md",
+    "size": 14388
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/01-Theory/05-Modern-Python-Features.md",
+    "size": 13520
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/01-Theory/06-Performance-Optimization.md",
+    "size": 11322
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/02-Basic/01-variables-and-datatypes.py",
+    "size": 8466
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/02-Basic/02-operators-and-expressions.py",
+    "size": 7148
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/02-Basic/03-control-structures.py",
+    "size": 8206
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/02-Basic/04-functions-basics.py",
+    "size": 9705
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/02-Basic/05-lists-tuples-sets-dicts.py",
+    "size": 11734
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/02-Basic/06-strings-manipulation.py",
+    "size": 9532
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/02-Basic/07-oop-basics.py",
+    "size": 14185
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/02-Basic/08-file-handling-basics.py",
+    "size": 14991
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/03-Intermediate/01-classes-objects-advanced.py",
+    "size": 14236
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/03-Intermediate/02-decorators-generators.py",
+    "size": 19227
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/03-Intermediate/03-modules-packages.py",
+    "size": 11590
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/03-Intermediate/04-exception-handling.py",
+    "size": 5324
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/03-Intermediate/05-collections-module.py",
+    "size": 4277
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/03-Intermediate/06-itertools-functools.py",
+    "size": 4652
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/03-Intermediate/07-threading-multiprocessing.py",
+    "size": 5758
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/03-Intermediate/08-asyncio-basics.py",
+    "size": 4412
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/01-metaclasses-descriptors.py",
+    "size": 6178
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/02-context-managers.py",
+    "size": 5586
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/03-type-hinting-advanced.py",
+    "size": 5404
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/04-pattern-matching.py",
+    "size": 5692
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/05-cython-extensions.py",
+    "size": 5600
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/06-profiling-debugging.py",
+    "size": 4902
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/07-design-patterns.py",
+    "size": 5845
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/08-performance-advanced.py",
+    "size": 4754
+  },
+  {
+    "path": "/Python-DSA-AI-Master/01-Python-Fundamentals/04-Advanced/09-concurrency-advanced.py",
+    "size": 5391
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/01-Theory/01-DS-Fundamentals-Python.md",
+    "size": 6134
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/01-Theory/02-Memory-Layout-Analysis.md",
+    "size": 5777
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/01-Theory/03-Performance-Comparison.md",
+    "size": 5977
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/01-Theory/04-Implementation-Strategies.md",
+    "size": 7783
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/01-Basic/01-lists-implementation.py",
+    "size": 3704
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/01-Basic/02-stacks.py",
+    "size": 4208
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/01-Basic/03-queues.py",
+    "size": 3507
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/01-Basic/04-linked-lists.py",
+    "size": 3890
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/01-Basic/05-arrays.py",
+    "size": 3047
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/02-Intermediate/01-doubly-linked-lists.py",
+    "size": 5335
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/02-Intermediate/02-circular-queues.py",
+    "size": 4122
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/02-Intermediate/03-priority-queues.py",
+    "size": 3380
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/02-Intermediate/04-deques.py",
+    "size": 3129
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/02-Intermediate/05-stack-applications.py",
+    "size": 3437
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/03-Advanced/01-concurrent-queues.py",
+    "size": 3080
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/03-Advanced/02-persistent-lists.py",
+    "size": 3858
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/03-Advanced/03-cache-optimized-structures.py",
+    "size": 3732
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/02-Linear-Structures/03-Advanced/04-lock-free-structures.py",
+    "size": 4227
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/01-Basic/01-binary-trees.py",
+    "size": 4163
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/01-Basic/02-binary-search-trees.py",
+    "size": 3550
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/01-Basic/03-tree-traversals.py",
+    "size": 4118
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/01-Basic/04-tree-operations.py",
+    "size": 3454
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/01-Basic/05-heaps.py",
+    "size": 3868
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/02-Intermediate/01-avl-trees.py",
+    "size": 4457
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/02-Intermediate/02-red-black-trees.py",
+    "size": 4879
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/02-Intermediate/03-tries.py",
+    "size": 3550
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/02-Intermediate/04-segment-trees.py",
+    "size": 3410
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/02-Intermediate/05-fenwick-trees.py",
+    "size": 2939
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/03-Advanced/01-b-trees.py",
+    "size": 5591
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/03-Advanced/02-suffix-trees.py",
+    "size": 4041
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/03-Advanced/03-persistent-trees.py",
+    "size": 5392
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/03-Advanced/04-splay-trees.py",
+    "size": 5749
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/03-Advanced/05-treaps.py",
+    "size": 5240
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/03-Advanced/06-heavy-light-decomposition.py",
+    "size": 5916
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/03-Trees/03-Advanced/07-link-cut-trees.py",
+    "size": 5405
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/01-Basic/01-graph-representation.py",
+    "size": 4455
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/01-Basic/02-adjacency-matrix.py",
+    "size": 4448
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/01-Basic/03-dfs-bfs.py",
+    "size": 4612
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/01-Basic/04-cycle-detection.py",
+    "size": 4947
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/01-Basic/05-topological-sort.py",
+    "size": 4932
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/02-Intermediate/01-weighted-graphs.py",
+    "size": 4933
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/02-Intermediate/02-shortest-paths.py",
+    "size": 6186
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/02-Intermediate/03-mst.py",
+    "size": 4709
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/02-Intermediate/04-connected-components.py",
+    "size": 5006
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/02-Intermediate/05-bellman-ford.py",
+    "size": 5761
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/03-Advanced/01-floyd-warshall.py",
+    "size": 3770
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/03-Advanced/02-max-flow.py",
+    "size": 3919
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/03-Advanced/03-scc.py",
+    "size": 4797
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/03-Advanced/04-articulation-points.py",
+    "size": 4444
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/03-Advanced/05-bipartite-matching.py",
+    "size": 3547
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/03-Advanced/06-euler-path.py",
+    "size": 3933
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/04-Graphs/03-Advanced/07-advanced-graphs.py",
+    "size": 3986
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/01-Basic/01-dictionaries.py",
+    "size": 2143
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/01-Basic/02-sets.py",
+    "size": 6340
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/01-Basic/03-hash-functions.py",
+    "size": 8711
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/01-Basic/04-collision-handling.py",
+    "size": 2277
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/02-Intermediate/01-custom-hash-tables.py",
+    "size": 2530
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/02-Intermediate/02-bloom-filters.py",
+    "size": 2585
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/02-Intermediate/03-cuckoo-hashing.py",
+    "size": 2723
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/02-Intermediate/04-consistent-hashing.py",
+    "size": 2464
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/03-Advanced/01-concurrent-dicts.py",
+    "size": 2075
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/03-Advanced/02-perfect-hashing.py",
+    "size": 2769
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/03-Advanced/03-distributed-hashing.py",
+    "size": 2432
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/05-Hash-Structures/03-Advanced/04-lock-free-hashing.py",
+    "size": 2847
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/06-Specialized-Structures/01-disjoint-set-union.py",
+    "size": 2558
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/06-Specialized-Structures/02-sparse-tables.py",
+    "size": 2208
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/06-Specialized-Structures/03-sqrt-decomposition.py",
+    "size": 2956
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/06-Specialized-Structures/04-mos-algorithm.py",
+    "size": 2975
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/06-Specialized-Structures/05-persistent-structures.py",
+    "size": 2385
+  },
+  {
+    "path": "/Python-DSA-AI-Master/02-Data-Structures/06-Specialized-Structures/06-specialized-trees.py",
+    "size": 3240
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/01-Theory/01-Algorithm-Analysis-Python.md",
+    "size": 7047
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/01-Theory/02-Complexity-Theory.md",
+    "size": 7505
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/01-Theory/03-Design-Paradigms.md",
+    "size": 8307
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/01-Theory/04-Optimization-Techniques.md",
+    "size": 6890
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/01-Theory/05-Mathematical-Foundations.md",
+    "size": 5453
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/01-Basic/01-linear-search.py",
+    "size": 5175
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/01-Basic/02-binary-search.py",
+    "size": 2879
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/01-Basic/03-jump-search.py",
+    "size": 5673
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/01-Basic/04-ternary-search.py",
+    "size": 2201
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/02-Intermediate/01-exponential-search.py",
+    "size": 2349
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/02-Intermediate/02-interpolation-search.py",
+    "size": 2421
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/02-Intermediate/03-fibonacci-search.py",
+    "size": 2393
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/02-Intermediate/04-hash-search.py",
+    "size": 2577
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/03-Advanced/01-van-emde-boas.py",
+    "size": 3310
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/03-Advanced/02-fractional-cascading.py",
+    "size": 3275
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/03-Advanced/03-y-fast-trie.py",
+    "size": 7834
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/02-Searching/03-Advanced/04-advanced-search.py",
+    "size": 6546
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/01-Basic/01-bubble-sort.py",
+    "size": 2138
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/01-Basic/02-selection-sort.py",
+    "size": 5992
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/01-Basic/03-insertion-sort.py",
+    "size": 5586
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/01-Basic/04-merge-sort.py",
+    "size": 6115
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/01-Basic/05-quick-sort.py",
+    "size": 2460
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/02-Intermediate/01-heap-sort.py",
+    "size": 2077
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/02-Intermediate/02-counting-sort.py",
+    "size": 7484
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/02-Intermediate/03-radix-sort.py",
+    "size": 2464
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/02-Intermediate/04-bucket-sort.py",
+    "size": 2103
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/02-Intermediate/05-shell-sort.py",
+    "size": 6058
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/03-Advanced/01-tim-sort.py",
+    "size": 3519
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/03-Advanced/02-external-sort.py",
+    "size": 4221
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/03-Advanced/03-parallel-sort.py",
+    "size": 3416
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/03-Advanced/04-intro-sort.py",
+    "size": 6119
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/03-Advanced/05-cache-oblivious-sort.py",
+    "size": 4860
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/03-Sorting/03-Advanced/06-sorting-networks.py",
+    "size": 5447
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/01-Basic/01-factorial-recursion.py",
+    "size": 3600
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/01-Basic/02-fibonacci-recursion.py",
+    "size": 3699
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/01-Basic/03-tower-of-hanoi.py",
+    "size": 3716
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/01-Basic/04-backtracking-basics.py",
+    "size": 3671
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/02-Intermediate/01-n-queens.py",
+    "size": 3443
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/02-Intermediate/02-sudoku-solver.py",
+    "size": 2549
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/02-Intermediate/03-permutations.py",
+    "size": 6972
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/02-Intermediate/04-subsets.py",
+    "size": 4453
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/03-Advanced/01-graph-coloring.py",
+    "size": 2330
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/03-Advanced/02-knight-tour.py",
+    "size": 2074
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/03-Advanced/03-hamiltonian-path.py",
+    "size": 2255
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/04-Recursion-Backtracking/03-Advanced/04-advanced-backtracking.py",
+    "size": 2469
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/01-Basic/01-fibonacci-dp.py",
+    "size": 2231
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/01-Basic/02-coin-change.py",
+    "size": 2172
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/01-Basic/03-lcs.py",
+    "size": 2228
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/01-Basic/04-0-1-knapsack.py",
+    "size": 2186
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/01-Basic/05-edit-distance.py",
+    "size": 2819
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/02-Intermediate/01-lis.py",
+    "size": 4566
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/02-Intermediate/02-matrix-chain.py",
+    "size": 2040
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/02-Intermediate/03-subset-sum.py",
+    "size": 4461
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/02-Intermediate/04-rod-cutting.py",
+    "size": 5182
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/02-Intermediate/05-min-path-sum.py",
+    "size": 2091
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/03-Advanced/01-tree-dp.py",
+    "size": 6064
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/03-Advanced/02-digit-dp.py",
+    "size": 2444
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/03-Advanced/03-bitmask-dp.py",
+    "size": 4664
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/03-Advanced/04-prob-dp.py",
+    "size": 2705
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/03-Advanced/05-convex-hull-opt.py",
+    "size": 2650
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/03-Advanced/06-div-conq-opt.py",
+    "size": 2083
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/05-Dynamic-Programming/03-Advanced/07-knuth-opt.py",
+    "size": 3935
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/01-Basic/01-activity-selection.py",
+    "size": 3959
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/01-Basic/02-fractional-knapsack.py",
+    "size": 4254
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/01-Basic/03-job-scheduling.py",
+    "size": 4484
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/01-Basic/04-min-coins.py",
+    "size": 2878
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/02-Intermediate/01-huffman-coding.py",
+    "size": 5092
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/02-Intermediate/02-dijkstra.py",
+    "size": 4290
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/02-Intermediate/03-interval-sched.py",
+    "size": 3527
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/02-Intermediate/04-mst-kruskal.py",
+    "size": 3580
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/03-Advanced/01-approx-algo.py",
+    "size": 3749
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/03-Advanced/02-matroids.py",
+    "size": 3585
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/03-Advanced/03-online-algo.py",
+    "size": 3478
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/06-Greedy/03-Advanced/04-cp-greedy.py",
+    "size": 3383
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/01-Basic/01-binary-search-rec.py",
+    "size": 2408
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/01-Basic/02-merge-sort-dc.py",
+    "size": 2387
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/01-Basic/03-quick-sort-dc.py",
+    "size": 2159
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/01-Basic/04-max-subarray.py",
+    "size": 2140
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/02-Intermediate/01-closest-pair.py",
+    "size": 3282
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/02-Intermediate/02-strassen-matrix.py",
+    "size": 2521
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/02-Intermediate/03-inversion-count.py",
+    "size": 2722
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/02-Intermediate/04-convex-hull-dc.py",
+    "size": 2755
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/03-Advanced/01-fft.py",
+    "size": 2282
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/03-Advanced/02-karatsuba.py",
+    "size": 2500
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/03-Advanced/03-poly-mult.py",
+    "size": 2638
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/07-Divide-Conquer/03-Advanced/04-adv-dc.py",
+    "size": 2722
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/01-Traversal/01-dfs-variations.py",
+    "size": 3024
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/01-Traversal/02-bfs-variations.py",
+    "size": 2813
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/01-Traversal/03-iter-deep.py",
+    "size": 3124
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/01-Traversal/04-bidir-search.py",
+    "size": 8118
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/02-Shortest-Path/01-dijkstra.py",
+    "size": 7359
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/02-Shortest-Path/02-bellman-ford.py",
+    "size": 2021
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/02-Shortest-Path/03-floyd-warshall.py",
+    "size": 6825
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/02-Shortest-Path/04-a-star.py",
+    "size": 2366
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/02-Shortest-Path/05-johnson.py",
+    "size": 3536
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/03-MST/01-kruskal.py",
+    "size": 2148
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/03-MST/02-prim.py",
+    "size": 6396
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/03-MST/03-boruvka.py",
+    "size": 2571
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/03-MST/04-mst-var.py",
+    "size": 2104
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/04-Network-Flow/01-ford-fulk.py",
+    "size": 2452
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/04-Network-Flow/02-edmonds-karp.py",
+    "size": 2459
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/04-Network-Flow/03-dinic.py",
+    "size": 2911
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/04-Network-Flow/04-push-relabel.py",
+    "size": 3146
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/04-Network-Flow/05-min-cost-flow.py",
+    "size": 3170
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/05-Advanced/01-tarjan-scc.py",
+    "size": 3880
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/05-Advanced/02-kosaraju.py",
+    "size": 3418
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/05-Advanced/03-artic-bridges.py",
+    "size": 3811
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/05-Advanced/04-biconnect.py",
+    "size": 3313
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/05-Advanced/05-eulerian.py",
+    "size": 3566
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/05-Advanced/06-hamilton.py",
+    "size": 3090
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/05-Advanced/07-graph-color.py",
+    "size": 3364
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/08-Graph-Algorithms/05-Advanced/08-planar.py",
+    "size": 2725
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/01-Basic/01-naive-match.py",
+    "size": 2746
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/01-Basic/02-kmp.py",
+    "size": 5454
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/01-Basic/03-rabin-karp.py",
+    "size": 2599
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/01-Basic/04-boyer-moore.py",
+    "size": 2482
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/02-Intermediate/01-z-algo.py",
+    "size": 2336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/02-Intermediate/02-manacher.py",
+    "size": 5800
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/02-Intermediate/03-suffix-array.py",
+    "size": 2973
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/02-Intermediate/04-lcp.py",
+    "size": 2178
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/03-Advanced/01-suffix-tree.py",
+    "size": 4192
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/03-Advanced/02-aho-corasick.py",
+    "size": 5021
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/03-Advanced/03-rolling-hash.py",
+    "size": 4031
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/03-Advanced/04-string-hash-adv.py",
+    "size": 3885
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/09-String-Algorithms/03-Advanced/05-adv-string.py",
+    "size": 2921
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/01-Number-Theory/01-prime-check.py",
+    "size": 2305
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/01-Number-Theory/02-sieve.py",
+    "size": 2049
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/01-Number-Theory/03-gcd-lcm.py",
+    "size": 2149
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/01-Number-Theory/04-ext-euclid.py",
+    "size": 2305
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/01-Number-Theory/05-mod-arith.py",
+    "size": 2358
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/01-Number-Theory/06-fast-exp.py",
+    "size": 2529
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/01-Number-Theory/07-crt.py",
+    "size": 2306
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/01-Number-Theory/08-miller-rabin.py",
+    "size": 3258
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/02-Combinatorics/01-perm-comb.py",
+    "size": 3149
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/02-Combinatorics/02-catalan.py",
+    "size": 2526
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/02-Combinatorics/03-fib-matrix.py",
+    "size": 2587
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/02-Combinatorics/04-binomial.py",
+    "size": 2889
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/02-Combinatorics/05-incl-excl.py",
+    "size": 2853
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/03-Geometry/01-comp-geo.py",
+    "size": 3412
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/03-Geometry/02-convex-hull.py",
+    "size": 2903
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/03-Geometry/03-line-intersect.py",
+    "size": 3273
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/03-Geometry/04-polygon-algo.py",
+    "size": 3805
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/10-Mathematical-Algorithms/03-Geometry/05-closest-pair-geo.py",
+    "size": 3300
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/01-Randomized/01-rand-quicksort.py",
+    "size": 5004
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/01-Randomized/02-rand-select.py",
+    "size": 3992
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/01-Randomized/03-monte-carlo.py",
+    "size": 3495
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/01-Randomized/04-las-vegas.py",
+    "size": 3542
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/02-Branch-Bound/01-tsp-bnb.py",
+    "size": 4553
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/02-Branch-Bound/02-knap-bnb.py",
+    "size": 3863
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/02-Branch-Bound/03-job-assign.py",
+    "size": 3653
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/02-Branch-Bound/04-bnb-frame.py",
+    "size": 5412
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/03-Parallel/01-par-sort.py",
+    "size": 4045
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/03-Parallel/02-par-search.py",
+    "size": 3041
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/03-Parallel/03-multiprocess-algo.py",
+    "size": 2804
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/03-Parallel/04-dask-algo.py",
+    "size": 2555
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/04-Approximation/01-approx-tsp.py",
+    "size": 3128
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/04-Approximation/02-genetic-algo.py",
+    "size": 3783
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/04-Approximation/03-sim-anneal.py",
+    "size": 3024
+  },
+  {
+    "path": "/Python-DSA-AI-Master/03-Algorithms/11-Advanced-Techniques/04-Approximation/04-adv-approx.py",
+    "size": 3044
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/01-Theory/01-Standard-Lib-Advanced.md",
+    "size": 2429
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/01-Theory/02-Third-Party-Libs.md",
+    "size": 2005
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/01-Theory/03-Data-Science-Libs.md",
+    "size": 2407
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/01-Theory/04-ML-Libs.md",
+    "size": 2075
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/01-Theory/05-Advanced-AI-Libs.md",
+    "size": 2241
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/01-Basic/01-math-module.py",
+    "size": 4245
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/01-Basic/02-fractions-decimal.py",
+    "size": 4323
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/01-Basic/03-random-module.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/01-Basic/04-statistics-module.py",
+    "size": 4323
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/02-Intermediate/01-sympy-symbolic.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/02-Intermediate/02-scipy-linear-algebra.py",
+    "size": 4362
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/02-Intermediate/03-scipy-optimize.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/02-Intermediate/04-scipy-integrate.py",
+    "size": 4297
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/03-Advanced/01-scipy-signal.py",
+    "size": 4258
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/03-Advanced/02-scipy-spatial.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/03-Advanced/03-numba-jit-math.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/02-Mathematics/03-Advanced/04-advanced-math.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/01-Probability-Statistics/01-numpy-basics.py",
+    "size": 4258
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/01-Probability-Statistics/02-numpy-prob-dist.py",
+    "size": 4297
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/01-Probability-Statistics/03-scipy-stats.py",
+    "size": 4245
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/01-Probability-Statistics/04-statsmodels.py",
+    "size": 4245
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/01-Probability-Statistics/05-prob-simulations.py",
+    "size": 4310
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/02-Data-Processing/01-pandas-basics.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/02-Data-Processing/02-pandas-cleaning.py",
+    "size": 4297
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/02-Data-Processing/03-pandas-merge.py",
+    "size": 4258
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/02-Data-Processing/04-pandas-time-series.py",
+    "size": 4336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/02-Data-Processing/05-dask-parallel.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/03-Visualization/01-matplotlib-basics.py",
+    "size": 4323
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/03-Visualization/02-seaborn-stats.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/03-Visualization/03-plotly-interactive.py",
+    "size": 4336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/03-Visualization/04-bokeh.py",
+    "size": 4167
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/03-Data-Science/03-Visualization/05-advanced-viz.py",
+    "size": 4258
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/01-Basic/01-sklearn-basics.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/01-Basic/02-sklearn-regression.py",
+    "size": 4336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/01-Basic/03-sklearn-classification.py",
+    "size": 4388
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/01-Basic/04-sklearn-clustering.py",
+    "size": 4336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/01-Basic/05-sklearn-evaluation.py",
+    "size": 4336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/02-Intermediate/01-sklearn-trees.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/02-Intermediate/02-sklearn-pipeline.py",
+    "size": 4310
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/02-Intermediate/03-sklearn-dim-red.py",
+    "size": 4297
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/02-Intermediate/04-tensorflow-basics.py",
+    "size": 4323
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/02-Intermediate/05-pytorch-basics.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/03-Advanced/01-deep-learning-tf.py",
+    "size": 4310
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/03-Advanced/02-pytorch-nn.py",
+    "size": 4232
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/03-Advanced/03-autoencoders.py",
+    "size": 4258
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/03-Advanced/04-reinforce-learn.py",
+    "size": 4297
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/04-Machine-Learning/03-Advanced/05-mlops.py",
+    "size": 4167
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/01-Basic/01-huggingface-basics.py",
+    "size": 4336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/01-Basic/02-transformers-tokenize.py",
+    "size": 4375
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/01-Basic/03-llm-inference.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/01-Basic/04-fine-tuning-basics.py",
+    "size": 4336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/02-Intermediate/01-llm-prompt-eng.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/02-Intermediate/02-langchain-basics.py",
+    "size": 4310
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/02-Intermediate/03-rag-basics.py",
+    "size": 4232
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/02-Intermediate/04-faiss-vector-db.py",
+    "size": 4297
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/02-Intermediate/05-genai-text-gen.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/03-Advanced/01-rag-advanced.py",
+    "size": 4258
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/03-Advanced/02-genai-multimodal.py",
+    "size": 4310
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/03-Advanced/03-llm-fine-tune-adv.py",
+    "size": 4323
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/03-Advanced/04-agent-systems.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/03-Advanced/05-ethics-bias.py",
+    "size": 4245
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/05-LLM-and-GenAI/03-Advanced/06-deployment.py",
+    "size": 4232
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/01-Computer-Vision/01-opencv-basics.py",
+    "size": 4271
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/01-Computer-Vision/02-opencv-filters.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/01-Computer-Vision/03-yolo-object-det.py",
+    "size": 4297
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/01-Computer-Vision/04-cv-advanced.py",
+    "size": 4245
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/02-NLP/01-nltk-spacy.py",
+    "size": 4232
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/02-NLP/02-sentiment-analysis.py",
+    "size": 4336
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/02-NLP/03-topic-modeling.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/02-NLP/04-nlp-advanced.py",
+    "size": 4258
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/03-Time-Series/01-prophet.py",
+    "size": 4193
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/03-Time-Series/02-arima.py",
+    "size": 4167
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/03-Time-Series/03-lstm-ts.py",
+    "size": 4193
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/03-Time-Series/04-ts-advanced.py",
+    "size": 4245
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/04-Big-Data/01-pyspark-basics.py",
+    "size": 4284
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/04-Big-Data/02-spark-ml.py",
+    "size": 4206
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/04-Big-Data/03-dask-ml.py",
+    "size": 4193
+  },
+  {
+    "path": "/Python-DSA-AI-Master/04-Python-Libraries/06-Other-Advanced-Usage/04-Big-Data/04-bigdata-advanced.py",
+    "size": 4310
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/01-Theory/01-CP-Strategy-Python.md",
+    "size": 4529
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/01-Theory/02-Contest-Prep.md",
+    "size": 4908
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/01-Theory/03-Time-Mgmt.md",
+    "size": 5145
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/01-Theory/04-Common-Mistakes.md",
+    "size": 5789
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/02-Templates/01-fast-io-template.py",
+    "size": 5647
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/02-Templates/02-cp-template.py",
+    "size": 4517
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/02-Templates/03-debug-template.py",
+    "size": 4873
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/02-Templates/04-mod-arith-template.py",
+    "size": 5480
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/02-Templates/05-graph-template.py",
+    "size": 7726
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/01-Ad-Hoc/01-impl-probs.py",
+    "size": 7085
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/01-Ad-Hoc/02-sim-probs.py",
+    "size": 7689
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/01-Ad-Hoc/03-string-manip.py",
+    "size": 6998
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/01-Ad-Hoc/04-math-probs.py",
+    "size": 8969
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/02-Data-Structures/01-seg-tree-probs.py",
+    "size": 8582
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/02-Data-Structures/02-fenwick-probs.py",
+    "size": 7945
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/02-Data-Structures/03-dsu-probs.py",
+    "size": 5256
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/02-Data-Structures/04-adv-ds-probs.py",
+    "size": 4619
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/03-Graph-Theory/01-sp-probs.py",
+    "size": 4564
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/03-Graph-Theory/02-mst-probs.py",
+    "size": 7267
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/03-Graph-Theory/03-flow-probs.py",
+    "size": 6305
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/03-Graph-Theory/04-adv-graph-probs.py",
+    "size": 4911
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/04-DP/01-classical-dp.py",
+    "size": 4989
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/04-DP/02-opt-dp.py",
+    "size": 4699
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/04-DP/03-digit-dp.py",
+    "size": 4267
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/04-DP/04-adv-dp.py",
+    "size": 7063
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/05-Geometry/01-comp-geo-probs.py",
+    "size": 6395
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/05-Geometry/02-hull-probs.py",
+    "size": 6296
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/03-Problem-Categories/05-Geometry/03-adv-geo.py",
+    "size": 7213
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/01-LeetCode/01-easy-probs.py",
+    "size": 5129
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/01-LeetCode/02-med-probs.py",
+    "size": 6933
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/01-LeetCode/03-hard-probs.py",
+    "size": 7570
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/02-Codeforces/01-div3.py",
+    "size": 4987
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/02-Codeforces/02-div2.py",
+    "size": 5869
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/02-Codeforces/03-div1.py",
+    "size": 4369
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/03-AtCoder/01-beginner.py",
+    "size": 1625
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/03-AtCoder/02-reg.py",
+    "size": 2636
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/03-AtCoder/03-grand.py",
+    "size": 4971
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/04-CodeChef/01-long-chal.py",
+    "size": 4976
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/04-CodeChef/02-cookoff.py",
+    "size": 4672
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/04-Contest-Practice/04-CodeChef/03-lunch.py",
+    "size": 4611
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/05-Advanced-Topics/01-hld.py",
+    "size": 5801
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/05-Advanced-Topics/02-centroid-decomp.py",
+    "size": 4459
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/05-Advanced-Topics/03-mo-adv.py",
+    "size": 6322
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/05-Advanced-Topics/04-sqrt-adv.py",
+    "size": 5998
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/05-Advanced-Topics/05-pers-seg-tree.py",
+    "size": 7207
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/05-Advanced-Topics/06-lct-adv.py",
+    "size": 6961
+  },
+  {
+    "path": "/Python-DSA-AI-Master/05-Competitive-Programming/05-Advanced-Topics/07-adv-nt.py",
+    "size": 5319
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/01-Theory/01-System-Design-Python.pdf",
+    "size": 1108
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/01-Theory/02-High-Perf-Computing.pdf",
+    "size": 687
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/01-Theory/03-Concurrent-Systems.pdf",
+    "size": 793
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/01-Theory/04-Distributed-Systems.pdf",
+    "size": 788
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/01-Theory/05-ML-System-Design.pdf",
+    "size": 717
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/02-Basic/01-sys-design-basics.py",
+    "size": 5302
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/02-Basic/02-caching.py",
+    "size": 9083
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/02-Basic/03-db-design.py",
+    "size": 9850
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/02-Basic/04-api-design.py",
+    "size": 8706
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/02-Basic/05-algo-opt.py",
+    "size": 5704
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/03-Intermediate/01-concurrent-ds.py",
+    "size": 4913
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/03-Intermediate/02-async-prog.py",
+    "size": 4994
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/03-Intermediate/03-mem-opt.py",
+    "size": 5881
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/03-Intermediate/04-custom-alloc.py",
+    "size": 5683
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/03-Intermediate/05-perf-prof.py",
+    "size": 5164
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/04-Advanced/01-hpc.py",
+    "size": 6759
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/04-Advanced/02-par-algo-design.py",
+    "size": 7782
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/04-Advanced/03-dist-algo.py",
+    "size": 9644
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/04-Advanced/04-real-time.py",
+    "size": 8220
+  },
+  {
+    "path": "/Python-DSA-AI-Master/06-System-Design/04-Advanced/05-embedded.py",
+    "size": 7597
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/01-Theory/01-Python-Interview-Guide.md",
+    "size": 8831
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/01-Theory/02-Tech-Strategy.md",
+    "size": 6689
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/01-Theory/03-Prob-Patterns.md",
+    "size": 11137
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/01-Theory/04-Sys-Design-Int.md",
+    "size": 7922
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/01-Theory/05-Behavioral.md",
+    "size": 5881
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/01-Basic/01-py-basics-q.py",
+    "size": 5094
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/01-Basic/02-lists-dicts.py",
+    "size": 6680
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/01-Basic/03-mem-mgmt.py",
+    "size": 4061
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/01-Basic/04-oop.py",
+    "size": 5137
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/01-Basic/05-std-lib-q.py",
+    "size": 4367
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/02-Intermediate/01-dec-gen-q.py",
+    "size": 2651
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/02-Intermediate/02-inherit-poly.py",
+    "size": 2853
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/02-Intermediate/03-exc-hand-q.py",
+    "size": 2830
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/02-Intermediate/04-async-q.py",
+    "size": 2285
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/02-Intermediate/05-adv-feat.py",
+    "size": 3080
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/03-Advanced/01-meta-desc.py",
+    "size": 6481
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/03-Advanced/02-concurrency-q.py",
+    "size": 4498
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/03-Advanced/03-type-hint-q.py",
+    "size": 4050
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/03-Advanced/04-modern-py-q.py",
+    "size": 4081
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/02-Python-Specific/03-Advanced/05-perf-q.py",
+    "size": 3946
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/01-Basic-Patterns/01-two-pointers.py",
+    "size": 3778
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/01-Basic-Patterns/02-sliding-win.py",
+    "size": 3719
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/01-Basic-Patterns/03-fast-slow.py",
+    "size": 3723
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/01-Basic-Patterns/04-merge-int.py",
+    "size": 3745
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/01-Basic-Patterns/05-cyclic-sort.py",
+    "size": 3222
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/02-Intermediate-Patterns/01-tree-trav-pat.py",
+    "size": 4411
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/02-Intermediate-Patterns/02-graph-trav.py",
+    "size": 4180
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/02-Intermediate-Patterns/03-bin-search-pat.py",
+    "size": 3535
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/02-Intermediate-Patterns/04-bt-pat.py",
+    "size": 3542
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/02-Intermediate-Patterns/05-dp-pat.py",
+    "size": 2974
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/03-Advanced-Patterns/01-adv-tree.py",
+    "size": 4251
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/03-Advanced-Patterns/02-adv-graph.py",
+    "size": 3712
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/03-Advanced-Patterns/03-opt-pat.py",
+    "size": 3338
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/03-Advanced-Patterns/04-math-pat.py",
+    "size": 3053
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/03-Coding-Patterns/03-Advanced-Patterns/05-sys-des-pat.py",
+    "size": 3465
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/01-FAANG/01-google-py-q.py",
+    "size": 3175
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/01-FAANG/02-amazon.py",
+    "size": 3622
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/01-FAANG/03-ms.py",
+    "size": 3105
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/01-FAANG/04-apple.py",
+    "size": 2342
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/01-FAANG/05-fb.py",
+    "size": 2350
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/02-Tech-Companies/01-bloomberg.py",
+    "size": 4367
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/02-Tech-Companies/02-gs.py",
+    "size": 2976
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/02-Tech-Companies/03-nvidia.py",
+    "size": 4035
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/02-Tech-Companies/04-intel.py",
+    "size": 7943
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/02-Tech-Companies/05-adobe.py",
+    "size": 3216
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/03-Startups/01-startup-q.py",
+    "size": 2985
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/03-Startups/02-sys-prog-q.py",
+    "size": 2605
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/04-Company-Specific/03-Startups/03-perf-q.py",
+    "size": 3777
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/01-Easy/01-array-easy.py",
+    "size": 3064
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/01-Easy/02-string-easy.py",
+    "size": 3371
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/01-Easy/03-ll-easy.py",
+    "size": 3779
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/01-Easy/04-tree-easy.py",
+    "size": 3345
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/01-Easy/05-algo-easy.py",
+    "size": 3344
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/02-Medium/01-array-med.py",
+    "size": 6280
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/02-Medium/02-string-med.py",
+    "size": 6387
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/02-Medium/03-tree-med.py",
+    "size": 9740
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/02-Medium/04-graph-med.py",
+    "size": 9716
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/02-Medium/05-dp-med.py",
+    "size": 7603
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/02-Medium/06-ds-med.py",
+    "size": 9249
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/03-Hard/01-algo-hard.py",
+    "size": 3053
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/03-Hard/02-ds-hard.py",
+    "size": 4249
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/03-Hard/03-opt-hard.py",
+    "size": 2886
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/03-Hard/04-sys-code.py",
+    "size": 2282
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/05-Problem-Sets/03-Hard/05-cp-hard.py",
+    "size": 2411
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/06-Mock-Interviews/01-tech-mocks.py",
+    "size": 4386
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/06-Mock-Interviews/02-sys-mocks.py",
+    "size": 3398
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/06-Mock-Interviews/03-live-code.py",
+    "size": 2779
+  },
+  {
+    "path": "/Python-DSA-AI-Master/07-Interview-Preparation/06-Mock-Interviews/04-pair-prog.py",
+    "size": 2893
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/01-Theory/01-Perf-Analysis.md",
+    "size": 5969
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/01-Theory/02-Mem-Opt.md",
+    "size": 2110
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/01-Theory/03-Cache-Opt.md",
+    "size": 2070
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/01-Theory/04-Interp-Opt.md",
+    "size": 2142
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/01-Theory/05-Profiling-Tech.md",
+    "size": 2113
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/02-Memory-Management/01-slots-opt.py",
+    "size": 3754
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/02-Memory-Management/02-gc-tuning.py",
+    "size": 3391
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/02-Memory-Management/03-array-opt.py",
+    "size": 3680
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/02-Memory-Management/04-obj-pools.py",
+    "size": 4170
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/02-Memory-Management/05-mem-prof.py",
+    "size": 3450
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/03-Algorithm-Optimization/01-cache-opt.py",
+    "size": 4207
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/03-Algorithm-Optimization/02-vectorize.py",
+    "size": 4239
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/03-Algorithm-Optimization/03-loop-opt.py",
+    "size": 3996
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/03-Algorithm-Optimization/04-branch-avoid.py",
+    "size": 3955
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/03-Algorithm-Optimization/05-numba-simd.py",
+    "size": 3926
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/04-Concurrency/01-threading.py",
+    "size": 4173
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/04-Concurrency/02-multiproc.py",
+    "size": 3855
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/04-Concurrency/03-asyncio-opt.py",
+    "size": 3918
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/04-Concurrency/04-par-algo.py",
+    "size": 4006
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/04-Concurrency/05-thread-pools.py",
+    "size": 4267
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/05-Profiling-Tools/01-cprofile.py",
+    "size": 3502
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/05-Profiling-Tools/02-mem-prof.py",
+    "size": 3780
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/05-Profiling-Tools/03-line-prof.py",
+    "size": 3813
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/05-Profiling-Tools/04-pytest-bench.py",
+    "size": 4032
+  },
+  {
+    "path": "/Python-DSA-AI-Master/08-Performance-and-Optimization/05-Profiling-Tools/05-opt-verify.py",
+    "size": 4273
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/01-Web-Development/01-flask-basics.py",
+    "size": 8051
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/01-Web-Development/02-django-basics.py",
+    "size": 7921
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/01-Web-Development/03-api-fastapi.py",
+    "size": 7185
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/01-Web-Development/04-web-scraping.py",
+    "size": 8081
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/01-Web-Development/05-perf-web.py",
+    "size": 5728
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/02-Data-Science-Apps/01-ds-pipeline.py",
+    "size": 5591
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/02-Data-Science-Apps/02-ml-app.py",
+    "size": 5555
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/02-Data-Science-Apps/03-dash-app.py",
+    "size": 7962
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/02-Data-Science-Apps/04-bigdata-app.py",
+    "size": 7729
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/02-Data-Science-Apps/05-ds-opt.py",
+    "size": 7403
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/03-AI-ML-Apps/01-cv-app.py",
+    "size": 11566
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/03-AI-ML-Apps/02-nlp-app.py",
+    "size": 10846
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/03-AI-ML-Apps/03-rl-app.py",
+    "size": 2174
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/03-AI-ML-Apps/04-genai-app.py",
+    "size": 2185
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/03-AI-ML-Apps/05-llm-rag-app.py",
+    "size": 2238
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/04-Automation-Scripts/01-file-auto.py",
+    "size": 10893
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/04-Automation-Scripts/02-email-auto.py",
+    "size": 7057
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/04-Automation-Scripts/03-gui-auto.py",
+    "size": 6075
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/04-Automation-Scripts/04-testing-auto.py",
+    "size": 6209
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/04-Automation-Scripts/05-script-opt.py",
+    "size": 6929
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/05-Scientific-Computing/01-num-algo.py",
+    "size": 6966
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/05-Scientific-Computing/02-lin-alg.py",
+    "size": 6824
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/05-Scientific-Computing/03-signal-proc.py",
+    "size": 10131
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/05-Scientific-Computing/04-ml-sci.py",
+    "size": 8881
+  },
+  {
+    "path": "/Python-DSA-AI-Master/09-Real-World-Applications/05-Scientific-Computing/05-par-sci.py",
+    "size": 2913
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/generate_content.py",
+    "size": 19533
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/01-calculator-advanced/main.py",
+    "size": 8583
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/01-calculator-advanced/README.md",
+    "size": 7265
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/02-file-manager/main.py",
+    "size": 10422
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/02-file-manager/README.md",
+    "size": 4424
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/03-sorting-visualizer/main.py",
+    "size": 9451
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/03-sorting-visualizer/README.md",
+    "size": 4121
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/04-ds-library/main.py",
+    "size": 9579
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/04-ds-library/README.md",
+    "size": 4053
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/05-basic-game/main.py",
+    "size": 6938
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/01-Basic-Projects/05-basic-game/README.md",
+    "size": 2885
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/01-compression-algo/main.py",
+    "size": 5174
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/01-compression-algo/README.md",
+    "size": 3613
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/02-simple-db/main.py",
+    "size": 6796
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/02-simple-db/README.md",
+    "size": 4059
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/03-web-server/main.py",
+    "size": 6406
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/03-web-server/README.md",
+    "size": 3608
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/04-compiler-lexer/main.py",
+    "size": 5845
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/04-compiler-lexer/README.md",
+    "size": 4639
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/05-data-viz-tool/main.py",
+    "size": 6993
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/02-Intermediate-Projects/05-data-viz-tool/README.md",
+    "size": 5317
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/01-rag-system/main.py",
+    "size": 5852
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/01-rag-system/README.md",
+    "size": 3038
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/02-ml-framework/main.py",
+    "size": 9926
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/02-ml-framework/README.md",
+    "size": 4752
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/03-genai-chatbot/main.py",
+    "size": 8185
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/03-genai-chatbot/README.md",
+    "size": 5724
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/04-high-perf-ds/main.py",
+    "size": 7918
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/04-high-perf-ds/README.md",
+    "size": 4657
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/05-trading-bot/main.py",
+    "size": 6775
+  },
+  {
+    "path": "/Python-DSA-AI-Master/10-Project-Based-Learning/03-Advanced-Projects/05-trading-bot/README.md",
+    "size": 4576
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/01-Testing-Frameworks/01-unittest.py",
+    "size": 6504
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/01-Testing-Frameworks/02-pytest.py",
+    "size": 4701
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/01-Testing-Frameworks/03-hypothesis.py",
+    "size": 5050
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/01-Testing-Frameworks/04-unit-best.py",
+    "size": 5112
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/01-Testing-Frameworks/05-perf-test.py",
+    "size": 4562
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/02-Debugging-Techniques/01-pdb-debug.py",
+    "size": 4478
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/02-Debugging-Techniques/02-ipdb.py",
+    "size": 4012
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/02-Debugging-Techniques/03-mem-debug.py",
+    "size": 4131
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/02-Debugging-Techniques/04-perf-debug.py",
+    "size": 4625
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/02-Debugging-Techniques/05-strategies.py",
+    "size": 5685
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/03-Code-Quality/01-pylint.py",
+    "size": 4682
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/03-Code-Quality/02-review-check.py",
+    "size": 5242
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/03-Code-Quality/03-refactor.py",
+    "size": 5856
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/03-Code-Quality/04-standards.py",
+    "size": 4399
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/03-Code-Quality/05-doc.py",
+    "size": 4594
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/04-Profiling-Opt/01-perf-prof.py",
+    "size": 4438
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/04-Profiling-Opt/02-mem-prof.py",
+    "size": 4422
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/04-Profiling-Opt/03-cache-prof.py",
+    "size": 4419
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/04-Profiling-Opt/04-bench.py",
+    "size": 4642
+  },
+  {
+    "path": "/Python-DSA-AI-Master/11-Testing-and-Debugging/04-Profiling-Opt/05-opt-ver.py",
+    "size": 4568
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/01-Documentation/01-Py-Ref.md",
+    "size": 5446
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/01-Documentation/02-Lib-Cheat.md",
+    "size": 6197
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/01-Documentation/03-DSA-Comp.md",
+    "size": 6050
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/01-Documentation/04-CP-Ref.md",
+    "size": 5190
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/01-Documentation/05-Int-Check.md",
+    "size": 8408
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/02-External-Resources/01-books.md",
+    "size": 7157
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/02-External-Resources/02-oj.md",
+    "size": 6783
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/02-External-Resources/03-cp-sites.md",
+    "size": 6229
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/02-External-Resources/04-py-comm.md",
+    "size": 4923
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/02-External-Resources/05-learn-res.md",
+    "size": 5415
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/03-Tools-Env/01-py-setup.md",
+    "size": 6330
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/03-Tools-Env/02-ide-config.md",
+    "size": 5943
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/03-Tools-Env/03-debug-tools.md",
+    "size": 6436
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/03-Tools-Env/04-prof-tools.md",
+    "size": 6277
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/03-Tools-Env/05-venv-pip.md",
+    "size": 6390
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/04-Progress-Tracking/01-py-roadmap.md",
+    "size": 4723
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/04-Progress-Tracking/02-dsa-assess.md",
+    "size": 5349
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/04-Progress-Tracking/03-cp-progress.md",
+    "size": 4680
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/04-Progress-Tracking/04-int-timeline.md",
+    "size": 4944
+  },
+  {
+    "path": "/Python-DSA-AI-Master/12-Resources-References/04-Progress-Tracking/05-proj-miles.md",
+    "size": 6083
+  },
+  {
+    "path": "/Python-DSA-AI-Master/13-SQL-and-Databases/01-relational-databases-basics.md",
+    "size": 2127
+  },
+  {
+    "path": "/Python-DSA-AI-Master/13-SQL-and-Databases/02-basic-sql.py",
+    "size": 9886
+  },
+  {
+    "path": "/Python-DSA-AI-Master/13-SQL-and-Databases/03-advanced-sql.py",
+    "size": 2372
+  },
+  {
+    "path": "/Python-DSA-AI-Master/13-SQL-and-Databases/04-query-optimization.md",
+    "size": 7208
+  },
+  {
+    "path": "/Python-DSA-AI-Master/13-SQL-and-Databases/05-python-sql-integration.py",
+    "size": 2365
+  },
+  {
+    "path": "/Python-DSA-AI-Master/14-Data-Analytics/01_pandas_fundamentals.py",
+    "size": 3351
+  },
+  {
+    "path": "/Python-DSA-AI-Master/14-Data-Analytics/02_data_cleaning_eda.py",
+    "size": 3227
+  },
+  {
+    "path": "/Python-DSA-AI-Master/14-Data-Analytics/03_data_visualization.py",
+    "size": 3874
+  },
+  {
+    "path": "/Python-DSA-AI-Master/14-Data-Analytics/04_analytics_bi_concepts.md",
+    "size": 3185
+  },
+  {
+    "path": "/Python-DSA-AI-Master/14-Data-Analytics/05_ab_testing_fundamentals.py",
+    "size": 4126
+  },
+  {
+    "path": "/Python-DSA-AI-Master/14-Data-Analytics/README.md",
+    "size": 5577
+  },
+  {
+    "path": "/Python-DSA-AI-Master/15-Machine-Learning/01_math_for_ml.py",
+    "size": 2671
+  },
+  {
+    "path": "/Python-DSA-AI-Master/15-Machine-Learning/02_classical_ml.py",
+    "size": 2293
+  },
+  {
+    "path": "/Python-DSA-AI-Master/15-Machine-Learning/03_advanced_ml.py",
+    "size": 8250
+  },
+  {
+    "path": "/Python-DSA-AI-Master/15-Machine-Learning/04_unsupervised_learning.py",
+    "size": 2230
+  },
+  {
+    "path": "/Python-DSA-AI-Master/15-Machine-Learning/05_ml_pipelines_and_evaluation.py",
+    "size": 3295
+  },
+  {
+    "path": "/Python-DSA-AI-Master/16-Deep-Learning-and-CV-NLP/01_deep_learning_foundations.py",
+    "size": 5743
+  },
+  {
+    "path": "/Python-DSA-AI-Master/16-Deep-Learning-and-CV-NLP/02_pytorch_basics.py",
+    "size": 4565
+  },
+  {
+    "path": "/Python-DSA-AI-Master/16-Deep-Learning-and-CV-NLP/03_computer_vision.py",
+    "size": 4022
+  },
+  {
+    "path": "/Python-DSA-AI-Master/16-Deep-Learning-and-CV-NLP/04_nlp.py",
+    "size": 5067
+  },
+  {
+    "path": "/Python-DSA-AI-Master/16-Deep-Learning-and-CV-NLP/README.md",
+    "size": 6378
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/01_transformers.md",
+    "size": 2000
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/01_transformers.py",
+    "size": 4540
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/02_llm_concepts.md",
+    "size": 8734
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/02_llm_concepts.py",
+    "size": 4553
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/03_prompt_engineering.md",
+    "size": 7576
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/03_prompt_engineering.py",
+    "size": 2962
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/04_embeddings.md",
+    "size": 2257
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/04_embeddings.py",
+    "size": 3236
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/05_rag.md",
+    "size": 2573
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/05_rag.py",
+    "size": 3542
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/06_finetuning.md",
+    "size": 2209
+  },
+  {
+    "path": "/Python-DSA-AI-Master/17-Generative-AI-and-LLMs/06_finetuning.py",
+    "size": 3774
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/01_agents_vs_workflows.md",
+    "size": 7403
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/01_workflow_example.py",
+    "size": 8811
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/02_tool_calling.py",
+    "size": 2155
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/02_tool_calling_mechanics.md",
+    "size": 8603
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/03_agent_memory_react.py",
+    "size": 2338
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/03_memory_and_planning.md",
+    "size": 8420
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/04_multi_agent_systems.md",
+    "size": 5807
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/04_supervisor_architecture.py",
+    "size": 2132
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/05_autonomous_agent.py",
+    "size": 3177
+  },
+  {
+    "path": "/Python-DSA-AI-Master/18-Agentic-AI/05_building_autonomous_agent.md",
+    "size": 6178
+  },
+  {
+    "path": "/Python-DSA-AI-Master/19-MLOps-and-Deployment/01_mlflow_example.py",
+    "size": 2751
+  },
+  {
+    "path": "/Python-DSA-AI-Master/19-MLOps-and-Deployment/01_mlops_foundations_mlflow.md",
+    "size": 6515
+  },
+  {
+    "path": "/Python-DSA-AI-Master/19-MLOps-and-Deployment/02_fastapi_serving.py",
+    "size": 2893
+  },
+  {
+    "path": "/Python-DSA-AI-Master/19-MLOps-and-Deployment/02_model_serving_fastapi.md",
+    "size": 10720
+  },
+  {
+    "path": "/Python-DSA-AI-Master/19-MLOps-and-Deployment/03_containerization_docker.md",
+    "size": 2079
+  },
+  {
+    "path": "/Python-DSA-AI-Master/19-MLOps-and-Deployment/04_llmops_genaiops.md",
+    "size": 10571
+  },
+  {
+    "path": "/Python-DSA-AI-Master/19-MLOps-and-Deployment/04_llm_eval.py",
+    "size": 4091
+  },
+  {
+    "path": "/Python-DSA-AI-Master/19-MLOps-and-Deployment/05_ci_cd_for_ml.md",
+    "size": 2077
+  }
+]
