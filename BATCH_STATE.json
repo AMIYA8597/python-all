@@ -1,0 +1,19 @@
+{
+    "current_batch": "Batch 4: Python Intermediate",
+    "status": "in_progress",
+    "completed_files": [
+        "01-Python-Fundamentals/01-Theory/01-Python-Fundamentals-Complete.md",
+        "01-Python-Fundamentals/01-Theory/02-Memory-Model-Guide.md",
+        "01-Python-Fundamentals/01-Theory/03-OOP-Concepts-Advanced.md",
+        "01-Python-Fundamentals/01-Theory/04-Standard-Library-Reference.md",
+        "01-Python-Fundamentals/01-Theory/05-Modern-Python-Features.md",
+        "01-Python-Fundamentals/01-Theory/06-Performance-Optimization.md",
+        "03-Algorithms/04-Recursion-Backtracking/01-Basic/01-factorial-recursion.py"
+    ],
+    "target_files": [
+        "01-Python-Fundamentals/03-Intermediate/01-classes-objects-advanced.py",
+        "01-Python-Fundamentals/03-Intermediate/02-decorators-generators.py",
+        "01-Python-Fundamentals/03-Intermediate/03-modules-packages.py",
+        "01-Python-Fundamentals/03-Intermediate/04-exception-handling.py"
+    ]
+}

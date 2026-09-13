@@ -1,768 +1,217 @@
-#!/usr/bin/env python3
 """
-Scikit-learn Comprehensive Guide for AI/ML
-==========================================
-
-This module provides comprehensive coverage of scikit-learn (sklearn), the most popular
-machine learning library in Python. It covers all major algorithms, preprocessing
-techniques, model evaluation, and advanced features.
-
-Topics Covered:
-1. Data Preprocessing & Feature Engineering
-2. Supervised Learning (Classification & Regression)
-3. Unsupervised Learning (Clustering & Dimensionality Reduction)
-4. Model Selection & Evaluation
-5. Pipeline Creation & Automation
-6. Advanced Features & Custom Estimators
-7. Real-world Examples & Best Practices
-
-Key Libraries:
-- sklearn.preprocessing: Data preprocessing
-- sklearn.feature_selection: Feature selection
-- sklearn.model_selection: Cross-validation, grid search
-- sklearn.linear_model: Linear models
-- sklearn.ensemble: Ensemble methods
-- sklearn.svm: Support Vector Machines
-- sklearn.tree: Decision trees
-- sklearn.cluster: Clustering algorithms
-- sklearn.decomposition: Dimensionality reduction
-- sklearn.metrics: Model evaluation metrics
-
-Author: Python DSA Master
-Date: 2024
+# ==============================================================================
+# LABORATORY: PREDICTIVE MACHINE LEARNING (SCIKIT-LEARN)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# If you need to predict whether an email is Spam, whether a patient has Cancer, 
+# or what a House will sell for next month, you do not write hardcoded `if/else` 
+# logic. You use Machine Learning.
+#
+# Scikit-Learn (sklearn) is the undisputed industry standard for traditional 
+# Machine Learning in Python. It does not do Deep Learning (Neural Networks), 
+# but it provides flawless, highly optimized C-implementations of Random Forests, 
+# Support Vector Machines, Gradient Boosting, and K-Means Clustering.
+#
+# More importantly, it provides the "Estimator API"—a perfectly standardized 
+# object-oriented interface (`.fit()`, `.predict()`) that allows you to swap 
+# out entirely different mathematical algorithms with zero code changes.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand the Scikit-Learn Estimator API (`fit`, `predict`).
+# - Execute Supervised Classification (Random Forest).
+# - Execute Unsupervised Clustering (K-Means).
+# - Master Data Leakage prevention using `Pipeline` and `StandardScaler`.
+#
+# ==============================================================================
 """
 
 import numpy as np
 import pandas as pd
-from typing import List, Dict, Tuple, Any, Optional, Union
-import warnings
-warnings.filterwarnings('ignore')
 
-# Note: This module demonstrates scikit-learn usage patterns and concepts.
-# To run the actual code, install: pip install scikit-learn numpy pandas matplotlib
+# In a real environment: pip install scikit-learn
+try:
+    from sklearn.model_selection import train_test_split
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.metrics import accuracy_score, classification_report
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.pipeline import Pipeline
+    from sklearn.cluster import KMeans
+    HAS_SKLEARN = True
+except ImportError:
+    HAS_SKLEARN = False
 
-def demonstrate_sklearn_concepts():
-    """
-    Demonstrate core scikit-learn concepts without requiring installation.
-    This shows the patterns and workflow used in scikit-learn.
-    """
-    print("Scikit-learn Concepts and Patterns")
-    print("=" * 50)
-    
-    # Typical sklearn workflow
-    workflow_steps = [
-        "1. Data Loading & Exploration",
-        "2. Data Preprocessing & Feature Engineering", 
-        "3. Train-Test Split",
-        "4. Model Selection & Training",
-        "5. Model Evaluation",
-        "6. Hyperparameter Tuning",
-        "7. Final Model & Predictions"
-    ]
-    
-    for step in workflow_steps:
-        print(f"   {step}")
-    
-    print("\nCommon Scikit-learn Import Patterns:")
-    imports = [
-        "from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV",
-        "from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder",
-        "from sklearn.linear_model import LogisticRegression, LinearRegression",
-        "from sklearn.ensemble import RandomForestClassifier, GradientBoostingRegressor",
-        "from sklearn.svm import SVC, SVR",
-        "from sklearn.cluster import KMeans, DBSCAN",
-        "from sklearn.decomposition import PCA, TruncatedSVD",
-        "from sklearn.metrics import accuracy_score, classification_report, confusion_matrix",
-        "from sklearn.pipeline import Pipeline, make_pipeline"
-    ]
-    
-    for imp in imports:
-        print(f"   {imp}")
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-class SklearnDataPreprocessing:
-    """Comprehensive data preprocessing techniques in scikit-learn."""
-    
-    @staticmethod
-    def preprocessing_examples():
-        """Show common preprocessing patterns."""
-        print("\n" + "="*50)
-        print("SCIKIT-LEARN DATA PREPROCESSING")
-        print("="*50)
-        
-        print("\n1. SCALING & NORMALIZATION")
-        scaling_examples = [
-            "# Standardization (mean=0, std=1)",
-            "from sklearn.preprocessing import StandardScaler",
-            "scaler = StandardScaler()",
-            "X_scaled = scaler.fit_transform(X_train)",
-            "X_test_scaled = scaler.transform(X_test)",
-            "",
-            "# Min-Max Scaling (0-1 range)",
-            "from sklearn.preprocessing import MinMaxScaler",
-            "minmax_scaler = MinMaxScaler()",
-            "X_normalized = minmax_scaler.fit_transform(X)",
-            "",
-            "# Robust Scaling (median-based)",
-            "from sklearn.preprocessing import RobustScaler", 
-            "robust_scaler = RobustScaler()",
-            "X_robust = robust_scaler.fit_transform(X)",
-        ]
-        
-        for line in scaling_examples:
-            print(f"   {line}")
-        
-        print("\n2. CATEGORICAL ENCODING")
-        encoding_examples = [
-            "# Label Encoding (ordinal)",
-            "from sklearn.preprocessing import LabelEncoder",
-            "le = LabelEncoder()",
-            "y_encoded = le.fit_transform(y)",
-            "",
-            "# One-Hot Encoding",
-            "from sklearn.preprocessing import OneHotEncoder",
-            "ohe = OneHotEncoder(sparse_output=False)",
-            "X_encoded = ohe.fit_transform(X_categorical)",
-            "",
-            "# Target Encoding (advanced)",
-            "from sklearn.preprocessing import TargetEncoder",
-            "te = TargetEncoder()",
-            "X_target_encoded = te.fit_transform(X_categorical, y)",
-        ]
-        
-        for line in encoding_examples:
-            print(f"   {line}")
-            
-        print("\n3. FEATURE SELECTION")
-        selection_examples = [
-            "# Univariate Feature Selection",
-            "from sklearn.feature_selection import SelectKBest, f_classif",
-            "selector = SelectKBest(score_func=f_classif, k=10)",
-            "X_selected = selector.fit_transform(X, y)",
-            "",
-            "# Recursive Feature Elimination", 
-            "from sklearn.feature_selection import RFE",
-            "from sklearn.linear_model import LogisticRegression",
-            "estimator = LogisticRegression()",
-            "rfe = RFE(estimator=estimator, n_features_to_select=10)",
-            "X_rfe = rfe.fit_transform(X, y)",
-            "",
-            "# Feature Selection from Model",
-            "from sklearn.feature_selection import SelectFromModel",
-            "from sklearn.ensemble import RandomForestClassifier",
-            "rf = RandomForestClassifier()",
-            "selector = SelectFromModel(rf)",
-            "X_model_selected = selector.fit_transform(X, y)",
-        ]
-        
-        for line in selection_examples:
-            print(f"   {line}")
 
-class SklearnSupervisedLearning:
-    """Comprehensive supervised learning algorithms in scikit-learn."""
+# ==============================================================================
+# 3. SUPERVISED LEARNING (CLASSIFICATION)
+# ==============================================================================
+def demonstrate_classification():
+    section_header("Supervised Learning (Random Forest Classification)")
     
-    @staticmethod
-    def classification_examples():
-        """Show classification algorithms and usage."""
-        print("\n" + "="*50)
-        print("CLASSIFICATION ALGORITHMS")
-        print("="*50)
+    if not HAS_SKLEARN:
+        print("[WARNING] Scikit-Learn not installed. Install using: pip install scikit-learn")
+        return
         
-        algorithms = {
-            "Logistic Regression": [
-                "from sklearn.linear_model import LogisticRegression",
-                "clf = LogisticRegression(max_iter=1000, random_state=42)",
-                "clf.fit(X_train, y_train)",
-                "y_pred = clf.predict(X_test)",
-                "proba = clf.predict_proba(X_test)  # Get probabilities"
-            ],
-            
-            "Random Forest": [
-                "from sklearn.ensemble import RandomForestClassifier", 
-                "rf = RandomForestClassifier(n_estimators=100, random_state=42)",
-                "rf.fit(X_train, y_train)",
-                "y_pred = rf.predict(X_test)",
-                "feature_importance = rf.feature_importances_"
-            ],
-            
-            "Support Vector Machine": [
-                "from sklearn.svm import SVC",
-                "svm = SVC(kernel='rbf', C=1.0, random_state=42)",
-                "svm.fit(X_train, y_train)",
-                "y_pred = svm.predict(X_test)"
-            ],
-            
-            "Gradient Boosting": [
-                "from sklearn.ensemble import GradientBoostingClassifier",
-                "gb = GradientBoostingClassifier(n_estimators=100, random_state=42)",
-                "gb.fit(X_train, y_train)",
-                "y_pred = gb.predict(X_test)"
-            ],
-            
-            "XGBoost (if installed)": [
-                "from xgboost import XGBClassifier",
-                "xgb = XGBClassifier(n_estimators=100, random_state=42)",
-                "xgb.fit(X_train, y_train)",
-                "y_pred = xgb.predict(X_test)"
-            ],
-            
-            "Neural Network (MLP)": [
-                "from sklearn.neural_network import MLPClassifier",
-                "mlp = MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=500)",
-                "mlp.fit(X_train, y_train)",
-                "y_pred = mlp.predict(X_test)"
-            ]
-        }
-        
-        for algo, code_lines in algorithms.items():
-            print(f"\n{algo}:")
-            for line in code_lines:
-                print(f"   {line}")
+    print("Scenario: Predicting whether a patient has Heart Disease (1=Yes, 0=No).")
     
-    @staticmethod
-    def regression_examples():
-        """Show regression algorithms and usage."""
-        print("\n" + "="*50)
-        print("REGRESSION ALGORITHMS")
-        print("="*50)
-        
-        algorithms = {
-            "Linear Regression": [
-                "from sklearn.linear_model import LinearRegression",
-                "lr = LinearRegression()",
-                "lr.fit(X_train, y_train)",
-                "y_pred = lr.predict(X_test)",
-                "coefficients = lr.coef_"
-            ],
-            
-            "Ridge Regression": [
-                "from sklearn.linear_model import Ridge",
-                "ridge = Ridge(alpha=1.0)",
-                "ridge.fit(X_train, y_train)",
-                "y_pred = ridge.predict(X_test)"
-            ],
-            
-            "Lasso Regression": [
-                "from sklearn.linear_model import Lasso", 
-                "lasso = Lasso(alpha=1.0)",
-                "lasso.fit(X_train, y_train)",
-                "y_pred = lasso.predict(X_test)",
-                "# Lasso performs feature selection automatically"
-            ],
-            
-            "Random Forest Regression": [
-                "from sklearn.ensemble import RandomForestRegressor",
-                "rf_reg = RandomForestRegressor(n_estimators=100, random_state=42)",
-                "rf_reg.fit(X_train, y_train)",
-                "y_pred = rf_reg.predict(X_test)"
-            ],
-            
-            "Support Vector Regression": [
-                "from sklearn.svm import SVR",
-                "svr = SVR(kernel='rbf', C=1.0)",
-                "svr.fit(X_train, y_train)",
-                "y_pred = svr.predict(X_test)"
-            ]
-        }
-        
-        for algo, code_lines in algorithms.items():
-            print(f"\n{algo}:")
-            for line in code_lines:
-                print(f"   {line}")
+    # 1. GENERATE SYNTHETIC DATA
+    rng = np.random.default_rng(42)
+    n_samples = 1000
+    
+    # Features (X)
+    age = rng.uniform(30, 80, n_samples)
+    cholesterol = rng.uniform(150, 300, n_samples)
+    blood_pressure = rng.uniform(90, 180, n_samples)
+    
+    # Target (Y)
+    # The probability of disease heavily depends on Age and BP!
+    risk_score = (age * 0.4) + (cholesterol * 0.1) + (blood_pressure * 0.5)
+    
+    # If the risk score is in the top 40%, they have the disease (1). Otherwise (0).
+    threshold = np.percentile(risk_score, 60)
+    heart_disease = (risk_score > threshold).astype(int)
+    
+    X = pd.DataFrame({"Age": age, "Cholesterol": cholesterol, "BloodPressure": blood_pressure})
+    y = heart_disease
+    
+    # 2. THE TRAIN / TEST SPLIT
+    # CRITICAL: If you test the model on the exact same data it trained on, it will 
+    # perfectly memorize the answers (Overfitting) and fail miserably in the real world.
+    # We MUST withhold 20% of the data in a "Test Vault" that the model never sees!
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    # 3. INSTANTIATE THE ESTIMATOR
+    # A Random Forest is an ensemble of 100 distinct Decision Trees voting together.
+    clf = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
+    
+    # 4. FIT THE MODEL (Training Phase)
+    # The model mathematically analyzes X_train to figure out how it maps to y_train.
+    clf.fit(X_train, y_train)
+    print("Model successfully Trained (Fit) on 800 patients.")
+    
+    # 5. PREDICT (Testing Phase)
+    # We ask the model to predict the disease status of the 200 hidden patients!
+    predictions = clf.predict(X_test)
+    
+    # 6. EVALUATE
+    accuracy = accuracy_score(y_test, predictions)
+    print(f"\nModel Accuracy on unseen Test Data: {accuracy * 100:.2f}%\n")
+    
+    # The Classification Report shows Precision, Recall, and F1-Score for both classes!
+    print("Detailed Classification Report:")
+    print(classification_report(y_test, predictions))
 
-class SklearnUnsupervisedLearning:
-    """Comprehensive unsupervised learning algorithms in scikit-learn."""
-    
-    @staticmethod
-    def clustering_examples():
-        """Show clustering algorithms and usage."""
-        print("\n" + "="*50)
-        print("CLUSTERING ALGORITHMS")
-        print("="*50)
-        
-        algorithms = {
-            "K-Means Clustering": [
-                "from sklearn.cluster import KMeans",
-                "kmeans = KMeans(n_clusters=3, random_state=42)",
-                "cluster_labels = kmeans.fit_predict(X)",
-                "centroids = kmeans.cluster_centers_",
-                "inertia = kmeans.inertia_  # Within-cluster sum of squares"
-            ],
-            
-            "Hierarchical Clustering": [
-                "from sklearn.cluster import AgglomerativeClustering",
-                "hierarchical = AgglomerativeClustering(n_clusters=3)",
-                "cluster_labels = hierarchical.fit_predict(X)"
-            ],
-            
-            "DBSCAN": [
-                "from sklearn.cluster import DBSCAN",
-                "dbscan = DBSCAN(eps=0.5, min_samples=5)",
-                "cluster_labels = dbscan.fit_predict(X)",
-                "# -1 indicates noise points"
-            ],
-            
-            "Gaussian Mixture Models": [
-                "from sklearn.mixture import GaussianMixture",
-                "gmm = GaussianMixture(n_components=3, random_state=42)",
-                "cluster_labels = gmm.fit_predict(X)",
-                "probabilities = gmm.predict_proba(X)"
-            ]
-        }
-        
-        for algo, code_lines in algorithms.items():
-            print(f"\n{algo}:")
-            for line in code_lines:
-                print(f"   {line}")
-    
-    @staticmethod
-    def dimensionality_reduction_examples():
-        """Show dimensionality reduction techniques."""
-        print("\n" + "="*50)
-        print("DIMENSIONALITY REDUCTION")
-        print("="*50)
-        
-        techniques = {
-            "Principal Component Analysis (PCA)": [
-                "from sklearn.decomposition import PCA",
-                "pca = PCA(n_components=2)",
-                "X_pca = pca.fit_transform(X)",
-                "explained_variance = pca.explained_variance_ratio_",
-                "# cumulative variance to choose components"
-            ],
-            
-            "t-SNE": [
-                "from sklearn.manifold import TSNE",
-                "tsne = TSNE(n_components=2, random_state=42)",
-                "X_tsne = tsne.fit_transform(X)",
-                "# Great for visualization, non-linear"
-            ],
-            
-            "Linear Discriminant Analysis": [
-                "from sklearn.discriminant_analysis import LinearDiscriminantAnalysis",
-                "lda = LinearDiscriminantAnalysis(n_components=2)",
-                "X_lda = lda.fit_transform(X, y)",
-                "# Supervised dimensionality reduction"
-            ],
-            
-            "Truncated SVD": [
-                "from sklearn.decomposition import TruncatedSVD",
-                "svd = TruncatedSVD(n_components=50, random_state=42)",
-                "X_svd = svd.fit_transform(X)",
-                "# Good for sparse matrices"
-            ]
-        }
-        
-        for technique, code_lines in techniques.items():
-            print(f"\n{technique}:")
-            for line in code_lines:
-                print(f"   {line}")
 
-class SklearnModelEvaluation:
-    """Comprehensive model evaluation and validation in scikit-learn."""
+# ==============================================================================
+# 4. PREVENTING DATA LEAKAGE (PIPELINES & SCALERS)
+# ==============================================================================
+def demonstrate_pipelines():
+    section_header("Data Leakage & Scikit-Learn Pipelines")
     
-    @staticmethod
-    def evaluation_metrics():
-        """Show evaluation metrics for different types of problems."""
-        print("\n" + "="*50)
-        print("MODEL EVALUATION METRICS")
-        print("="*50)
-        
-        print("\nCLASSIFICATION METRICS:")
-        classification_metrics = [
-            "from sklearn.metrics import (",
-            "    accuracy_score, precision_score, recall_score, f1_score,",
-            "    classification_report, confusion_matrix, roc_auc_score,",
-            "    roc_curve, precision_recall_curve",
-            ")",
-            "",
-            "# Basic metrics",
-            "accuracy = accuracy_score(y_true, y_pred)",
-            "precision = precision_score(y_true, y_pred, average='weighted')",
-            "recall = recall_score(y_true, y_pred, average='weighted')",
-            "f1 = f1_score(y_true, y_pred, average='weighted')",
-            "",
-            "# Detailed report", 
-            "report = classification_report(y_true, y_pred)",
-            "",
-            "# Confusion matrix",
-            "cm = confusion_matrix(y_true, y_pred)",
-            "",
-            "# ROC AUC (for binary/multiclass)",
-            "auc = roc_auc_score(y_true, y_proba, multi_class='ovr')"
-        ]
-        
-        for line in classification_metrics:
-            print(f"   {line}")
-            
-        print("\nREGRESSION METRICS:")
-        regression_metrics = [
-            "from sklearn.metrics import (",
-            "    mean_squared_error, mean_absolute_error, r2_score,",
-            "    mean_squared_log_error, explained_variance_score",
-            ")",
-            "",
-            "# Basic regression metrics",
-            "mse = mean_squared_error(y_true, y_pred)",
-            "rmse = np.sqrt(mse)",
-            "mae = mean_absolute_error(y_true, y_pred)",
-            "r2 = r2_score(y_true, y_pred)",
-            "",
-            "# Additional metrics",
-            "explained_var = explained_variance_score(y_true, y_pred)",
-            "msle = mean_squared_log_error(y_true, y_pred)  # For positive targets"
-        ]
-        
-        for line in regression_metrics:
-            print(f"   {line}")
+    if not HAS_SKLEARN: return
     
-    @staticmethod
-    def cross_validation_examples():
-        """Show cross-validation techniques."""
-        print("\n" + "="*50)
-        print("CROSS-VALIDATION TECHNIQUES")
-        print("="*50)
-        
-        cv_examples = [
-            "from sklearn.model_selection import (",
-            "    cross_val_score, cross_validate, StratifiedKFold,",
-            "    TimeSeriesSplit, LeaveOneOut, ShuffleSplit",
-            ")",
-            "",
-            "# Simple cross-validation",
-            "scores = cross_val_score(model, X, y, cv=5, scoring='accuracy')",
-            "print(f'CV Accuracy: {scores.mean():.3f} (+/- {scores.std() * 2:.3f})')",
-            "",
-            "# Detailed cross-validation",
-            "cv_results = cross_validate(model, X, y, cv=5, ",
-            "                          scoring=['accuracy', 'precision', 'recall'],",
-            "                          return_train_score=True)",
-            "",
-            "# Stratified K-Fold (maintains class distribution)",
-            "skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)",
-            "scores = cross_val_score(model, X, y, cv=skf, scoring='f1_macro')",
-            "",
-            "# Time Series Cross-Validation",
-            "tscv = TimeSeriesSplit(n_splits=5)",
-            "scores = cross_val_score(model, X, y, cv=tscv, scoring='neg_mean_squared_error')"
-        ]
-        
-        for line in cv_examples:
-            print(f"   {line}")
+    print("Algorithms like Support Vector Machines (SVM) and K-Nearest Neighbors ")
+    print("calculate the literal Euclidean distance between data points.")
+    print("If Age is 0-100, and Salary is 0-100,000, the algorithm will completely ")
+    print("ignore Age because the Salary math overwhelms it! We must SCALE the data.\n")
+    
+    # But if you scale the ENTIRE dataset BEFORE splitting into Train/Test, information 
+    # from the Test set "leaks" into the Training set via the Mean calculation!
+    # A `Pipeline` mathematically prevents this!
+    
+    # 1. GENERATE DATA
+    X = np.random.rand(100, 2) * [100, 100000] # Massive scale imbalance
+    y = np.random.randint(0, 2, 100)
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    # 2. CONSTRUCT THE PIPELINE
+    # The Pipeline chains together multiple steps into a single Object.
+    # Step 1: StandardScaler (forces every column to have Mean=0, Variance=1).
+    # Step 2: RandomForestClassifier.
+    
+    pipeline = Pipeline([
+        ('scaler', StandardScaler()),
+        ('classifier', RandomForestClassifier(random_state=42))
+    ])
+    
+    # 3. FIT THE PIPELINE
+    # MAGIC: The pipeline automatically calls `scaler.fit_transform()` on X_train, 
+    # but strictly calls `scaler.transform()` on X_test during prediction, ensuring 
+    # zero data leakage!
+    pipeline.fit(X_train, y_train)
+    
+    preds = pipeline.predict(X_test)
+    print(f"Pipeline successfully scaled the data and achieved Accuracy: {accuracy_score(y_test, preds):.2f}")
 
-class SklearnPipelinesAndAutomation:
-    """Pipeline creation and automation in scikit-learn."""
-    
-    @staticmethod
-    def pipeline_examples():
-        """Show pipeline creation and usage."""
-        print("\n" + "="*50)
-        print("SCIKIT-LEARN PIPELINES")
-        print("="*50)
-        
-        print("\nBASIC PIPELINE:")
-        basic_pipeline = [
-            "from sklearn.pipeline import Pipeline, make_pipeline",
-            "from sklearn.preprocessing import StandardScaler",
-            "from sklearn.linear_model import LogisticRegression",
-            "",
-            "# Method 1: Using Pipeline class",
-            "pipe = Pipeline([",
-            "    ('scaler', StandardScaler()),",
-            "    ('classifier', LogisticRegression())",
-            "])",
-            "",
-            "# Method 2: Using make_pipeline (auto-names)",
-            "pipe = make_pipeline(StandardScaler(), LogisticRegression())",
-            "",
-            "# Use pipeline like any estimator",
-            "pipe.fit(X_train, y_train)",
-            "y_pred = pipe.predict(X_test)",
-            "score = pipe.score(X_test, y_test)"
-        ]
-        
-        for line in basic_pipeline:
-            print(f"   {line}")
-            
-        print("\nCOMPLEX PIPELINE WITH FEATURE ENGINEERING:")
-        complex_pipeline = [
-            "from sklearn.compose import ColumnTransformer",
-            "from sklearn.preprocessing import OneHotEncoder, StandardScaler",
-            "",
-            "# Separate preprocessing for different column types",
-            "numeric_features = ['age', 'income', 'score']",
-            "categorical_features = ['category', 'region']",
-            "",
-            "preprocessor = ColumnTransformer(",
-            "    transformers=[",
-            "        ('num', StandardScaler(), numeric_features),",
-            "        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)",
-            "    ])",
-            "",
-            "# Complete pipeline",
-            "full_pipeline = Pipeline([",
-            "    ('preprocessor', preprocessor),",
-            "    ('classifier', RandomForestClassifier())",
-            "])"
-        ]
-        
-        for line in complex_pipeline:
-            print(f"   {line}")
-    
-    @staticmethod
-    def hyperparameter_tuning():
-        """Show hyperparameter tuning techniques."""
-        print("\n" + "="*50)
-        print("HYPERPARAMETER TUNING")
-        print("="*50)
-        
-        print("\nGRID SEARCH:")
-        grid_search = [
-            "from sklearn.model_selection import GridSearchCV",
-            "",
-            "# Define parameter grid",
-            "param_grid = {",
-            "    'classifier__n_estimators': [50, 100, 200],",
-            "    'classifier__max_depth': [3, 5, 7, None],",
-            "    'classifier__min_samples_split': [2, 5, 10]",
-            "}",
-            "",
-            "# Grid search with cross-validation",
-            "grid_search = GridSearchCV(",
-            "    pipe, param_grid, cv=5, scoring='accuracy',",
-            "    n_jobs=-1, verbose=1",
-            ")",
-            "",
-            "grid_search.fit(X_train, y_train)",
-            "print(f'Best parameters: {grid_search.best_params_}')",
-            "print(f'Best score: {grid_search.best_score_:.3f}')"
-        ]
-        
-        for line in grid_search:
-            print(f"   {line}")
-            
-        print("\nRANDOM SEARCH:")
-        random_search = [
-            "from sklearn.model_selection import RandomizedSearchCV",
-            "from scipy.stats import randint, uniform",
-            "",
-            "# Random parameter distributions",
-            "param_dist = {",
-            "    'classifier__n_estimators': randint(50, 200),",
-            "    'classifier__max_depth': randint(3, 10),",
-            "    'classifier__min_samples_split': randint(2, 20),",
-            "    'classifier__min_samples_leaf': randint(1, 10)",
-            "}",
-            "",
-            "# Random search",
-            "random_search = RandomizedSearchCV(",
-            "    pipe, param_dist, n_iter=100, cv=5,",
-            "    scoring='accuracy', n_jobs=-1, random_state=42",
-            ")",
-            "",
-            "random_search.fit(X_train, y_train)"
-        ]
-        
-        for line in random_search:
-            print(f"   {line}")
 
-class SklearnAdvancedFeatures:
-    """Advanced scikit-learn features and techniques."""
+# ==============================================================================
+# 5. UNSUPERVISED LEARNING (K-MEANS CLUSTERING)
+# ==============================================================================
+def demonstrate_clustering():
+    section_header("Unsupervised Learning (K-Means)")
     
-    @staticmethod
-    def custom_estimators():
-        """Show how to create custom estimators."""
-        print("\n" + "="*50)
-        print("CUSTOM ESTIMATORS")
-        print("="*50)
-        
-        custom_estimator = [
-            "from sklearn.base import BaseEstimator, TransformerMixin, ClassifierMixin",
-            "",
-            "class CustomTransformer(BaseEstimator, TransformerMixin):",
-            "    def __init__(self, feature_names=None):",
-            "        self.feature_names = feature_names",
-            "    ",
-            "    def fit(self, X, y=None):",
-            "        # Learn parameters from training data",
-            "        self.feature_means_ = X.mean(axis=0)",
-            "        return self",
-            "    ",
-            "    def transform(self, X):",
-            "        # Apply transformation",
-            "        return X - self.feature_means_",
-            "",
-            "# Custom classifier",
-            "class CustomClassifier(BaseEstimator, ClassifierMixin):",
-            "    def __init__(self, threshold=0.5):",
-            "        self.threshold = threshold",
-            "    ",
-            "    def fit(self, X, y):",
-            "        self.classes_ = np.unique(y)",
-            "        # Implement your learning algorithm here",
-            "        return self",
-            "    ",
-            "    def predict(self, X):",
-            "        # Implement prediction logic",
-            "        # This is a dummy implementation",
-            "        return np.random.choice(self.classes_, size=len(X))"
-        ]
-        
-        for line in custom_estimator:
-            print(f"   {line}")
+    if not HAS_SKLEARN: return
     
-    @staticmethod
-    def advanced_techniques():
-        """Show advanced scikit-learn techniques."""
-        print("\n" + "="*50)
-        print("ADVANCED TECHNIQUES")
-        print("="*50)
+    print("In Unsupervised Learning, there is NO Target Variable (y).")
+    print("You just dump raw data into the algorithm, and it finds mathematical ")
+    print("patterns and groupings automatically (Clustering)!\n")
+    
+    # 1. GENERATE DATA
+    # Simulating 3 distinct geographic clusters of customers.
+    rng = np.random.default_rng(42)
+    cluster_1 = rng.normal(loc=[10, 10], scale=1, size=(50, 2))
+    cluster_2 = rng.normal(loc=[50, 50], scale=1, size=(50, 2))
+    cluster_3 = rng.normal(loc=[10, 50], scale=1, size=(50, 2))
+    
+    # Combine them into a single unlabeled dataset
+    X_unlabeled = np.vstack([cluster_1, cluster_2, cluster_3])
+    
+    # 2. INSTANTIATE THE K-MEANS ALGORITHM
+    # We tell it to find exactly 3 clusters.
+    kmeans = KMeans(n_clusters=3, random_state=42, n_init='auto')
+    
+    # 3. FIT AND PREDICT
+    # Notice there is no `y` argument in the fit function!
+    assigned_labels = kmeans.fit_predict(X_unlabeled)
+    
+    # 4. EXTRACT THE CENTROIDS
+    centroids = kmeans.cluster_centers_
+    
+    print("K-Means successfully clustered the 150 unlabeled data points.")
+    print("\nMathematical Coordinates of the 3 Discovered Centroids:")
+    for i, center in enumerate(centroids):
+        print(f"Cluster {i} Center: X={center[0]:.1f}, Y={center[1]:.1f}")
         
-        print("\nMULTI-OUTPUT LEARNING:")
-        multi_output = [
-            "from sklearn.multioutput import MultiOutputClassifier, MultiOutputRegressor",
-            "",
-            "# Multi-output classification",
-            "multi_clf = MultiOutputClassifier(RandomForestClassifier())",
-            "multi_clf.fit(X, y_multi)  # y_multi has multiple columns",
-            "",
-            "# Multi-output regression", 
-            "multi_reg = MultiOutputRegressor(LinearRegression())",
-            "multi_reg.fit(X, y_multi)"
-        ]
-        
-        for line in multi_output:
-            print(f"   {line}")
-            
-        print("\nCALIBRATION:")
-        calibration = [
-            "from sklearn.calibration import CalibratedClassifierCV",
-            "",
-            "# Calibrate classifier probabilities",
-            "calibrated_clf = CalibratedClassifierCV(base_classifier, method='isotonic', cv=3)",
-            "calibrated_clf.fit(X_train, y_train)",
-            "calibrated_proba = calibrated_clf.predict_proba(X_test)"
-        ]
-        
-        for line in calibration:
-            print(f"   {line}")
-            
-        print("\nINCREMENTAL LEARNING:")
-        incremental = [
-            "from sklearn.linear_model import SGDClassifier",
-            "from sklearn.naive_bayes import MultinomialNB",
-            "",
-            "# Algorithms that support partial_fit",
-            "incremental_clf = SGDClassifier()",
-            "",
-            "# Train in batches",
-            "for batch_X, batch_y in get_batches(X, y):",
-            "    incremental_clf.partial_fit(batch_X, batch_y, classes=np.unique(y))"
-        ]
-        
-        for line in incremental:
-            print(f"   {line}")
+    print("\nNotice how closely they match our true hidden means: [10,10], [50,50], [10,50]!")
 
-def create_sklearn_cheat_sheet():
-    """Create a comprehensive sklearn cheat sheet."""
-    print("\n" + "="*70)
-    print("SCIKIT-LEARN COMPREHENSIVE CHEAT SHEET")
-    print("="*70)
-    
-    sections = {
-        "ESSENTIAL IMPORTS": [
-            "import numpy as np",
-            "import pandas as pd",
-            "from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV",
-            "from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder",
-            "from sklearn.metrics import accuracy_score, classification_report, confusion_matrix",
-            "from sklearn.pipeline import Pipeline, make_pipeline"
-        ],
-        
-        "BASIC WORKFLOW": [
-            "# 1. Load and explore data",
-            "X, y = load_data()",
-            "",
-            "# 2. Split data",
-            "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)",
-            "",
-            "# 3. Preprocess", 
-            "scaler = StandardScaler()",
-            "X_train_scaled = scaler.fit_transform(X_train)",
-            "X_test_scaled = scaler.transform(X_test)",
-            "",
-            "# 4. Train model",
-            "model = RandomForestClassifier()",
-            "model.fit(X_train_scaled, y_train)",
-            "",
-            "# 5. Evaluate",
-            "y_pred = model.predict(X_test_scaled)",
-            "accuracy = accuracy_score(y_test, y_pred)"
-        ],
-        
-        "QUICK ALGORITHM SELECTION": [
-            "# Classification:",
-            "LogisticRegression()           # Linear, fast, interpretable",
-            "RandomForestClassifier()       # Non-linear, robust, feature importance",  
-            "SVC()                         # Non-linear, powerful, memory intensive",
-            "GradientBoostingClassifier()   # High performance, prone to overfitting",
-            "",
-            "# Regression:",
-            "LinearRegression()            # Simple, fast, interpretable",
-            "RandomForestRegressor()       # Non-linear, robust",
-            "SVR()                        # Non-linear, good for small datasets",
-            "",
-            "# Clustering:",
-            "KMeans()                     # Fast, assumes spherical clusters",
-            "DBSCAN()                     # Finds arbitrary shapes, handles noise",
-            "AgglomerativeClustering()    # Hierarchical, no need to specify k"
-        ],
-        
-        "PERFORMANCE TIPS": [
-            "# Use pipelines to prevent data leakage",
-            "# Scale features for distance-based algorithms (SVM, KNN, Neural Networks)",
-            "# Use cross-validation for reliable performance estimates", 
-            "# Start with simple models, then increase complexity",
-            "# Use n_jobs=-1 for parallel processing when available",
-            "# Consider feature selection for high-dimensional data",
-            "# Use appropriate metrics for imbalanced datasets",
-            "# Always set random_state for reproducibility"
-        ]
-    }
-    
-    for section, content in sections.items():
-        print(f"\n{section}:")
-        print("-" * len(section))
-        for line in content:
-            print(f"   {line}")
 
-def main():
-    """Main function to demonstrate all scikit-learn concepts."""
-    print("SCIKIT-LEARN COMPREHENSIVE GUIDE")
-    print("=" * 70)
-    print("This module covers all major aspects of scikit-learn for AI/ML")
-    print("To run actual code, install: pip install scikit-learn numpy pandas matplotlib")
-    
-    demonstrate_sklearn_concepts()
-    SklearnDataPreprocessing.preprocessing_examples()
-    SklearnSupervisedLearning.classification_examples()
-    SklearnSupervisedLearning.regression_examples()
-    SklearnUnsupervisedLearning.clustering_examples()
-    SklearnUnsupervisedLearning.dimensionality_reduction_examples()
-    SklearnModelEvaluation.evaluation_metrics()
-    SklearnModelEvaluation.cross_validation_examples()
-    SklearnPipelinesAndAutomation.pipeline_examples()
-    SklearnPipelinesAndAutomation.hyperparameter_tuning()
-    SklearnAdvancedFeatures.custom_estimators()
-    SklearnAdvancedFeatures.advanced_techniques()
-    create_sklearn_cheat_sheet()
-    
-    print(f"\n{'='*70}")
-    print("NEXT STEPS:")
-    print("1. Install scikit-learn: pip install scikit-learn")
-    print("2. Practice with real datasets from sklearn.datasets")
-    print("3. Explore advanced topics like ensemble methods and neural networks")
-    print("4. Check out scikit-learn documentation: https://scikit-learn.org/")
-    print("5. Try Kaggle competitions to apply your knowledge")
+def run_all_labs():
+    demonstrate_classification()
+    demonstrate_pipelines()
+    demonstrate_clustering()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. What is the fundamental difference between Supervised and Unsupervised Learning?
+   Answer: In Supervised Learning (e.g., Random Forest), the dataset contains both Features ($X$) and explicitly labeled Targets ($y$). The algorithm acts as a "student" trying to learn the mathematical mapping from $X \rightarrow y$ using the provided answer key. In Unsupervised Learning (e.g., K-Means), the dataset contains ONLY Features ($X$). There is no answer key! The algorithm acts as a "detective", analyzing the geometry of the raw data to discover hidden clusters, structures, or anomalies without any human guidance.
+
+2. What is Data Leakage, and how does the `Pipeline` object prevent it?
+   Answer: Data Leakage occurs when information from the secret Test Set accidentally bleeds into the Training Phase, causing the model to artificially inflate its accuracy (and then fail in production). A classic mistake is calling `StandardScaler.fit_transform()` on the ENTIRE dataset before splitting it. The Scaler calculates the Mean of the entire dataset, meaning the Training data is now mathematically contaminated by the Test data! A Scikit-Learn `Pipeline` completely prevents this. When you call `pipeline.fit()`, it automatically fits the Scaler STRICTLY on the $X_{train}$ data. When you call `pipeline.predict()`, it scales $X_{test}$ using the saved $X_{train}$ mean, guaranteeing perfect mathematical isolation.
+
+3. Why do algorithms like SVM and K-Means require Feature Scaling (Standardization), but Random Forests do not?
+   Answer: SVM and K-Means rely heavily on spatial geometry and Euclidean distance calculations ($d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}$). If $X$ is Age (0-100) and $Y$ is Salary (0-1,000,000), the massive numbers in the Salary column will mathematically completely overpower the Age column in the distance equation, rendering Age irrelevant. Scaling forces all columns to have a Mean of 0 and a Variance of 1, leveling the playing field. Random Forests do not calculate distance! They split data using Boolean logic (e.g., `if Age > 50: go left`). A Boolean threshold doesn't care if the data ranges from 0-100 or 0-1,000,000, making tree-based algorithms perfectly immune to unscaled data.
+"""
 
 if __name__ == "__main__":
-    main()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Scikit-Learn Predictive Modeling Completed.")
