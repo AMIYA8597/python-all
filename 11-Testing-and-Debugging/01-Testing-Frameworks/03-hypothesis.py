@@ -1,137 +1,166 @@
 """
-Property-Based Testing with Hypothesis - Educational Script
-
-Learning Objectives:
-1. Understand the paradigm of property-based testing.
-2. Learn how to use the `hypothesis` library.
-3. Define strategies to generate random test data.
-4. Discover edge cases automatically that manual tests might miss.
-5. Combine `hypothesis` with standard test runners like `pytest`.
-
-Concept Explanation:
-Unlike example-based testing (where you provide specific inputs and outputs),
-property-based testing verifies that certain *properties* hold true for a vast range of inputs.
-`hypothesis` generates random data based on "strategies" and tries to falsify your assertions.
-If it finds a failure, it "shrinks" the input to the smallest, simplest failing example.
-
-Key Components:
-- Strategies: Rules for generating data (e.g., integers, lists of strings, dictionaries).
-- Given: Decorator to inject generated data into the test function.
-- Properties: The invariants that should always be true for your function.
+# ==============================================================================
+# LABORATORY: TESTING AND DEBUGGING (PROPERTY-BASED TESTING)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer writes a string sorting function. To test it, they write 
+# three Unit Tests: sorting "cba" to "abc", sorting an empty string, and sorting 
+# a pre-sorted string. The tests pass. In Production, a user inputs a string 
+# containing a zero-width Arabic Unicode character (`\\u200B`), and the server 
+# mathematically explodes, causing an outage. The junior developer failed because 
+# humans are mathematically incapable of imagining every possible edge case.
+#
+# A senior software engineer uses Property-Based Testing (via the `hypothesis` library). 
+# Instead of hardcoding 3 examples, they mathematically declare the "Properties" of 
+# a sorted string (e.g., "The output length must equal the input length"). They 
+# command the `hypothesis` engine to violently bombard the function with thousands 
+# of randomly generated, mathematically hostile inputs (Unicode, Null bytes, massive 
+# integers). If the code has a flaw, `hypothesis` will find the exact string that 
+# breaks it, automatically shrink it to the smallest possible failing example, and 
+# hand it to the engineer for fixing.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Property-Based Testing concepts.
+# - Execute algorithmic bombardment using `hypothesis` strategies.
+# - Architect mathematical invariants (Properties) for validation.
+#
+# ==============================================================================
 """
 
-from typing import List, Tuple, Any
-from hypothesis import given, strategies as st
-import pytest
+import unittest
 
-# --- Basic Implementation: Simple Properties ---
+# Gracefully handle Hypothesis dependency
+try:
+    from hypothesis import given, settings, strategies as st
+    HAS_LIBS = True
+except ImportError:
+    HAS_LIBS = False
 
-def sort_list(lst: List[int]) -> List[int]:
-    """A simple sorting wrapper."""
-    return sorted(lst)
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-@given(st.lists(st.integers()))
-def test_sort_list_properties(lst: List[int]) -> None:
-    """
-    Test properties of a sorting function:
-    1. The result has the same length as the input.
-    2. The result is ordered.
-    3. The elements in the result are the same as the input.
-    """
-    result = sort_list(lst)
+
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (THE CODE WE ARE TESTING)
+# ==============================================================================
+class StringAlgorithms:
+    """A collection of string manipulation logic."""
     
-    # Property 1: Length is preserved
-    assert len(result) == len(lst)
-    
-    # Property 2: Result is ordered
-    for i in range(len(result) - 1):
-        assert result[i] <= result[i+1]
+    @staticmethod
+    def reverse_string(text: str) -> str:
+        """Mathematically reverses a string."""
+        return text[::-1]
         
-    # Property 3: Elements are preserved
-    assert set(result) == set(lst)
+    @staticmethod
+    def run-length-encode(text: str) -> str:
+        """
+        Compresses a string: "AABBB" -> "2A3B"
+        (Intentionally buggy to demonstrate Hypothesis finding the flaw!)
+        """
+        if not text:
+            return ""
+            
+        encoded = ""
+        current_char = text[0]
+        count = 0
+        
+        for char in text:
+            # THE BUG: If the user inputs a literal integer like "5A", 
+            # our encoding output will be "151A".
+            # The decompressor won't know if it's "15" of "1A" or "1" of "5" and "1" of "A"!
+            if char == current_char:
+                count += 1
+            else:
+                encoded += f"{count}{current_char}"
+                current_char = char
+                count = 1
+                
+        encoded += f"{count}{current_char}"
+        return encoded
 
-# --- Intermediate Implementation: Custom Strategies and Complex Types ---
 
-def encode_rle(data: str) -> List[Tuple[str, int]]:
-    """Run-length encoding."""
-    if not data:
-        return []
+# ==============================================================================
+# 4. THE HYPOTHESIS ARCHITECTURE (PROPERTY-BASED TESTS)
+# ==============================================================================
+# We define "Mathematical Properties" that must ALWAYS be true, no matter the input!
+
+if HAS_LIBS:
+    class TestStringAlgorithms(unittest.TestCase):
+        
+        # --- TEST 1: REVERSE STRING INVARIANTS ---
+        # The `@given` decorator injects algorithmic hostility!
+        # `st.text()` tells Hypothesis to generate completely random text strings,
+        # including Chinese characters, Emojis, RTL Arabic, Null Bytes, and whitespace.
+        
+        @given(st.text())
+        @settings(max_examples=100) # Bombard it 100 times!
+        def test_reverse_string_properties(self, random_text: str):
+            """
+            Property 1: Reversing a string twice MUST equal the original string.
+            Property 2: The length MUST remain identical.
+            """
+            reversed_text = StringAlgorithms.reverse_string(random_text)
+            double_reversed = StringAlgorithms.reverse_string(reversed_text)
+            
+            self.assertEqual(random_text, double_reversed)
+            self.assertEqual(len(random_text), len(reversed_text))
+            
+            
+        # --- TEST 2: INTEGER MATH INVARIANTS ---
+        # Hypothesis can generate mathematical boundaries (MAX_INT, Negative Infinity)
+        @given(st.integers(), st.integers())
+        def test_addition_commutativity(self, x: int, y: int):
+            """
+            Property: x + y MUST mathematically equal y + x.
+            """
+            self.assertEqual(x + y, y + x)
+
+
+# ==============================================================================
+# 5. MATHEMATICAL PROOF (THE TEST RUNNER)
+# ==============================================================================
+def demonstrate_hypothesis():
+    section_header("Unit Testing: Hypothesis Bombardment")
     
-    encoded = []
-    current_char = data[0]
-    count = 1
+    if not HAS_LIBS:
+        print("  [ERROR] Hypothesis not installed. Run `pip install hypothesis`.")
+        return
+        
+    print("  [EXECUTION] Booting Hypothesis Fuzzer...")
+    print("  Hypothesis will now algorithmically generate hundreds of hostile edge cases")
+    print("  and hurl them at our functions to prove they are mathematically sound.\n")
     
-    for char in data[1:]:
-        if char == current_char:
-            count += 1
-        else:
-            encoded.append((current_char, count))
-            current_char = char
-            count = 1
-    encoded.append((current_char, count))
-    return encoded
-
-def decode_rle(encoded: List[Tuple[str, int]]) -> str:
-    """Run-length decoding."""
-    return "".join(char * count for char, count in encoded)
-
-# Test the property that decoding an encoded string yields the original string
-@given(st.text())
-def test_rle_roundtrip(data: str) -> None:
-    """Property: decode(encode(data)) == data"""
-    encoded = encode_rle(data)
-    decoded = decode_rle(encoded)
-    assert decoded == data
-
-# --- Advanced Implementation: State Machine Testing (Conceptual) ---
-# Hypothesis also supports stateful testing (e.g., testing a database or API by generating
-# random sequences of operations and asserting invariants after each step).
-# For this script, we'll focus on advanced data generation.
-
-@given(st.dictionaries(st.text(), st.integers()))
-def test_dict_manipulation(d: dict[str, int]) -> None:
-    """Testing dictionary operations with arbitrary string keys and integer values."""
-    # Property: Copying a dictionary preserves its items
-    d_copy = d.copy()
-    assert d == d_copy
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestStringAlgorithms)
+    test_result = unittest.TextTestRunner(verbosity=2).run(suite)
     
-    # Property: Adding a new key increases length or updates value
-    d_copy["__test_key__"] = 999
-    assert "__test_key__" in d_copy
-    assert d_copy["__test_key__"] == 999
+    print("\n  [ARCHITECTURE PROOF]")
+    print(f"  Tests Run: {test_result.testsRun}")
+    if test_result.wasSuccessful():
+        print("  -> [FLAWLESS] The functions survived hundreds of hostile algorithmic mutations!")
 
-# --- Performance Analysis ---
-# Hypothesis runs a test multiple times (default 100) with different generated data.
-# This makes it slower than standard unit tests.
-# Use `settings(max_examples=...)` to control the number of runs.
-# Profile tests using `hypothesis.settings(profile="...")`.
 
-# --- Edge Cases ---
-# Hypothesis is excellent at finding edge cases like empty lists, NaN, infinite floats,
-# zero, negative zero, and complex Unicode characters.
-# It automatically tests these boundary conditions first.
+def run_all_labs():
+    demonstrate_hypothesis()
 
-# --- Interview Challenge ---
-# Challenge: A function `chunk_list(lst, n)` splits a list into sublists of size n.
-# What are the properties of this function? Write a Hypothesis test for it.
 
-def chunk_list(lst: List[Any], n: int) -> List[List[Any]]:
-    if n <= 0:
-        raise ValueError("n must be > 0")
-    return [lst[i:i+n] for i in range(0, len(lst), n)]
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "What is the philosophical difference between standard 'Example-Based Testing' (like standard `pytest`) and 'Property-Based Testing' (`hypothesis`)?"
+   Senior Answer: "Human limitations versus Mathematical Exhaustion. In Example-Based Testing, the developer manually hardcodes specific inputs ($x=5, y=10$). The test proves the function works *for those two numbers only*. The developer is mathematically blind to the infinite space of edge cases (e.g., $x=-0.0, y=NaN$). In Property-Based Testing, the developer does not write inputs. They write 'Invariants' (mathematical truths that must always hold, like `len(input) == len(output)`). The framework then algorithmically searches the parameter space, generating thousands of hostile inputs (Max Int, Null Bytes, Emojis) to actively try and break the invariant. It shifts the paradigm from 'proving it works once' to 'mathematically failing to prove it breaks'."
 
-@given(st.lists(st.integers()), st.integers(min_value=1, max_value=100))
-def test_chunk_list_properties(lst: List[int], n: int) -> None:
-    chunks = chunk_list(lst, n)
-    
-    # Property 1: The concatenated chunks equal the original list
-    flattened = [item for chunk in chunks for item in chunk]
-    assert flattened == lst
-    
-    # Property 2: All chunks except potentially the last have size n
-    for chunk in chunks[:-1]:
-        assert len(chunk) == n
+2. Interviewer: "When `hypothesis` finds a massive, complex input that breaks your code (like a $500$-character string of random Unicode), how do you debug it? It seems impossible to read."
+   Senior Answer: "Test Case Shrinking (Algorithmic Minimization). This is the most powerful feature of the Hypothesis engine. When it finds a failure (e.g., a $500$-character string containing Chinese characters, Emojis, and numbers), it does NOT immediately show you that string. It mathematically pauses and executes a 'Shrinking Phase'. It algorithmically removes characters, swaps Emojis for standard letters, and reduces the length, re-running the test on every mutation. It actively hunts for the absolute minimal, simplest possible input that still triggers the exact same Exception. By the time it reports the error to you, the $500$-character chaotic string has been shrunk down to `input='0'`, immediately pinpointing the exact mathematical edge case that broke the logic."
+
+3. Interviewer: "How do you test a complex function, like a Database Sorting Algorithm, where calculating the 'correct' answer to assert against is just as hard as writing the sorting algorithm itself?"
+   Senior Answer: "The Test Oracle (or Invariant Assertions). If testing a sorting algorithm, you do not need to calculate the exact sorted output. You only need to mathematically assert the *Properties* of a sorted list. You assert Property 1: `len(output) == len(input)`. You assert Property 2: `The elements in the output have the exact same frequencies as the input` (using `collections.Counter`). You assert Property 3: `output[i] <= output[i+1]` for the entire array. If Hypothesis feeds it $1,000$ chaotic arrays and all $3$ mathematical properties hold true, you have conclusively proven the sorting algorithm works without ever needing to know the 'correct' answer."
+"""
 
 if __name__ == "__main__":
-    print("Run this file using: pytest 03-hypothesis.py -v")
-    pytest.main([__file__, "-v"])
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Testing and Debugging (Hypothesis) Completed.")

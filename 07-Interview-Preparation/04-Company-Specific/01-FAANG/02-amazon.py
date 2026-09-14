@@ -1,129 +1,120 @@
 """
-Module: Amazon Interview Questions (Python)
-
-Learning Objectives:
-- Master grid traversal using BFS and DFS.
-- Implement object-oriented design for common data structures (e.g., LRU Cache).
-- Learn priority queue (Heap) applications for 'Top K' problems.
-
-Concept Explanation:
-Amazon focuses heavily on arrays, strings, trees, and object-oriented design. Number of Islands is a classic graph/grid traversal problem. LRU cache tests combined knowledge of Hash Maps and Doubly Linked Lists.
-
-Performance Analysis:
-- Number of Islands: Time O(M*N), Space O(M*N) in worst case for call stack (DFS) or queue (BFS).
-- LRU Cache: O(1) for both get and put operations.
+# ==============================================================================
+# LABORATORY: INTERVIEW PREPARATION (FAANG - AMAZON PYTHON QUESTIONS)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# Amazon interviews prioritize Object-Oriented Design (OOD), extreme string 
+# parsing, and Data Structures involving Heaps (Priority Queues). 
+# You will be asked questions like "Design an Amazon Locker System" or 
+# "Find the Top K Most Frequent Words in a massive text file."
+#
+# A junior engineer uses a standard sorting algorithm to find the Top K items, 
+# resulting in O(N log N) time complexity. 
+# A senior engineer uses Python's `heapq` module to maintain a strict Min-Heap 
+# of exactly size K, discarding the smallest elements dynamically. This reduces 
+# time complexity to O(N log K), and space complexity to an absolute O(K). 
+# If N is 1 Billion and K is 10, the senior engineer wins the job.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Python's `heapq` module (Min-Heaps and Max-Heaps).
+# - Master the "Top K Elements" algorithm in O(N log K) time.
+# - Master Object-Oriented string parsing and frequency maps (`collections.Counter`).
+#
+# ==============================================================================
 """
 
-from typing import List
+import heapq
 import collections
+from typing import List
 
-# Basic/Intermediate: Number of Islands (Grid DFS/BFS)
-def num_islands(grid: List[List[str]]) -> int:
-    """Counts the number of islands in a 2D grid."""
-    if not grid:
-        return 0
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
+
+# ==============================================================================
+# 3. TOP K FREQUENT WORDS (THE HEAPQ MASTERCLASS)
+# ==============================================================================
+class WordFreq:
+    """
+    A custom wrapper class because Amazon often asks for complex sorting rules!
+    Rule: Sort by frequency (descending), then alphabetically (ascending).
+    Because we are using a Min-Heap of size K, we must mathematically INVERT 
+    the comparison logic so that the 'worst' words (lowest freq, or highest alphabet)
+    are ejected first!
+    """
+    def __init__(self, word: str, freq: int):
+        self.word = word
+        self.freq = freq
         
-    count = 0
-    rows, cols = len(grid), len(grid[0])
+    def __lt__(self, other):
+        # If frequencies are identical, we want to eject the one that comes LATER 
+        # in the alphabet (e.g., 'z' should be ejected before 'a').
+        if self.freq == other.freq:
+            return self.word > other.word
+        # Otherwise, eject the one with the LOWER frequency.
+        return self.freq < other.freq
+
+def top_k_frequent_words(words: List[str], k: int) -> List[str]:
+    """
+    Time: O(N log K) | Space: O(N) for Hash Map, O(K) for Heap
+    Amazon explicitly forbids O(N log N) complete sorting here.
+    """
+    # 1. Build the Frequency Map (O(N) Time, O(N) Space)
+    freq_map = collections.Counter(words)
+    print(f"  Frequency Map Generated: {dict(freq_map)}")
     
-    def dfs(r: int, c: int):
-        if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == '0':
-            return
-        grid[r][c] = '0' # Mark as visited
-        dfs(r+1, c)
-        dfs(r-1, c)
-        dfs(r, c+1)
-        dfs(r, c-1)
+    # 2. Maintain a Min-Heap of size strictly K (O(N log K) Time, O(K) Space)
+    min_heap = []
+    
+    for word, count in freq_map.items():
+        # Push the custom object onto the heap
+        heapq.heappush(min_heap, WordFreq(word, count))
         
-    for r in range(rows):
-        for c in range(cols):
-            if grid[r][c] == '1':
-                count += 1
-                dfs(r, c)
-                
-    return count
+        # If the heap exceeds size K, instantly eject the 'smallest/worst' item!
+        if len(min_heap) > k:
+            ejected = heapq.heappop(min_heap)
+            print(f"    -> Heap exceeded size {k}! Ejected: '{ejected.word}' (Freq: {ejected.freq})")
+            
+    # 3. Extract the final K elements. 
+    # Because it's a Min-Heap, the absolute smallest is popped first.
+    # We must reverse the list to get descending order!
+    result = []
+    while min_heap:
+        result.append(heapq.heappop(min_heap).word)
+        
+    return result[::-1]
 
-# Advanced: LRU Cache
-class Node:
-    def __init__(self, key: int, value: int):
-        self.key = key
-        self.value = value
-        self.prev = None
-        self.next = None
-
-class LRUCache:
-    def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.cache = {}
-        self.head = Node(0, 0)
-        self.tail = Node(0, 0)
-        self.head.next = self.tail
-        self.tail.prev = self.head
-
-    def _remove(self, node: Node):
-        prev_node = node.prev
-        next_node = node.next
-        prev_node.next = next_node
-        next_node.prev = prev_node
-
-    def _add(self, node: Node):
-        prev_node = self.tail.prev
-        prev_node.next = node
-        node.prev = prev_node
-        node.next = self.tail
-        self.tail.prev = node
-
-    def get(self, key: int) -> int:
-        if key in self.cache:
-            node = self.cache[key]
-            self._remove(node)
-            self._add(node)
-            return node.value
-        return -1
-
-    def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self._remove(self.cache[key])
-        node = Node(key, value)
-        self._add(node)
-        self.cache[key] = node
-        if len(self.cache) > self.capacity:
-            lru_node = self.head.next
-            self._remove(lru_node)
-            del self.cache[lru_node.key]
+def demonstrate_amazon_heap():
+    section_header("Amazon: Top K Frequent Elements (O(N log K))")
+    
+    words = ["i", "love", "amazon", "i", "love", "coding", "amazon", "aws", "i"]
+    k = 2
+    
+    print(f"Words Array: {words}")
+    print(f"Target (K) : {k} most frequent words.\n")
+    
+    ans = top_k_frequent_words(words, k)
+    print(f"\nFinal Top {k} List: {ans}")
 
 
-def test_amazon_questions():
-    print("Testing Number of Islands...")
-    grid1 = [
-        ["1","1","1","1","0"],
-        ["1","1","0","1","0"],
-        ["1","1","0","0","0"],
-        ["0","0","0","0","0"]
-    ]
-    grid2 = [
-        ["1","1","0","0","0"],
-        ["1","1","0","0","0"],
-        ["0","0","1","0","0"],
-        ["0","0","0","1","1"]
-    ]
-    assert num_islands(grid1) == 1
-    assert num_islands(grid2) == 3
-    print("Passed.")
+# ==============================================================================
+# 4. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "If I ask you to find the Top K elements, why is using `list.sort()` an immediate failure?"
+   Senior Answer: "Calling `list.sort()` forces the CPU to execute Timsort on the entire array, sorting every single element regardless of whether it is in the Top K or not. This takes $O(N \\log N)$ time and potentially massive temporary memory allocations. If the file contains 10 Billion words and you only want the Top 10, sorting the other 9,999,999,990 words is an algorithmic disaster. By using a Priority Queue (Min-Heap) bounded to exactly size K, we instantly discard any element that is mathematically proven to not be in the Top 10. Inserting into a size K heap is $O(\\log K)$. Therefore, scanning the file takes exactly $O(N \\log K)$ time, and uses exactly $O(K)$ memory, achieving massive theoretical scalability."
 
-    print("Testing LRU Cache...")
-    lru = LRUCache(2)
-    lru.put(1, 1)
-    lru.put(2, 2)
-    assert lru.get(1) == 1
-    lru.put(3, 3) # evicts 2
-    assert lru.get(2) == -1
-    lru.put(4, 4) # evicts 1
-    assert lru.get(1) == -1
-    assert lru.get(3) == 3
-    assert lru.get(4) == 4
-    print("Passed.")
+2. Interviewer: "Python's `heapq` module only provides a Min-Heap natively. If a problem explicitly requires a Max-Heap (e.g., finding the K Smallest elements), how do you adapt it?"
+   Senior Answer: "Because Python does not have a native `max_heapq` implementation, we achieve it via mathematical negation. When pushing integers onto the heap, we multiply them by `-1`. Therefore, the absolute largest positive number becomes the absolute smallest negative number, naturally rising to the top of the Min-Heap. When popping elements, we simply multiply them by `-1` again to restore their original mathematical state. This perfectly simulates a Max-Heap in $O(1)$ constant overhead. For custom Objects, we simply override the `__lt__` (less than) dunder method to invert the comparison logic."
+
+3. Interviewer: "In the Top K Frequent Words problem, what does `collections.Counter` do under the hood, and what is its time complexity?"
+   Senior Answer: "Under the hood, `collections.Counter` is a C-optimized subclass of the Python `dict`. It iterates over the iterable in a single $O(N)$ pass. For each element, it performs a highly optimized $O(1)$ Hash Table lookup and increments the associated integer value. Because it is implemented directly in the CPython C API, it completely bypasses the Python interpreter's bytecode evaluation loop, making it astronomically faster and more memory-efficient than manually writing `if word in dict: dict[word] += 1` inside a Python `for` loop."
+"""
 
 if __name__ == "__main__":
-    test_amazon_questions()
-    print("All Amazon interview tests passed!")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: FAANG Prep (Amazon) Completed.")

@@ -1,246 +1,250 @@
 """
-Medium-Level Tree Problems for Interview Preparation
-===================================================
-
-This module covers medium-level tree problems commonly encountered in software engineering interviews.
-Trees, particularly Binary Trees and Binary Search Trees (BST), are fundamental data structures.
-
-Topics Covered:
-1. Binary Tree Right Side View (BFS/DFS)
-2. Lowest Common Ancestor of a Binary Tree (DFS)
-3. Validate Binary Search Tree (DFS/Inorder)
-4. Construct Binary Tree from Preorder and Inorder Traversal (Divide and Conquer)
-
-Beginner Explanation:
-A tree is a hierarchical data structure consisting of nodes. Medium tree problems usually involve
-traversing the tree in a specific order (preorder, inorder, postorder, or level-order) and keeping
-track of some state (like depth, path, or valid ranges).
-
-Deep Technical Explanation:
-- Time Complexity: Most tree traversal algorithms visit each node exactly once, resulting in O(N) time complexity, where N is the number of nodes.
-- Space Complexity: The space complexity is usually dictated by the recursion stack (for DFS) or the queue size (for BFS).
-  - For a balanced tree, the maximum depth is O(log N).
-  - For a skewed tree (worst case), the depth can be O(N).
-  - Level-order traversal (BFS) space complexity is O(W), where W is the maximum width of the tree. In the worst case (a complete binary tree), W = N/2, so O(N).
-
-Real-World Use Cases:
-- File systems (hierarchical structure)
-- Abstract Syntax Trees (AST) in compilers
-- DOM representation in web browsers
-- Fast lookup, insertion, and deletion in databases (B-Trees)
+# ==============================================================================
+# LABORATORY: INTERVIEW PREPARATION (PROBLEM SETS - TREE MEDIUM)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# "Medium" Tree problems test your ability to maintain mathematical constraints 
+# during deep recursion. A binary tree is just structural, but a Binary Search 
+# Tree (BST) has strict mathematical laws: Everything on the left MUST be smaller, 
+# and everything on the right MUST be larger.
+#
+# A junior engineer validates a BST by only checking if a parent is greater than 
+# its immediate left child and smaller than its immediate right child. This 
+# catastrophically fails when a right-child's left-child violates the absolute 
+# Root constraint!
+#
+# A senior engineer uses Mathematical Bounding. They pass a strict (MIN, MAX) 
+# boundary down the recursive call stack. Every single node mathematically checks 
+# itself against the global boundaries before dynamically tightening them for 
+# its children, solving it in a flawless O(N) pass.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Mathematical Bounding limits (Validate BST).
+# - Master recursive state bubbling (Lowest Common Ancestor).
+# - Master Queue-based BFS (Level Order Traversal).
+#
+# ==============================================================================
 """
 
-from typing import List, Optional, Deque
-from collections import deque
+import collections
+from typing import Optional, List
 
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
+
+# ==============================================================================
+# 3. TREE ARCHITECTURE & HELPERS
+# ==============================================================================
 class TreeNode:
-    def __init__(self, val: int = 0, left: 'Optional[TreeNode]' = None, right: 'Optional[TreeNode]' = None):
+    def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
-# -----------------------------------------------------------------------------
-# 1. Binary Tree Right Side View
-# -----------------------------------------------------------------------------
-"""
-Problem: Given the root of a binary tree, imagine yourself standing on the right side of it,
-return the values of the nodes you can see ordered from top to bottom.
+def print_tree(root: Optional[TreeNode], level=0, prefix="Root: "):
+    if root is not None:
+        print(" " * (level * 4) + prefix + str(root.val))
+        if root.left or root.right:
+            print_tree(root.left, level + 1, "L--- ")
+            print_tree(root.right, level + 1, "R--- ")
 
-Approach (BFS):
-Use level-order traversal. For each level, the last node processed is the one visible from the right.
 
-Time Complexity: O(N) where N is the number of nodes.
-Space Complexity: O(D) to keep the queues, where D is a tree diameter. Worst case O(N/2) = O(N).
-"""
-
-def rightSideView(root: Optional[TreeNode]) -> List[int]:
+# ==============================================================================
+# 4. VALIDATE BINARY SEARCH TREE (MATHEMATICAL BOUNDING)
+# ==============================================================================
+def is_valid_bst(root: Optional[TreeNode]) -> bool:
     """
-    Returns the right side view of a binary tree.
+    Time: O(N) | Space: O(H) Call Stack
+    Given the root of a binary tree, determine if it is a valid binary search tree (BST).
     """
-    if not root:
-        return []
-        
-    result = []
-    queue: Deque[TreeNode] = deque([root])
     
-    while queue:
-        level_length = len(queue)
-        
-        for i in range(level_length):
-            node = queue.popleft()
-            
-            # If it's the last node in the current level, add it to result
-            if i == level_length - 1:
-                result.append(node.val)
-                
-            # Add child nodes to the queue for the next level
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-                
-    return result
-
-# -----------------------------------------------------------------------------
-# 2. Lowest Common Ancestor of a Binary Tree
-# -----------------------------------------------------------------------------
-"""
-Problem: Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
-LCA is defined between two nodes p and q as the lowest node in T that has both p and q as descendants 
-(where we allow a node to be a descendant of itself).
-
-Approach (DFS):
-Traverse the tree. If the current node is p or q, return the current node.
-Recursively search the left and right subtrees.
-If both left and right return a non-null node, it means p and q are found in different subtrees,
-so the current node is their LCA.
-If only one returns a non-null node, return that node (it might be the LCA, or just pass it up).
-
-Time Complexity: O(N)
-Space Complexity: O(N) worst case (skewed tree), O(log N) for balanced tree.
-"""
-
-def lowestCommonAncestor(root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'Optional[TreeNode]':
-    """
-    Finds the lowest common ancestor of two nodes.
-    """
-    # Base case
-    if root is None or root == p or root == q:
-        return root
-        
-    # Look for LCA in left and right subtrees
-    left = lowestCommonAncestor(root.left, p, q)
-    right = lowestCommonAncestor(root.right, p, q)
-    
-    # If both left and right are non-null, this node is the LCA
-    if left and right:
-        return root
-        
-    # Otherwise, return the non-null child
-    return left if left else right
-
-# -----------------------------------------------------------------------------
-# 3. Validate Binary Search Tree
-# -----------------------------------------------------------------------------
-"""
-Problem: Given the root of a binary tree, determine if it is a valid binary search tree (BST).
-A valid BST is defined as follows:
-- The left subtree of a node contains only nodes with keys less than the node's key.
-- The right subtree of a node contains only nodes with keys greater than the node's key.
-- Both the left and right subtrees must also be binary search trees.
-
-Approach (DFS with Range):
-Keep track of the valid range (min_val, max_val) for the current node.
-When going left, update the max_val to the current node's value.
-When going right, update the min_val to the current node's value.
-
-Time Complexity: O(N)
-Space Complexity: O(N) worst case
-"""
-
-def isValidBST(root: Optional[TreeNode]) -> bool:
-    """
-    Validates if a binary tree is a valid BST.
-    """
-    def validate(node: Optional[TreeNode], low: float = float('-inf'), high: float = float('inf')) -> bool:
-        # Empty trees are valid BSTs
+    # We must track the absolute lower and upper bounds dynamically!
+    def validate(node: Optional[TreeNode], low: float, high: float) -> bool:
+        # Base Case: An empty node is mathematically valid!
         if not node:
             return True
             
-        # The current node's value must be between low and high
-        if node.val <= low or node.val >= high:
+        print(f"  -> Validating Node [{node.val}]. Must be strictly between ({low}, {high})")
+        
+        # 1. THE CONSTRAINT CHECK
+        if not (low < node.val < high):
+            print(f"    -> [FATAL ERROR] Node {node.val} violates the boundaries!")
             return False
             
-        # The left subtree must be < node.val, and right subtree must be > node.val
-        return (validate(node.left, low, node.val) and
-                validate(node.right, node.val, high))
+        # 2. RECURSIVE TIGHTENING
+        # Left Child: Must be strictly LESS than the current node. 
+        #   The high boundary tightens to `node.val`!
+        left_is_valid = validate(node.left, low, node.val)
+        
+        # Right Child: Must be strictly GREATER than the current node.
+        #   The low boundary tightens to `node.val`!
+        right_is_valid = validate(node.right, node.val, high)
+        
+        return left_is_valid and right_is_valid
 
-    return validate(root)
+    # Start with absolute infinite boundaries!
+    return validate(root, float('-inf'), float('inf'))
 
-# -----------------------------------------------------------------------------
-# 4. Construct Binary Tree from Preorder and Inorder Traversal
-# -----------------------------------------------------------------------------
-"""
-Problem: Given two integer arrays preorder and inorder where preorder is the preorder traversal 
-of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree.
-
-Approach (Divide and Conquer with HashMap):
-The first element in `preorder` is always the root.
-Find this root in `inorder` to split the tree into left and right subtrees.
-Use a hash map to store the indices of `inorder` values for O(1) lookup.
-Recursively build the left and right subtrees.
-
-Time Complexity: O(N) - Building the hash map takes O(N), and we process each node once.
-Space Complexity: O(N) - Hash map takes O(N) space, plus recursion stack.
-"""
-
-def buildTree(preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-    """
-    Constructs a binary tree from preorder and inorder traversals.
-    """
-    # Create a hash map to quickly find the root's index in the inorder array
-    inorder_index_map = {val: idx for idx, val in enumerate(inorder)}
-    preorder_index = 0
+def demonstrate_bst():
+    section_header("Medium: Validate Binary Search Tree (O(N))")
     
-    def array_to_tree(left: int, right: int) -> Optional[TreeNode]:
-        nonlocal preorder_index
-        # If there are no elements to construct the tree
-        if left > right:
-            return None
-            
-        # Select the preorder_index element as the root and increment it
-        root_val = preorder[preorder_index]
-        root = TreeNode(root_val)
-        preorder_index += 1
-        
-        # Build left and right subtrees
-        # Elements from 'left' to 'inorder_index_map[root_val] - 1' belong to the left subtree
-        root.left = array_to_tree(left, inorder_index_map[root_val] - 1)
-        # Elements from 'inorder_index_map[root_val] + 1' to 'right' belong to the right subtree
-        root.right = array_to_tree(inorder_index_map[root_val] + 1, right)
-        
+    # INVALID Tree Example:
+    #      5
+    #     / \
+    #    4   6
+    #       / \
+    #      3   7
+    # Note: 3 is the LEFT child of 6 (valid locally), but it is on the RIGHT 
+    # side of 5 (violates global rule)!
+    root = TreeNode(5)
+    root.left = TreeNode(4)
+    root.right = TreeNode(6, TreeNode(3), TreeNode(7))
+    
+    print("Tree Architecture:")
+    print_tree(root)
+    print()
+    
+    ans = is_valid_bst(root)
+    print(f"\nResult: {ans} (Expected: False)")
+
+
+# ==============================================================================
+# 5. LOWEST COMMON ANCESTOR OF A BINARY TREE (RECURSIVE BUBBLING)
+# ==============================================================================
+def lowest_common_ancestor(root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    """
+    Time: O(N) | Space: O(H)
+    Find the lowest common ancestor (LCA) of two given nodes p and q.
+    """
+    # 1. BASE CASES
+    # If we hit the bottom, return None.
+    # If we FIND either node P or node Q, instantly return that node upwards!
+    if not root or root == p or root == q:
         return root
+        
+    # 2. RECURSIVE SEARCH
+    # Send scouts down the left and right branches!
+    left_result = lowest_common_ancestor(root.left, p, q)
+    right_result = lowest_common_ancestor(root.right, p, q)
+    
+    # 3. EVALUATION
+    if left_result and right_result:
+        # P was found in one branch, and Q was found in the other branch!
+        # Mathematically, the current node MUST be the divergence point (the LCA)!
+        print(f"  -> [LCA FOUND] Node {root.val} bridges Left ({left_result.val}) and Right ({right_result.val})")
+        return root
+        
+    # Otherwise, return whichever scout successfully found something!
+    # If both found nothing, this returns None.
+    return left_result if left_result else right_result
 
-    return array_to_tree(0, len(preorder) - 1)
+def demonstrate_lca():
+    section_header("Medium: Lowest Common Ancestor (Recursive Bubbling)")
+    
+    # Build Tree:
+    #       3
+    #      / \
+    #     5   1
+    #    / \ / \
+    #   6  2 0  8
+    #     / \
+    #    7   4
+    root = TreeNode(3)
+    p = TreeNode(5)
+    p.left = TreeNode(6)
+    
+    node2 = TreeNode(2, TreeNode(7), TreeNode(4))
+    q = node2.right # node 4!
+    
+    p.right = node2
+    
+    root.left = p
+    root.right = TreeNode(1, TreeNode(0), TreeNode(8))
+    
+    print(f"Searching for LCA of [{p.val}] and [{q.val}]")
+    ans = lowest_common_ancestor(root, p, q)
+    print(f"\nResult: LCA Node is [{ans.val}] (Expected: 5)")
 
 
-# -----------------------------------------------------------------------------
-# Tests
-# -----------------------------------------------------------------------------
+# ==============================================================================
+# 6. BINARY TREE LEVEL ORDER TRAVERSAL (QUEUE BFS)
+# ==============================================================================
+def level_order(root: Optional[TreeNode]) -> List[List[int]]:
+    """
+    Time: O(N) | Space: O(W) where W is the maximum width of the tree.
+    Returns the level order traversal of its nodes' values (Left to Right, level by level).
+    """
+    if not root: return []
+    
+    result = []
+    
+    # We MUST use a Deque for strict O(1) pops from the front!
+    queue = collections.deque([root])
+    
+    level_depth = 0
+    while queue:
+        # Freeze the number of nodes CURRENTLY in the queue!
+        # These are ALL the nodes for the current horizontal level.
+        level_size = len(queue)
+        current_level_values = []
+        
+        print(f"  Processing Level {level_depth} (Size: {level_size})")
+        
+        # Process ONLY the nodes that were present at the start of this level!
+        for _ in range(level_size):
+            node = queue.popleft()
+            current_level_values.append(node.val)
+            
+            # Queue up the children for the NEXT level!
+            if node.left: queue.append(node.left)
+            if node.right: queue.append(node.right)
+            
+        result.append(current_level_values)
+        level_depth += 1
+        
+    return result
+
+def demonstrate_level_order():
+    section_header("Medium: Level Order Traversal (Queue BFS)")
+    
+    #      3
+    #     / \
+    #    9  20
+    #      /  \
+    #     15   7
+    root = TreeNode(3)
+    root.left = TreeNode(9)
+    root.right = TreeNode(20, TreeNode(15), TreeNode(7))
+    
+    ans = level_order(root)
+    print(f"\nResult: {ans}")
+
+
+def run_all_labs():
+    demonstrate_bst()
+    demonstrate_lca()
+    demonstrate_level_order()
+
+
+# ==============================================================================
+# 7. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "In Validate BST, why is checking `node.left.val < node.val < node.right.val` structurally insufficient?"
+   Senior Answer: "That logic only validates the immediate local relationship between a parent and its direct children. In a Binary Search Tree, the rules are global. The absolute Root node establishes a permanent boundary for the entire tree: every single descendant on the left branch, no matter how deep, MUST be smaller than the Root. If you only check immediate children, a node 5 levels deep on the left side could easily be larger than the Root, silently violating the fundamental laws of a BST. By passing the `(low, high)` boundaries down the Call Stack, we mathematically enforce the global constraints upon every local node."
+
+2. Interviewer: "In Lowest Common Ancestor, if the tree was actually a Binary Search Tree (BST) instead of a standard Binary Tree, how could you optimize the algorithm?"
+   Senior Answer: "If the tree is a BST, we do not need to use $O(N)$ Recursive Bubbling to blindly scout both branches. A BST is already sorted! We simply look at the current node's value. If `p` and `q` are BOTH smaller than the current node, the LCA is mathematically guaranteed to be in the Left branch. If they are BOTH larger, the LCA is in the Right branch. If one is smaller and one is larger, it means the paths to `p` and `q` physically diverge at the current node! The exact point of divergence is mathematically the Lowest Common Ancestor. This allows us to traverse straight down a single path without branching, crushing the time complexity from $O(N)$ down to $O(\\log N)$."
+
+3. Interviewer: "In Level Order Traversal (BFS), why do we execute `level_size = len(queue)` at the beginning of the `while` loop, instead of just popping from the queue dynamically?"
+   Senior Answer: "If we don't freeze the `level_size` into a static integer, the `for` loop will become chaotic. As we pop nodes from the current level, we are simultaneously appending their children (the next level) into the exact same queue. If we loop based on the dynamic length of the queue, the loop will never terminate for the current level; it will seamlessly bleed into processing the children, and then the grandchildren, destroying the horizontal level grouping completely. By capturing the exact size of the queue *before* the loop starts, we guarantee that the `for` loop executes exactly the correct number of times to drain only the current level, completely ignoring the newly appended children until the next iteration of the outer `while` loop."
+"""
+
 if __name__ == "__main__":
-    print("Testing Medium Tree Problems...")
-
-    # Build a sample tree:
-    #      1
-    #    /   \
-    #   2     3
-    #    \     \
-    #     5     4
-    root = TreeNode(1)
-    root.left = TreeNode(2)
-    root.right = TreeNode(3)
-    root.left.right = TreeNode(5)
-    root.right.right = TreeNode(4)
-
-    print(f"Right Side View: {rightSideView(root)}") # Expected: [1, 3, 4]
-    
-    lca_node = lowestCommonAncestor(root, root.left, root.right)
-    print(f"LCA of 2 and 3: {lca_node.val if lca_node else None}") # Expected: 1
-    
-    print(f"Is Valid BST (sample): {isValidBST(root)}") # Expected: False
-
-    # Valid BST:
-    #      2
-    #    /   \
-    #   1     3
-    bst_root = TreeNode(2)
-    bst_root.left = TreeNode(1)
-    bst_root.right = TreeNode(3)
-    print(f"Is Valid BST (BST): {isValidBST(bst_root)}") # Expected: True
-    
-    # Test Build Tree
-    preorder = [3,9,20,15,7]
-    inorder = [9,3,15,20,7]
-    built_tree = buildTree(preorder, inorder)
-    print(f"Built Tree root: {built_tree.val}") # Expected: 3
-    print("All tests passed.")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Problem Sets (Tree Medium) Completed.")

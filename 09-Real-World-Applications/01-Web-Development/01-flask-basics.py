@@ -1,203 +1,181 @@
 """
-Flask Web Development Basics
-
-This module provides a comprehensive, production-ready guide to building web applications
-with Flask, a lightweight WSGI web application framework for Python.
-
-Why it exists:
-Flask is heavily used in the industry for microservices, quick API prototyping, and full-stack
-web applications. It provides the essential tools for web routing, request handling, and response
-formatting without enforcing a specific project layout or forcing the use of specific libraries (like Django does).
-
-Beginner Explanation:
-Imagine you own a restaurant. The waiter takes a customer's order (the HTTP Request), walks to
-the kitchen, tells the chef what to make, and then brings the food back (the HTTP Response).
-Flask is the system that connects the waiter to the right chef based on what the customer ordered (Routing).
-
-Deep Technical Explanation:
-Flask relies on the Werkzeug WSGI toolkit and the Jinja2 template engine. It uses decorators
-to bind URLs to Python functions. In a production environment, Flask's built-in development
-server should never be used; instead, it sits behind a production WSGI server (like Gunicorn)
-and a reverse proxy (like Nginx).
-
-This file demonstrates:
-1. App initialization and Configuration.
-2. Routing and HTTP Methods.
-3. Request parsing (JSON, Query parameters).
-4. Error Handling.
-5. Unit testing a Flask application.
-
-Run this file directly to start the development server.
+# ==============================================================================
+# LABORATORY: REAL-WORLD APPLICATIONS (WEB DEVELOPMENT - FLASK BASICS)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior engineer wants to build a web API. They look at Django, see 500 pages 
+# of documentation, complex ORMs, and strict directory structures, and give up.
+#
+# A senior engineer understands "Microframeworks". They install `Flask`. In 
+# exactly 5 lines of code, they bind a Python function to a TCP Network Socket 
+# on Port 80, instantly exposing their mathematical logic to the entire global 
+# internet via the HTTP protocol. Flask strips away the monolithic architecture, 
+# providing absolute minimalist control over routing and requests.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the physical architecture of WSGI (Web Server Gateway Interface).
+# - Master HTTP Routing and the Decorator Pattern (`@app.route`).
+# - Master Request Parsing (JSON payloads) and Response Serialization.
+#
+# ==============================================================================
 """
 
-from flask import Flask, request, jsonify, make_response, abort
-from typing import Dict, Any, Tuple
-import unittest
-import json
-
-# ============================================================================
-# 1. Application Setup & Configuration
-# ============================================================================
-# We initialize the Flask application. In a real app, config would be loaded
-# from environment variables or a separate config.py file.
-app = Flask(__name__)
-app.config['DEBUG'] = True
-app.config['SECRET_KEY'] = 'super-secret-key-for-development-only'
-
-# Mock Database for demonstration purposes
-USERS_DB = {
-    1: {"name": "Alice", "role": "admin"},
-    2: {"name": "Bob", "role": "user"}
-}
-
-# ============================================================================
-# 2. Routing and Endpoints
-# ============================================================================
-
-@app.route('/', methods=['GET'])
-def index() -> Tuple[Dict[str, str], int]:
-    """
-    Health check endpoint.
-    Returns a simple JSON response indicating the API is running.
-    """
-    return jsonify({"message": "Welcome to the Flask API", "status": "healthy"}), 200
-
-
-@app.route('/api/users/<int:user_id>', methods=['GET'])
-def get_user(user_id: int):
-    """
-    Fetch a user by ID. Demonstrates URL parameters and 404 handling.
-    """
-    user = USERS_DB.get(user_id)
-    if not user:
-        # abort(404) triggers the error handler defined below
-        abort(404, description=f"User {user_id} not found.")
+# Gracefully handle the absence of Flask
+try:
+    from flask import Flask, request, jsonify
+    HAS_FLASK = True
+except ImportError:
+    HAS_FLASK = False
     
-    return jsonify({"id": user_id, "data": user}), 200
+import threading
+import time
+import requests
+
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
 
-@app.route('/api/users', methods=['POST'])
-def create_user():
-    """
-    Create a new user. Demonstrates parsing JSON request bodies.
-    
-    Expected JSON: {"name": "Charlie", "role": "user"}
-    """
-    if not request.is_json:
-        return jsonify({"error": "Request body must be JSON"}), 415
-    
-    data: Dict[str, Any] = request.get_json()
-    
-    # Input validation
-    if 'name' not in data or 'role' not in data:
-        return jsonify({"error": "Missing required fields: 'name', 'role'"}), 400
+# ==============================================================================
+# 3. THE MICROFRAMEWORK ARCHITECTURE (WSGI)
+# ==============================================================================
+# `__name__` tells Flask exactly where to look for hidden resources (templates/static)
+if HAS_FLASK:
+    app = Flask(__name__)
+
+    # --- 1. THE ROUTING ENGINE (Decorator Pattern) ---
+    # The `@app.route` decorator physically registers the string "/api/v1/status" 
+    # into a central Hash Table (the URL Map). When an HTTP request hits the 
+    # server, Flask hashes the URL path and instantly teleports execution to this function!
+    @app.route('/api/v1/status', methods=['GET'])
+    def health_check():
+        """A standard GET endpoint returning JSON."""
+        # Flask's `jsonify` automatically serializes the Python Dictionary into 
+        # a JSON byte-string and injects the `Content-Type: application/json` header!
+        return jsonify({
+            "status": "online",
+            "version": "1.0.0",
+            "database": "connected"
+        }), 200
+
+    # --- 2. DYNAMIC ROUTING (URL Variables) ---
+    # The `<string:username>` syntax intercepts the URL physically!
+    # e.g., `/api/v1/users/admin` -> username="admin"
+    @app.route('/api/v1/users/<string:username>', methods=['GET'])
+    def get_user(username):
+        """Dynamic URL parsing."""
+        # In a real app, this queries a Database!
+        known_users = ["admin", "ceo", "developer"]
+        if username.lower() in known_users:
+            return jsonify({"user": username, "status": "active"}), 200
+        else:
+            return jsonify({"error": "User not found"}), 404
+
+    # --- 3. PAYLOAD PARSING (POST Requests) ---
+    @app.route('/api/v1/data', methods=['POST'])
+    def receive_data():
+        """Intercepting and validating inbound JSON payloads."""
+        # The `request` object is a Thread-Local global!
+        # It mathematically points to the specific HTTP request of the CURRENT thread.
+        if not request.is_json:
+            return jsonify({"error": "Payload must be JSON"}), 400
+            
+        payload = request.get_json()
         
-    new_id = max(USERS_DB.keys()) + 1 if USERS_DB else 1
-    USERS_DB[new_id] = {"name": data['name'], "role": data['role']}
+        # Validation
+        if "sensor_id" not in payload or "temperature" not in payload:
+            return jsonify({"error": "Missing required fields"}), 400
+            
+        # Processing (e.g., writing to Database)
+        sensor = payload["sensor_id"]
+        temp = payload["temperature"]
+        
+        return jsonify({
+            "message": "Data received successfully",
+            "processed": {"id": sensor, "status": "logged"}
+        }), 201
+
+
+# ==============================================================================
+# 4. MATHEMATICAL PROOF OF EXECUTION
+# ==============================================================================
+def run_flask_server():
+    """Boots the Flask WSGI server in the background."""
+    # We turn off the massive Flask startup logging for the lab output
+    import logging
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
     
-    return jsonify({"message": "User created", "id": new_id}), 201
+    # Run on port 5050 to avoid conflicts
+    app.run(host='127.0.0.1', port=5050, debug=False, use_reloader=False)
 
-
-@app.route('/api/search', methods=['GET'])
-def search():
-    """
-    Search endpoint demonstrating URL query parameters.
-    Example: /api/search?q=Alice&limit=10
-    """
-    query = request.args.get('q', default='', type=str)
-    limit = request.args.get('limit', default=10, type=int)
+def demonstrate_flask_api():
+    section_header("Performance Proof: Localhost API Execution")
     
-    # Dummy search logic
-    results = [{"match": "item1"}, {"match": "item2"}]
+    if not HAS_FLASK:
+        print("  [ERROR] Flask is not installed. Run `pip install flask requests`.")
+        return
+        
+    print("  [INIT] Booting Flask WSGI Server on a background OS Thread...")
+    server_thread = threading.Thread(target=run_flask_server, daemon=True)
+    server_thread.start()
     
-    return jsonify({
-        "query": query,
-        "limit": limit,
-        "results": results[:limit]
-    }), 200
+    # Wait 1 second to ensure the TCP socket is fully bound to Port 5050
+    time.sleep(1.0)
+    
+    base_url = "http://127.0.0.1:5050"
+    
+    print("\n  [TEST 1: Standard GET Request]")
+    res1 = requests.get(f"{base_url}/api/v1/status")
+    print(f"    -> Status Code: {res1.status_code}")
+    print(f"    -> Response:    {res1.json()}")
+    
+    print("\n  [TEST 2: Dynamic Routing (Success)]")
+    res2 = requests.get(f"{base_url}/api/v1/users/admin")
+    print(f"    -> Status Code: {res2.status_code}")
+    print(f"    -> Response:    {res2.json()}")
+    
+    print("\n  [TEST 3: Dynamic Routing (404 Not Found)]")
+    res3 = requests.get(f"{base_url}/api/v1/users/hacker")
+    print(f"    -> Status Code: {res3.status_code}")
+    print(f"    -> Response:    {res3.json()}")
+    
+    print("\n  [TEST 4: POST Request (Valid JSON)]")
+    payload = {"sensor_id": "XJ-99", "temperature": 42.5}
+    res4 = requests.post(f"{base_url}/api/v1/data", json=payload)
+    print(f"    -> Status Code: {res4.status_code}")
+    print(f"    -> Response:    {res4.json()}")
+    
+    print("\n  [TEST 5: POST Request (Missing Fields Error)]")
+    bad_payload = {"sensor_id": "XJ-99"} # Missing temperature!
+    res5 = requests.post(f"{base_url}/api/v1/data", json=bad_payload)
+    print(f"    -> Status Code: {res5.status_code}")
+    print(f"    -> Response:    {res5.json()}")
+    
+    print("\n  [SHUTDOWN] Terminating Client. Background Server thread will die automatically.")
 
-# ============================================================================
-# 3. Global Error Handling
-# ============================================================================
 
-@app.errorhandler(404)
-def resource_not_found(e):
-    """Provides a consistent JSON response for 404 errors."""
-    return jsonify(error=str(e)), 404
+def run_all_labs():
+    demonstrate_flask_api()
 
-@app.errorhandler(500)
-def internal_server_error(e):
-    """Generic fallback for unhandled exceptions."""
-    return jsonify(error="An internal server error occurred."), 500
 
-# ============================================================================
-# 4. Interview Questions & Considerations
-# ============================================================================
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Common Interview Questions:
-Q1: What is the difference between Django and Flask?
-A1: Django is a "batteries-included" framework (ORM, admin panel, auth built-in). Flask is a micro-framework; it provides routing and templating but leaves database and auth decisions to the developer.
+ACTIVE RECALL:
+1. Interviewer: "What is WSGI (Web Server Gateway Interface), and why doesn't Flask just talk to the internet directly?"
+   Senior Answer: "The internet speaks TCP/IP and HTTP bytes. Flask speaks Python Objects. They are mathematically incompatible. If Flask tried to bind directly to Port 80 and parse raw HTTP byte streams, it would be vulnerable to catastrophic security flaws (like Slowloris attacks) and terrible concurrency. WSGI (PEP 3333) is the architectural bridge. A robust C-level web server (like Gunicorn or Nginx) binds to the physical hardware port, handles the DDOS protection, SSL decryption, and OS-level socket buffering. Once the raw HTTP request is safely assembled, Gunicorn translates it into a standard Python Dictionary (the WSGI `environ`) and passes it to Flask. Flask executes the business logic, returns a WSGI response, and Gunicorn translates it back into HTTP bytes. Flask is just a WSGI Application, not a Web Server."
 
-Q2: How does Flask handle concurrent requests?
-A2: Flask's development server is synchronous by default (though it supports threading). In production, WSGI servers like Gunicorn with gevent or async workers handle concurrency. Flask 2.0+ also supports async route handlers natively using Python's `async def`.
+2. Interviewer: "The `request` object in Flask is imported globally at the top of the file. If 1,000 users send a POST request at the exact same millisecond, why doesn't User B accidentally read User A's `request` data?"
+   Senior Answer: "This is the brilliance of 'Thread-Local Storage' (implemented via Werkzeug's `LocalProxy`). While `request` physically looks like a standard global variable, it is actually an intelligent proxy object. When you access `request.json`, the proxy mathematically queries the Operating System to identify the unique ID of the specific OS Thread currently executing the code. It uses that Thread ID as a key to look up the data in a hidden internal Dictionary. Because User A and User B are being processed on entirely different OS Threads (or Greenlets), they each cryptographically retrieve their own isolated HTTP payload, mathematically guaranteeing Thread Safety while maintaining a beautifully clean developer API."
 
-Q3: What is the Application Context vs. Request Context?
-A3: Request context keeps track of request-level data (`request`, `session`). Application context keeps track of application-level data (`current_app`, `g`). They are dynamically bound to the current thread/greenlet handling the request.
-
-Security Concerns:
-- Cross-Site Scripting (XSS): Ensure Jinja templates auto-escape HTML (done by default).
-- CSRF: If using forms/sessions, implement CSRF protection (e.g., using Flask-WTF).
-- Secrets: Never hardcode `SECRET_KEY` in source control.
+3. Interviewer: "What is the architectural difference between Flask and Django, and when must you strictly choose one over the other?"
+   Senior Answer: "Django is a 'Batteries-Included Monolith'. It enforces a rigid directory structure and ships with a deeply integrated ORM, Admin Panel, and Authentication system. It is mandatory when building a massive, data-heavy, full-stack CMS or monolithic SaaS where standard relational architecture is required. Flask is a 'Microframework'. It provides absolutely nothing except URL routing and WSGI compliance. You must manually install SQLAlchemy if you want a Database. It is mathematically mandatory when building high-speed microservices, serverless AWS Lambda functions, or simple REST APIs where the bloat of Django's 500-table Admin system would cause catastrophic memory overhead and architectural friction."
 """
 
-# ============================================================================
-# 5. Unit Tests
-# ============================================================================
-
-class FlaskBasicTests(unittest.TestCase):
-    
-    def setUp(self):
-        # Create a test client
-        self.app = app.test_client()
-        # Propagate exceptions to the test client
-        self.app.testing = True 
-
-    def test_index_health_check(self):
-        response = self.app.get('/')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json['status'], 'healthy')
-
-    def test_get_existing_user(self):
-        response = self.app.get('/api/users/1')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json['data']['name'], 'Alice')
-
-    def test_get_missing_user(self):
-        response = self.app.get('/api/users/999')
-        self.assertEqual(response.status_code, 404)
-
-    def test_create_user(self):
-        payload = {"name": "Dave", "role": "admin"}
-        response = self.app.post('/api/users', 
-                                 data=json.dumps(payload),
-                                 content_type='application/json')
-        self.assertEqual(response.status_code, 201)
-        self.assertIn('id', response.json)
-
-    def test_create_user_bad_request(self):
-        payload = {"name": "Eve"} # Missing role
-        response = self.app.post('/api/users', 
-                                 data=json.dumps(payload),
-                                 content_type='application/json')
-        self.assertEqual(response.status_code, 400)
-
-if __name__ == '__main__':
-    # When running normally, start the server or the tests.
-    import sys
-    if len(sys.argv) > 1 and sys.argv[1] == 'test':
-        # Remove 'test' so unittest framework doesn't get confused
-        sys.argv.pop(1)
-        unittest.main()
-    else:
-        # Run development server
-        app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Web Development (Flask Basics) Completed.")

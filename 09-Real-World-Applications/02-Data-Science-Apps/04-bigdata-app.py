@@ -1,181 +1,147 @@
 """
-Module: Big Data Processing Applications
-
-Learning Objectives:
-1. Understand the MapReduce paradigm and how it applies to Big Data processing.
-2. Implement memory-efficient data processing using generators and chunking.
-3. Utilize parallel processing (multiprocessing) to speed up computations.
-4. Handle datasets that are significantly larger than available RAM.
-
-Concept Explanation:
-In Big Data, datasets often exceed the capacity of a single machine's RAM. 
-Trying to load a 50GB CSV file into memory using standard techniques will crash the application.
-Instead, data scientists use strategies like Chunking (reading data in small, manageable pieces) 
-and parallel processing (MapReduce). The MapReduce paradigm splits processing into two phases:
-- Map: Apply a function to independent chunks of data concurrently.
-- Reduce: Combine the results from the Map phase into a final aggregated output.
-
-===========================================================================
-Basic Implementation
-===========================================================================
-The basic approach attempts to load everything into memory and process sequentially.
-This is prone to MemoryError and is highly inefficient for large datasets.
+# ==============================================================================
+# LABORATORY: REAL-WORLD APPLICATIONS (BIG DATA & DISTRIBUTED COMPUTING)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior engineer is tasked with analyzing 500 Gigabytes of server logs. They 
+# confidently import `pandas`. When they execute `pd.read_csv`, the Pandas engine 
+# attempts to load all 500 GB into their laptop's 16 GB of RAM. The Operating 
+# System violently terminates the Python process with an OOM (Out Of Memory) crash.
+#
+# A senior Big Data Engineer understands "Distributed Computing". They import 
+# `pyspark`. Instead of executing on a single laptop, the Spark framework 
+# mathematically partitions the 500 GB dataset into 10,000 microscopic chunks. 
+# It orchestrates 50 separate physical AWS servers (a Cluster) to process the 
+# chunks in parallel. The entire 500 GB dataset is analyzed, aggregated, and 
+# reduced to a 1 KB result in 45 seconds, mathematically immune to RAM limits.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the architectural difference between Single-Node (Pandas) and 
+#   Distributed Multi-Node (PySpark).
+# - Understand the Resilient Distributed Dataset (RDD) and DataFrame API.
+# - Master Lazy Evaluation in Big Data pipelines.
+#
+# ==============================================================================
 """
 
+import timeit
 import os
-from typing import Iterator, List, Dict, Any, Callable, TypeVar, Generic
-from collections import defaultdict
-import multiprocessing
 
-T = TypeVar('T')
-U = TypeVar('U')
-V = TypeVar('V')
-
-# ---------------------------------------------------------------------------
-# Basic Approach
-# ---------------------------------------------------------------------------
-def process_large_data_basic(file_path: str) -> Dict[str, int]:
-    """
-    Basic processing: Reads the entire file into memory at once.
-    Counts the occurrences of words. Will crash if the file is larger than RAM.
-    """
-    try:
-        with open(file_path, 'r') as f:
-            content = f.read()  # DANGER: Loads entire file into RAM
-            
-        word_counts: Dict[str, int] = defaultdict(int)
-        for word in content.split():
-            word_counts[word.lower()] += 1
-        return dict(word_counts)
-    except FileNotFoundError:
-        return {}
-
-
-# ===========================================================================
-# Professional Implementation
-# ===========================================================================
-
-class BigDataProcessor:
-    """
-    Professional implementation using Generators for chunking and 
-    Multiprocessing for a localized MapReduce simulation.
-    """
+# Gracefully handle missing pyspark dependency
+try:
+    from pyspark.sql import SparkSession
+    import pyspark.sql.functions as F
+    HAS_PYSPARK = True
+except ImportError:
+    HAS_PYSPARK = False
     
-    @staticmethod
-    def read_in_chunks(file_path: str, chunk_size: int = 1024 * 1024) -> Iterator[str]:
-        """
-        Generator that reads a file piece by piece (chunk_size bytes).
-        Ensures constant memory usage regardless of file size.
-        """
-        with open(file_path, 'r') as f:
-            while True:
-                data = f.read(chunk_size)
-                if not data:
-                    break
-                yield data
-                
-    @staticmethod
-    def _map_word_count(chunk: str) -> Dict[str, int]:
-        """
-        The MAP function: Processes a single chunk of text and returns a local count.
-        """
-        local_counts: Dict[str, int] = defaultdict(int)
-        for word in chunk.split():
-            # Stripping punctuation would go here in a production app
-            local_counts[word.lower()] += 1
-        return dict(local_counts)
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-    @classmethod
-    def process_map_reduce(cls, file_path: str, chunk_size: int = 1024 * 1024, num_workers: int = 4) -> Dict[str, int]:
-        """
-        The complete MapReduce pipeline:
-        1. Reads data in chunks using a generator (Memory Efficient)
-        2. Distributes the mapping function across multiple CPU cores (Time Efficient)
-        3. Reduces (merges) the results back into a single dictionary.
-        """
-        if not os.path.exists(file_path):
-            raise FileNotFoundError(f"File {file_path} not found.")
 
-        # 1 & 2. Map Phase
-        chunks = cls.read_in_chunks(file_path, chunk_size)
+# ==============================================================================
+# 3. THE DISTRIBUTED ARCHITECTURE (PYSPARK SIMULATION)
+# ==============================================================================
+def demonstrate_big_data_pipeline():
+    section_header("The Distributed Pipeline (PySpark DataFrame API)")
+    
+    if not HAS_PYSPARK:
+        print("  [ERROR] PySpark is not installed.")
+        print("  Run `pip install pyspark` to execute this lab locally (Single-Node Mode).")
+        return
         
-        # Using a Process Pool to execute _map_word_count concurrently
-        with multiprocessing.Pool(processes=num_workers) as pool:
-            # imap yields results as soon as they are ready, keeping memory low
-            map_results = pool.imap_unordered(cls._map_word_count, chunks)
-            
-            # 3. Reduce Phase
-            final_counts: Dict[str, int] = defaultdict(int)
-            for local_result in map_results:
-                for word, count in local_result.items():
-                    final_counts[word] += count
-                    
-        return dict(final_counts)
+    print("  [INIT] Booting the Spark JVM (Java Virtual Machine) Engine...")
+    print("  (In production, this connects to a massive Cluster of 50 servers!)")
+    
+    # We must suppress the massive Java logging output for the lab
+    os.environ['SPARK_HOME'] = "" 
+    os.environ['PYSPARK_PYTHON'] = "python"
+    
+    start_boot = timeit.default_timer()
+    spark = SparkSession.builder \
+        .appName("Laboratory_BigData") \
+        .master("local[*]") \
+        .config("spark.driver.memory", "2g") \
+        .config("spark.ui.showConsoleProgress", "false") \
+        .getOrCreate()
+        
+    spark.sparkContext.setLogLevel("ERROR")
+    end_boot = timeit.default_timer()
+    print(f"    -> Spark Cluster (Local Mode) Online in {end_boot - start_boot:.2f} seconds.")
 
 
-# ===========================================================================
-# Complexity Analysis & Interview Challenge
-# ===========================================================================
+    # --- 1. EXTRACT (Lazy Data Loading) ---
+    print("\n  [PHASE 1: EXTRACTION (Lazy Loading)]")
+    # We will dynamically generate a massive list of records in memory to simulate 
+    # a giant Parquet/CSV file. (1,000,000 records)
+    records = [{"server_id": f"srv-{i%10}", "error_code": 500 if i % 7 == 0 else 200, "bytes": i % 1024} for i in range(1_000_000)]
+    
+    print("    -> Distributing 1,000,000 records across the Cluster nodes...")
+    # This mathematically fragments the data across the CPU cores (Partitions)
+    df = spark.createDataFrame(records)
+    print(f"    -> Partitions generated: {df.rdd.getNumPartitions()} (Chunks of data)")
+
+
+    # --- 2. TRANSFORM (Lazy Evaluation) ---
+    print("\n  [PHASE 2: TRANSFORMATION (Building the DAG)]")
+    # Unlike Pandas, executing these commands does absolutely NOTHING!
+    # Spark is mathematically constructing a DAG (Directed Acyclic Graph) of operations.
+    
+    # We want to find the total bytes transferred by servers that threw 500 errors.
+    transformed_df = df.filter(F.col("error_code") == 500) \
+                       .groupBy("server_id") \
+                       .agg(F.sum("bytes").alias("total_failed_bytes")) \
+                       .orderBy(F.desc("total_failed_bytes"))
+                       
+    print("    -> AST (Abstract Syntax Tree) constructed. Zero data processed.")
+
+
+    # --- 3. LOAD (The Physical Execution Action) ---
+    print("\n  [PHASE 3: ACTION (Executing the DAG)]")
+    # When we call `.show()` or `.collect()`, Spark compiles the DAG into Java bytecode,
+    # broadcasts it to all 50 physical servers, executes the math in parallel,
+    # and aggregates the final answer!
+    
+    start_action = timeit.default_timer()
+    
+    # We trigger the execution!
+    results = transformed_df.limit(5).collect()
+    
+    end_action = timeit.default_timer()
+    
+    print(f"    -> Execution Time: {end_action - start_action:.2f} seconds")
+    print("\n  [FINAL AGGREGATED RESULTS (Top 5 Failed Servers)]")
+    for row in results:
+        print(f"    -> {row['server_id']}: {row['total_failed_bytes']:,} bytes")
+        
+    
+    # Shut down the JVM cluster
+    spark.stop()
+    print("\n  [SHUTDOWN] Spark Cluster terminated.")
+
+
+def run_all_labs():
+    demonstrate_big_data_pipeline()
+
+
+# ==============================================================================
+# 4. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Complexity Analysis:
-- process_large_data_basic:
-  Time Complexity: O(N) where N is the number of characters in the file.
-  Space Complexity: O(N) since the entire file is loaded into memory as a string, 
-                    plus the dictionary space.
+ACTIVE RECALL:
+1. Interviewer: "If Pandas is highly optimized using C-level SIMD instructions, why is it mathematically impossible to use Pandas on a $500$ GB dataset?"
+   Senior Answer: "Pandas was architected strictly for 'Single-Node' execution. It fundamentally requires the entire dataset to reside in a single, contiguous block of RAM on a single physical machine. If the dataset exceeds the hardware's physical RAM limit (e.g., trying to load $500$ GB into $16$ GB of RAM), the OS will resort to 'Swapping' (thrashing the hard drive) and violently crash with an OOM error. PySpark solves this using 'Distributed Processing'. It mathematically slices the $500$ GB file into $5,000$ microscopic $100$ MB chunks. It streams these chunks through the CPU (or distributes them across $50$ physical servers). Because it only loads a microscopic fragment of the data into RAM at any given millisecond, PySpark is mathematically immune to memory limits, capable of processing Petabytes of data with only $4$ GB of RAM."
 
-- BigDataProcessor.process_map_reduce:
-  Time Complexity: O(N / W) where W is the number of worker processes. Actual time 
-                   is bounded by disk I/O and inter-process communication overhead.
-  Space Complexity: O(C + U) where C is the chunk size and U is the number of 
-                    unique words. The memory usage is strictly bounded and will not 
-                    grow with the file size N.
+2. Interviewer: "What is a DAG (Directed Acyclic Graph), and why does PySpark utilize 'Lazy Evaluation'?"
+   Senior Answer: "If you tell PySpark to `.filter()` a dataset, and then `.select()` two columns, and then `.limit(10)`, it physically does absolutely nothing. Instead, it mathematically records your intent into a DAG (a flowchart of operations). It waits until you invoke an 'Action' (like `.collect()` or `.write()`). At that exact millisecond, PySpark's Catalyst Optimizer analyzes the entire DAG. It realizes, 'Wait, if the user only wants $10$ rows at the end, I don't need to filter all $10$ billion rows! I only need to scan until I find $10$ matches, and then stop instantly!' If Spark executed eagerly like Pandas, it would have processed $10$ billion rows sequentially. Lazy evaluation allows the engine to mathematically re-write and optimize your code into the most efficient execution path before touching a single byte of data."
 
-Interview Challenge:
-Question: You are given a log file that is 500GB in size. You need to find the top 10 
-          most frequent IP addresses. You have 8GB of RAM. How do you design this?
-Answer:
-1. Chunking: Read the file line by line (or in fixed byte chunks) using a generator.
-2. Mapping: Parse each line to extract the IP address and keep a local count in memory 
-   (using a dictionary). Since there are at most ~4.3 billion IPv4 addresses, and in practice 
-   much fewer, the dictionary might fit in memory.
-3. If the dictionary exceeds memory, use External Sorting or write intermediate key-value 
-   pairs to disk in partitioned files (e.g., hash(IP) % 100), then process each partition 
-   sequentially to find the top IPs per partition, and finally merge them.
+3. Interviewer: "Why does Python (PySpark) require a JVM (Java Virtual Machine) to execute Big Data workloads?"
+   Senior Answer: "PySpark is simply a lightweight Python 'Wrapper' (API). The actual underlying framework, Apache Spark, is written in Scala (which runs on the JVM). When you write `df.filter(F.col('age') > 30)` in Python, you are not executing Python bytecode. The Py4J library instantly translates your Python command into Java bytecode and sends it to the Spark JVM via a local socket. The JVM handles all the heavy lifting: RAM allocation, Thread management, Network clustering, and Disk I/O. The Python process essentially sits idle, acting as a remote control, while the Java engines execute the raw mathematics."
 """
 
-# ===========================================================================
-# Example Usage & Tests
-# ===========================================================================
 if __name__ == "__main__":
-    print("Testing Big Data Processing Pipeline...")
-    
-    # Create a dummy large-ish file for testing
-    test_file = "dummy_big_data.txt"
-    with open(test_file, "w") as f:
-        # Write enough data to create multiple chunks
-        for _ in range(100):
-            f.write("apple banana orange apple grape\n")
-            f.write("banana apple orange kiwi\n")
-    
-    try:
-        # Test Basic
-        basic_counts = process_large_data_basic(test_file)
-        assert basic_counts['apple'] == 200
-        assert basic_counts['banana'] == 200
-        assert basic_counts['kiwi'] == 100
-        
-        # Test Professional MapReduce Pipeline
-        # Use a very small chunk size to force multiple chunks for the test
-        processor = BigDataProcessor()
-        pro_counts = processor.process_map_reduce(test_file, chunk_size=128, num_workers=2)
-        
-        assert pro_counts['apple'] == 200
-        assert pro_counts['banana'] == 200
-        assert pro_counts['kiwi'] == 100
-        assert basic_counts == pro_counts
-        print("All tests passed successfully!")
-        
-    finally:
-        # Cleanup
-        if os.path.exists(test_file):
-            os.remove(test_file)
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Data Science (Big Data / PySpark) Completed.")

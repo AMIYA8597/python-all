@@ -1,197 +1,225 @@
 """
-Metaclasses and Descriptors in Python
-
-Learning Objectives:
-1. Understand the concept of metaclasses and how they control class creation.
-2. Master the descriptor protocol (__get__, __set__, __delete__).
-3. Implement practical use cases for metaclasses (e.g., Singleton, validation).
-4. Implement practical use cases for descriptors (e.g., typed attributes, lazy properties).
-
-Concept Explanation:
-- A class in Python is an object, and its type is a metaclass (by default, `type`).
-- Metaclasses allow you to intercept class creation, modify class dictionaries, and enforce constraints on subclasses.
-- A descriptor is an object attribute with "binding behavior", meaning its attribute access has been overridden by methods in the descriptor protocol.
-
-Interview Focus:
-- Explain what a metaclass is and give a practical use case.
-- Implement a custom descriptor for attribute validation.
-- Explain the difference between __getattr__, __getattribute__, and descriptors.
+# ==============================================================================
+# LABORATORY: INTERVIEW PREPARATION (PYTHON SPECIFICS - THE ORM ARCHITECTURE)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# Interviewer: "Build a mini Django Object-Relational Mapper (ORM) from scratch."
+#
+# This is the ultimate test of Python mastery. To build an ORM, you must combine 
+# everything: Descriptors, Metaclasses, and advanced dunder methods.
+# 
+# You need Descriptors to intercept `user.age = 25` and ensure it is an Integer, 
+# and maybe even trigger a SQL `UPDATE` behind the scenes.
+# You need a Metaclass to intercept `class User(Model):` and dynamically generate 
+# a SQL `CREATE TABLE Users` string before the object is ever instantiated.
+#
+# You also must absolutely understand the horrific difference between `__getattr__` 
+# and `__getattribute__`. Mixing them up will crash your program with an 
+# Infinite Recursion `RecursionError` instantly.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Build a production-grade Django-style ORM using Metaclasses + Descriptors.
+# - Master `__getattr__` (Fallback) vs `__getattribute__` (Absolute Intercept).
+# - Understand the Infinite Recursion Trap.
+#
+# ==============================================================================
 """
-import time
-from typing import Any, Type, Dict, Callable
 
-# ==========================================
-# 1. Metaclasses
-# ==========================================
-
-class SingletonMeta(type):
-    """
-    A metaclass that creates a Singleton base class when called.
-    """
-    _instances: Dict[Type, Any] = {}
-
-    def __call__(cls, *args, **kwargs) -> Any:
-        if cls not in cls._instances:
-            # Create the instance and store it
-            cls._instances[cls] = super().__call__(*args, **kwargs)
-        return cls._instances[cls]
-
-class DatabaseConnection(metaclass=SingletonMeta):
-    """Example of a Singleton using a metaclass."""
-    def __init__(self):
-        print("Initializing Database Connection")
-        self.connected = True
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
 
-# ==========================================
-# 2. Descriptors
-# ==========================================
+# ==============================================================================
+# 3. BUILDING A MINI ORM (DESCRIPTORS + METACLASSES)
+# ==============================================================================
 
-class Typed:
-    """
-    A descriptor that enforces type checking on an attribute.
-    """
-    def __init__(self, name: str, expected_type: Type):
-        self.name = name
-        self.expected_type = expected_type
-
-    def __get__(self, instance: Any, owner: Type) -> Any:
-        if instance is None:
-            return self
-        return instance.__dict__.get(self.name)
-
-    def __set__(self, instance: Any, value: Any) -> None:
-        if not isinstance(value, self.expected_type):
-            raise TypeError(f"Expected {self.expected_type}, got {type(value)}")
-        instance.__dict__[self.name] = value
-
-    def __delete__(self, instance: Any) -> None:
-        if self.name in instance.__dict__:
-            del instance.__dict__[self.name]
-
-class Person:
-    name = Typed("name", str)
-    age = Typed("age", int)
-
-    def __init__(self, name: str, age: int):
-        self.name = name
-        self.age = age
-
-
-class LazyProperty:
-    """
-    A descriptor for a property that is only computed once and then cached.
-    """
-    def __init__(self, function: Callable):
-        self.function = function
-        self.name = function.__name__
-
-    def __get__(self, instance: Any, owner: Type) -> Any:
-        if instance is None:
-            return self
-        # Compute the value
-        value = self.function(instance)
-        # Cache the value in the instance dictionary
-        # Subsequent accesses will read directly from __dict__ because
-        # this is a non-data descriptor (no __set__).
-        setattr(instance, self.name, value)
-        return value
-
-class DataAnalyzer:
-    def __init__(self, data: list):
-        self.data = data
-
-    @LazyProperty
-    def expensive_computation(self) -> int:
-        print("Computing expensive result...")
-        time.sleep(1) # Simulate expensive work
-        return sum(self.data) * 2
-
-# ==========================================
-# Interview Challenge: API Model Validation
-# ==========================================
-# Use a metaclass and descriptors to build a simple declarative model validation system.
-
-class Validator:
+# --- 1. The Descriptor (The Fields) ---
+class IntegerField:
+    """A Descriptor that forces an attribute to be a strictly typed integer."""
+    def __init__(self, primary_key=False):
+        self.primary_key = primary_key
+        
     def __set_name__(self, owner, name):
         self.name = name
+        self.private_name = '_' + name
+        
+    def __get__(self, obj, objtype=None):
+        if obj is None: return self # Accessed via class
+        return getattr(obj, self.private_name, None)
+        
+    def __set__(self, obj, value):
+        if not isinstance(value, int):
+            raise TypeError(f"Database Error: {self.name} MUST be an Integer!")
+        setattr(obj, self.private_name, value)
 
-    def __get__(self, instance, owner):
-        if instance is None: return self
-        return instance.__dict__.get(self.name)
-
-class StringField(Validator):
-    def __init__(self, min_length=0, max_length=None):
-        self.min_length = min_length
-        self.max_length = max_length
-
-    def __set__(self, instance, value):
+class StringField:
+    def __set_name__(self, owner, name):
+        self.name = name
+        self.private_name = '_' + name
+        
+    def __get__(self, obj, objtype=None):
+        if obj is None: return self
+        return getattr(obj, self.private_name, None)
+        
+    def __set__(self, obj, value):
         if not isinstance(value, str):
-            raise TypeError(f"{self.name} must be a string")
-        if len(value) < self.min_length:
-            raise ValueError(f"{self.name} must be >= {self.min_length} chars")
-        if self.max_length and len(value) > self.max_length:
-            raise ValueError(f"{self.name} must be <= {self.max_length} chars")
-        instance.__dict__[self.name] = value
+            raise TypeError(f"Database Error: {self.name} MUST be a String!")
+        setattr(obj, self.private_name, value)
 
+
+# --- 2. The Metaclass (The Table Generator) ---
 class ModelMeta(type):
     def __new__(mcs, name, bases, namespace):
-        fields = {k: v for k, v in namespace.items() if isinstance(v, Validator)}
-        namespace['_fields'] = fields
+        # We don't want to process the base 'Model' class itself!
+        if name == "Model":
+            return super().__new__(mcs, name, bases, namespace)
+            
+        print(f"  [ORM METACLASS] Scanning '{name}' for Database Fields...")
+        
+        # We mathematically extract all the Descriptors the user defined!
+        fields = {}
+        for key, value in namespace.items():
+            if isinstance(value, (IntegerField, StringField)):
+                fields[key] = value
+                
+        # Inject the parsed fields directly into the Class definition!
+        namespace['_database_fields'] = fields
+        namespace['_table_name'] = name.lower() + "s"
+        
+        # Automatically generate the SQL CREATE TABLE query!
+        sql_cols = []
+        for f_name, f_type in fields.items():
+            db_type = "INT" if isinstance(f_type, IntegerField) else "VARCHAR(255)"
+            pk = " PRIMARY KEY" if getattr(f_type, 'primary_key', False) else ""
+            sql_cols.append(f"{f_name} {db_type}{pk}")
+            
+        sql = f"CREATE TABLE {namespace['_table_name']} ({', '.join(sql_cols)});"
+        namespace['creation_sql'] = sql
+        
         return super().__new__(mcs, name, bases, namespace)
 
+# --- 3. The Base Class ---
 class Model(metaclass=ModelMeta):
-    def __init__(self, **kwargs):
-        for name, field in self._fields.items():
-            if name in kwargs:
-                setattr(self, name, kwargs[name])
+    def save(self):
+        """Simulates saving the instance to the database."""
+        # We iterate over the Metaclass-injected fields to generate an INSERT query!
+        cols = []
+        vals = []
+        for f_name in self._database_fields.keys():
+            cols.append(f_name)
+            # Use the descriptor to get the validated value
+            val = getattr(self, f_name) 
+            vals.append(f"'{val}'" if isinstance(val, str) else str(val))
+            
+        sql = f"INSERT INTO {self._table_name} ({', '.join(cols)}) VALUES ({', '.join(vals)});"
+        print(f"  [ORM SAVE] Executing: {sql}")
 
-class User(Model):
-    username = StringField(min_length=3, max_length=20)
-    email = StringField(min_length=5)
 
-def test_metaclasses_and_descriptors():
-    # Test Singleton
-    db1 = DatabaseConnection()
-    db2 = DatabaseConnection()
-    assert db1 is db2, "Singleton failed"
+# --- 4. The User Code! ---
+class Employee(Model):
+    id = IntegerField(primary_key=True)
+    name = StringField()
+    age = IntegerField()
+
+def demonstrate_orm():
+    section_header("Building an ORM (Metaclasses + Descriptors)")
     
-    # Test Typed Descriptor
-    p = Person("Alice", 30)
-    assert p.name == "Alice"
+    print("1. Did the Metaclass automatically generate the SQL schema at compile time?")
+    print(f"   Generated SQL: {Employee.creation_sql}")
+    
+    print("\n2. Instantiating a new Employee...")
+    e = Employee()
+    
+    print("3. Validating data using Descriptors...")
+    e.id = 1
+    e.name = "Alice"
+    e.age = 30
+    
+    print("   Attempting to inject a string into an IntegerField...")
     try:
-        p.age = "thirty"
-        assert False, "TypeError expected"
-    except TypeError:
-        pass
-    
-    # Test Lazy Property
-    analyzer = DataAnalyzer([1, 2, 3])
-    # First access computes
-    start = time.time()
-    res1 = analyzer.expensive_computation
-    time1 = time.time() - start
-    
-    # Second access caches
-    start = time.time()
-    res2 = analyzer.expensive_computation
-    time2 = time.time() - start
-    
-    assert res1 == 12
-    assert res1 == res2
-    assert time1 > 0.5
-    assert time2 < 0.1
-    
-    # Test API Model Validation
-    user = User(username="admin", email="admin@example.com")
-    assert user.username == "admin"
-    try:
-        User(username="ab")
-        assert False, "ValueError expected for short username"
-    except ValueError:
-        pass
+        e.age = "Thirty"
+    except TypeError as err:
+        print(f"   [CRASH PREVENTED] {err}")
+        
+    print("\n4. Triggering the dynamic save()...")
+    e.save()
 
-    print("All metaclass and descriptor tests passed!")
+
+# ==============================================================================
+# 4. __GETATTR__ VS __GETATTRIBUTE__ (THE RECURSION TRAP)
+# ==============================================================================
+class DangerousObject:
+    def __init__(self):
+        self.real_data = "Hello"
+        
+    def __getattr__(self, item):
+        """
+        THE FALLBACK.
+        This ONLY fires if the attribute physically DOES NOT EXIST in the dictionary.
+        It is extremely safe to use.
+        """
+        return f"Fallback for missing attribute: {item}"
+
+class TerrifyingObject:
+    def __init__(self):
+        self.real_data = "Hello"
+        
+    def __getattribute__(self, item):
+        """
+        THE ABSOLUTE INTERCEPT.
+        This fires for EVERY SINGLE attribute access, even if it exists!
+        """
+        print(f"  [Intercepted] Accessing {item}...")
+        
+        # FATAL FLAW! 
+        # If we try to return self.real_data here, Python sees `self.real_data`.
+        # `self.real_data` triggers `__getattribute__` again!
+        # Which prints, and then calls `self.real_data`, which triggers `__getattribute__`...
+        # Infinite Recursion. The stack blows up instantly.
+        
+        # The ONLY way to escape is to call the ultimate C-level object allocator:
+        return super().__getattribute__(item)
+
+def demonstrate_getattribute():
+    section_header("__getattr__ vs __getattribute__")
+    
+    print("Testing `__getattr__` (The Fallback)...")
+    safe = DangerousObject()
+    print(f"  Accessing existing: {safe.real_data}")
+    print(f"  Accessing missing : {safe.fake_data}")
+    
+    print("\nTesting `__getattribute__` (The Absolute Intercept)...")
+    scary = TerrifyingObject()
+    print(f"  Accessing existing: {scary.real_data}")
+    print("  Notice that it intercepted the call, but safely escaped using `super()`!")
+
+
+def run_all_labs():
+    demonstrate_orm()
+    demonstrate_getattribute()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "In our ORM, why did we need the Metaclass? Why couldn't we just generate the `CREATE TABLE` SQL inside the `__init__` method of the Employee class?"
+   Senior Answer: "The `__init__` method only runs when an Object is *instantiated* (e.g., `e = Employee()`). If you are running database migrations, you don't want to instantiate fake objects just to figure out what the schema should be! You need the class structure to be evaluated and the SQL to be generated mathematically at *compile time* (when the module is first imported). The Metaclass intercepts the physical definition of the `Employee` class itself, parses its attributes, and generates the `CREATE TABLE` string as a Class Attribute. This allows a migration script to simply read `Employee.creation_sql` without ever creating an object."
+
+2. Interviewer: "I wrote a `__getattribute__` method, and the moment I instantiate the class, I get a `RecursionError: maximum recursion depth exceeded`. What did I do?"
+   Senior Answer: "You fell into the Infinite Recursion Trap. `__getattribute__` is absolute; it intercepts literally *every* attribute lookup on the object, including lookups originating from inside `__getattribute__` itself! If you wrote `return self.__dict__[item]` inside the method, the act of looking up `self.__dict__` triggers `__getattribute__` again, which looks up `self.__dict__`, triggering it again, spiraling infinitely until the C-stack blows up. To safely access attributes inside `__getattribute__`, you MUST bypass the object's interception layer entirely by delegating to the base C-class: `super().__getattribute__(item)`."
+
+3. Interviewer: "What is the physical sequence of events when I write `user.age` on an ORM model?"
+   Senior Answer: "1. Python checks the Object's `__getattribute__`. 
+   2. It sees that `age` points to a Descriptor object attached to the Class. 
+   3. Because the Descriptor protocol takes precedence over the instance dictionary, it halts the standard lookup and reroutes execution to the Descriptor's `__get__` dunder method. 
+   4. The `__get__` method receives the `user` instance, mathematically looks up the hidden private variable (e.g., `user._age`), and returns it to the caller. This invisible routing is the core magic of Python frameworks."
+"""
 
 if __name__ == "__main__":
-    test_metaclasses_and_descriptors()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Interview Prep (Advanced ORM Architecture) Completed.")

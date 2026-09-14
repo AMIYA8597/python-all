@@ -1,182 +1,161 @@
 """
-Web Scraping: Automating Data Extraction from the Web
-
-Learning Objectives:
-1. Understand the fundamentals of HTTP requests and HTML parsing.
-2. Master tools like `requests` and `BeautifulSoup` (concepts mocked using standard libraries).
-3. Learn advanced concepts: handling pagination, dynamic content, and anti-scraping mechanisms.
-4. Professional implementation adhering to ethical scraping rules.
-
-Concept Explanation:
-Web scraping is the automated process of extracting data from websites. It involves making an HTTP request to a URL, retrieving the HTML content, parsing it, and extracting the desired information.
-Industry use cases include:
-- Price monitoring and competitor analysis for e-commerce.
-- Lead generation and contact extraction.
-- Data collection for Machine Learning models (e.g., NLP datasets).
-- News aggregation and social media sentiment analysis.
-
-Ethical Considerations (Important):
-1. Always check `robots.txt` before scraping.
-2. Do not overload servers; implement rate limiting (`time.sleep()`).
-3. Identify your scraper via a custom `User-Agent` string.
-4. Respect terms of service of the website.
-
-Below is an educational implementation simulating `requests` and `BeautifulSoup` functionality to teach the concepts.
+# ==============================================================================
+# LABORATORY: REAL-WORLD APPLICATIONS (WEB SCRAPING & AUTOMATION)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A massive Fortune 500 company needs to aggregate pricing data from 50 competitors 
+# daily. The competitors do not have an API. 
+#
+# A junior engineer hires 10 interns to manually click on websites and copy-paste 
+# prices into an Excel sheet, costing $500,000 a year and generating massive 
+# human error.
+#
+# A senior engineer writes a 50-line Python script using `requests` and `BeautifulSoup`. 
+# It runs silently on a Cron job at 3:00 AM, programmatically downloading the HTML, 
+# mathematically extracting the CSS nodes containing the prices, and dumping the 
+# flawless data into a PostgreSQL database in 4 seconds.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master HTTP Requests (Headers, User-Agents, Proxies).
+# - Master the DOM (Document Object Model) and CSS Selectors.
+# - Differentiate between Static HTML Scraping and Dynamic JS Execution.
+#
+# ==============================================================================
 """
 
-from typing import List, Dict, Optional
-import re
-import urllib.request
-import urllib.error
 import time
+import requests
+# We gracefully handle missing dependencies!
+try:
+    from bs4 import BeautifulSoup
+    HAS_BS4 = True
+except ImportError:
+    HAS_BS4 = False
 
-# ==========================================
-# 1. Simulating `requests` Library
-# ==========================================
-class SimpleResponse:
-    def __init__(self, status_code: int, text: str):
-        self.status_code = status_code
-        self.text = text
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-def simple_get(url: str, headers: Optional[Dict[str, str]] = None) -> SimpleResponse:
-    """A minimal wrapper around urllib to simulate requests.get()"""
-    req_headers = headers or {'User-Agent': 'Python/Educational-Scraper'}
-    req = urllib.request.Request(url, headers=req_headers)
+
+# ==============================================================================
+# 3. HTTP HEADERS & RATE LIMIT EVASION
+# ==============================================================================
+# If you simply run `requests.get('https://amazon.com')`, the target server 
+# mathematically analyzes the incoming HTTP headers. It sees:
+# `User-Agent: python-requests/2.28.1`
+# The WAF (Web Application Firewall) instantly triggers an IP Ban.
+
+def demonstrate_http_headers():
+    section_header("Bypassing Basic WAFs (User-Agent Spoofing)")
     
-    try:
-        with urllib.request.urlopen(req, timeout=10) as response:
-            html = response.read().decode('utf-8')
-            return SimpleResponse(response.status, html)
-    except urllib.error.HTTPError as e:
-        return SimpleResponse(e.code, "")
-    except Exception as e:
-        return SimpleResponse(500, "")
-
-# ==========================================
-# 2. Simulating HTML Parsing (like BeautifulSoup)
-# ==========================================
-class SimpleParser:
-    """A minimal regex-based parser to simulate BeautifulSoup's find mechanisms.
-    NOTE: In production, NEVER use regex for complex HTML parsing. Always use BeautifulSoup or lxml.
-    This is strictly for educational, standalone demonstration.
-    """
-    def __init__(self, html: str):
-        self.html = html
-
-    def find_all(self, tag: str, class_name: Optional[str] = None) -> List[str]:
-        """Finds all contents of a specific tag, optionally filtering by class."""
-        if class_name:
-            # Pattern to match <tag class="class_name">content</tag>
-            pattern = f'<{tag}[^>]*class=["\'][^"\']*\\b{class_name}\\b[^"\']*["\'][^>]*>(.*?)</{tag}>'
-        else:
-            pattern = f'<{tag}[^>]*>(.*?)</{tag}>'
-            
-        matches = re.findall(pattern, self.html, re.IGNORECASE | re.DOTALL)
-        return [m.strip() for m in matches]
-
-# ==========================================
-# 3. Professional Scraper Implementation
-# ==========================================
-
-class BlogScraper:
-    """A class designed to scrape blog titles from a given URL."""
+    print("  [SCENARIO] We are attempting to scrape a secure endpoint.")
     
-    def __init__(self, base_url: str):
-        self.base_url = base_url
-        self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (Educational Scraper)',
-            'Accept-Language': 'en-US,en;q=0.9',
-        }
-        
-    def fetch_page(self, url: str) -> Optional[str]:
-        """Fetches the HTML content of the page with error handling."""
-        print(f"Fetching: {url} ...")
-        response = simple_get(url, headers=self.headers)
-        
-        if response.status_code == 200:
-            return response.text
-        else:
-            print(f"Failed to fetch {url}. Status code: {response.status_code}")
-            return None
-
-    def parse_titles(self, html: str) -> List[str]:
-        """Parses article titles from the HTML."""
-        parser = SimpleParser(html)
-        # Assuming the blog titles are inside <h2> tags with class "post-title"
-        titles = parser.find_all("h2", class_name="post-title")
-        
-        # Clean up HTML entities or tags within the title if necessary
-        clean_titles = [re.sub(r'<[^>]+>', '', title).strip() for title in titles]
-        return clean_titles
-
-    def scrape_multiple_pages(self, num_pages: int) -> List[str]:
-        """Scrapes multiple paginated pages."""
-        all_titles = []
-        for page in range(1, num_pages + 1):
-            url = f"{self.base_url}?page={page}"
-            html = self.fetch_page(url)
-            if html:
-                titles = self.parse_titles(html)
-                all_titles.extend(titles)
-            
-            # Rate Limiting: Be polite to the server
-            time.sleep(1) 
-            
-        return all_titles
-
-
-# ==========================================
-# Usage Example & Tests
-# ==========================================
-def run_tests():
-    print("--- Running Web Scraping Tests ---")
+    # 1. The Naive Request
+    print("\n  [NAIVE REQUEST]")
+    print("    headers = {}")
+    print("    response = requests.get('https://example.com/api', headers=headers)")
+    print("    -> Result: 403 FORBIDDEN (WAF Blocked!)")
     
-    # Mock HTML content to test parsing logic
-    mock_html = """
+    # 2. The Spoofed Request
+    # We mathematically forge the HTTP Headers to exactly match a real Google 
+    # Chrome browser running on Windows 10.
+    professional_headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://www.google.com/"
+    }
+    
+    print("\n  [PROFESSIONAL REQUEST]")
+    print(f"    headers = {professional_headers['User-Agent'][:40]}...")
+    print("    response = requests.get('https://example.com/api', headers=headers)")
+    print("    -> Result: 200 OK (WAF Bypassed!)")
+
+
+# ==============================================================================
+# 4. PARSING THE DOM (BEAUTIFUL SOUP)
+# ==============================================================================
+def demonstrate_dom_parsing():
+    section_header("Extracting Data from the DOM (BeautifulSoup)")
+    
+    if not HAS_BS4:
+        print("  [ERROR] BeautifulSoup4 is not installed. Run `pip install beautifulsoup4`.")
+        return
+        
+    # We will simulate an HTTP response containing raw HTML!
+    raw_html = """
     <html>
+        <head><title>E-Commerce Store</title></head>
         <body>
-            <div class="content">
-                <h2 class="post-title">Python 101</h2>
-                <p>Learn basics</p>
-                <h2 class="post-title"> <span>Advanced Scraping</span> </h2>
-                <h2>Not a target title</h2>
+            <div id="product-list">
+                <div class="card product-card">
+                    <h2 class="title">Quantum Keyboard</h2>
+                    <span class="price">$199.99</span>
+                    <p class="stock in-stock">In Stock (42 units)</p>
+                </div>
+                <div class="card product-card">
+                    <h2 class="title">Optical Mouse</h2>
+                    <span class="price">$49.99</span>
+                    <p class="stock out-of-stock">Out of Stock</p>
+                </div>
             </div>
         </body>
     </html>
     """
     
-    # 1. Test HTML Parser
-    parser = SimpleParser(mock_html)
-    titles = parser.find_all("h2", class_name="post-title")
-    assert len(titles) == 2, "Should find exactly 2 titles with class 'post-title'"
-    assert titles[0] == "Python 101"
-    assert "Advanced Scraping" in titles[1]
-    print("HTML Parsing tests passed.")
+    print("  [INIT] Loading HTML payload into the DOM Parser...")
     
-    # 2. Test Scraper class methods (using mocked HTML to avoid network calls in tests)
-    scraper = BlogScraper("http://dummy-url.com")
-    parsed = scraper.parse_titles(mock_html)
-    assert len(parsed) == 2
-    assert parsed[0] == "Python 101"
-    assert parsed[1] == "Advanced Scraping" # Checks if inner tags are stripped
-    print("Scraper parsing tests passed.")
+    # The parser mathematically converts the raw string into a traversable Tree (AST)!
+    soup = BeautifulSoup(raw_html, 'html.parser')
     
-    print("All Web Scraping concepts tests passed successfully.")
+    print("\n  [TASK 1: Extract the Page Title]")
+    # We navigate the DOM nodes directly!
+    title = soup.title.text
+    print(f"    -> {title}")
+    
+    print("\n  [TASK 2: Extract all Product Prices]")
+    # CSS SELECTORS! We instruct the C-level parser to find all span tags with class 'price'.
+    # This is mathematically equivalent to `document.querySelectorAll('.price')` in JS.
+    product_cards = soup.find_all('div', class_='product-card')
+    
+    total_value = 0.0
+    for card in product_cards:
+        # We search *within* the specific node!
+        name = card.find('h2', class_='title').text
+        price_str = card.find('span', class_='price').text
+        stock_status = card.find('p', class_='stock').text
+        
+        # Data Cleaning! Strip the '$' and convert to Float for mathematical analysis.
+        price_float = float(price_str.replace('$', ''))
+        
+        print(f"    -> Product: {name:<20} | Price: ${price_float:<7.2f} | Status: {stock_status}")
+        total_value += price_float
+        
+    print(f"\n  [ANALYSIS] Total Store Value: ${total_value:.2f}")
+
+
+def run_all_labs():
+    demonstrate_http_headers()
+    demonstrate_dom_parsing()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "What is the difference between scraping with `requests` + `BeautifulSoup`, versus using a tool like `Selenium` or `Playwright`?"
+   Senior Answer: "`requests` simply opens a TCP socket, downloads the raw HTML file from the server, and closes the connection. It is mathematically instant ($0.05$ seconds). However, modern web frameworks (React, Vue, Angular) often return a blank HTML file containing only a massive JavaScript bundle. If you use `BeautifulSoup` to parse a React app, it finds absolutely zero data, because the data doesn't exist yet! Tools like `Selenium` and `Playwright` boot up an actual, physical instance of Google Chrome (a headless browser). They download the HTML, execute the JavaScript V8 engine, wait for the JS to dynamically render the DOM, and *then* extract the data. While they can scrape anything, booting a physical browser requires Gigabytes of RAM and takes $5.0+$ seconds per page, completely destroying extraction throughput."
+
+2. Interviewer: "How do large-scale web scrapers prevent their IP addresses from being permanently banned by Cloudflare or AWS WAF?"
+   Senior Answer: "Spoofing the `User-Agent` is only step one. WAFs deploy mathematical rate-limiting (e.g., detecting if a single IP address requests 50 pages in 1 second). To scale horizontally, professional scrapers route their TCP packets through Rotating Proxy Networks. A proxy pool intercepts the Python script's outbound request and mathematically funnels it through thousands of different IP addresses worldwide (often residential IPs). The target WAF perceives the attack as 10,000 distinct human beings browsing the site slowly, perfectly masking the single Python script executing the logic."
+
+3. Interviewer: "If an E-Commerce site is rendered using React (making BeautifulSoup useless), how can you extract the data without resorting to a slow Selenium browser?"
+   Senior Answer: "Reverse Engineering the API. Even though React renders the data dynamically in the browser, the React code must physically retrieve that data from somewhere! By opening the Chrome Network DevTools (XHR/Fetch tab), you can mathematically trace the exact hidden JSON API endpoint that the React frontend is querying (e.g., `https://api.store.com/v1/products`). You completely bypass the HTML, bypass React, bypass Selenium, and simply execute a raw `requests.get()` directly against their hidden API endpoint, extracting flawless, pre-formatted JSON data at lightning speed."
+"""
 
 if __name__ == "__main__":
-    run_tests()
-
-"""
-Complexity Analysis & Architecture Discussion:
-- Performance & Concurrency: Sequential requests are slow. For large-scale scraping, use asynchronous libraries like `aiohttp` combined with `asyncio`, or distributed task queues like Celery.
-- Dynamic Content: The `requests` library cannot render JavaScript. For Modern SPAs (React/Vue/Angular), you must use headless browsers like `Playwright`, `Selenium`, or intercept the underlying API calls the website makes via browser DevTools.
-- Robustness: Websites change frequently. Scrapers are fragile. Implement robust error handling, retries with exponential backoff, and logging to detect when your parsers break.
-
-Interview Challenge:
-Q: You are scraping a site, but you keep getting blocked or receiving HTTP 403 Forbidden. What are the common reasons and how do you bypass this?
-A: 
-1. Missing/Default User-Agent: Servers block default user agents like "python-requests". Fix: Rotate realistic User-Agent strings.
-2. IP Blocking: Too many requests from a single IP. Fix: Implement delays (`time.sleep()`), use proxies, or proxy-rotating services.
-3. Cookies/Session Tokens: The site requires session state. Fix: Use a Session object (`requests.Session()`) to maintain cookies across requests.
-4. CAPTCHAs/JS Challenges: Sites use Cloudflare or Datadome. Fix: Difficult to bypass completely; may require Headless Browsers + CAPTCHA solving services, though at this point, you should evaluate if an official API exists.
-"""
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Web Development (Scraping) Completed.")

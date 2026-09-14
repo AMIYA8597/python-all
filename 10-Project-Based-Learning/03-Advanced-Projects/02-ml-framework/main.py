@@ -1,274 +1,241 @@
 """
-Advanced Project: Custom Machine Learning Framework (Autograd & Neural Nets)
-
-This script implements a micro-framework for deep learning from scratch using pure Python and NumPy.
-It features a custom Tensor class with an automatic differentiation engine (autograd),
-basic neural network layers, loss functions, and optimizers.
-
-It culminates in training a Multi-Layer Perceptron (MLP) to solve the non-linear XOR problem.
+# ==============================================================================
+# LABORATORY: PROJECT-BASED LEARNING (NEURAL NETWORK FRAMEWORK)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer imports `tensorflow` or `pytorch`, types `model.fit()`, 
+# and watches the Loss number go down. If you ask them *why* the number goes 
+# down, they cannot answer. They treat AI as literal magic. When their model 
+# fails to converge due to "Vanishing Gradients", they are mathematically helpless.
+#
+# A senior AI engineer builds a Neural Network framework from scratch using pure 
+# Python and NumPy. They manually execute Forward Propagation (Matrix Multiplication), 
+# compute the Loss (Mean Squared Error), and mathematically calculate the Partial 
+# Derivatives of the error with respect to every single weight matrix (Backpropagation). 
+# By architecting the Gradient Descent algorithm themselves, they demystify AI 
+# into pure, deterministic Linear Algebra.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Matrix Multiplication (Dot Products) for Forward Propagation.
+# - Execute algorithmic Backpropagation using Partial Derivatives (Calculus).
+# - Architect a modular Deep Learning framework (Layers, Activations).
+#
+# ==============================================================================
 """
 
-import numpy as np
 import math
-from typing import List, Tuple, Union, Optional, Callable
+import random
+from typing import List
 
-# ---------------------------------------------------------------------------
-# 1. Autograd Engine & Tensor Class
-# ---------------------------------------------------------------------------
+# Gracefully handle NumPy
+try:
+    import numpy as np
+    HAS_NUMPY = True
+except ImportError:
+    HAS_NUMPY = False
 
-class Tensor:
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
+
+# ==============================================================================
+# 3. THE MATHEMATICAL PRIMITIVES (ACTIVATIONS & LOSS)
+# ==============================================================================
+class Sigmoid:
     """
-    A Tensor is a multi-dimensional array that tracks its computation history
-    to support automatic differentiation (backpropagation).
+    The Non-Linear Activation Function.
+    If a Neural Network only uses linear math (y = mx + b), it mathematically 
+    collapses into a single layer. We MUST inject non-linearity to learn complex shapes!
     """
-    def __init__(self, data: Union[int, float, list, np.ndarray], _children: tuple = (), _op: str = '', requires_grad: bool = False):
-        self.data = np.array(data, dtype=np.float64)
-        self.grad = np.zeros_like(self.data, dtype=np.float64)
+    @staticmethod
+    def forward(x):
+        # Squeezes any number between 0 and 1
+        return 1.0 / (1.0 + np.exp(-x))
+
+    @staticmethod
+    def backward(x):
+        # The exact Calculus Derivative of the Sigmoid function!
+        s = Sigmoid.forward(x)
+        return s * (1.0 - s)
+
+
+class MeanSquaredError:
+    """The Mathematical Loss Function."""
+    @staticmethod
+    def forward(predictions, targets):
+        # Calculates the exact mathematical error (distance from the truth)
+        return np.mean(np.square(predictions - targets))
+
+    @staticmethod
+    def backward(predictions, targets):
+        # The exact Calculus Derivative of the MSE function!
+        # This tells us WHICH DIRECTION to move the weights to reduce the error.
+        return 2.0 * (predictions - targets) / predictions.size
+
+
+# ==============================================================================
+# 4. THE NEURAL NETWORK ARCHITECTURE
+# ==============================================================================
+class DenseLayer:
+    """A fully-connected Neural Network layer."""
+    def __init__(self, input_size: int, output_size: int):
+        # We mathematically initialize the Weights to small random numbers.
+        # Shape: (input_size, output_size)
+        self.weights = np.random.randn(input_size, output_size) * 0.1
+        # Biases initialize to zero. Shape: (1, output_size)
+        self.biases = np.zeros((1, output_size))
         
-        # Autograd graph variables
-        self._backward: Callable[[], None] = lambda: None
-        self._prev = set(_children)
-        self._op = _op
-        self.requires_grad = requires_grad
+        # State caches for Backpropagation!
+        self.inputs = None
+        self.z = None
 
-    def __repr__(self) -> str:
-        return f"Tensor(data={self.data}, grad={self.grad})"
-
-    def zero_grad(self) -> None:
-        """Resets the gradient to zero."""
-        self.grad = np.zeros_like(self.data)
-
-    def backward(self) -> None:
+    def forward(self, inputs):
         """
-        Executes backpropagation starting from this tensor.
-        Uses topological sort to ensure gradients are computed in the correct order.
+        Forward Propagation.
+        Y = (X • W) + B
         """
-        topo = []
-        visited = set()
+        self.inputs = inputs
+        # The Dot Product! This is the Heavy Math that GPUs accelerate.
+        self.z = np.dot(inputs, self.weights) + self.biases
+        return Sigmoid.forward(self.z)
+
+    def backward(self, gradient, learning_rate: float):
+        """
+        Backpropagation (The Chain Rule of Calculus).
+        """
+        # 1. Gradient of the Activation Function
+        sig_deriv = Sigmoid.backward(self.z)
+        delta = gradient * sig_deriv
         
-        def build_topo(v: 'Tensor'):
-            if v not in visited:
-                visited.add(v)
-                for child in v._prev:
-                    build_topo(child)
-                topo.append(v)
+        # 2. Gradient of the Weights and Biases
+        weights_gradient = np.dot(self.inputs.T, delta)
+        biases_gradient = np.sum(delta, axis=0, keepdims=True)
+        
+        # 3. Calculate the gradient to pass BACKWARDS to the previous layer
+        input_gradient = np.dot(delta, self.weights.T)
+        
+        # 4. GRADIENT DESCENT: Physically update the matrices to make the AI smarter!
+        self.weights -= learning_rate * weights_gradient
+        self.biases -= learning_rate * biases_gradient
+        
+        return input_gradient
+
+
+class SequentialNetwork:
+    """The execution engine that chains multiple layers together."""
+    def __init__(self):
+        self.layers: List[DenseLayer] = []
+        
+    def add(self, layer: DenseLayer):
+        self.layers.append(layer)
+        
+    def train(self, X, Y, epochs: int, learning_rate: float):
+        print(f"  [TRAINING INITIATED] Epochs: {epochs} | LR: {learning_rate}")
+        
+        for epoch in range(epochs):
+            # --- FORWARD PASS ---
+            current_output = X
+            for layer in self.layers:
+                current_output = layer.forward(current_output)
                 
-        build_topo(self)
-        
-        # Initialize the gradient of the root node (e.g., loss) to 1
-        self.grad = np.ones_like(self.data)
-        
-        # Apply the chain rule backwards
-        for node in reversed(topo):
-            node._backward()
-
-    # --- Mathematical Operations ---
-
-    def __add__(self, other: Union['Tensor', float, int]) -> 'Tensor':
-        other = other if isinstance(other, Tensor) else Tensor(other)
-        out = Tensor(self.data + other.data, (self, other), '+')
-        
-        def _backward():
-            # Handle broadcasting during backprop
-            # If self.data is (1, 3) and other is (3, 3), gradients need to be summed along broadcasted axes
+            predictions = current_output
             
-            def unbroadcast(grad, shape):
-                """Sums out broadcasted dimensions."""
-                if grad.shape == shape: return grad
-                ndims_added = grad.ndim - len(shape)
-                for _ in range(ndims_added): grad = grad.sum(axis=0)
-                for i, dim in enumerate(shape):
-                    if dim == 1: grad = grad.sum(axis=i, keepdims=True)
-                return grad
-
-            if self.requires_grad:
-                self.grad += unbroadcast(out.grad, self.data.shape)
-            if other.requires_grad:
-                other.grad += unbroadcast(out.grad, other.data.shape)
-                
-        out._backward = _backward
-        out.requires_grad = self.requires_grad or other.requires_grad
-        return out
-
-    def __mul__(self, other: Union['Tensor', float, int]) -> 'Tensor':
-        other = other if isinstance(other, Tensor) else Tensor(other)
-        out = Tensor(self.data * other.data, (self, other), '*')
-        
-        def _backward():
-            def unbroadcast(grad, shape):
-                if grad.shape == shape: return grad
-                ndims_added = grad.ndim - len(shape)
-                for _ in range(ndims_added): grad = grad.sum(axis=0)
-                for i, dim in enumerate(shape):
-                    if dim == 1: grad = grad.sum(axis=i, keepdims=True)
-                return grad
-
-            if self.requires_grad:
-                self.grad += unbroadcast(other.data * out.grad, self.data.shape)
-            if other.requires_grad:
-                other.grad += unbroadcast(self.data * out.grad, other.data.shape)
-                
-        out._backward = _backward
-        out.requires_grad = self.requires_grad or other.requires_grad
-        return out
-
-    def __matmul__(self, other: 'Tensor') -> 'Tensor':
-        """Matrix multiplication."""
-        out = Tensor(self.data @ other.data, (self, other), '@')
-        
-        def _backward():
-            if self.requires_grad:
-                self.grad += out.grad @ other.data.T
-            if other.requires_grad:
-                other.grad += self.data.T @ out.grad
-                
-        out._backward = _backward
-        out.requires_grad = self.requires_grad or other.requires_grad
-        return out
-
-    def sum(self) -> 'Tensor':
-        """Sums all elements."""
-        out = Tensor(np.sum(self.data), (self,), 'sum')
-        
-        def _backward():
-            if self.requires_grad:
-                self.grad += np.ones_like(self.data) * out.grad
-        out._backward = _backward
-        out.requires_grad = self.requires_grad
-        return out
-
-    # Non-linearities
-    def relu(self) -> 'Tensor':
-        """Rectified Linear Unit activation."""
-        out = Tensor(np.maximum(0, self.data), (self,), 'relu')
-        
-        def _backward():
-            if self.requires_grad:
-                self.grad += (out.data > 0) * out.grad
-        out._backward = _backward
-        out.requires_grad = self.requires_grad
-        return out
-
-    # Dunder overrides to support python builtins
-    def __radd__(self, other): return self + other
-    def __rmul__(self, other): return self * other
-    def __sub__(self, other): return self + (other * -1)
-    def __rsub__(self, other): return (self * -1) + other
-
-
-# ---------------------------------------------------------------------------
-# 2. Neural Network Modules
-# ---------------------------------------------------------------------------
-
-class Module:
-    """Base class for all neural network modules."""
-    def zero_grad(self) -> None:
-        for p in self.parameters():
-            p.zero_grad()
+            # --- LOSS CALCULATION ---
+            loss = MeanSquaredError.forward(predictions, Y)
             
-    def parameters(self) -> List[Tensor]:
-        return []
+            if epoch % 1000 == 0:
+                print(f"    -> Epoch {epoch:04d} | Mathematical Loss: {loss:.6f}")
+                
+            # --- BACKWARD PASS (LEARNING) ---
+            # 1. Calculate the initial gradient of the error
+            gradient = MeanSquaredError.backward(predictions, Y)
+            
+            # 2. Ripple the gradient backwards through every layer!
+            for layer in reversed(self.layers):
+                gradient = layer.backward(gradient, learning_rate)
 
-class Linear(Module):
-    """A fully connected / dense layer."""
-    def __init__(self, in_features: int, out_features: int):
-        # Initialize weights with standard normal distribution scaled by sqrt(in_features) (He/Xavier approx)
-        self.weight = Tensor(np.random.randn(in_features, out_features) / math.sqrt(in_features), requires_grad=True)
-        self.bias = Tensor(np.zeros(out_features), requires_grad=True)
+    def predict(self, X):
+        current_output = X
+        for layer in self.layers:
+            current_output = layer.forward(current_output)
+        return current_output
 
-    def __call__(self, x: Tensor) -> Tensor:
-        return (x @ self.weight) + self.bias
 
-    def parameters(self) -> List[Tensor]:
-        return [self.weight, self.bias]
-
-class MLP(Module):
-    """A simple Multi-Layer Perceptron."""
-    def __init__(self, layer_sizes: List[int]):
-        self.layers = []
-        for i in range(len(layer_sizes) - 1):
-            self.layers.append(Linear(layer_sizes[i], layer_sizes[i+1]))
-
-    def __call__(self, x: Tensor) -> Tensor:
-        for i, layer in enumerate(self.layers):
-            x = layer(x)
-            if i < len(self.layers) - 1:
-                x = x.relu() # Apply ReLU to all hidden layers
-        return x
+# ==============================================================================
+# 5. MATHEMATICAL PROOF (THE SIMULATION)
+# ==============================================================================
+def demonstrate_neural_network():
+    section_header("Project: Raw Neural Network Framework")
+    
+    if not HAS_NUMPY:
+        print("  [ERROR] NumPy not installed. Run `pip install numpy`.")
+        return
         
-    def parameters(self) -> List[Tensor]:
-        return [p for layer in self.layers for p in layer.parameters()]
-
-
-# ---------------------------------------------------------------------------
-# 3. Loss & Optimizers
-# ---------------------------------------------------------------------------
-
-def mse_loss(preds: Tensor, targets: Tensor) -> Tensor:
-    """Mean Squared Error Loss."""
-    diff = preds - targets
-    return (diff * diff).sum() * (1.0 / preds.data.size)
-
-class SGD:
-    """Stochastic Gradient Descent Optimizer."""
-    def __init__(self, parameters: List[Tensor], lr: float = 0.01):
-        self.parameters = parameters
-        self.lr = lr
-
-    def step(self) -> None:
-        for p in self.parameters:
-            if p.requires_grad:
-                p.data -= self.lr * p.grad
-
-    def zero_grad(self) -> None:
-        for p in self.parameters:
-            p.zero_grad()
-
-
-# ---------------------------------------------------------------------------
-# 4. Main Execution (Training Loop)
-# ---------------------------------------------------------------------------
-
-def run_xor_training():
-    """
-    Trains an MLP on the XOR dataset. 
-    XOR is non-linear and cannot be solved by a single linear layer.
-    """
-    print("--- Starting Neural Network Training (XOR Problem) ---")
-    np.random.seed(42)
-
-    # XOR Dataset
-    X = Tensor([[0, 0], [0, 1], [1, 0], [1, 1]])
-    Y = Tensor([[0], [1], [1], [0]])
-
-    # Initialize model: 2 inputs -> 4 hidden units -> 1 output
-    model = MLP([2, 4, 1])
-    optimizer = SGD(model.parameters(), lr=0.1)
-
-    epochs = 200
-    for epoch in range(epochs):
-        # 1. Forward pass
-        preds = model(X)
+    print("  [SCENARIO] Training an AI to learn the XOR Logic Gate.")
+    print("  XOR is a non-linear problem. A single neuron mathematically cannot solve it!")
+    
+    # The XOR Dataset (Inputs and Targets)
+    X = np.array([
+        [0, 0],
+        [0, 1],
+        [1, 0],
+        [1, 1]
+    ])
+    
+    Y = np.array([
+        [0],
+        [1],
+        [1],
+        [0]
+    ])
+    
+    # Architect the AI
+    nn = SequentialNetwork()
+    # Hidden Layer: 2 Inputs -> 4 Neurons
+    nn.add(DenseLayer(2, 4))
+    # Output Layer: 4 Neurons -> 1 Output Answer
+    nn.add(DenseLayer(4, 1))
+    
+    # Train the AI!
+    nn.train(X, Y, epochs=5000, learning_rate=0.5)
+    
+    # Test the AI!
+    print("\n  [INFERENCE TEST]")
+    predictions = nn.predict(X)
+    
+    for i in range(len(X)):
+        input_val = X[i]
+        true_val = Y[i][0]
+        pred_val = predictions[i][0]
+        # We mathematically round it! > 0.5 is a 1, < 0.5 is a 0.
+        rounded = 1 if pred_val > 0.5 else 0
+        print(f"    -> Input {input_val} | Target: {true_val} | AI Predicts: {pred_val:.4f} => [{rounded}]")
         
-        # 2. Compute Loss
-        loss = mse_loss(preds, Y)
-        
-        # 3. Backward pass (Compute gradients)
-        optimizer.zero_grad()
-        loss.backward()
-        
-        # 4. Optimizer step (Update weights)
-        optimizer.step()
+    print("\n  [SUCCESS] The AI mathematically conquered the Non-Linear XOR problem!")
 
-        if (epoch + 1) % 50 == 0:
-            print(f"Epoch {epoch+1:03d} | Loss: {loss.data:.4f}")
 
-    print("\n--- Training Complete. Evaluating Results ---")
-    predictions = model(X)
-    for i in range(4):
-        pred_val = predictions.data[i][0]
-        actual_val = Y.data[i][0]
-        print(f"Input: {X.data[i]} | Target: {actual_val} | Prediction: {pred_val:.4f} -> Rounded: {round(pred_val)}")
+def run_all_labs():
+    demonstrate_neural_network()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "Why did we initialize the layer weights to `np.random.randn() * 0.1`? Why couldn't we just initialize all the weights mathematically to `0.0`?"
+   Senior Answer: "The Symmetry Breaking Problem. If you initialize all weights in a Neural Network to exactly $0.0$, every single neuron in the Hidden Layer will execute the exact same mathematical Forward propagation. During Backpropagation, they will all receive the exact same Gradient, and they will all update by the exact same amount. The network mathematically collapses; $100$ hidden neurons will behave exactly like $1$ single neuron, permanently destroying the network's ability to learn complex patterns. Random initialization mathematically breaks this symmetry, allowing each individual neuron to learn a slightly different feature of the dataset."
+
+2. Interviewer: "Why did we mathematically require a Non-Linear Activation Function (like `Sigmoid` or `ReLU`) after every Dense Layer?"
+   Senior Answer: "Linear Collapse. A Dense Layer is purely linear math ($Y = XW + B$). If you stack $50$ Dense Layers on top of each other without an activation function, the math dictates that a series of linear transformations is mathematically equivalent to a *single* linear transformation. The $50$-layer Deep Neural Network collapses into a $1$-layer Linear Regression model, rendering it utterly incapable of solving non-linear problems like XOR, image recognition, or natural language processing. The Non-Linear activation function warps the mathematical space, allowing the network to draw complex, curved decision boundaries."
+
+3. Interviewer: "Explain the architectural mechanics of 'Backpropagation' and the 'Chain Rule' of Calculus."
+   Senior Answer: "Forward Propagation pushes the data through the matrices to generate a prediction. We then calculate the Loss (how mathematically wrong the prediction is). However, we need to know how to adjust the weights in Layer 1 to reduce that error, but Layer 1 is buried deep inside the network! Backpropagation uses the Calculus Chain Rule to mathematically trace the error backwards. We calculate the Partial Derivative of the Loss with respect to Layer 3, pass that gradient backward to calculate the derivative for Layer 2, and pass it backward again to Layer 1. This tells every single matrix exactly which direction (up or down) to adjust its weights to minimize the global error, forming the absolute foundation of all modern AI training."
+"""
 
 if __name__ == "__main__":
-    run_xor_training()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Capstone Project (Neural Network Framework) Completed.")

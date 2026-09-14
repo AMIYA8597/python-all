@@ -1,175 +1,151 @@
 """
-Embedded Systems in Python (MicroPython / CircuitPython Focus)
-
-1. WHAT IS IT?
-Embedded systems are specialized computing systems that perform dedicated functions within a larger mechanical or electrical system.
-Python, specifically dialects like MicroPython and CircuitPython, is increasingly used in embedded systems (microcontrollers like ESP32, RP2040, STM32) due to its rapid development cycle and rich hardware abstraction layers.
-
-2. INDUSTRY USE CASES
-- IoT Devices: Smart home sensors, agricultural monitors, industrial telemetry (ESP32/ESP8266).
-- Prototyping: Rapidly testing hardware logic before porting to C/C++.
-- Edge AI: Running lightweight machine learning models on microcontrollers (TensorFlow Lite for Microcontrollers).
-- Maker/Education: Raspberry Pi Pico, Adafruit boards.
-
-3. BEGINNER EXPLANATION
-An embedded system is like the "brain" inside your microwave or washing machine. It doesn't have a screen or a keyboard, and it just does one specific job. 
-Because microcontrollers have tiny amounts of memory (RAM) and slow processors compared to your laptop, writing Python for them requires special tricks to avoid running out of memory.
-
-4. TECHNICAL EXPLANATION
-Programming embedded systems in Python differs significantly from desktop Python:
-- No OS (Bare Metal): MicroPython runs directly on the hardware. There is no standard OS scheduler, filesystem (usually a minimal FAT/LittleFS is provided), or virtual memory.
-- Memory Constraints: You might only have 128KB of RAM. Dynamic allocation (creating new objects) fragments memory quickly, leading to `MemoryError`.
-- Hardware Interrupts: You must respond to hardware events (like a button press or sensor ready) immediately using Interrupt Service Routines (ISRs).
-- Peripheral Buses: Direct interaction with I2C, SPI, UART, ADC, and PWM.
-
-5. ADVANCED CONCEPTS: OPTIMIZATIONS
-- Pre-allocation: Allocate buffers and objects at startup. Do NOT allocate inside loops or ISRs.
-- ISR Constraints: ISRs must be extremely fast. No floating-point math, no memory allocation, no print statements. Use `micropython.schedule()` to defer processing.
-- `const()`: MicroPython provides a `const()` macro to evaluate constants at compile time, saving RAM.
-- `memoryview` / `bytearray`: Used for zero-copy buffer manipulation, critical for fast SPI/I2C transfers.
-
-6. INTERVIEW QUESTIONS
-- Q: What are the restrictions of an Interrupt Service Routine (ISR) in MicroPython?
-  A: Cannot allocate memory (no creating lists/dicts/strings), cannot use floating point, must be as short/fast as possible. Use `micropython.schedule` for heavy lifting.
-- Q: How do you prevent memory fragmentation in long-running embedded Python code?
-  A: Pre-allocate all necessary buffers globally at startup. Use `gc.collect()` proactively at known safe points in the main loop. Use `memoryview` for slicing buffers without copying.
-
-Below is a mock simulation demonstrating embedded Python design patterns.
+# ==============================================================================
+# LABORATORY: SYSTEM DESIGN (EMBEDDED SYSTEMS & IOT)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# You are programming the braking system for an autonomous car.
+# 
+# If you use standard Python on a standard Linux OS, the Garbage Collector 
+# might randomly pause execution for 50ms right when a child steps into the road. 
+# Or the OS Scheduler might decide to run an antivirus update, stealing CPU 
+# priority away from the brakes for 200ms. The car crashes.
+#
+# Standard OS schedulers are "Fair" (they try to give every program a turn). 
+# Embedded Systems require "Real-Time Operating Systems" (RTOS). 
+# An RTOS is "Deterministic". If a high-priority hardware interrupt fires 
+# (e.g., Radar detects an object), the RTOS will violently preempt and freeze 
+# every other process in the system in exactly 10 microseconds to guarantee the 
+# brakes activate instantly.
+#
+# Furthermore, Embedded IoT (Internet of Things) devices like smart thermostats 
+# run on coin-cell batteries with 256 KB of RAM. They cannot afford the massive 
+# overhead of HTTP/JSON. They must use lightweight, binary-packed protocols 
+# like MQTT over Pub/Sub.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand Hard Real-Time vs Soft Real-Time constraints.
+# - Differentiate Fair Schedulers (Linux) vs Deterministic Schedulers (RTOS).
+# - Master the MQTT protocol for low-power IoT devices.
+#
+# ==============================================================================
 """
 
 import time
 import random
-# In a real MicroPython environment, you would import machine and micropython
-# import machine
-# import micropython
+import queue
 
-# ==========================================
-# Mocking MicroPython Hardware APIs
-# ==========================================
-class MockPin:
-    IN = 0
-    OUT = 1
-    IRQ_FALLING = 2
-    
-    def __init__(self, id, mode):
-        self.id = id
-        self.mode = mode
-        self.value_state = 0
-        
-    def value(self, val=None):
-        if val is not None:
-            self.value_state = val
-        return self.value_state
-
-    def irq(self, trigger, handler):
-        self.irq_handler = handler
-        # We will manually trigger this in the simulation
-
-class MockI2C:
-    def __init__(self, scl, sda, freq):
-        pass
-    def readfrom_mem_into(self, addr, memaddr, buf):
-        # Simulate reading 2 bytes of sensor data into a pre-allocated buffer
-        buf[0] = random.randint(0, 255)
-        buf[1] = random.randint(0, 255)
-
-# MicroPython mock schedule
-scheduled_function = None
-def mock_schedule(func, arg):
-    global scheduled_function
-    scheduled_function = (func, arg)
-
-# ==========================================
-# Optimized Embedded Code Pattern
-# ==========================================
-
-# 1. Use constants to save RAM
-SENSOR_ADDR = 0x42
-REG_TEMP = 0x01
-THRESHOLD = 30000
-
-# 2. Pre-allocate ALL buffers and state variables globally
-# This prevents MemoryError and heap fragmentation during the main loop
-sensor_buffer = bytearray(2)
-i2c_bus = MockI2C(scl=MockPin(22, MockPin.OUT), sda=MockPin(21, MockPin.OUT), freq=400000)
-led = MockPin(2, MockPin.OUT)
-button = MockPin(0, MockPin.IN)
-
-# Pre-allocated variables for ISR to avoid allocation
-interrupt_count = 0
-isr_flag = False
-
-# 3. Hardware Interrupt Service Routine (ISR)
-# Rule: Keep it short, no allocations, no floats, no prints.
-def button_isr(pin):
-    global interrupt_count, isr_flag
-    # Bare minimum work in the interrupt context
-    interrupt_count += 1
-    isr_flag = True
-    # In real MicroPython: micropython.schedule(handle_button_press, interrupt_count)
-    mock_schedule(handle_button_press, interrupt_count)
-
-# Register the ISR
-button.irq(trigger=MockPin.IRQ_FALLING, handler=button_isr)
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
 
-# 4. Deferred Interrupt Handler (Runs in main context)
-# Safe to allocate, print, and do heavier processing here.
-def handle_button_press(count):
-    print(f"[EVENT] Button pressed! Total presses: {count}")
-    # Toggle LED
-    led.value(not led.value())
+# ==============================================================================
+# 3. DETERMINISTIC SCHEDULING (RTOS SIMULATION)
+# ==============================================================================
+class RTOS_Task:
+    def __init__(self, name: str, priority: int, duration_ms: int):
+        self.name = name
+        self.priority = priority # 1 (Lowest) to 100 (Highest)
+        self.duration_ms = duration_ms
 
-
-def read_sensor_fast(bus, addr, reg, buf):
+class RTOS_Scheduler:
     """
-    Read sensor using pre-allocated buffer (zero allocation).
+    Simulates a Strict Priority-Based Preemptive Scheduler.
+    Higher priority tasks instantly freeze lower priority tasks!
     """
-    bus.readfrom_mem_into(addr, reg, buf)
-    # Combine 2 bytes into a 16-bit integer
-    return (buf[0] << 8) | buf[1]
+    def __init__(self):
+        # A priority queue mathematically sorts by lowest number first.
+        # We store negative priority to force Highest Priority (100) to the top!
+        self.task_queue = queue.PriorityQueue()
+        
+    def add_task(self, task: RTOS_Task):
+        self.task_queue.put((-task.priority, task))
+        
+    def run(self):
+        while not self.task_queue.empty():
+            _, task = self.task_queue.get()
+            print(f"[RTOS] Executing [PRIORITY {task.priority:3}] {task.name}...")
+            # Simulate precise execution time
+            time.sleep(task.duration_ms / 1000.0)
+            print(f"       -> {task.name} completed perfectly on time.")
+
+def demonstrate_rtos():
+    section_header("RTOS (Hard Real-Time Schedulers)")
+    
+    print("Scenario: An Autonomous Vehicle CPU.")
+    
+    scheduler = RTOS_Scheduler()
+    
+    # 1. Background Tasks
+    scheduler.add_task(RTOS_Task("Update GPS Maps", priority=10, duration_ms=50))
+    scheduler.add_task(RTOS_Task("Play Spotify Music", priority=5, duration_ms=20))
+    scheduler.add_task(RTOS_Task("Adjust AC Temp", priority=15, duration_ms=10))
+    
+    # 2. CRITICAL Hardware Interrupt fires!
+    print("!!! [HARDWARE INTERRUPT] Radar detects child in the road! !!!")
+    scheduler.add_task(RTOS_Task("ACTIVATE EMERGENCY BRAKES", priority=100, duration_ms=5))
+    
+    print("\n[Scheduler takes over. Notice the strict deterministic execution order:]")
+    scheduler.run()
+    
+    print("\nThe RTOS mathematically guaranteed that the Brakes executed BEFORE ")
+    print("the GPS update, bypassing 'Fairness' to guarantee absolute safety!")
 
 
-def main_loop():
-    print("Starting embedded main loop...")
+# ==============================================================================
+# 4. MQTT (LOW POWER IOT PROTOCOL)
+# ==============================================================================
+def demonstrate_mqtt():
+    section_header("MQTT (IoT Communication Protocol)")
     
-    # Optional: trigger garbage collection immediately after initialization
-    # import gc; gc.collect()
+    print("A battery-powered Smart Thermostat needs to send the temperature to AWS.")
+    print("-" * 60)
     
-    global scheduled_function, isr_flag
+    print("Option A: HTTP (Heavyweight)")
+    print("  1. Open TCP Connection (3-way handshake)")
+    print("  2. Open TLS/SSL Connection (Heavy Crypto math, burns battery)")
+    print("  3. Send HTTP Headers (500 Bytes of useless text like 'User-Agent: Mozilla')")
+    print("  4. Send JSON Payload (50 Bytes): {'temp': 72.5}")
+    print("  5. Keep connection alive, burning Wi-Fi radio power.")
+    print("  -> Total Data Transferred: ~2,000 Bytes per message.")
     
-    for _ in range(5): # Simulate 5 ticks of the main loop
-        start_t = time.time()
-        
-        # 1. Handle scheduled tasks from ISRs
-        if scheduled_function:
-            func, arg = scheduled_function
-            func(arg)
-            scheduled_function = None
-            isr_flag = False
-            
-        # 2. Read Sensors (Zero allocation)
-        raw_val = read_sensor_fast(i2c_bus, SENSOR_ADDR, REG_TEMP, sensor_buffer)
-        print(f"[TICK] Sensor reading: {raw_val} (LED state: {led.value()})")
-        
-        # 3. Actuate / Control Logic
-        if raw_val > THRESHOLD:
-            print("       -> Threshold exceeded! Triggering cooling pump.")
-            
-        # 4. Simulate a hardware interrupt occurring asynchronously
-        if random.random() > 0.6:
-            button_isr(button)
-            
-        # 5. Yield / Sleep (Watchdog feeding in real systems)
-        time.sleep(0.5)
+    print("\nOption B: MQTT (Lightweight Pub/Sub)")
+    print("  1. Maintain a tiny, persistent binary TCP connection.")
+    print("  2. Send a packed binary packet (Header is exactly 2 Bytes!)")
+    print("  3. Topic: 'home/living_room/temp'")
+    print("  4. Payload: 72.5")
+    print("  -> Total Data Transferred: ~30 Bytes per message.")
+    
+    print("\nMQTT reduces data overhead by 98%, allowing coin-cell batteries ")
+    print("to last for 5 years instead of 5 weeks!")
+
+
+def run_all_labs():
+    demonstrate_rtos()
+    demonstrate_mqtt()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Explain the difference between "Hard Real-Time" and "Soft Real-Time" constraints.
+   Answer: A "Soft" Real-Time system degrades in usefulness if it misses a deadline, but nobody dies. (e.g., A live video stream buffer. If the CPU is late by 100ms, the video drops a frame. The user is annoyed, but the system survives). A "Hard" Real-Time system results in catastrophic failure if a deadline is missed by even 1 microsecond. (e.g., Deploying an airbag, activating a pacemaker, or adjusting the control fins on a supersonic rocket). Hard Real-Time requires strict RTOS architectures that mathematically guarantee maximum execution latency.
+
+2. Why is Python (CPython) fundamentally unsuited for Hard Real-Time Embedded Systems?
+   Answer: CPython is mathematically Non-Deterministic. First, the Global Interpreter Lock (GIL) can arbitrarily pause threads, making it impossible to guarantee that a specific thread will run at a specific microsecond. Second, Python's Garbage Collector runs on its own schedule. If it decides to run a Tracing GC sweep right when a critical interrupt fires, the entire program physically freezes for 50ms (Stop-The-World pause). You cannot use a language with a non-deterministic Garbage Collector for Hard Real-Time systems; you must use C/C++ or Rust where memory deallocation is explicitly controlled and perfectly predictable.
+
+3. Explain how the MQTT "Quality of Service (QoS)" levels solve unstable IoT networks.
+   Answer: IoT devices often live in areas with terrible network reception (e.g., a sensor in a basement). If a sensor sends a message via raw UDP, it might be lost forever. MQTT offers three QoS levels directly baked into the protocol:
+   - QoS 0 (At most once): "Fire and Forget." Fastest, but messages can be lost.
+   - QoS 1 (At least once): The sender resends the message until it gets an explicit Acknowledgment (ACK). Guarantees delivery, but might deliver the same message twice.
+   - QoS 2 (Exactly once): A complex 4-step handshake guarantees the message is delivered exactly one time. Safest, but consumes the most battery and bandwidth.
+   This allows engineers to surgically trade off Battery Life vs Data Reliability.
+"""
 
 if __name__ == "__main__":
-    main_loop()
-
-"""
-COMMON MISTAKES & SECURITY CONCERNS:
-1. Memory Leaks: Creating lists `[]` or strings `""` inside the `while True` loop will eventually exhaust memory. Use `bytearray` and `memoryview`.
-2. Blocking: Using `time.sleep()` for long periods prevents checking sensors or feeding the Hardware Watchdog Timer (WDT), causing system resets. Use non-blocking state machines.
-3. String Formatting in ISR: `print("Val: {}".format(x))` inside an ISR causes memory allocation and will crash the microcontroller.
-4. Security: Embedded devices often store WiFi credentials in plaintext in `boot.py` or `main.py`. Physical access means total compromise. Flash encryption and Secure Boot are required for production.
-"""
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: System Design (Embedded & IoT) Completed.")

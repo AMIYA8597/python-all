@@ -1,147 +1,141 @@
 """
-## A. Concept Name
-Asynchronous Programming in Python
-
-## B. Learning Objectives
-1. Understand the Event Loop and cooperative multitasking.
-2. Differentiate between I/O-bound and CPU-bound tasks.
-3. Use async/await syntax to write non-blocking code.
-4. Manage concurrent tasks using asyncio.gather and asyncio.create_task.
-
-## C. Concept Explanation
-Asynchronous programming allows a single thread to handle multiple operations concurrently.
-Instead of blocking the thread while waiting for I/O (like network requests or file reads),
-the control is yielded back to the Event Loop, which can start or resume other tasks.
-This is highly efficient for I/O-bound workloads but does not speed up CPU-bound workloads 
-due to the Global Interpreter Lock (GIL) and single-threaded nature of asyncio.
-
-## D. Industry Use Cases
-- High-concurrency web frameworks (FastAPI, AIOHTTP).
-- Web scraping multiple pages simultaneously.
-- Chat servers and WebSocket implementations.
-- Microservice orchestration requiring multiple downstream API calls.
-
-## X. Project Connection
-This concept is foundational for building scalable, high-throughput applications, such as real-time chat servers or web scrapers, where minimizing I/O wait times is critical for overall performance.
+# ==============================================================================
+# LABORATORY: SYSTEM DESIGN (ASYNCHRONOUS PROGRAMMING & EVENT LOOPS)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# You want to fetch data from 10,000 different websites.
+# 
+# Synchronous (Blocking): You fetch Website 1. You WAIT 1 second for the network. 
+# Then Website 2. Total time: 10,000 seconds (3 hours).
+#
+# Multi-Threading: You spawn 10,000 threads. The OS tries to manage 10,000 
+# independent CPU execution contexts. The overhead of context-switching completely 
+# crashes the CPU. Memory blows up (each thread needs a stack). Total failure.
+#
+# Asynchronous (Asyncio / NodeJS): You use exactly ONE thread. You start fetching 
+# Website 1. The moment the network starts waiting, your code says "await" and 
+# YIELDS control back to the Event Loop. The Event Loop instantly starts fetching 
+# Website 2. And 3. And 10,000. 
+#
+# All 10,000 network requests are flying through the fiber-optic cables 
+# simultaneously! When a response comes back, the Event Loop wakes up the 
+# specific function. Total time: ~2 seconds. Total Threads: 1.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand the architecture of the Event Loop.
+# - Understand Coroutines and `await` yielding.
+# - Differentiate I/O-Bound (Async) vs CPU-Bound (Multiprocessing).
+#
+# ==============================================================================
 """
 
 import asyncio
 import time
-from typing import List, Dict, Any
+import multiprocessing
 
-# ==========================================
-# 1. Synchronous vs Asynchronous I/O
-# ==========================================
-def sync_fetch(task_id: int) -> str:
-    """Simulates a blocking I/O call."""
-    time.sleep(1) # Blocks the entire thread
-    return f"Result {task_id}"
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-async def async_fetch(task_id: int) -> str:
-    """Simulates a non-blocking I/O call."""
-    await asyncio.sleep(1) # Yields control to the event loop
-    return f"Result {task_id}"
 
-# ==========================================
-# 2. Basic Async Execution
-# ==========================================
-async def run_basic_async():
-    start = time.time()
-    # Running sequentially (bad practice for async)
-    res1 = await async_fetch(1)
-    res2 = await async_fetch(2)
-    duration = time.time() - start
-    print(f"Sequential async took {duration:.2f}s") # ~2 seconds
-    return [res1, res2]
-
-# ==========================================
-# 3. Professional Implementation: Concurrent Task Gathering
-# ==========================================
-async def fetch_user_data(user_id: int) -> Dict[str, Any]:
-    await asyncio.sleep(0.5)
-    return {"id": user_id, "data": "profile_info"}
-
-async def fetch_user_orders(user_id: int) -> List[str]:
-    await asyncio.sleep(0.8)
-    return ["order_1", "order_2"]
-
-async def fetch_user_dashboard(user_id: int) -> Dict[str, Any]:
+# ==============================================================================
+# 3. ASYNCIO (I/O BOUND EFFICIENCY)
+# ==============================================================================
+async def fetch_website_mock(site_id: int) -> str:
     """
-    Fetches user data and orders concurrently.
-    The total time will be roughly the max of the individual times (~0.8s),
-    rather than the sum (~1.3s).
+    A Coroutine!
+    When this function hits `await`, it mathematically pauses execution and 
+    returns control to the central Event Loop, allowing other code to run!
     """
+    print(f"[Async] Requesting Site {site_id}... (Pausing function, yielding to Event Loop)")
+    
+    # Simulate network latency. NOT time.sleep()!
+    # time.sleep() would physically freeze the entire thread, breaking Asyncio.
+    # asyncio.sleep() tells the Event Loop "wake me up in 1 second, go do other stuff!"
+    await asyncio.sleep(1.0)
+    
+    print(f"[Async] Downloaded Site {site_id}!")
+    return f"Data_{site_id}"
+
+async def run_async_engine():
     start = time.time()
     
-    # asyncio.gather runs awaitables concurrently
-    profile, orders = await asyncio.gather(
-        fetch_user_data(user_id),
-        fetch_user_orders(user_id)
-    )
+    # We create 5 coroutines. They do NOT execute yet!
+    tasks = [fetch_website_mock(i) for i in range(1, 6)]
     
-    duration = time.time() - start
+    print("Firing all 5 network requests SIMULTANEOUSLY on a SINGLE thread...")
+    # asyncio.gather fires them all concurrently into the Event Loop
+    results = await asyncio.gather(*tasks)
     
-    return {
-        "profile": profile,
-        "orders": orders,
-        "fetch_time_seconds": round(duration, 2)
-    }
+    end = time.time()
+    print(f"\nAll 5 requests completed in: {end - start:.2f} seconds!")
+    print(f"Results: {results}")
 
-# ==========================================
-# 4. Handling Timeouts and Exceptions
-# ==========================================
-async def unreliable_fetch():
-    await asyncio.sleep(2)
-    return "Success"
+def demonstrate_asyncio():
+    section_header("Asynchronous I/O (The Event Loop)")
+    # The Event Loop is the beating heart of Async Python and NodeJS.
+    asyncio.run(run_async_engine())
 
-async def safe_fetch():
-    try:
-        # Wrap the coroutine in wait_for to enforce a timeout
-        result = await asyncio.wait_for(unreliable_fetch(), timeout=1.0)
-        return result
-    except asyncio.TimeoutError:
-        return "Fallback Data"
-    except Exception as e:
-        return f"Error: {e}"
 
-# ==========================================
-# 5. Complexity Analysis & Interview Challenge
-# ==========================================
+# ==============================================================================
+# 4. MULTIPROCESSING (CPU BOUND EFFICIENCY)
+# ==============================================================================
+def heavy_cpu_math(worker_id: int):
+    """
+    A function that does NOT wait for network/disk. It violently crunches math.
+    Asyncio is USELESS here, because the CPU never pauses. If the CPU never pauses, 
+    the Event Loop never gets control back!
+    """
+    print(f"[Worker {worker_id}] Starting 20 Million operations...")
+    total = 0
+    for i in range(20_000_000):
+        total += i
+    return total
+
+def demonstrate_multiprocessing():
+    section_header("Multiprocessing (Bypassing the GIL)")
+    
+    print("Asyncio cannot solve CPU-Bound tasks because of the Global Interpreter Lock (GIL).")
+    print("To utilize all 8 cores of a modern CPU for raw math, we must spawn independent Processes!")
+    
+    start = time.time()
+    
+    # We spawn a Pool of independent Python processes.
+    # Each Process has its own Memory, its own GIL, and runs on a different physical CPU core!
+    with multiprocessing.Pool(processes=4) as pool:
+        # Map fires the function 4 times concurrently across the 4 cores
+        results = pool.map(heavy_cpu_math, range(4))
+        
+    end = time.time()
+    print(f"\nAll 4 massive CPU tasks completed in: {end - start:.2f} seconds!")
+
+
+def run_all_labs():
+    demonstrate_asyncio()
+    
+    # Multiprocessing requires safe main-guarding in Python (Windows specifically)
+    demonstrate_multiprocessing()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Complexity:
-- Time: Asyncio drastically reduces wait times for I/O bound tasks by overlapping waiting periods.
-  Time(Total) = max(Time(Task1), Time(Task2)...) instead of sum().
-- Space: Minimal overhead per coroutine compared to OS Threads.
+ACTIVE RECALL:
+1. Explain the architectural difference between Multi-Threading and Asynchronous Programming.
+   Answer: Multi-Threading relies on the Operating System (OS). The OS spawns multiple physical threads, and preemptively interrupts them (Context Switching) thousands of times a second to fake concurrency. This costs massive memory and CPU overhead. Asynchronous Programming relies entirely on the Application Code. It uses exactly ONE thread. The Application uses a central "Event Loop". Functions explicitly say "I am waiting for the network, you can take over" (`await`). Because the yielding is cooperative and managed purely in software, the overhead is near zero. A single thread can manage 100,000 async connections flawlessly!
 
-# Interview Challenge
-Q: How would you handle CPU-bound work in an asyncio application?
-A: Asyncio runs on a single thread. A CPU-bound task (like heavy math or image processing) 
-   will block the event loop, freezing all other async tasks. 
-   To solve this, offload the CPU-bound task to a separate process using 
-   `loop.run_in_executor(ProcessPoolExecutor(), heavy_function)`.
+2. If Asyncio is so fast, why does `time.sleep()` completely destroy it?
+   Answer: `time.sleep()` is a blocking, synchronous OS command. When you call it, you command the OS to physically freeze the actual CPU thread! Because Asyncio runs entirely on that *single* thread, freezing the thread freezes the central Event Loop! All 10,000 concurrent network connections instantly halt. You MUST use `await asyncio.sleep()`, which doesn't freeze the thread; it simply registers a timer with the Event Loop, allowing the Event Loop to continue processing other coroutines while waiting.
+
+3. When building a system, how do you mathematically decide between Asyncio and Multiprocessing?
+   Answer: You look at the bottleneck!
+   - Is it "I/O-Bound"? (Waiting for Database, Network, Disk, third-party APIs). Use Asyncio! The CPU is sitting idle 99% of the time waiting for electrons to travel through cables. Asyncio perfectly utilizes that idle time.
+   - Is it "CPU-Bound"? (Video Encoding, Machine Learning, Cryptography, massive `for` loops). Use Multiprocessing! The CPU is running at 100% capacity. An Event Loop cannot help if there is no idle time to yield. You must bypass Python's GIL and physically turn on the other 7 cores of your processor by spawning independent OS Processes.
 """
-
-def main():
-    print("Running Async Programming Tests...")
-    
-    # Ensure a fresh event loop
-    loop = asyncio.get_event_loop()
-    
-    # Test basic async
-    basic_res = loop.run_until_complete(run_basic_async())
-    assert basic_res == ["Result 1", "Result 2"]
-    
-    # Test concurrent dashboard fetch
-    dashboard = loop.run_until_complete(fetch_user_dashboard(101))
-    assert dashboard["profile"]["id"] == 101
-    assert len(dashboard["orders"]) == 2
-    assert dashboard["fetch_time_seconds"] < 1.0 # Proves concurrency
-    
-    # Test timeout handling
-    safe_res = loop.run_until_complete(safe_fetch())
-    assert safe_res == "Fallback Data"
-    
-    print("All async tests passed!")
 
 if __name__ == "__main__":
-    main()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: System Design (Async Programming) Completed.")

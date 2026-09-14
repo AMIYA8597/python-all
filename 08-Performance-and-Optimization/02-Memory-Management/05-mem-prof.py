@@ -1,117 +1,140 @@
 """
-Memory Management: Memory Profiling
-
-Learning Objectives:
-1. Learn how to track memory allocations in Python.
-2. Understand the built-in `tracemalloc` module.
-3. Identify memory leaks and memory hogs in a Python script.
-4. Compare snapshots to find where memory grew.
-
-Concept Explanation:
-Unlike time profiling, memory profiling helps you find *where* your program is 
-consuming RAM. The `tracemalloc` module, built into Python 3.4+, traces memory 
-blocks allocated by Python. By taking snapshots before and after an operation, 
-you can pinpoint exactly which file and line of code allocated the most memory.
+# ==============================================================================
+# LABORATORY: PERFORMANCE AND OPTIMIZATION (MEMORY PROFILING)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# When a Python application crashes with a `MemoryError`, or an OS-level OOM 
+# (Out of Memory) Killer terminates your Docker container, finding the leak 
+# is incredibly difficult. You cannot use `print()` statements to track gigabytes 
+# of RAM allocation across hundreds of thousands of dynamic objects.
+#
+# A junior engineer restarts the server every 24 hours to "fix" the memory leak.
+#
+# A senior engineer deploys `tracemalloc`. They take a cryptographic snapshot of 
+# RAM before a workload, and a second snapshot after. They mathematically 
+# calculate the exact byte-level difference between the two snapshots, instantly 
+# isolating the exact line of code in the exact file that is leaking memory.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the `tracemalloc` standard library module.
+# - Master differential memory snapshots (Snap1 vs Snap2).
+# - Understand the architecture of tracing Python memory blocks.
+#
+# ==============================================================================
 """
 
 import tracemalloc
-import time
-from typing import List
+import gc
+import sys
 
-# --- Basic Implementation ---
-def create_memory_hog(size: int) -> List[str]:
-    """Function that consumes a lot of memory."""
-    # A list of large strings
-    return ["A" * 1000 for _ in range(size)]
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-# --- Intermediate Implementation ---
-def track_memory(func, *args, **kwargs):
-    """Wrapper to track memory used by a function."""
-    tracemalloc.start()
+
+# ==============================================================================
+# 3. CREATING A MEMORY LEAK IN A SPECIFIC FUNCTION
+# ==============================================================================
+# A global list simulating an accidental memory leak (e.g., caching database 
+# results but forgetting to implement an eviction strategy like LRU!)
+GLOBAL_CACHE = []
+
+def leaking_function(n: int):
+    """
+    This function accidentally appends 10,000 massive strings to a global cache, 
+    permanently locking them in RAM.
+    """
+    for i in range(n):
+        # A massive string!
+        massive_data = f"DATA_BLOCK_{i}" * 100
+        GLOBAL_CACHE.append(massive_data)
+
+def safe_function(n: int):
+    """
+    This function processes data safely. It creates massive strings, but 
+    lets them fall out of scope, allowing the Garbage Collector to destroy them.
+    """
+    for i in range(n):
+        massive_data = f"DATA_BLOCK_{i}" * 100
+        # Data is processed, but NOT appended to a global scope!
+
+
+# ==============================================================================
+# 4. DIFFERENTIAL MEMORY PROFILING (`tracemalloc`)
+# ==============================================================================
+def demonstrate_tracemalloc():
+    section_header("Differential Memory Profiling (tracemalloc)")
     
-    snapshot1 = tracemalloc.take_snapshot()
-    result = func(*args, **kwargs)
-    snapshot2 = tracemalloc.take_snapshot()
+    print("  [INIT] Starting memory tracking...")
+    # The parameter (e.g., 10) tells the tracker how many frames of the traceback 
+    # to store for each allocation. A deeper traceback costs more memory, but 
+    # gives better context!
+    tracemalloc.start(10)
     
-    top_stats = snapshot2.compare_to(snapshot1, 'lineno')
+    # 1. Take a baseline snapshot of the pristine RAM state!
+    snapshot_1 = tracemalloc.take_snapshot()
     
-    print(f"\n[Memory Profile for {func.__name__}]")
-    for stat in top_stats[:3]:
-        print(stat)
+    print("\n  [EXECUTION] Running Safe Function...")
+    safe_function(10_000)
+    
+    # Force Garbage Collection to destroy the safe function's local variables!
+    gc.collect()
+    
+    # 2. Take a snapshot after the safe execution.
+    snapshot_2 = tracemalloc.take_snapshot()
+    
+    print("  [EXECUTION] Running Leaking Function...")
+    leaking_function(10_000)
+    
+    # Force Garbage Collection (This will fail to destroy the leaked data!)
+    gc.collect()
+    
+    # 3. Take a final snapshot after the catastrophic leak!
+    snapshot_3 = tracemalloc.take_snapshot()
+    
+    print("\n  [ANALYSIS] Calculating Memory Differences...")
+    
+    # We compare Snapshot 2 vs Snapshot 1
+    stats_safe = snapshot_2.compare_to(snapshot_1, 'lineno')
+    
+    # We compare Snapshot 3 vs Snapshot 2
+    stats_leak = snapshot_3.compare_to(snapshot_2, 'lineno')
+    
+    print("\n  [RESULT: SAFE FUNCTION]")
+    for stat in stats_safe[:3]: # Only print top 3
+        # It should show negligible changes!
+        print(f"    {stat}")
         
-    tracemalloc.stop()
-    return result
-
-# --- Advanced Implementation / Performance Analysis ---
-class LeakyClass:
-    _cache = []
-    
-    @classmethod
-    def leak_memory(cls, data: str):
-        """Intentionally leaks memory into a class variable."""
-        cls._cache.append(data * 1000)
-
-def simulate_application_loop():
-    """Simulate a loop where memory leaks over time."""
-    tracemalloc.start()
-    
-    # Base snapshot
-    snap1 = tracemalloc.take_snapshot()
-    
-    for i in range(10):
-        LeakyClass.leak_memory(f"Leak{i}")
+    print("\n  [RESULT: LEAKING FUNCTION]")
+    for stat in stats_leak[:3]: # Top 3
+        # It will explicitly point to the line inside `leaking_function`!
+        print(f"    {stat}")
         
-    # Final snapshot
-    snap2 = tracemalloc.take_snapshot()
-    
-    print("\n[Application Loop Memory Leak Analysis]")
-    stats = snap2.compare_to(snap1, 'lineno')
-    for stat in stats[:3]:
-        print(stat)
-        
+    print("\n  [SHUTDOWN] Stopping memory tracking...")
     tracemalloc.stop()
 
-# --- Edge Cases ---
-def memory_fragmentation_example():
-    """Demonstrate how allocating and deleting still leaves fragmentation."""
-    tracemalloc.start()
-    s1 = tracemalloc.take_snapshot()
-    
-    data = [create_memory_hog(100) for _ in range(10)]
-    del data[::2]  # Delete half the objects, leaving holes
-    
-    s2 = tracemalloc.take_snapshot()
-    diff = s2.compare_to(s1, 'lineno')
-    print("\n[Fragmentation Example]")
-    print(diff[0])
-    tracemalloc.stop()
 
-# --- Interview Challenge ---
+def run_all_labs():
+    demonstrate_tracemalloc()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Challenge: Write a decorator that logs the peak memory usage of a function.
+ACTIVE RECALL:
+1. Interviewer: "Why must we explicitly call `gc.collect()` before taking a `tracemalloc` snapshot in a professional debugging session?"
+   Senior Answer: "`tracemalloc` blindly logs the exact state of allocated memory at the exact microsecond the snapshot is taken. If you execute a massive function, it might leave behind thousands of orphaned cyclical references that are *scheduled* for destruction, but the Garbage Collector hasn't executed its background sweep yet. If you take a snapshot at that exact moment, `tracemalloc` will falsely report a catastrophic memory leak! By manually invoking `gc.collect()` right before `take_snapshot()`, we mathematically guarantee that all pending garbage is purged, ensuring that any memory remaining in the snapshot is a true, undeniable memory leak."
+
+2. Interviewer: "What is the architectural difference between `sys.getsizeof()` and `tracemalloc`, and when would you use each?"
+   Senior Answer: "`sys.getsizeof()` is an investigative tool for a *single, known object*. It queries the C-struct of a specific Python variable to see how many bytes it physically occupies. It is useless for finding a system-wide leak because you must already know which variable to inspect. `tracemalloc` is a systemic hooking engine. It overrides the underlying C memory allocators (`malloc`/`free`) for the entire Python interpreter. It logs every single byte requested by any function, anywhere in the codebase, mapping those allocations back to the specific line of Python code that requested them. You use `tracemalloc` to *find* the leak, and `getsizeof` to mathematically analyze it once found."
+
+3. Interviewer: "If `tracemalloc` is so powerful, why don't we just leave it running permanently in our Production servers to automatically log leaks?"
+   Senior Answer: "Tracing every single memory allocation at the C-level incurs a massive architectural overhead. Every time any line of code requests memory (which happens millions of times a second in Python), `tracemalloc` must pause, capture the execution stack trace, and log the allocation into a massive internal Hash Table. Leaving `tracemalloc` enabled in Production will catastrophically degrade the CPU throughput of the web server (often by 20% to 50%), and the tracker's internal Hash Table will eventually consume all available RAM itself! It is strictly a diagnostic tool meant for controlled staging environments, or to be toggled dynamically for short 60-second bursts in production."
 """
-def memory_profiler(func):
-    def wrapper(*args, **kwargs):
-        tracemalloc.start()
-        res = func(*args, **kwargs)
-        current, peak = tracemalloc.get_traced_memory()
-        print(f"Function {func.__name__} peak memory: {peak / 10**6:.3f} MB")
-        tracemalloc.stop()
-        return res
-    return wrapper
 
-@memory_profiler
-def example_func():
-    return create_memory_hog(10000)
-
-# --- Tests ---
-def run_tests():
-    # Mostly ensuring functions run without error
-    _ = track_memory(create_memory_hog, 100)
-    simulate_application_loop()
-    example_func()
-    print("\nAll tests passed.")
-
-if __name__ == '__main__':
-    print("--- Performance Analysis: tracemalloc ---")
-    run_tests()
+if __name__ == "__main__":
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Memory Management (Memory Profiling) Completed.")

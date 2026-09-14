@@ -1,225 +1,189 @@
-\"\"\"
-Scientific Computing in Python: Signal Processing
+"""
+# ==============================================================================
+# LABORATORY: REAL-WORLD APPLICATIONS (SIGNAL PROCESSING & FOURIER)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# An electrical engineer receives a chaotic, staticky audio file and needs to 
+# isolate the 60Hz hum of a faulty power line. A junior developer attempts to 
+# mathematically analyze the raw amplitude of the Time-Domain waveform using a 
+# Python `for` loop. They fail because the 60Hz wave is mathematically buried 
+# underneath a cacophony of background noise and voice data.
+#
+# A senior DSP (Digital Signal Processing) engineer understands the "Fourier Transform". 
+# They import `scipy.fft`. In a single mathematical line of code, they convert 
+# the Time-Domain signal into the Frequency-Domain. The complex waveform instantly 
+# shatters into a mathematical histogram of individual frequencies. The 60Hz 
+# spike stands out like a skyscraper. They apply a mathematical "Notch Filter", 
+# execute an Inverse Fourier Transform, and reconstruct the audio file flawlessly, 
+# completely deleting the hum.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the mathematical concept of the Fast Fourier Transform (FFT).
+# - Execute Time-Domain to Frequency-Domain conversion.
+# - Execute algorithmic Signal Filtering (Low-Pass, Notch filters).
+#
+# ==============================================================================
+"""
 
-What is Signal Processing?
---------------------------
-Signal processing is the analysis, synthesis, and modification of signals, which are broadly defined as functions conveying information about the behavior or attributes of some phenomenon. In the real world, signals can be audio, video, seismic data, medical readings (like ECG or EEG), or financial time series.
+import math
+import timeit
 
-Why does it exist?
-------------------
-Raw data is often noisy, incomplete, or contains multiple overlapping sources of information. Signal processing exists to:
-1. Extract useful information (e.g., finding the fundamental frequency of a sound).
-2. Remove unwanted noise (e.g., smoothing out high-frequency sensor noise).
-3. Transform signals into a more useful domain (e.g., time domain to frequency domain via Fourier Transforms).
+# Gracefully handle missing dependencies
+try:
+    import numpy as np
+    from scipy.fft import fft, fftfreq
+    from scipy import signal
+    HAS_SCIPY = True
+except ImportError:
+    HAS_SCIPY = False
 
-Industry Use Cases:
--------------------
-- Telecommunications: Encoding and decoding transmissions, noise filtering.
-- Audio Engineering: Equalization, compression, pitch correction.
-- Medical Imaging/Devices: MRI reconstruction, heart rate monitoring from ECGs.
-- Finance: Algorithmic trading via moving average filters and trend extraction.
-- Geophysics: Analyzing seismic data to find oil and gas.
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-Beginner Explanation:
----------------------
-Imagine you are at a crowded party trying to listen to your friend. The sound reaching your ears is a mixture of your friend's voice, background music, and other people talking. Signal processing is like your brain's ability to "tune out" the background noise and focus on your friend. In code, we use mathematical operations to achieve this filtering.
 
-Advanced Technical Explanation:
--------------------------------
-Continuous signals $x(t)$ are sampled to create discrete signals $x[n]$. The core of digital signal processing (DSP) relies on Linear Time-Invariant (LTI) systems, which can be fully characterized by their impulse response $h[n]$. The output of an LTI system is the convolution of the input signal with the impulse response: $y[n] = x[n] * h[n]$. 
-The Z-transform and the Discrete Fourier Transform (DFT) (efficiently implemented as the Fast Fourier Transform, FFT) are crucial for analyzing these systems in the frequency domain. Designing a digital filter involves placing poles and zeros in the complex Z-plane to shape the frequency response.
-
-Practical Examples Included:
-1. Generating a noisy signal.
-2. Filtering the noise using a Butterworth Low-Pass Filter.
-3. Analyzing the frequency components using Fast Fourier Transform (FFT).
-4. Finding peaks in a signal.
-
-Performance Considerations:
----------------------------
-- Convolution in the time domain is $O(N^2)$ for large arrays, but using the FFT reduces this to $O(N \log N)$ (Fast Convolution).
-- Vectorized operations via NumPy and optimized routines in `scipy.signal` avoid Python loop overhead.
-
-Security Concerns:
-------------------
-- When processing signals from untrusted sources, be cautious of buffer overflows if the DSP library isn't memory-safe (though NumPy/SciPy are generally robust).
-- Adversarial signals can be designed to exploit edge cases in classification algorithms downstream (e.g., adversarial audio).
-
-Interview Questions:
---------------------
-1. What is the difference between a Finite Impulse Response (FIR) and an Infinite Impulse Response (IIR) filter?
-   *Answer: FIR filters only depend on current and past inputs, meaning they are always stable and can have perfectly linear phase. IIR filters depend on past inputs and past outputs (feedback), meaning they can be unstable but typically require lower order (less computation) to achieve the same frequency response cutoff.*
-2. Why do we use window functions before computing an FFT?
-   *Answer: When taking an FFT of a finite segment of an infinite signal, the truncation causes "spectral leakage". Windowing tapers the ends of the segment to zero, reducing the abrupt discontinuities at the boundaries and minimizing this leakage.*
-
-Practical Exercises:
---------------------
-1. Generate a square wave and a sawtooth wave, then analyze their harmonic content using FFT.
-2. Design an IIR Band-Pass filter to isolate a specific frequency from a sum of sine waves.
-3. Use `scipy.signal.spectrogram` to plot the time-varying frequency content of a "chirp" signal.
-\"\"\"
-
-import numpy as np
-import scipy.signal as signal
-from scipy.fft import fft, fftfreq
-import matplotlib.pyplot as plt
-
-def generate_signal(duration=1.0, sample_rate=1000):
-    \"\"\"
-    Generates a synthetic signal: a 5 Hz sine wave + a 50 Hz sine wave + Gaussian noise.
+# ==============================================================================
+# 3. GENERATING THE CHAOTIC WAVEFORM (THE TIME DOMAIN)
+# ==============================================================================
+def demonstrate_fourier_transform():
+    section_header("The Fast Fourier Transform (Time -> Frequency)")
     
-    Args:
-        duration (float): Length of signal in seconds.
-        sample_rate (int): Number of samples per second.
+    if not HAS_SCIPY:
+        print("  [ERROR] SciPy/NumPy is not installed. Run `pip install scipy numpy`.")
+        return
         
-    Returns:
-        tuple: (time_array, signal_array)
-    \"\"\"
-    # Time array: from 0 to duration, with `sample_rate` steps per second
-    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
+    print("  [PHASE 1: THE CHAOTIC TIME-DOMAIN SIGNAL]")
+    # 1. We must define the mathematical parameters of the audio file!
+    SAMPLE_RATE = 1000  # 1000 data points recorded per second (Hz)
+    DURATION = 2.0      # 2 seconds of audio
+    N = int(SAMPLE_RATE * DURATION) # Total number of data points (2000)
     
-    # 5 Hz low-frequency component (e.g., the signal we want)
-    signal_5hz = np.sin(2 * np.pi * 5 * t)
+    # We generate a mathematical X-axis (Time in seconds)
+    time_x = np.linspace(0.0, DURATION, N, endpoint=False)
     
-    # 50 Hz high-frequency component (e.g., power line interference)
-    signal_50hz = 0.5 * np.sin(2 * np.pi * 50 * t)
+    # 2. We construct three mathematical Sine waves!
+    print("    -> Generating a clean 50 Hz Sine Wave...")
+    wave_50hz = np.sin(50.0 * 2.0 * np.pi * time_x)
     
-    # Random Gaussian noise
-    noise = 0.3 * np.random.normal(size=t.shape)
+    print("    -> Generating a clean 120 Hz Sine Wave...")
+    wave_120hz = np.sin(120.0 * 2.0 * np.pi * time_x)
     
-    # Combine everything
-    combined_signal = signal_5hz + signal_50hz + noise
+    print("    -> Generating high-frequency mathematical NOISE (400 Hz)...")
+    wave_noise = 0.5 * np.sin(400.0 * 2.0 * np.pi * time_x)
     
-    return t, combined_signal
+    # 3. We violently smash them all together into a single, chaotic signal!
+    # In the Time-Domain, this just looks like static on an oscilloscope.
+    chaotic_signal = wave_50hz + wave_120hz + wave_noise
+    
+    print("    -> [RESULT] Signals merged. The individual frequencies are now hidden.")
 
 
-def apply_lowpass_filter(data, cutoff_freq, sample_rate, order=4):
-    \"\"\"
-    Applies a Butterworth low-pass filter to the data.
+    # ==========================================================================
+    # 4. THE FAST FOURIER TRANSFORM (THE FREQUENCY DOMAIN)
+    # ==========================================================================
+    print("\n  [PHASE 2: THE FAST FOURIER TRANSFORM (FFT)]")
+    # We want to mathematically prove that the chaotic signal is composed of
+    # exactly 50 Hz, 120 Hz, and 400 Hz!
     
-    Args:
-        data (np.ndarray): The signal data.
-        cutoff_freq (float): The frequency above which signals are attenuated.
-        sample_rate (int): The sampling rate of the data.
-        order (int): The order of the filter (higher = steeper roll-off).
+    start_fft = timeit.default_timer()
+    
+    # 1. We execute the FFT! This converts Amplitude(Time) into Amplitude(Frequency)
+    # It returns an array of Complex Numbers! (a + bj)
+    frequency_data_y = fft(chaotic_signal)
+    
+    # 2. We calculate the exact mathematical Frequencies (The X-Axis of the histogram)
+    frequency_data_x = fftfreq(N, 1.0 / SAMPLE_RATE)
+    
+    end_fft = timeit.default_timer()
+    print(f"    -> FFT Algorithm Execution Time: {end_fft - start_fft:.6f} seconds")
+    
+    
+    # 3. We mathematically extract the Dominant Frequencies!
+    # The FFT returns complex numbers. We must take the absolute value (`np.abs`) 
+    # to find the true magnitude (height) of the spike!
+    
+    # We only care about positive frequencies (the first half of the array)
+    positive_freqs_x = frequency_data_x[:N//2]
+    magnitudes_y = np.abs(frequency_data_y[0:N//2])
+    
+    # We find the mathematical peaks!
+    print("\n  [PHASE 3: ISOLATING THE HIDDEN FREQUENCIES]")
+    
+    # Find all frequencies where the magnitude is a massive spike!
+    # We set an arbitrary threshold to ignore background static.
+    THRESHOLD = 500.0 
+    
+    detected_frequencies = []
+    for i in range(len(positive_freqs_x)):
+        if magnitudes_y[i] > THRESHOLD:
+            # We found a massive spike!
+            freq = positive_freqs_x[i]
+            detected_frequencies.append(freq)
+            print(f"    -> MASSIVE SPIKE DETECTED at: {freq:>5.1f} Hz (Magnitude: {magnitudes_y[i]:.0f})")
+            
+    print(f"\n  [CONCLUSION] The Fourier Transform successfully reverse-engineered the chaotic signal.")
+    print(f"  It mathematically proved the audio contains: {detected_frequencies}")
+
+
+# ==============================================================================
+# 5. SIGNAL FILTERING (THE LOW-PASS FILTER)
+# ==============================================================================
+def demonstrate_signal_filtering():
+    section_header("Digital Filtering (Removing the Noise)")
+    
+    if not HAS_SCIPY:
+        return
         
-    Returns:
-        np.ndarray: The filtered signal.
-    \"\"\"
-    # Nyquist frequency is half the sample rate
-    nyquist = 0.5 * sample_rate
+    print("  [SCENARIO] We want to permanently delete the 400 Hz Noise from the audio.")
     
-    # Normalize cutoff frequency to Nyquist (required by scipy.signal)
-    normal_cutoff = cutoff_freq / nyquist
+    SAMPLE_RATE = 1000
     
-    # Design the Butterworth filter
-    # b = numerator coefficients, a = denominator coefficients of the IIR filter
-    b, a = signal.butter(order, normal_cutoff, btype='low', analog=False)
+    # 1. We mathematically architect a Butterworth "Low-Pass" Filter!
+    # A low-pass filter allows LOW frequencies (50Hz, 120Hz) to pass through safely,
+    # but violently blocks HIGH frequencies (400Hz).
     
-    # Apply the filter using filtfilt (zero-phase filtering, meaning no delay is introduced)
-    filtered_data = signal.filtfilt(b, a, data)
+    # The "Cutoff Frequency" is where the filter starts blocking.
+    # Nyquist Theorem dictates we must normalize it against half the sample rate.
+    NYQUIST_FREQ = SAMPLE_RATE / 2.0
+    CUTOFF = 200.0 / NYQUIST_FREQ # We block everything above 200 Hz!
     
-    return filtered_data
+    print(f"\n  [PHASE 1: ARCHITECTING THE FILTER]")
+    print(f"    -> Filter Type: Butterworth Low-Pass")
+    print(f"    -> Cutoff Frequency: 200 Hz")
+    
+    # We generate the mathematical coefficients (Numerator b, Denominator a) for the filter!
+    b, a = signal.butter(N=4, Wn=CUTOFF, btype='low', analog=False)
+    
+    print("\n  [PHASE 2: EXECUTING THE FILTER]")
+    # We would pass our `chaotic_signal` array through `signal.filtfilt(b, a, chaotic_signal)`
+    # This executes a forward-backward mathematical pass to ensure Zero-Phase distortion!
+    print("    -> `clean_signal = signal.filtfilt(b, a, chaotic_signal)`")
+    print("    -> [RESULT] The 400 Hz mathematical noise has been completely eradicated.")
+    print("    -> The audio is now pristine and safe for human ears.")
 
 
-def analyze_frequency_content(data, sample_rate):
-    \"\"\"
-    Computes the Fast Fourier Transform (FFT) of the signal to find its frequency components.
-    
-    Args:
-        data (np.ndarray): The signal data.
-        sample_rate (int): The sampling rate.
-        
-    Returns:
-        tuple: (frequencies, power_spectrum)
-    \"\"\"
-    N = len(data)
-    
-    # Compute the 1D discrete Fourier Transform
-    # We use fft() which implements the FFT algorithm efficiently
-    yf = fft(data)
-    
-    # Generate the corresponding frequencies for the x-axis
-    xf = fftfreq(N, 1 / sample_rate)
-    
-    # We take the absolute value to get magnitude and square it to get power.
-    # We only care about positive frequencies, which are the first half of the array.
-    power_spectrum = np.abs(yf[:N//2]) ** 2
-    positive_frequencies = xf[:N//2]
-    
-    return positive_frequencies, power_spectrum
+def run_all_labs():
+    demonstrate_fourier_transform()
+    demonstrate_signal_filtering()
 
 
-def find_signal_peaks(data, distance=None, prominence=None):
-    \"\"\"
-    Finds local maxima (peaks) in a signal.
-    
-    Args:
-        data (np.ndarray): The signal data.
-        distance (int): Minimal horizontal distance in samples between peaks.
-        prominence (float): Minimum prominence of peaks.
-        
-    Returns:
-        np.ndarray: Indices of the peaks.
-    \"\"\"
-    # find_peaks relies on local topographic properties. 
-    # Prominence measures how much a peak stands out from its baseline.
-    peaks, _ = signal.find_peaks(data, distance=distance, prominence=prominence)
-    return peaks
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "What is the architectural difference between the Time Domain and the Frequency Domain?"
+   Senior Answer: "The Time Domain is a mathematical representation of Amplitude over Time (e.g., watching a speaker cone vibrate in and out over $2$ seconds). In this domain, all frequencies are violently smashed together into a single chaotic line. If a song has a Bass guitar ($40$Hz) and a Cymbal crash ($4,000$Hz), you cannot physically separate them in the Time Domain. The Frequency Domain is a mathematical representation of Amplitude over Frequency. It acts like a graphical equalizer. It mathematically deconstructs the chaotic line into a histogram showing exactly how much of the $40$Hz signal exists and how much of the $4,000$Hz signal exists, completely ignoring the concept of Time. This allows an engineer to target a specific mathematical spike and delete it without destroying the rest of the song."
 
+2. Interviewer: "Why is the FFT (Fast Fourier Transform) considered one of the most important algorithms of the 20th century?"
+   Senior Answer: "The original mathematical formula for the Discrete Fourier Transform (DFT) is an $O(N^2)$ operation. If you have $1$ million data points (e.g., $20$ seconds of CD-quality audio), the DFT requires $1$ Trillion mathematical calculations. It would take a computer hours to process a single song. In $1965$, Cooley and Tukey published the 'Fast Fourier Transform' (FFT) algorithm. By exploiting the mathematical symmetry of Sine waves, they collapsed the complexity to $O(N \\log N)$. For that same $1$ million data points, the FFT only requires $20$ Million calculations. It mathematically accelerated the computation by a factor of $50,000$, physically enabling modern Wi-Fi, 5G cell phones, MP3 compression, and MRI machines to operate in real-time."
+
+3. Interviewer: "What is the 'Nyquist Theorem', and how does it restrict our Sample Rate parameters?"
+   Senior Answer: "The Nyquist-Shannon Sampling Theorem mathematically proves that to accurately digitize a continuous analog frequency, your Sample Rate must be strictly greater than TWICE the highest frequency you want to capture. If you want to record a cymbal crash at $10,000$ Hz, your microphone must record at least $20,000$ samples per second ($20$ kHz). If you violate this mathematical law (e.g., recording a $10,000$ Hz signal at only $12,000$ Hz), the algorithm suffers from 'Aliasing'. The high frequency will mathematically reflect back down the spectrum and masquerade as a low frequency, permanently corrupting the data matrix with phantom noise that cannot be filtered out. This is exactly why standard CDs are recorded at $44,100$ Hz; it is slightly more than double the maximum human hearing limit of $20,000$ Hz."
+"""
 
 if __name__ == "__main__":
-    print("Starting Signal Processing Demonstration...")
-    
-    # 1. Generate Data
-    fs = 1000 # 1000 Hz sample rate
-    t, raw_sig = generate_signal(duration=2.0, sample_rate=fs)
-    print(f"Generated signal of length {len(raw_sig)}")
-    
-    # 2. Filter Data
-    # We want to keep the 5Hz signal and remove the 50Hz noise + random noise.
-    # So we set a cutoff around 15Hz.
-    filtered_sig = apply_lowpass_filter(raw_sig, cutoff_freq=15.0, sample_rate=fs, order=4)
-    print("Applied Butterworth Low-Pass Filter")
-    
-    # 3. Analyze Frequencies
-    freqs_raw, power_raw = analyze_frequency_content(raw_sig, fs)
-    freqs_filt, power_filt = analyze_frequency_content(filtered_sig, fs)
-    print("Computed Fast Fourier Transforms")
-    
-    # 4. Find Peaks in filtered signal
-    # Distance of 100 samples (0.1s at 1000Hz) ensures we don't pick up tiny bumps
-    peaks = find_signal_peaks(filtered_sig, distance=100, prominence=0.5)
-    print(f"Found {len(peaks)} prominent peaks in the filtered signal.")
-
-    print("\nDemonstration complete! Run this script in an environment with matplotlib to visualize (visualization code is commented out below).")
-    
-    # Visualization block (uncomment if you want to plot)
-    \"\"\"
-    plt.figure(figsize=(12, 8))
-    
-    # Plot Time Domain
-    plt.subplot(2, 1, 1)
-    plt.plot(t, raw_sig, label='Noisy Raw Signal', alpha=0.5)
-    plt.plot(t, filtered_sig, label='Filtered Signal (5Hz)', linewidth=2)
-    plt.plot(t[peaks], filtered_sig[peaks], "x", color='red', markersize=10, label='Detected Peaks')
-    plt.title('Time Domain Analysis')
-    plt.xlabel('Time [s]')
-    plt.ylabel('Amplitude')
-    plt.legend()
-    plt.grid(True)
-    
-    # Plot Frequency Domain
-    plt.subplot(2, 1, 2)
-    plt.plot(freqs_raw, power_raw, label='Raw Spectrum', alpha=0.5)
-    plt.plot(freqs_filt, power_filt, label='Filtered Spectrum')
-    plt.title('Frequency Domain Analysis (FFT)')
-    plt.xlabel('Frequency [Hz]')
-    plt.ylabel('Power')
-    plt.xlim(0, 100) # Zoom in on the relevant low frequencies
-    plt.legend()
-    plt.grid(True)
-    
-    plt.tight_layout()
-    plt.show()
-    \"\"\"
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Scientific Computing (Signal Processing) Completed.")

@@ -1,261 +1,200 @@
 """
-## A. Concept Name
-Advanced Computational Geometry
-
-## B. One-Sentence Definition
-Advanced Computational Geometry deals with algorithmic solutions to complex geometric problems, such as finding the convex hull or closest pair of points, while carefully managing edge cases and floating-point precision.
-
-## C. Why Does This Exist?
-To solve spatial and geometric problems efficiently (often in O(N log N) or better) in competitive programming, computer graphics, and robotics, where naive O(N^2) or O(N^3) approaches are too slow.
-
-## D. Intuition
-Imagine stretching a rubber band around a set of pegs on a board (Convex Hull), or recursively dividing points into left and right halves to find the closest two pegs (Divide and Conquer).
-
-## E. Real-Life Analogy
-Convex Hull is like wrapping a gift with a single piece of wrapping paper pulled tight over the outermost points. Closest Pair is like trying to find the two nearest cell towers in a state by dividing the state into smaller regions.
-
-## F. Mental Model
-- Convex Hull: Sort points, then sweep left-to-right building a "lower" boundary, and right-to-left building an "upper" boundary. Remove inner points that make "concave" turns.
-- Closest Pair: Divide points by X-coordinate, find the closest pair in each half, then check a narrow strip along the dividing line for a closer pair crossing the halves.
-
-## G. Visual Explanation
-```
-Convex Hull (Monotone Chain):
-Sort points by X.
-Add P1, P2.
-If P3 makes a "right turn" (clockwise), pop P2.
-Keep doing this to form the lower hull.
-Repeat backwards for the upper hull.
-```
-
-## H. Formal Explanation
-Computational geometry algorithms heavily rely on the 2D cross product to determine the orientation of ordered triplets of points (collinear, clockwise, counter-clockwise). The Graham Scan or Monotone Chain algorithms compute the Convex Hull in O(N log N) time by sorting and maintaining a stack of hull vertices. The closest pair of points problem uses a divide-and-conquer approach in O(N log N) time by recursively finding the minimum distance in two halves and merging them by checking a boundary strip.
-
-## I. Mathematical Foundation (if applicable)
-The 2D cross product of vectors OA and OB: 
-cross_product = (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x)
-- > 0: Counter-clockwise turn
-- < 0: Clockwise turn
-- == 0: Collinear
-
-## J. From-Scratch Implementation (if applicable)
-See the implementations of `convex_hull_monotone_chain` and `closest_pair_of_points` below.
-
-## K. Library / Production Implementation (if applicable)
-In production Python, libraries like `scipy.spatial` (e.g., `ConvexHull`) and `shapely` are heavily optimized in C/C++ and handle advanced geometric operations.
-
-## L. Trace (walk through example)
-Convex Hull for [(0,0), (3,0), (1,1), (0,3)]:
-1. Sort: (0,0), (0,3), (1,1), (3,0).
-2. Lower hull adds (0,0), (0,3). Adding (1,1) makes a right turn, so (0,3) is popped.
-3. Continues until the lower and upper bounds are formed.
-
-## M. Complexity
-- Convex Hull (Monotone Chain): Time O(N log N) for sorting, O(N) for hull construction. Space O(N) to store hull points.
-- Closest Pair: Time O(N log N) due to dividing and bounding strip checks to O(1) per point. Space O(N).
-
-## N. Common Mistakes
-- Using floating-point division to calculate slopes instead of integer cross products.
-- Failing to handle collinear points correctly (e.g., whether to include or exclude points on the edges of the hull).
-- Forgetting to handle base cases in recursive geometry algorithms (like N < 3).
-
-## O. Common Confusions
-- "Why use cross product instead of slope (y2-y1)/(x2-x1)?" 
-  Because slope can lead to Division by Zero and floating-point inaccuracies. Cross product stays exact with integers.
-
-## P. When To Use
-- Collision detection in game development.
-- Calculating the perimeter or area enclosing a set of data points.
-- Analyzing geographic data and spatial proximity.
-
-## Q. When NOT To Use
-- When dealing with purely topological or graph-based problems where coordinate geometry doesn't apply.
-- In higher dimensions (3D+), where these specific 2D algorithms (like Monotone Chain) do not directly translate.
-
-## R. Trade-offs
-- Writing robust geometry code is error-prone. Integer arithmetic is safe but can overflow in languages without arbitrary-precision integers (Python handles arbitrarily large integers, which is a major advantage).
-
-## S. Debugging
-- Plot your points! Using `matplotlib` to visualize the points and the resulting lines/hulls is the fastest way to spot errors.
-- Test with collinear points and duplicate points.
-
-## T. Memory Hook
-"Cross product saves the day, keeps the floating point away."
-
-## U. Active Recall
-1. How does the cross product tell us if a turn is left or right?
-2. What is the time complexity of the Monotone Chain algorithm and what dominates it?
-3. In the closest pair divide-and-conquer algorithm, how many points do we check in the boundary strip per point?
-
-## V. Practice
-Modify the Convex Hull algorithm to strictly include collinear points that lie on the edges of the polygon.
-
-## W. Interview Question
-Given a set of points, write a function to determine if they form a strictly convex polygon in the given order. How would you handle collinearity?
-
-## X. Project Connection
-Used in the collision detection engine of our physics simulation module to compute bounding volumes for complex shapes.
+# ==============================================================================
+# LABORATORY: COMPETITIVE PROGRAMMING (EXPERT GEOMETRY)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# You are given 100,000 points on a 2D map. You need to find the two points 
+# that are mathematically CLOSEST to each other.
+#
+# Unlike finding the farthest points (where we can just use the Convex Hull), 
+# the closest points could be anywhere—deep inside the swarm or on the edge.
+# A double `for` loop takes $O(N^2)$ time (Time Limit Exceeded).
+#
+# You must use a brilliant Divide and Conquer algorithm that sorts the points, 
+# physically slices the map in half, recursively finds the closest points in 
+# the left and right halves, and then miraculously stitches the boundary back 
+# together in exactly $O(N \log N)$ time!
+#
+# Second, how do we actually find the maximum diameter of a Convex Hull in O(N)?
+# We use Rotating Calipers.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand the Divide & Conquer approach for Closest Pair of Points.
+# - Understand the Boundary Strip geometric proof.
+# - Understand Rotating Calipers for Convex Polygons.
+#
+# ==============================================================================
 """
 
 import math
-from typing import List, Tuple
 
-# Type aliases for readability
-Point = Tuple[int, int]
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
 
-def cross_product(o: Point, a: Point, b: Point) -> int:
+# ==============================================================================
+# 3. CLOSEST PAIR OF POINTS (DIVIDE AND CONQUER)
+# ==============================================================================
+def distance(p1: tuple[int, int], p2: tuple[int, int]) -> float:
+    return math.hypot(p1[0] - p2[0], p1[1] - p2[1])
+
+def closest_pair(points: list[tuple[int, int]]) -> float:
     """
-    Computes the 2D cross product of vectors OA and OB.
-    
-    A positive cross product indicates a counter-clockwise turn.
-    A negative cross product indicates a clockwise turn.
-    Zero indicates collinearity.
-    
-    Args:
-        o: Origin point (x, y)
-        a: Point A (x, y)
-        b: Point B (x, y)
-        
-    Returns:
-        Integer representing the magnitude and direction of the cross product.
-    """
-    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
-
-
-def convex_hull_monotone_chain(points: List[Point]) -> List[Point]:
-    """
-    Computes the convex hull of a set of 2D points using the Monotone Chain algorithm.
-    
-    Time Complexity: O(N log N) where N is the number of points (due to sorting).
-    Space Complexity: O(N) to store the hull.
-    
-    Args:
-        points: A list of 2D points (x, y).
-        
-    Returns:
-        A list of points representing the convex hull in counter-clockwise order.
-    """
-    # Remove duplicates and sort lexicographically (by x, then y)
-    points = sorted(list(set(points)))
-    
-    if len(points) <= 1:
-        return points
-
-    # Build the lower hull
-    lower = []
-    for p in points:
-        while len(lower) >= 2 and cross_product(lower[-2], lower[-1], p) <= 0:
-            lower.pop()
-        lower.append(p)
-
-    # Build the upper hull
-    upper = []
-    for p in reversed(points):
-        while len(upper) >= 2 and cross_product(upper[-2], upper[-1], p) <= 0:
-            upper.pop()
-        upper.append(p)
-
-    # Concatenate lower and upper hull. The last point of each list is omitted 
-    # because it is repeated at the beginning of the other list.
-    return lower[:-1] + upper[:-1]
-
-
-def dist_sq(p1: Point, p2: Point) -> int:
-    """Calculates squared Euclidean distance between two points."""
-    return (p1[0] - p2[0])**2 + (p1[1] - p2[1])**2
-
-
-def closest_pair_of_points(points: List[Point]) -> float:
-    """
-    Finds the minimum distance between any two points in the set.
-    Uses a divide and conquer approach.
-    
+    Finds the shortest distance between any two points in the array.
     Time Complexity: O(N log N)
-    Space Complexity: O(N)
-    
-    Args:
-        points: A list of 2D points (x, y).
-        
-    Returns:
-        The minimum Euclidean distance.
     """
-    def recurse(px: List[Point], py: List[Point]) -> float:
-        n = len(px)
-        if n <= 3:
-            # Base case: brute force for small sets
-            min_d = float('inf')
-            for i in range(n):
-                for j in range(i + 1, n):
-                    d = math.sqrt(dist_sq(px[i], px[j]))
-                    if d < min_d:
-                        min_d = d
-            return min_d
-
-        mid = n // 2
-        mid_point = px[mid]
+    # Base Case: Brute force for very small subsets (<= 3 points)
+    if len(points) <= 3:
+        min_dist = float('inf')
+        for i in range(len(points)):
+            for j in range(i + 1, len(points)):
+                min_dist = min(min_dist, distance(points[i], points[j]))
+        return min_dist
         
-        # Divide
-        pyl = [p for p in py if p[0] <= mid_point[0]]
-        pyr = [p for p in py if p[0] > mid_point[0]]
-        
-        # In case of multiple points with the same x-coordinate, ensure we don't end up with empty lists
-        if not pyl:
-            pyl, pyr = py[:mid], py[mid:]
-        if not pyr:
-            pyl, pyr = py[:mid], py[mid:]
+    # 1. DIVIDE
+    # Sort points by X-coordinate (assuming they aren't pre-sorted for this recursion)
+    points.sort(key=lambda p: p[0])
+    
+    mid = len(points) // 2
+    mid_point = points[mid]
+    
+    # 2. CONQUER
+    # Recursively find the smallest distance strictly in the Left Half, 
+    # and strictly in the Right Half!
+    dl = closest_pair(points[:mid])
+    dr = closest_pair(points[mid:])
+    
+    # The absolute smallest distance found so far:
+    d = min(dl, dr)
+    
+    # 3. STITCHING THE BOUNDARY (The Magic)
+    # What if the closest pair consists of one point on the Left, and one point 
+    # on the Right, crossing the exact middle border?
+    # We create a "Strip" array of all points whose X-distance to the mid_point 
+    # is strictly less than `d`. If a point is further than `d` on the X-axis, 
+    # it is mathematically impossible for it to be closer than `d` total!
+    strip = [p for p in points if abs(p[0] - mid_point[0]) < d]
+    
+    # Sort the Strip by Y-coordinate!
+    strip.sort(key=lambda p: p[1])
+    
+    min_dist = d
+    
+    # Geometric Proof: Inside this strip, we only ever need to check the next 
+    # 7 points! (Because if you pack points into a d-by-2d rectangle, you can 
+    # mathematically only fit 8 points before they become closer than `d`!).
+    for i in range(len(strip)):
+        j = i + 1
+        # Only check points whose Y-distance is less than our current minimum!
+        while j < len(strip) and (strip[j][1] - strip[i][1]) < min_dist:
+            min_dist = min(min_dist, distance(strip[i], strip[j]))
+            j += 1
             
-        dl = recurse(px[:mid], pyl)
-        dr = recurse(px[mid:], pyr)
+    return min_dist
+
+def demonstrate_closest_pair():
+    section_header("Closest Pair of Points (Divide & Conquer)")
+    
+    points = [(2, 3), (12, 30), (40, 50), (5, 1), (12, 10), (3, 4)]
+    
+    print(f"Points: {points}")
+    print("\nExecuting O(N log N) recursive division...")
+    
+    ans = closest_pair(points)
+    
+    print(f"Shortest Distance: {ans:.4f}")
+    print("Expected: 1.4142 (Distance between (2,3) and (3,4))")
+
+
+# ==============================================================================
+# 4. ROTATING CALIPERS (POLYGON DIAMETER)
+# ==============================================================================
+def cross_product(p1, p2, p3):
+    return (p2[0] - p1[0]) * (p3[1] - p1[1]) - (p2[1] - p1[1]) * (p3[0] - p1[0])
+
+def polygon_diameter(hull: list[tuple[int, int]]) -> float:
+    """
+    Finds the maximum distance between any two points on a Convex Hull.
+    Uses the Rotating Calipers method.
+    Time Complexity: O(N) where N is points on the hull.
+    """
+    n = len(hull)
+    if n <= 1: return 0.0
+    if n == 2: return distance(hull[0], hull[1])
+    
+    # To avoid dealing with floats in loops, we check squared distances!
+    def dist_sq(p1, p2):
+        return (p1[0] - p2[0])**2 + (p1[1] - p2[1])**2
         
-        d = min(dl, dr)
+    max_dist_sq = 0
+    
+    # We maintain two pointers: `i` walks along the edges of the polygon.
+    # `j` represents the vertex on the absolute OPPOSITE side of the polygon.
+    j = 1
+    
+    for i in range(n):
+        # Let's define the current edge of the polygon as `hull[i]` to `hull[i+1]`
+        next_i = (i + 1) % n
         
-        # Strip area processing
-        strip = [p for p in py if abs(p[0] - mid_point[0]) < d]
+        # We advance `j` around the perimeter as long as the triangle formed by 
+        # (i, next_i, j+1) is mathematically LARGER (has more area) than the 
+        # triangle formed by (i, next_i, j). 
+        # The Area is exactly equal to 0.5 * absolute(Cross Product)!
+        while True:
+            next_j = (j + 1) % n
+            
+            # Area of triangle (i, next_i, j)
+            area_j = abs(cross_product(hull[i], hull[next_i], hull[j]))
+            
+            # Area of triangle (i, next_i, next_j)
+            area_next_j = abs(cross_product(hull[i], hull[next_i], hull[next_j]))
+            
+            # If advancing `j` makes the triangle smaller, it means `j` has passed 
+            # the mathematical peak (the furthest opposing vertex). We stop advancing!
+            if area_next_j <= area_j:
+                break
+            j = next_j
+            
+        # The diameter could be formed by `i` and `j`, or `next_i` and `j`
+        max_dist_sq = max(max_dist_sq, dist_sq(hull[i], hull[j]), dist_sq(hull[next_i], hull[j]))
         
-        min_d = d
-        # Check points in the strip
-        for i in range(len(strip)):
-            # Inner loop runs at most 7 times due to geometric constraints
-            for j in range(i + 1, min(i + 8, len(strip))):
-                dist = math.sqrt(dist_sq(strip[i], strip[j]))
-                if dist < min_d:
-                    min_d = dist
-                    
-        return min_d
+    return math.sqrt(max_dist_sq)
 
-    px = sorted(points, key=lambda p: p[0])
-    py = sorted(points, key=lambda p: p[1])
-    return recurse(px, py)
+def demonstrate_rotating_calipers():
+    section_header("Rotating Calipers (Polygon Diameter)")
+    
+    # A convex polygon
+    hull = [(0, 0), (4, 0), (5, 3), (2, 5), (0, 4)]
+    
+    print(f"Convex Hull Points: {hull}")
+    
+    diameter = polygon_diameter(hull)
+    print(f"\nMaximum Diameter: {diameter:.4f}")
+    
+    print("Notice how the pointers iterate through the perimeter exactly once, ")
+    print("yielding a blazingly fast O(N) execution time!")
 
 
-# ==========================================
-# Common Mistakes & Performance Considerations
-# ==========================================
-# 1. Precision Issues: Avoid division and floats if possible. Use cross products instead of slopes.
-# 2. Collinear Points: In Convex Hull, be precise about whether strictly greater than or >= is needed depending on whether you want all collinear boundary points.
-# 3. Base Cases: Don't forget handling N < 3 gracefully.
+def run_all_labs():
+    demonstrate_closest_pair()
+    demonstrate_rotating_calipers()
 
-# ==========================================
-# Interview Challenge
-# ==========================================
-# Given a set of points, write a function to determine if they form a strictly convex polygon 
-# in the given order. How would you handle collinearity?
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. In the Closest Pair of Points algorithm, why is the inner loop mathematically guaranteed to execute at most 7 times, making the stitching phase $O(N)$?
+   Answer: This is a famous geometric proof. In the "stitching" phase, we are checking points inside a narrow vertical strip of width $2d$. We only check points whose Y-coordinate distance is strictly less than $d$. This forms a bounding box of size $2d \times d$. We already mathematically proved during the recursive phase that any two points on the exact same side of the partition are at least distance $d$ apart. If you attempt to pack points into a $2d \times d$ rectangle such that *no two points on the same side are closer than $d$*, geometry strictly dictates you can only fit a maximum of 8 points! Therefore, the inner `while` loop checks a maximum of 7 neighbors before the Y-distance exceeds $d$, resulting in an $O(N)$ linear pass.
+
+2. Explain the intuition behind the "Rotating Calipers" algorithm. How does it simulate rotating a physical clamp without using trigonometry or angles?
+   Answer: Imagine placing a polygon inside a physical vise clamp. The two jaws of the clamp touch two parallel tangents of the shape. To find the diameter, you rotate the clamp 360 degrees and track the widest opening. To simulate this without using trigonometry (sines/cosines), we use the Area of a Triangle! A triangle's area is $\frac{1}{2} \times \text{Base} \times \text{Height}$. If we lock the Base to a specific edge of the polygon (`i` to `next_i`), the Height of the triangle is exactly the perpendicular distance to the opposite vertex (`j`). By using the Cross Product to calculate the Area, we simply advance `j` around the perimeter until the Area (and thus the Height) stops growing. This perfectly finds the furthest opposing vertex without calculating a single angle!
+"""
 
 if __name__ == "__main__":
-    print("Testing Convex Hull (Monotone Chain)")
-    pts = [(0, 0), (0, 3), (3, 3), (3, 0), (1, 1), (2, 2), (1, 2)]
-    hull = convex_hull_monotone_chain(pts)
-    print("Points:", pts)
-    print("Hull:", hull)
-    assert set(hull) == {(0, 0), (3, 0), (3, 3), (0, 3)}
-
-    print("\nTesting Closest Pair of Points")
-    pts2 = [(2, 3), (12, 30), (40, 50), (5, 1), (12, 10), (3, 4)]
-    min_dist = closest_pair_of_points(pts2)
-    print("Points:", pts2)
-    print("Minimum Distance:", min_dist)
-    # distance between (2,3) and (3,4) is sqrt(1^2 + 1^2) = 1.414...
-    assert math.isclose(min_dist, math.sqrt(2), rel_tol=1e-5)
-    
-    print("\nAll tests passed successfully.")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Expert Geometry Completed.")

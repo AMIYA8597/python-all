@@ -1,124 +1,153 @@
 """
-Backtracking Pattern
-
-Learning Objectives:
-1. Understand the core concept of Backtracking (explore all paths and backtrack if not valid).
-2. Learn the common template for backtracking problems.
-3. Master solving Permutations, Combinations, and Subsets.
-4. Analyze time and space complexity.
-5. Learn state restoration.
-
-Concept Explanation:
-Backtracking is an algorithmic technique for solving problems recursively by trying to build a solution incrementally, one piece at a time, removing those solutions that fail to satisfy the constraints of the problem at any point of time. It's essentially an exhaustive search (DFS) with pruning.
+# ==============================================================================
+# LABORATORY: INTERVIEW PREPARATION (CODING PATTERNS - BACKTRACKING)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# Interviewer: "Given an array [1, 2, 3], return all possible permutations."
+#
+# A junior engineer tries to write three nested `for` loops. But what if the 
+# input array has 10 elements? You cannot dynamically write 10 nested loops.
+# You MUST use Recursion to mathematically traverse a "Decision Tree".
+#
+# Backtracking is an algorithmic technique for solving problems recursively by 
+# trying to build a solution incrementally, one piece at a time, and removing 
+# those solutions that fail to satisfy the constraints of the problem at any point 
+# in time ("backtracking" to the previous state).
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the Backtracking State Machine (`Choose -> Explore -> Un-Choose`).
+# - Master the 'Subsets' algorithmic pattern.
+# - Master the 'Permutations' algorithmic pattern.
+# - Understand why `result.append(path[:])` is mathematically required.
+#
+# ==============================================================================
 """
 
 from typing import List
 
-# Basic Implementation: Subsets
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
+
+# ==============================================================================
+# 3. BACKTRACKING: SUBSETS (THE POWER SET)
+# ==============================================================================
 def subsets(nums: List[int]) -> List[List[int]]:
-    """Time: O(N * 2^N), Space: O(N)"""
-    res = []
+    """
+    Time: O(N * 2^N) | Space: O(N) for recursion stack.
+    Generates all possible subsets of an array.
+    Decision Tree: At every number, we make a binary choice: "Include it, or Skip it."
+    """
+    result = []
     
-    def backtrack(start: int, path: List[int]):
-        res.append(path[:])
-        for i in range(start, len(nums)):
-            path.append(nums[i])
-            backtrack(i + 1, path)
-            path.pop() # Restore state (Backtrack)
+    def backtrack(index: int, current_path: List[int]):
+        # The 'Base Case': We have made a decision for every single element.
+        if index >= len(nums):
+            print(f"    [LEAF] Path constructed: {current_path}")
+            # CRITICAL: We MUST append a DEEP COPY of the current path!
+            # If we just do `result.append(current_path)`, we append a Pointer.
+            # When the path mathematically un-chooses and empties itself, the 
+            # final result matrix will just be full of empty arrays!
+            result.append(current_path[:])
+            return
             
+        print(f"  Node {index}: Current path {current_path}. Making decision for {nums[index]}")
+            
+        # DECISION 1: Include the current number! (CHOOSE)
+        current_path.append(nums[index])
+        # Explore down that branch! (EXPLORE)
+        backtrack(index + 1, current_path)
+        
+        # DECISION 2: Skip the current number! (UN-CHOOSE / BACKTRACK)
+        # We physically delete the number from our memory array!
+        removed = current_path.pop()
+        print(f"  Node {index}: Backtracking! Removed {removed}. Path is now {current_path}.")
+        # Explore down the alternative branch! (EXPLORE)
+        backtrack(index + 1, current_path)
+        
+    print("  Initializing Decision Tree (Include vs Skip)...")
     backtrack(0, [])
-    return res
+    return result
 
-# Intermediate Implementation: Permutations
+def demonstrate_subsets():
+    section_header("Backtracking: Subsets (Include vs Skip)")
+    
+    nums = [1, 2, 3]
+    print(f"Array: {nums}\n")
+    
+    result = subsets(nums)
+    print(f"\nResult: Total {len(result)} Subsets generated:")
+    print(result)
+
+
+# ==============================================================================
+# 4. BACKTRACKING: PERMUTATIONS (FACTORIAL SCALING)
+# ==============================================================================
 def permutations(nums: List[int]) -> List[List[int]]:
-    """Time: O(N * N!), Space: O(N)"""
-    res = []
+    """
+    Time: O(N * N!) | Space: O(N)
+    Generates all possible orderings of an array.
+    """
+    result = []
     
-    def backtrack(path: List[int]):
-        if len(path) == len(nums):
-            res.append(path[:])
+    def backtrack(current_path: List[int]):
+        # Base Case: The path contains exactly N elements!
+        if len(current_path) == len(nums):
+            result.append(current_path[:])
             return
             
-        for i in range(len(nums)):
-            if nums[i] in path:
-                continue
-            path.append(nums[i])
-            backtrack(path)
-            path.pop()
-            
-    backtrack([])
-    return res
-
-# Advanced Implementation: N-Queens
-def solveNQueens(n: int) -> List[List[str]]:
-    """Time: O(N!), Space: O(N^2)"""
-    col = set()
-    posDiag = set() # (r + c)
-    negDiag = set() # (r - c)
-    
-    res = []
-    board = [["."] * n for _ in range(n)]
-    
-    def backtrack(r: int):
-        if r == n:
-            copy = ["".join(row) for row in board]
-            res.append(copy)
-            return
-            
-        for c in range(n):
-            if c in col or (r + c) in posDiag or (r - c) in negDiag:
+        # We must loop through ALL available elements for this specific position.
+        for num in nums:
+            # We can't reuse a number we already placed in the permutation!
+            if num in current_path:
                 continue
                 
-            col.add(c)
-            posDiag.add(r + c)
-            negDiag.add(r - c)
-            board[r][c] = "Q"
+            # 1. CHOOSE
+            current_path.append(num)
             
-            backtrack(r + 1)
+            # 2. EXPLORE
+            backtrack(current_path)
             
-            col.remove(c)
-            posDiag.remove(r + c)
-            negDiag.remove(r - c)
-            board[r][c] = "."
+            # 3. UN-CHOOSE (BACKTRACK)
+            current_path.pop()
             
-    backtrack(0)
-    return res
+    backtrack([])
+    return result
 
-# Edge Cases to Handle:
-# 1. Duplicate elements in input (need sorting and skip condition).
-# 2. Empty input arrays.
+def demonstrate_permutations():
+    section_header("Backtracking: Permutations (N!)")
+    
+    nums = ['A', 'B', 'C']
+    print(f"Array: {nums}\n")
+    
+    result = permutations(nums)
+    print(f"\nResult: Total {len(result)} Permutations generated:")
+    for p in result: print(f"  {p}")
 
-# Interview Challenge: Combination Sum
-def combination_sum(candidates: List[int], target: int) -> List[List[int]]:
-    res = []
-    
-    def backtrack(start: int, path: List[int], total: int):
-        if total == target:
-            res.append(path[:])
-            return
-        if total > target:
-            return
-            
-        for i in range(start, len(candidates)):
-            path.append(candidates[i])
-            backtrack(i, path, total + candidates[i])
-            path.pop()
-            
-    backtrack(0, [], 0)
-    return res
 
-def run_tests():
-    assert [1] in subsets([1])
-    assert len(subsets([1, 2, 3])) == 8
-    
-    assert len(permutations([1, 2, 3])) == 6
-    
-    assert len(solveNQueens(4)) == 2
-    
-    c_sum = combination_sum([2, 3, 6, 7], 7)
-    assert [7] in c_sum and [2, 2, 3] in c_sum
-    
-    print("All Backtracking tests passed!")
+def run_all_labs():
+    demonstrate_subsets()
+    demonstrate_permutations()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "Why MUST you append `path[:]` to the results array instead of just `path`?"
+   Senior Answer: "In Python, a List is passed and stored by Reference (a physical memory Pointer). The `path` variable is a single, mutable array in RAM that is constantly being modified, appended to, and popped from by the algorithmic State Machine as it traverses the tree. If you write `result.append(path)`, you are simply appending 8 identical pointers to the exact same physical array. When the algorithmic tree finishes, it physically empties the array to backtrack to the absolute root. Therefore, your final output will print out `[[], [], []]`. By writing `path[:]` (or `list(path)`), you force the CPU to allocate a brand new, isolated block of RAM, permanently freezing a 'snapshot' of the data at that exact microsecond."
+
+2. Interviewer: "What is the algorithmic difference between 'Subsets' and 'Permutations'?"
+   Senior Answer: "Subsets scales at $O(2^N)$. It is a strict Binary Decision Tree. At every index, you make exactly two choices: 'Include it, or Skip it'. The relative order of elements is preserved, but the size of the result varies. Permutations scales at $O(N!)$ (Factorial). It requires you to place *every* element, but in every possible mathematical order. Therefore, you do not pass an `index` variable down the tree. Instead, at every node, you iterate through the *entire* array, check if the element has already been used (`if num in path`), and branch outward. The first position has $N$ choices, the second has $N-1$ choices, creating an explosion of factorial combinations."
+
+3. Interviewer: "When writing the Permutations algorithm, `if num in path` takes $O(N)$ time. Can we optimize this?"
+   Senior Answer: "Yes. Using `if num in path` is perfectly fine for small arrays, but as $N$ grows, scanning the array at every single node of the $N!$ tree is algorithmically devastating. We can optimize it by maintaining an external boolean array (e.g., `visited = [False] * N`), or a Bitmask, or a Hash Set. Before exploring, we mark `visited[i] = True`. After backtracking, we un-choose it by marking `visited[i] = False`. This reduces the $O(N)$ lookup to a perfect $O(1)$ Hash or Array access, drastically accelerating the backtracking engine."
+"""
 
 if __name__ == "__main__":
-    run_tests()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Interview Prep (Backtracking) Completed.")

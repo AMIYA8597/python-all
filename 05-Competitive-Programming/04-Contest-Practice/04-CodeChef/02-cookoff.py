@@ -1,127 +1,182 @@
 """
-CodeChef Cook-Off Practice
-==========================
-
-Overview
---------
-The CodeChef Cook-Off is a short contest (typically 2.5 hours) with 5 to 7 problems.
-Speed, accuracy, and quick thinking are critical. The problems usually revolve around
-greedy algorithms, ad-hoc logic, string manipulation, and standard dynamic programming.
-Because time is limited, writing bug-free code quickly is more important than knowing
-highly obscure data structures.
-
-Learning Objectives:
-1. Develop speed in translating ad-hoc logic into clean Python code.
-2. Master greedy algorithms and standard two-pointer techniques.
-3. Write robust edge-case handling on the first try.
-4. Utilize Python's built-in tools for rapid development.
-
-Concept Explanation
--------------------
-A common Cook-Off problem might ask you to find the longest contiguous subarray that
-satisfies a certain property (e.g., sum <= K, or max difference between elements is <= D).
-The Two-Pointer (or Sliding Window) technique is perfect for this. It allows us to 
-process the array in O(N) time instead of O(N^2), which is crucial for passing the
-typical N <= 10^5 constraints.
-
-Basic to Professional Implementation
-------------------------------------
-We implement a Sliding Window solver to find the length of the longest subarray with 
-a sum less than or equal to a given limit `K`.
+# ==============================================================================
+# LABORATORY: COMPETITIVE PROGRAMMING (CODECHEF COOK-OFF)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# The CodeChef Cook-Off is a 2.5-hour short-format sprint. Speed and pattern 
+# recognition are everything. 
+#
+# A classic Cook-Off problem: "You have a network of N computers and M cables. 
+# Over time, cables are slowly cut, permanently breaking connections. You receive 
+# queries asking: 'Are computers A and B still connected?'"
+#
+# If you run a DFS/BFS every time a cable is cut, it takes O(N) per query, 
+# resulting in a Time Limit Exceeded (TLE).
+#
+# Can you use a Disjoint Set Union (DSU)? A standard DSU is incredibly fast 
+# at ADDING connections. But mathematically, a DSU CANNOT REMOVE connections 
+# without completely rebuilding the tree from scratch (which takes O(N)).
+#
+# The solution is a famous CP pattern: "Time Reversal". 
+# You read all the queries in advance (Offline). You destroy all the cables 
+# that are *going* to be cut. Then, you process the timeline strictly BACKWARDS! 
+# Instead of cutting cables, you are now mathematically ADDING cables back into 
+# the DSU! You answer all queries instantly in O(1) time!
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Disjoint Set Union (DSU) architecture.
+# - Master the Offline Time Reversal pattern for Graph Destruction queries.
+#
+# ==============================================================================
 """
 
-from typing import List
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-def solve_cookoff_longest_subarray_basic(arr: List[int], k: int) -> int:
-    """
-    Basic O(N^2) implementation. Too slow for Cook-Off problems where N=10^5.
-    """
-    max_len = 0
-    n = len(arr)
-    for i in range(n):
-        current_sum = 0
-        for j in range(i, n):
-            current_sum += arr[j]
-            if current_sum <= k:
-                max_len = max(max_len, j - i + 1)
-            else:
-                break
-    return max_len
 
-def solve_cookoff_longest_subarray_pro(arr: List[int], k: int) -> int:
-    """
-    Professional O(N) Sliding Window implementation.
-    This is what you should write during a Cook-Off to pass time limits.
-    Assumes non-negative integers in the array.
-    """
-    max_len = 0
-    window_sum = 0
-    left = 0
-    
-    for right in range(len(arr)):
-        window_sum += arr[right]
+# ==============================================================================
+# 3. DISJOINT SET UNION (DSU)
+# ==============================================================================
+class DSU:
+    def __init__(self, n: int):
+        self.parent = list(range(n))
+        self.size = [1] * n
+
+    def find(self, i: int) -> int:
+        """Finds the Root of the set, with Path Compression."""
+        if self.parent[i] == i:
+            return i
+        self.parent[i] = self.find(self.parent[i])
+        return self.parent[i]
+
+    def union(self, i: int, j: int) -> bool:
+        """Unites two sets using Union by Size."""
+        root_i = self.find(i)
+        root_j = self.find(j)
         
-        # Shrink window from the left if sum exceeds k
-        while window_sum > k and left <= right:
-            window_sum -= arr[left]
-            left += 1
+        if root_i == root_j:
+            return False # Already connected
             
-        max_len = max(max_len, right - left + 1)
-        
-    return max_len
+        # Attach the smaller tree under the larger tree!
+        if self.size[root_i] < self.size[root_j]:
+            root_i, root_j = root_j, root_i
+            
+        self.parent[root_j] = root_i
+        self.size[root_i] += self.size[root_j]
+        return True
 
-
-# --- Advanced Concept: String Greedy Logic ---
-def solve_cookoff_greedy_string(s: str) -> str:
+# ==============================================================================
+# 4. OFFLINE TIME REVERSAL ALGORITHM
+# ==============================================================================
+def solve_offline_destruction(n: int, edges: list[tuple[int, int]], queries: list[tuple[str, int, int]]) -> list[bool]:
     """
-    Another common Cook-Off pattern: string manipulation.
-    Problem: Given a string of lowercase letters, remove all adjacent duplicate characters.
-    Continue this until no more adjacent duplicates exist.
+    Simulates destroying edges and checking connectivity.
+    Queries format: 
+      ("CUT", edge_index, 0)
+      ("CHECK", node_u, node_v)
+      
+    Time Complexity: O(Q * alpha(N)) -> virtually O(Q)
+    """
+    dsu = DSU(n)
     
-    Example: "abbaca" -> "aaca" -> "ca"
-    Implementation uses a stack for O(N) time.
-    """
-    stack = []
-    for char in s:
-        if stack and stack[-1] == char:
-            stack.pop()
-        else:
-            stack.append(char)
-    return "".join(stack)
+    # 1. Identify exactly which edges are doomed to be cut at ANY point in time.
+    cut_edges = set()
+    for q_type, u, v in queries:
+        if q_type == "CUT":
+            cut_edges.add(u) # u holds the edge_index here
+            
+    # 2. Build the "End of Time" Graph. 
+    # Add all edges that survived the entire timeline without ever being cut.
+    for i, (u, v) in enumerate(edges):
+        if i not in cut_edges:
+            dsu.union(u, v)
+            
+    answers = []
+    
+    # 3. Time Reversal! Process the queries BACKWARDS.
+    for i in range(len(queries) - 1, -1, -1):
+        q_type, u, v = queries[i]
+        
+        if q_type == "CHECK":
+            # Are they connected AT THIS MOMENT in the timeline?
+            is_connected = dsu.find(u) == dsu.find(v)
+            answers.append(is_connected)
+            
+        elif q_type == "CUT":
+            # Going backwards in time, a "CUT" is mathematically a "REPAIR"!
+            # We magically restore the edge in the DSU!
+            edge_to_restore = edges[u] 
+            dsu.union(edge_to_restore[0], edge_to_restore[1])
+            
+    # The answers were collected backwards, so we must reverse them 
+    # to match the true chronological timeline!
+    answers.reverse()
+    
+    return answers
 
+def demonstrate_time_reversal():
+    section_header("Offline Time Reversal (DSU Destruction)")
+    
+    n = 4
+    edges = [
+        (0, 1), # Edge 0
+        (1, 2), # Edge 1
+        (2, 3)  # Edge 2
+    ]
+    
+    queries = [
+        ("CHECK", 0, 3), # Expected: True (All edges exist)
+        ("CUT", 1, 0),   # Cut Edge 1 (disconnects 0,1 from 2,3)
+        ("CHECK", 0, 3), # Expected: False
+        ("CHECK", 0, 1), # Expected: True (0 and 1 are still connected)
+        ("CUT", 0, 0),   # Cut Edge 0 (disconnects 0 from 1)
+        ("CHECK", 0, 1)  # Expected: False
+    ]
+    
+    print(f"Nodes: {n}")
+    print(f"Initial Edges: {edges}")
+    print("\nChronological Events:")
+    for q in queries:
+        if q[0] == "CHECK":
+            print(f"  Are {q[1]} and {q[2]} connected?")
+        else:
+            print(f"  [!] Edge {q[1]} was completely DESTROYED!")
+            
+    ans = solve_offline_destruction(n, edges, queries)
+    
+    print("\nChronological Answers:")
+    check_idx = 0
+    for q in queries:
+        if q[0] == "CHECK":
+            print(f"  Query {check_idx}: {ans[check_idx]}")
+            check_idx += 1
+            
+    print("\nThe DSU solved a destructive problem by processing the entire ")
+    print("timeline backwards and repairing edges instead of destroying them!")
+
+
+def run_all_labs():
+    demonstrate_time_reversal()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Why is a standard Disjoint Set Union (DSU) completely incapable of processing "Remove Edge" operations?
+   Answer: A DSU uses "Path Compression". When `find(x)` is called, it takes every node along the path to the root and mathematically snaps them directly to the root, completely destroying the original tree hierarchy. Because the original physical structure of the tree is irreversibly flattened to guarantee $O(1)$ speed, if you try to "remove" an edge, the DSU has absolutely no physical memory of what the tree looked like before the edge was added. The nodes are permanently tangled. To safely remove an edge, you would have to completely clear the DSU and rebuild it from scratch, running at $O(N)$.
+
+2. Explain the philosophical concept of "Offline Time Reversal" in graph problems.
+   Answer: If a data structure is magnificent at ADDING things (like DSU), but mathematically incapable of REMOVING things, and the problem asks you to REMOVE things over time... you change the flow of time! By reading all queries in advance (Offline), you can look at the absolute end of the universe (the state of the graph after every single cut has occurred). You build this broken graph. Then, you read the timeline from end-to-beginning. A chronological "Cut" becomes a retrograde "Add". You magically transform a destructive problem into a constructive problem, allowing the DSU to operate natively in $O(1)$!
+
+3. In the DSU `union` function, what is "Union by Size" and why is it critical?
+   Answer: If you naively attach Tree A to Tree B indiscriminately, you can mathematically create a worst-case scenario where the Tree degenerates into a single long linked list (a straight line). If this happens, `find()` degenerates to $O(N)$ time, crashing the algorithm. "Union by Size" physically counts the number of nodes in both trees. It mathematically guarantees that the smaller tree is ALWAYS attached as a child of the larger tree. This forces the tree to remain incredibly wide and shallow. By combining Union by Size with Path Compression, the depth of the tree will never exceed $\approx 4$, achieving the near-constant Ackermann time bound $O(\alpha(N))$.
+"""
 
 if __name__ == "__main__":
-    # Tests and Assertions
-    print("Testing Sliding Window (Longest Subarray)...")
-    arr = [3, 1, 2, 7, 4, 2, 1, 1, 5]
-    k = 8
-    # Valid subarrays: [3,1,2] sum=6, len=3
-    # [1,2,7] X
-    # [4,2,1,1] sum=8, len=4 -> Max length
-    assert solve_cookoff_longest_subarray_pro(arr, k) == 4, "Sliding window failed"
-    assert solve_cookoff_longest_subarray_pro([], 5) == 0, "Empty array failed"
-    assert solve_cookoff_longest_subarray_pro([10, 20], 5) == 0, "No valid subarray failed"
-    
-    print("Testing Greedy String Manipulation...")
-    assert solve_cookoff_greedy_string("abbaca") == "ca", "String stack test failed"
-    assert solve_cookoff_greedy_string("azxxzy") == "ay", "String stack test 2 failed"
-    
-    print("All tests passed!")
-
-"""
-Complexity Analysis:
-- `solve_cookoff_longest_subarray_pro`:
-  Time Complexity: O(N), as both `left` and `right` pointers move forward at most N times.
-  Space Complexity: O(1), only integer variables are maintained.
-- `solve_cookoff_greedy_string`:
-  Time Complexity: O(N) where N is string length, iterating once.
-  Space Complexity: O(N) worst case if no duplicates, to store the stack.
-
-Common Mistakes:
-- In sliding window, forgetting the `left <= right` condition which can lead to index out of bounds or negative sums if not careful.
-- Writing O(N^2) string concatenations instead of using a stack.
-
-Interview Challenge:
-How would you modify the sliding window approach if the array could contain negative numbers?
-(Hint: The sliding window property breaks. You would need a prefix sum hash map or a monotonic queue).
-"""
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: CodeChef Cook-Off Completed.")

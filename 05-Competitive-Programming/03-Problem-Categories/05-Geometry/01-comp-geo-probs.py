@@ -1,242 +1,165 @@
 """
-## A. Concept Name
-Computational Geometry - Competitive Programming
-
-## B. What is it?
-Computational Geometry involves designing algorithms and data structures to solve geometric problems efficiently. It deals with points, lines, polygons, circles, and intersections in 2D and 3D space.
-
-## C. Why it exists?
-Many applications require manipulating and querying spatial data. Floating-point precision issues and edge cases (like collinear points) make geometry problems notoriously difficult. Dedicated algorithms exist to handle these robustly using integer arithmetic where possible.
-
-## D. Industry Use Cases
-- Computer Graphics: Rendering pipelines, clipping, collision detection.
-- GIS (Geographic Information Systems): Spatial queries, map routing, geofencing.
-- Robotics: Path planning, obstacle avoidance.
-- CAD (Computer-Aided Design): 3D modeling, structural analysis.
-
-## E. Learning Objectives
-1. Master vector operations for geometric calculations (cross product, dot product).
-2. Understand robust orientation tests to avoid floating-point errors.
-3. Solve common geometry problems: Line Intersection, Point in Polygon, and Polygon Area.
-
-## F. Core Math: Cross Product
-The cross product helps in determining the orientation of three points (clockwise, counter-clockwise, or collinear), which is foundational for most 2D geometric algorithms.
-
-## G. Orientation Principles
-Using integer cross products guarantees exact results without the inaccuracies of floating-point division.
-
-## H. Line Intersection
-Determines if two line segments cross each other by checking the orientations of the endpoints of one segment relative to the other.
-
-## I. Polygon Area
-The Shoelace formula computes the area of a simple polygon using the coordinates of its vertices.
-
-## J. Point in Polygon
-The Ray Casting algorithm checks how many times a ray starting from the point intersects the polygon's edges to determine if it is inside.
-
-## K. Floating-Point Pitfalls
-Floating-point arithmetic has rounding errors which can cause collinear points to be mistakenly identified as non-collinear.
-
-## L. Time Complexity
-Most fundamental tests like orientation and intersection are O(1). Polygon operations are typically O(N) where N is the number of vertices.
-
-## M. Space Complexity
-Usually O(1) auxiliary space, as algorithms process coordinate pairs without needing complex data structures.
-
-## N. Edge Cases
-Collinear segments overlapping, point on the polygon boundary, and degenerate polygons (less than 3 vertices).
-
-## O. Robustness
-Always use integer arithmetic for orientation tests if the input coordinates are integers.
-
-## P. Common Pitfalls
-Using division (slopes) instead of cross products for checking parallelism or collinearity.
-
-## Q. Data Representation
-Points are best represented as tuples of integers or simple objects with x and y properties.
-
-## R. Interview Challenge
-How does floating-point imprecision affect geometric algorithms, and how do techniques like cross product help? (Answer: Integer cross products avoid decimal rounding errors entirely).
-
-## S. Related Concepts
-Convex Hull (Graham Scan, Jarvis March), Line Sweep algorithms.
-
-## T. Code Readability
-Modularizing operations like `orientation` and `on_segment` keeps complex logic manageable.
-
-## U. Scalability
-Efficient O(N log N) algorithms are required for processing millions of points, building on these basic O(1) tests.
-
-## V. Testing & Verification
-Verify with simple convex and concave polygons, as well as extreme points and collinear edge cases.
-
-## W. Future Exploration
-3D geometry, Voronoi diagrams, and Delaunay triangulations.
-
-## X. Project Connection
-These core primitives are used in building larger spatial engines, rendering systems, and competitive programming templates where geometric robustness is required.
+# ==============================================================================
+# LABORATORY: COMPETITIVE PROGRAMMING (COMPUTATIONAL GEOMETRY)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# You are programming the navigation software for an autonomous drone.
+# You have a 2D map with coordinates. The drone is at point A, and the target 
+# is at point B. Suddenly, a massive polygonal no-fly zone (a polygon) appears.
+# 
+# How does the drone mathematically calculate if a specific GPS coordinate is 
+# physically inside or outside the forbidden polygon?
+# How do you calculate the tightest bounding box (Convex Hull) around a swarm 
+# of enemy drones?
+#
+# You cannot use floating-point math (e.g., calculating slopes with division, 
+# `y2 - y1 / x2 - x1`) because floating-point inaccuracies will cause catastrophic 
+# rounding errors, and division by zero will crash your software if the line 
+# is perfectly vertical.
+#
+# You must use Computational Geometry based entirely on the 2D Cross Product, 
+# which relies strictly on Integer Multiplication, mathematically guaranteeing 
+# 100% precision with zero crashes.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand Vector Mathematics (Dot Product & Cross Product).
+# - Master the Orientation (CCW) test.
+# - Implement the Monotone Chain algorithm for the Convex Hull.
+#
+# ==============================================================================
 """
-from typing import Tuple, List, Optional
-import math
 
-# Point representation
-Point = Tuple[int, int]
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-# =============================================================================
-# 1. Core Concept: Cross Product & Orientation
-# =============================================================================
-def orientation(p: Point, q: Point, r: Point) -> int:
+
+# ==============================================================================
+# 3. THE CROSS PRODUCT (ORIENTATION / CCW)
+# ==============================================================================
+def cross_product(p1: tuple[int, int], p2: tuple[int, int], p3: tuple[int, int]) -> int:
     """
-    Finds the orientation of an ordered triplet (p, q, r).
-    Uses the cross product of vectors pq and qr.
-    
-    Time Complexity: O(1)
-    Space Complexity: O(1)
+    Calculates the 2D Cross Product of vectors (p1->p2) and (p1->p3).
+    This mathematically determines the ORIENTATION of the 3 points.
     
     Returns:
-        0 if p, q, and r are collinear
-        1 if clockwise (CW)
-        2 if counter-clockwise (CCW)
-    """
-    # Cross product formula: (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y)
-    val = (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1])
+    > 0 : Counter-Clockwise (Left Turn)
+    < 0 : Clockwise (Right Turn)
+    == 0: Collinear (The 3 points form a perfectly straight line)
     
-    if val == 0:
-        return 0  # Collinear
-    return 1 if val > 0 else 2  # Clockwise if > 0, Counter-clockwise if < 0
-
-
-def on_segment(p: Point, q: Point, r: Point) -> bool:
+    Notice there is NO division! No floating points! Only integer math!
     """
-    Given three collinear points p, q, r, checks if point q lies on line segment 'pr'.
-    """
-    if (min(p[0], r[0]) <= q[0] <= max(p[0], r[0]) and
-        min(p[1], r[1]) <= q[1] <= max(p[1], r[1])):
-        return True
-    return False
-
-
-# =============================================================================
-# 2. Line Intersection
-# =============================================================================
-def do_intersect(p1: Point, q1: Point, p2: Point, q2: Point) -> bool:
-    """
-    Returns True if line segment 'p1q1' and 'p2q2' intersect.
+    x1, y1 = p1
+    x2, y2 = p2
+    x3, y3 = p3
     
-    Time Complexity: O(1)
-    Space Complexity: O(1)
-    """
-    o1 = orientation(p1, q1, p2)
-    o2 = orientation(p1, q1, q2)
-    o3 = orientation(p2, q2, p1)
-    o4 = orientation(p2, q2, q1)
+    # Vector A = p1 -> p2 = (x2 - x1, y2 - y1)
+    # Vector B = p1 -> p3 = (x3 - x1, y3 - y1)
+    # Cross Product = Ax * By - Ay * Bx
+    return (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1)
 
-    # General case
-    if o1 != o2 and o3 != o4:
-        return True
-
-    # Special Cases (Collinear intersections)
-    if o1 == 0 and on_segment(p1, p2, q1): return True
-    if o2 == 0 and on_segment(p1, q2, q1): return True
-    if o3 == 0 and on_segment(p2, p1, q2): return True
-    if o4 == 0 and on_segment(p2, q1, q2): return True
-
-    return False
-
-
-# =============================================================================
-# 3. Polygon Area (Shoelace Formula)
-# =============================================================================
-def polygon_area(points: List[Point]) -> float:
-    """
-    Calculates the area of a simple polygon given its vertices in order.
-    Uses the Shoelace Formula.
+def demonstrate_orientation():
+    section_header("The Cross Product (Orientation Test)")
     
-    Time Complexity: O(N) where N is the number of vertices.
-    Space Complexity: O(1)
+    p1 = (0, 0)
+    p2 = (4, 4)
+    
+    # Let's test three different third points
+    left_point = (2, 5)   # Above the diagonal line
+    right_point = (5, 2)  # Below the diagonal line
+    straight_point = (8, 8) # Exactly on the line
+    
+    print(f"Line Segment: {p1} to {p2}")
+    
+    cp_left = cross_product(p1, p2, left_point)
+    print(f"To reach {left_point}: Cross Product is {cp_left} -> {'Left Turn (CCW)' if cp_left > 0 else 'Right'}")
+    
+    cp_right = cross_product(p1, p2, right_point)
+    print(f"To reach {right_point}: Cross Product is {cp_right} -> {'Right Turn (CW)' if cp_right < 0 else 'Left'}")
+    
+    cp_straight = cross_product(p1, p2, straight_point)
+    print(f"To reach {straight_point}: Cross Product is {cp_straight} -> {'Collinear' if cp_straight == 0 else 'Turn'}")
+
+
+# ==============================================================================
+# 4. THE CONVEX HULL (MONOTONE CHAIN ALGORITHM)
+# ==============================================================================
+def convex_hull(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
     """
-    n = len(points)
-    if n < 3:
-        return 0.0
+    Finds the Convex Hull (the tightest outer polygon encompassing all points).
+    Algorithm: Monotone Chain.
+    Time Complexity: O(N log N) for sorting, O(N) for building the hull.
+    Space Complexity: O(N)
+    """
+    # 1. Sort the points lexicographically (by X-coordinate, then by Y-coordinate).
+    points = sorted(points)
+    
+    # A polygon requires at least 3 points.
+    if len(points) <= 3:
+        return points
         
-    area = 0.0
-    for i in range(n):
-        j = (i + 1) % n
-        # (x_i * y_i+1) - (x_i+1 * y_i)
-        area += points[i][0] * points[j][1]
-        area -= points[j][0] * points[i][1]
+    def build_half_hull(pts: list[tuple[int, int]]) -> list[tuple[int, int]]:
+        hull = []
+        for p in pts:
+            # While the last 3 points in our Hull form a "Right Turn" or are "Collinear",
+            # the middle point is mathematically INSIDE the polygon, making it 
+            # useless for the OUTER boundary. We pop it!
+            while len(hull) >= 2 and cross_product(hull[-2], hull[-1], p) <= 0:
+                hull.pop()
+            hull.append(p)
+        return hull
         
-    return abs(area) / 2.0
-
-
-# =============================================================================
-# 4. Point in Polygon (Ray Casting Algorithm)
-# =============================================================================
-def is_point_in_polygon(points: List[Point], p: Point) -> bool:
-    """
-    Checks whether a point 'p' lies inside a polygon defined by 'points'.
-    Uses the ray-casting algorithm.
+    # 2. Build the Lower Boundary
+    lower = build_half_hull(points)
     
-    Time Complexity: O(N)
-    Space Complexity: O(1)
-    """
-    n = len(points)
-    if n < 3:
-        return False
-
-    # Create a point for ray segment from p to infinity
-    extreme = (10**9, p[1])
+    # 3. Build the Upper Boundary (by reversing the points)
+    upper = build_half_hull(points[::-1])
     
-    count = 0
-    i = 0
-    while True:
-        next_i = (i + 1) % n
-        
-        # Check if segment from p to extreme intersects with polygon edge
-        if do_intersect(points[i], points[next_i], p, extreme):
-            # If the point is collinear with edge, check if it's on segment
-            if orientation(points[i], p, points[next_i]) == 0:
-                return on_segment(points[i], p, points[next_i])
-            count += 1
-            
-        i = next_i
-        if i == 0:
-            break
-            
-    # Return true if count is odd
-    return (count % 2 == 1)
+    # 4. Merge them!
+    # The last point of the lower hull is the first point of the upper hull,
+    # and vice versa, so we slice off the last point of both to prevent duplicates.
+    return lower[:-1] + upper[:-1]
+
+def demonstrate_convex_hull():
+    section_header("Convex Hull (Monotone Chain)")
+    
+    points = [
+        (0, 0), (0, 4), (4, 0), (4, 4), # 4 Outer Corners
+        (1, 1), (2, 2), (3, 1), (2, 3)  # 4 Inner Points
+    ]
+    
+    print("A swarm of 8 drones is located at:")
+    print(points)
+    
+    hull = convex_hull(points)
+    
+    print("\nThe Convex Hull (The bounding polygon) consists of:")
+    print(hull)
+    print("Notice how the 4 inner points were mathematically discarded in O(N log N) time!")
 
 
-# =============================================================================
-# Interview Challenge
-# =============================================================================
-# Question: How does floating-point imprecision affect geometric algorithms, 
-# and how do techniques like cross product help?
-# Answer: Floating-point arithmetic has rounding errors which can cause 
-# collinear points to be mistakenly identified as non-collinear (or vice versa),
-# breaking the logic of intersections or hull constructions. Cross product using
-# integers operates precisely without decimals, completely avoiding these bugs.
+def run_all_labs():
+    demonstrate_orientation()
+    demonstrate_convex_hull()
 
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. When checking if three points form a left turn or a right turn, why is the Cross Product vastly superior to calculating the geometric slopes (`m1 = y2-y1 / x2-x1`)?
+   Answer: Two reasons. First, Division by Zero. If points A and B form a perfectly vertical line (sharing the same X coordinate), `x2 - x1` becomes 0, and the slope calculation immediately crashes the program with a `ZeroDivisionError`. Second, Floating Point Precision. Computers cannot perfectly store irrational fractions (like 1/3) in binary. If you use division, the resulting float is mathematically imprecise. When checking if a point is perfectly collinear on a line, `slope1 == slope2` will return `False` due to rounding errors deep in the decimals. The Cross Product equation `(x2-x1)*(y3-y1) - (y2-y1)*(x3-x1)` uses ONLY Integer Subtraction and Integer Multiplication. It mathematically guarantees 100% precision, zero float rounding errors, and zero risk of division crashes.
+
+2. In the Monotone Chain algorithm for the Convex Hull, why do we use `while len(hull) >= 2 and cross_product(hull[-2], hull[-1], p) <= 0: hull.pop()`?
+   Answer: A Convex polygon means every interior angle is strictly less than 180 degrees. If you trace the perimeter of the polygon, you must constantly make "Left Turns" (Counter-Clockwise). If you ever make a "Right Turn", or continue perfectly straight, it means the middle vertex is physically caving inward, creating a concave dent. A Convex Hull cannot have concave dents! The `cross_product <= 0` mathematically detects a Right Turn or a straight line. If detected, we aggressively `pop()` the offending middle vertex out of the stack, deleting the dent, and re-evaluating the new angle until it forms a perfect Left Turn. 
+
+3. How does the sorting step (`sorted(points)`) enable the Monotone Chain algorithm to run in $O(N)$ time after the sort?
+   Answer: By sorting lexicographically (left-to-right on the X-axis), we mathematically guarantee that as we iterate through the list, we are strictly moving horizontally across the 2D plane. This geometry allows us to sweep across the bottom of the points to build the "Lower Hull", and sweep backwards across the top to build the "Upper Hull". Because every point is added to the stack exactly once, and popped from the stack at most once, the amortized cost of the `while` loop is $O(1)$ per point, resulting in a lightning-fast $O(N)$ sweep phase!
+"""
 
 if __name__ == "__main__":
-    print("Testing Computational Geometry algorithms...")
-    
-    p1 = (1, 1)
-    q1 = (10, 1)
-    p2 = (1, 2)
-    q2 = (10, 2)
-    assert do_intersect(p1, q1, p2, q2) == False
-    
-    p3 = (10, 0)
-    q3 = (0, 10)
-    p4 = (0, 0)
-    q4 = (10, 10)
-    assert do_intersect(p3, q3, p4, q4) == True
-    
-    polygon = [(0, 0), (10, 0), (10, 10), (0, 10)]
-    assert polygon_area(polygon) == 100.0
-    
-    assert is_point_in_polygon(polygon, (5, 5)) == True
-    assert is_point_in_polygon(polygon, (20, 20)) == False
-    
-    print("All tests passed!")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Computational Geometry Completed.")

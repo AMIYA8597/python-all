@@ -1,131 +1,173 @@
 """
-Advanced Type Hinting in Python
-
-Learning Objectives:
-1. Master core `typing` module features (Generic, Protocol, Callable, Any).
-2. Understand Structural Subtyping (Protocols / Duck Typing with types).
-3. Use TypeVars to create generic functions and classes.
-4. Implement practical type hinting for robust codebases.
-
-Concept Explanation:
-- Type hints do not affect runtime execution (except in specific libraries like Pydantic/FastAPI) but are essential for static analysis (mypy).
-- `TypeVar` allows functions/classes to be parameterized by types.
-- `Protocol` formalizes "duck typing" by defining an interface that a class must satisfy without explicit inheritance.
-
-Interview Focus:
-- What are Generics and why are they useful?
-- Differentiate between structural (Protocol) and nominal (inheritance) subtyping.
-- Write a generic function to reverse a sequence.
+# ==============================================================================
+# LABORATORY: INTERVIEW PREPARATION (PYTHON SPECIFICS - ADVANCED TYPE HINTING)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# Interviewer: "I have a function that takes a List and returns the first element. 
+# Write the Type Hints so that mypy knows that if I pass a List of Strings, 
+# it returns a String, and if I pass a List of Ints, it returns an Int."
+#
+# A junior engineer writes: `def get_first(items: list[Any]) -> Any:`. 
+# This instantly destroys the Type Checker! By returning `Any`, you silence 
+# mypy completely, causing fatal bugs downstream because the compiler no longer 
+# knows what the object is! You MUST use Generics (`TypeVar`).
+#
+# Interviewer: "I want to type-hint a parameter that accepts ANY object, as long 
+# as it has a `.read()` method. Do I need to create a base class?"
+#
+# A junior engineer creates an Abstract Base Class and forces everything to 
+# inherit from it. A senior engineer uses `typing.Protocol` to implement 
+# 'Static Duck Typing' (Structural Subtyping).
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Generics (`TypeVar`) to perfectly preserve return types.
+# - Master Protocols (`typing.Protocol`) for Static Duck Typing.
+# - Understand `Callable` and advanced Type Guards.
+#
+# ==============================================================================
 """
-from typing import List, Dict, TypeVar, Generic, Callable, Protocol, Sequence, Iterator
 
-# ==========================================
-# 1. TypeVars and Generics
-# ==========================================
+import typing
 
-T = TypeVar('T')
-U = TypeVar('U')
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-class Container(Generic[T]):
-    """A generic container that holds items of type T."""
-    def __init__(self, initial_items: List[T] = None):
-        self.items = initial_items or []
 
-    def add(self, item: T) -> None:
-        self.items.append(item)
+# ==============================================================================
+# 3. GENERICS (PRESERVING TYPE MATHEMATICS)
+# ==============================================================================
+# We define a Type Variable 'T'. It acts as a mathematical placeholder!
+T = typing.TypeVar('T')
 
-    def get_all(self) -> List[T]:
-        return self.items
-
-def reverse_sequence(seq: Sequence[T]) -> List[T]:
-    """A generic function that reverses any sequence of type T."""
-    return list(reversed(seq))
-
-# ==========================================
-# 2. Callables
-# ==========================================
-
-# Callable[[ArgType1, ArgType2], ReturnType]
-def apply_function(items: List[T], func: Callable[[T], U]) -> List[U]:
-    """Applies a function to a list of items."""
-    return [func(item) for item in items]
-
-# ==========================================
-# 3. Protocols (Structural Subtyping)
-# ==========================================
-
-class Quacker(Protocol):
+def bad_get_first(items: list[typing.Any]) -> typing.Any:
     """
-    A Protocol defining structural requirements.
-    Any class with a `quack` method returning a str is implicitly a Quacker.
+    By returning Any, mypy completely forgets the data type!
+    If we do `x = bad_get_first([1,2,3])`, mypy thinks `x` is Any.
+    If we then do `x.lower()`, mypy will NOT throw a warning, and it will 
+    crash violently at runtime.
     """
-    def quack(self) -> str:
-        ...
+    return items[0]
 
-class Duck:
-    def quack(self) -> str:
-        return "Quack!"
+def good_get_first(items: list[T]) -> T:
+    """
+    Using a Generic.
+    If we pass a `list[int]`, 'T' instantly locks into 'int'.
+    The function mathematically guarantees it will return an 'int'.
+    If we then do `x.lower()`, mypy will catch the bug before you even run the code!
+    """
+    return items[0]
 
-class Person:
-    def quack(self) -> str:
-        return "I am impersonating a duck."
+def demonstrate_generics():
+    section_header("Generics (TypeVar)")
+    
+    print("If you use `Any`, you are actively sabotaging the Type Checker.")
+    print("By using `TypeVar`, you create dynamic mathematical links between ")
+    print("the input arguments and the return value.\n")
+    
+    list_of_ints = [1, 2, 3]
+    list_of_strings = ["A", "B", "C"]
+    
+    print(f"Result (Ints): {good_get_first(list_of_ints)} (mypy knows this is an int!)")
+    print(f"Result (Strs): {good_get_first(list_of_strings)} (mypy knows this is a str!)")
 
-class Dog:
-    def bark(self) -> str:
-        return "Woof!"
 
-def make_sound(entity: Quacker) -> str:
-    """Accepts anything that implements the Quacker protocol."""
-    return entity.quack()
+# ==============================================================================
+# 4. PROTOCOLS (STATIC DUCK TYPING)
+# ==============================================================================
+class Readable(typing.Protocol):
+    """
+    A Protocol defines a mathematical 'Shape' or 'Contract'.
+    It does NOT require inheritance. If a class happens to have a `.read()` 
+    method, mypy will accept it as a `Readable`!
+    """
+    def read(self) -> str:
+        ... # The ellipses (...) are mathematically required for Protocols
 
-# ==========================================
-# Interview Challenge: Generic Cache
-# ==========================================
-# Implement a simple generic caching mechanism.
+class NetworkStream:
+    def read(self) -> str:
+        return "Network Data 101010"
 
-K = TypeVar('K')
-V = TypeVar('V')
-
-class Cache(Generic[K, V]):
-    def __init__(self):
-        self._storage: Dict[K, V] = {}
+class FileStream:
+    def read(self) -> str:
+        return "File Data from Disk"
         
-    def put(self, key: K, value: V) -> None:
-        self._storage[key] = value
-        
-    def get(self, key: K) -> V | None: # Python 3.10+ union syntax (or Optional[V])
-        return self._storage.get(key)
-        
-    def __contains__(self, key: K) -> bool:
-        return key in self._storage
+class BrokenStream:
+    # Notice it is missing the `read` method entirely!
+    def write(self, data):
+        pass
 
-def test_type_hinting():
-    # 1. Generics
-    int_container = Container[int]()
-    int_container.add(1)
-    int_container.add(2)
-    assert int_container.get_all() == [1, 2]
+def process_stream(stream: Readable):
+    """
+    This function accepts ANYTHING that fits the `Readable` Protocol!
+    """
+    print(f"  [STREAM] {stream.read()}")
+
+def demonstrate_protocols():
+    section_header("Protocols (Structural Subtyping)")
     
-    # 2. Callables
-    words = ["hello", "world"]
-    lengths = apply_function(words, len)
-    assert lengths == [5, 5]
+    print("Notice that NetworkStream and FileStream do NOT inherit from Readable!")
+    print("They share zero ancestry. But because they both physically implement ")
+    print("a `.read()` method, the Protocol mathematically accepts them.\n")
     
-    # 3. Protocols
-    d = Duck()
-    p = Person()
-    assert make_sound(d) == "Quack!"
-    assert make_sound(p) == "I am impersonating a duck."
+    n = NetworkStream()
+    f = FileStream()
+    b = BrokenStream()
     
-    # Dog cannot be passed to make_sound according to type checkers (runtime it would fail too)
+    process_stream(n)
+    process_stream(f)
     
-    # 4. Cache Challenge
-    c = Cache[str, int]()
-    c.put("one", 1)
-    assert c.get("one") == 1
-    assert c.get("two") is None
+    print("\nIf we tried to pass `BrokenStream` into `process_stream(b)`, ")
+    print("mypy would instantly crash at compile time, saving production!")
+
+
+# ==============================================================================
+# 5. CALLABLE (TYPE-HINTING FUNCTIONS)
+# ==============================================================================
+def execute_callback(data: str, callback: typing.Callable[[str], int]) -> int:
+    """
+    The Callable type hint is extremely powerful.
+    Syntax: Callable[[ArgType1, ArgType2], ReturnType]
+    We are mathematically enforcing that the callback MUST accept exactly one 
+    string, and MUST return exactly one integer.
+    """
+    return callback(data)
+
+def valid_callback(text: str) -> int:
+    return len(text)
+
+def demonstrate_callable():
+    section_header("Callable (Function Type Hints)")
     
-    print("All type hinting tests passed! (Note: Type hints are primarily checked by static analyzers like mypy).")
+    print("Executing a callback function securely...")
+    result = execute_callback("Hello World", valid_callback)
+    
+    print(f"Result: {result} (mypy mathematically validated the function signature!)")
+
+
+def run_all_labs():
+    demonstrate_generics()
+    demonstrate_protocols()
+    demonstrate_callable()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "What is the devastating danger of using `typing.Any`?"
+   Senior Answer: "`Any` is an escape hatch that completely silences the static type checker (mypy). If a function returns `Any`, the type checker abandons all mathematical analysis on that variable for the rest of the script. If you later try to call a non-existent method on it, mypy will not warn you, and the program will crash violently at runtime. Instead of `Any`, you should use `Generics (TypeVar)` to preserve type continuity, or `object` if you truly want to indicate that the variable can be anything (because `object` forces you to explicitly `isinstance()` check it before calling methods on it, whereas `Any` lets you call anything blindly)."
+
+2. Interviewer: "Explain the difference between `abc.ABC` (Abstract Base Classes) and `typing.Protocol`."
+   Senior Answer: "Both are used to define strict architectural contracts. However, `abc.ABC` requires Nominal Subtyping (explicit inheritance: `class MyClass(MyABC):`). It enforces the contract heavily at *Runtime* (Instantiation Time). `typing.Protocol` uses Structural Subtyping (Static Duck Typing). You do NOT inherit from the Protocol! The classes remain completely unlinked. `mypy` statically analyzes the codebase at *Compile Time* to mathematically verify if the class's 'shape' (its methods) matches the Protocol. Protocols allow you to cleanly type-hint complex third-party libraries without forcing them to inherit from your custom ABCs."
+
+3. Interviewer: "How do you type-hint a function that returns a Generator object?"
+   Senior Answer: "You must use `typing.Generator[YieldType, SendType, ReturnType]`. A Generator is a complex state machine. It doesn't just return data; it can receive data via `gen.send()`, and it can return a final value when it crashes with `StopIteration`. For a simple generator that just yields integers (like `yield 1; yield 2`), you would type-hint it as `typing.Generator[int, None, None]`. Alternatively, you can use the simpler `typing.Iterator[int]` if you don't need the advanced `send()` semantics."
+"""
 
 if __name__ == "__main__":
-    test_type_hinting()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Interview Prep (Advanced Type Hinting) Completed.")

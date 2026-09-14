@@ -1,231 +1,175 @@
 """
-03 - Database Design in System Design
-=====================================
-
-What is Database Design?
-Database design is the process of producing a detailed data model of a database. 
-It involves organizing data according to a database model (Relational, NoSQL, etc.) 
-and ensuring that the system is optimized for its primary workload (Read-heavy vs Write-heavy).
-
-Why it exists and Industry Use Cases:
-- Data must be persisted reliably across application restarts and failures.
-- Databases provide structured ways to query, filter, and aggregate data efficiently.
-- Use cases: E-commerce inventory (Relational/ACID), Logging systems (NoSQL/Append-only), 
-  Social media feeds (Graph DB or Columnar).
-
-Key Concepts:
-1. Normalization vs. Denormalization:
-   - Normalization: Dividing tables to reduce data redundancy. Good for write-heavy workloads.
-   - Denormalization: Adding redundant data to speed up complex queries. Good for read-heavy workloads.
-2. ACID Properties (Relational): Atomicity, Consistency, Isolation, Durability.
-3. Sharding: Partitioning a database across multiple machines to scale horizontally.
-4. Indexing: Creating data structures (like B-Trees or Hash Maps) to speed up data retrieval 
-   at the cost of slower writes and extra storage.
-
-Learning Objectives:
-1. Understand the trade-offs between different database operations.
-2. Implement a mock in-memory Key-Value store with secondary indexing.
-3. Implement basic Transaction support (Commit and Rollback) demonstrating Atomicity.
+# ==============================================================================
+# LABORATORY: SYSTEM DESIGN (DATABASE ARCHITECTURE)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# When designing a global system, the Web Servers (Node, Django) are easy to 
+# horizontally scale. You just turn on 10,000 cheap Linux boxes.
+#
+# But the Database is the ultimate bottleneck. It holds the State of the universe.
+# You cannot easily run 10,000 instances of a MySQL database because if User A 
+# writes to Instance 1, how do the other 9,999 instances instantly know about it?
+#
+# To scale a Database, we must use complex architectural patterns:
+# 1. Master-Slave Replication: Separates Writes (heavy locks) from Reads. 
+#    All Writes go to the Master. All Reads hit the Slaves.
+# 2. Database Sharding: If a table has 10 Billion rows, it mathematically 
+#    surpasses the physical limits of a single hard drive's B-Tree indexing. 
+#    We must violently slice the table into 10 smaller tables, spreading them 
+#    across 10 independent servers.
+# 3. SQL vs NoSQL (ACID vs BASE): Relational DBs guarantee perfect consistency 
+#    (ACID) but struggle to scale horizontally. NoSQL DBs (Cassandra/Dynamo) 
+#    sacrifice consistency (BASE) to achieve mathematically infinite horizontal scale.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand the architecture of Master-Slave Replication.
+# - Master Horizontal Database Sharding (Algorithmic Routing).
+# - Understand ACID properties vs BASE properties.
+#
+# ==============================================================================
 """
 
-from typing import Dict, List, Any, Optional, Set
+import hashlib
 
-# ============================================================================
-# Basic Concept: Simple In-Memory DB
-# ============================================================================
-class SimpleDatabase:
-    def __init__(self):
-        self.data: Dict[str, Any] = {}
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
+
+# ==============================================================================
+# 3. MASTER-SLAVE REPLICATION (READ HEAVY WORKLOADS)
+# ==============================================================================
+class DatabaseInstance:
+    def __init__(self, name: str):
+        self.name = name
+        self.data = {}
         
-    def write(self, key: str, value: Any) -> None:
+    def execute_write(self, key: str, value: str) -> None:
         self.data[key] = value
         
-    def read(self, key: str) -> Optional[Any]:
-        return self.data.get(key)
+    def execute_read(self, key: str) -> str:
+        return self.data.get(key, "Null")
 
-# ============================================================================
-# Professional Implementation: Key-Value Store with Indexing and Transactions
-# ============================================================================
-class Record:
-    def __init__(self, id: str, attributes: Dict[str, Any]):
-        self.id = id
-        self.attributes = attributes
-
-class TransactionDB:
+class ReplicationCluster:
     """
-    An in-memory Key-Value database that supports:
-    - Secondary Indexing (for fast querying by attributes)
-    - Transactions (Begin, Commit, Rollback) for Atomicity.
+    Most applications have a 95% Read to 5% Write ratio (e.g., Twitter).
+    A single Master handles the 5% Writes.
+    Multiple Slaves handle the 95% Reads, scaling horizontally perfectly!
     """
     def __init__(self):
-        # Primary storage: Key -> Record
-        self._store: Dict[str, Record] = {}
+        self.master = DatabaseInstance("Master-DB")
+        self.slaves = [
+            DatabaseInstance("Slave-1"),
+            DatabaseInstance("Slave-2"),
+            DatabaseInstance("Slave-3")
+        ]
+        self.slave_index = 0
+
+    def write_data(self, key: str, value: str) -> str:
+        """Writes ONLY go to the Master."""
+        print(f"\n[CLIENT WRITE] Key: {key}")
+        print(f"[{self.master.name}] Acquired Write Lock. Updating Disk...")
+        self.master.execute_write(key, value)
         
-        # Secondary index: Attribute Name -> (Attribute Value -> Set of IDs)
-        # E.g., 'status' -> {'active': {'id1', 'id2'}, 'inactive': {'id3'}}
-        self._indexes: Dict[str, Dict[Any, Set[str]]] = {}
+        # Asynchronous Replication (Simulated)
+        print(f"[REPLICATION PROCESS] Master broadcasting replication log to Slaves...")
+        for slave in self.slaves:
+            slave.execute_write(key, value)
+            
+        return "Write Successful"
+
+    def read_data(self, key: str) -> str:
+        """Reads ONLY go to the Slaves, routed via Round-Robin Load Balancing."""
+        target_slave = self.slaves[self.slave_index]
+        self.slave_index = (self.slave_index + 1) % len(self.slaves)
         
-        # Transaction state
-        self._in_transaction = False
-        # Snapshot of the store before transaction starts
-        self._store_snapshot: Dict[str, Record] = {}
-        # Snapshot of indexes before transaction starts
-        self._indexes_snapshot: Dict[str, Dict[Any, Set[str]]] = {}
+        print(f"\n[CLIENT READ] Key: {key}")
+        print(f"[{target_slave.name}] Processing Read Query...")
+        return target_slave.execute_read(key)
 
-    def _copy_indexes(self) -> Dict[str, Dict[Any, Set[str]]]:
-        """Deep copy of indexes for transaction snapshot."""
-        copied = {}
-        for attr, val_map in self._indexes.items():
-            copied[attr] = {val: ids.copy() for val, ids in val_map.items()}
-        return copied
+def demonstrate_replication():
+    section_header("Master-Slave Replication")
+    cluster = ReplicationCluster()
+    
+    cluster.write_data("user_77", "Alice Profile")
+    
+    # 3 massive concurrent reads hit the system. They are perfectly distributed!
+    print(f"Result: {cluster.read_data('user_77')}")
+    print(f"Result: {cluster.read_data('user_77')}")
+    print(f"Result: {cluster.read_data('user_77')}")
 
-    def begin_transaction(self) -> None:
-        """Start a new transaction."""
-        if self._in_transaction:
-            raise Exception("Transaction already in progress")
+
+# ==============================================================================
+# 4. DATABASE SHARDING (HORIZONTAL PARTITIONING)
+# ==============================================================================
+class ShardedDatabase:
+    """
+    If a table has 1 Trillion rows, a single Master-Slave cluster will crash.
+    We must Shard (physically divide) the table across N independent clusters!
+    """
+    def __init__(self, num_shards: int):
+        self.num_shards = num_shards
+        self.shards = [DatabaseInstance(f"Shard-{i}") for i in range(num_shards)]
+
+    def _get_shard_index(self, user_id: str) -> int:
+        """
+        ALGORITHMIC ROUTING (Modulo Hashing)
+        We convert the user_id into a cryptographic hash, turn it into an integer, 
+        and modulo it by the number of shards. This guarantees that "user_123" 
+        will ALWAYS mathematically route to the exact same physical Shard!
+        """
+        hash_val = int(hashlib.md5(user_id.encode()).hexdigest(), 16)
+        return hash_val % self.num_shards
+
+    def insert_user(self, user_id: str, data: str) -> None:
+        shard_idx = self._get_shard_index(user_id)
+        target_shard = self.shards[shard_idx]
         
-        self._in_transaction = True
-        # Create snapshots
-        self._store_snapshot = {k: Record(v.id, v.attributes.copy()) for k, v in self._store.items()}
-        self._indexes_snapshot = self._copy_indexes()
+        print(f"[SHARD ROUTER] user: {user_id} -> Mathematically mapped to {target_shard.name}")
+        target_shard.execute_write(user_id, data)
 
-    def commit(self) -> None:
-        """Commit the current transaction."""
-        if not self._in_transaction:
-            raise Exception("No active transaction")
+    def get_user(self, user_id: str) -> str:
+        shard_idx = self._get_shard_index(user_id)
+        target_shard = self.shards[shard_idx]
+        return target_shard.execute_read(user_id)
+
+def demonstrate_sharding():
+    section_header("Database Sharding (Hash Routing)")
+    
+    sharded_db = ShardedDatabase(num_shards=4)
+    print("Database shattered into 4 independent Physical Shards.")
+    print("Writing 5 users. The Hash Router will mathematically distribute them!")
+    
+    users = ["user_101", "user_202", "user_303", "user_404", "user_505"]
+    for u in users:
+        sharded_db.insert_user(u, f"{u}_data")
         
-        self._in_transaction = False
-        self._store_snapshot.clear()
-        self._indexes_snapshot.clear()
-
-    def rollback(self) -> None:
-        """Rollback the current transaction to the snapshot state."""
-        if not self._in_transaction:
-            raise Exception("No active transaction")
-        
-        self._in_transaction = False
-        self._store = self._store_snapshot
-        self._indexes = self._indexes_snapshot
-        self._store_snapshot = {}
-        self._indexes_snapshot = {}
-
-    def create_index(self, attribute: str) -> None:
-        """Create an index on a specific attribute."""
-        if attribute not in self._indexes:
-            self._indexes[attribute] = {}
-            # Populate index with existing data
-            for record_id, record in self._store.items():
-                if attribute in record.attributes:
-                    val = record.attributes[attribute]
-                    if val not in self._indexes[attribute]:
-                        self._indexes[attribute][val] = set()
-                    self._indexes[attribute][val].add(record_id)
-
-    def insert(self, record_id: str, attributes: Dict[str, Any]) -> None:
-        """Insert or update a record."""
-        # Handle index updates for an existing record
-        if record_id in self._store:
-            old_record = self._store[record_id]
-            for attr, val in old_record.attributes.items():
-                if attr in self._indexes:
-                    self._indexes[attr][val].discard(record_id)
-
-        new_record = Record(record_id, attributes)
-        self._store[record_id] = new_record
-
-        # Handle index updates for the new record
-        for attr, val in attributes.items():
-            if attr in self._indexes:
-                if val not in self._indexes[attr]:
-                    self._indexes[attr][val] = set()
-                self._indexes[attr][val].add(record_id)
-
-    def find_by_id(self, record_id: str) -> Optional[Record]:
-        """O(1) lookup by primary key."""
-        return self._store.get(record_id)
-
-    def find_by_attribute(self, attribute: str, value: Any) -> List[Record]:
-        """Lookup records using a secondary index if available, else O(N) scan."""
-        if attribute in self._indexes:
-            # O(1) indexed lookup
-            record_ids = self._indexes[attribute].get(value, set())
-            return [self._store[r_id] for r_id in record_ids]
-        else:
-            # O(N) full table scan
-            result = []
-            for record in self._store.values():
-                if record.attributes.get(attribute) == value:
-                    result.append(record)
-            return result
+    print("\nThe 1 Trillion row table is now physically divided by 4, ")
+    print("restoring the $O(\\log N)$ B-Tree indexing speed on each machine!")
 
 
-# ============================================================================
-# Advanced Concepts & Interview Focus
-# ============================================================================
+def run_all_labs():
+    demonstrate_replication()
+    demonstrate_sharding()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Common Interview Questions:
-1. What is the CAP Theorem?
-   Answer: It states a distributed database can only guarantee two out of three properties: 
-   Consistency, Availability, and Partition Tolerance. In network partitions (which are inevitable), 
-   we must choose between C and A.
+ACTIVE RECALL:
+1. In Master-Slave Replication, what happens if the Master dies? What happens to the Slaves?
+   Answer: If the Master dies, the entire system loses the ability to perform Writes! (e.g., users can view their profile, but cannot post new tweets). However, the system maintains Availability for Reads because the Slaves are still running. To recover, a distributed consensus algorithm (like ZooKeeper or Raft) will automatically detect the dead Master, hold an "election" among the surviving Slaves, and promote one of the Slaves to become the new Master. The DNS/Load Balancer is then re-routed to point Write traffic to the new Master.
 
-2. Why shouldn't you index every column?
-   Answer: Indexes consume extra storage space and memory. More importantly, every write 
-   (Insert/Update/Delete) requires updating the indexes, which slows down write performance.
+2. In Database Sharding using Modulo Hashing (`hash(id) % N`), what is the catastrophic flaw if you need to add a new server (change $N$ from 4 to 5)?
+   Answer: "The Resharding Nightmare". If $N=4$, `hash("user_A") = 10`. $10 \pmod 4 = 2$. User A lives on Shard 2. If you add a server, $N$ becomes $5$. $10 \pmod 5 = 0$. Suddenly, the routing algorithm points to Shard 0 for User A, but User A's data is physically sitting on Shard 2! The database instantly claims User A does not exist. Every single row in the 1-Trillion-row database is mathematically misaligned. To fix it, you must physically migrate millions of terabytes of data across the network to their new modulo homes, causing massive downtime. The solution to this flaw is "Consistent Hashing".
 
-3. How does this mock database implement Atomicity?
-   Answer: By keeping a snapshot of the database state (store and indexes) before a transaction begins. 
-   If an error occurs or rollback is called, the state is reverted entirely to the snapshot.
-
-Complexity Analysis:
-- Indexed Lookup: O(1) time complexity (using hash map index).
-- Non-Indexed Lookup (Table Scan): O(N) time complexity, where N is the number of records.
-- Insert/Update: O(I) time complexity, where I is the number of active indexes.
-
-Security/Performance Considerations:
-- Isolation levels: Real DBs manage concurrency through locking or MVCC (Multi-Version Concurrency Control) 
-  to prevent dirty reads or phantom reads. This mock DB lacks concurrency control (Thread Safety).
+3. Compare ACID (Relational SQL) and BASE (NoSQL). Why did massive companies invent NoSQL?
+   Answer: ACID (Atomicity, Consistency, Isolation, Durability) guarantees mathematical perfection. If a bank transfer fails midway, the entire transaction violently rolls back. However, enforcing this perfection across a globally distributed network requires heavy Locks, which crush performance and prevent horizontal scaling. Massive companies (like Amazon/Dynamo or Facebook/Cassandra) realized that for non-critical data (like a shopping cart or a 'Like' button), mathematical perfection is unnecessary. They invented BASE (Basically Available, Soft state, Eventual consistency). BASE completely abandons heavy ACID Locks, allowing the database to scale infinitely across thousands of cheap servers. It accepts that data might be slightly out of sync for a few milliseconds, but it guarantees absolute Availability and infinite Scale.
 """
-
-# ============================================================================
-# Tests / Example Usage
-# ============================================================================
-def test_database() -> None:
-    print("Testing TransactionDB...")
-    db = TransactionDB()
-    
-    # Create an index on 'status' before inserting
-    db.create_index("status")
-    
-    db.insert("u1", {"name": "Alice", "status": "active", "age": 28})
-    db.insert("u2", {"name": "Bob", "status": "inactive", "age": 34})
-    db.insert("u3", {"name": "Charlie", "status": "active", "age": 22})
-    
-    # Test Index Lookup
-    active_users = db.find_by_attribute("status", "active")
-    assert len(active_users) == 2, "Should find 2 active users"
-    
-    # Test Table Scan
-    old_users = db.find_by_attribute("age", 34)
-    assert len(old_users) == 1, "Should find 1 user aged 34"
-    assert old_users[0].attributes["name"] == "Bob"
-    
-    # Test Transactions
-    db.begin_transaction()
-    db.insert("u4", {"name": "Dave", "status": "active"})
-    assert db.find_by_id("u4") is not None, "Dave should be in DB during transaction"
-    
-    # Whoops, mistake made, rolling back
-    db.rollback()
-    assert db.find_by_id("u4") is None, "Dave should NOT be in DB after rollback"
-    
-    # Successful transaction
-    db.begin_transaction()
-    db.insert("u5", {"name": "Eve", "status": "inactive"})
-    db.commit()
-    assert db.find_by_id("u5") is not None, "Eve should be in DB after commit"
-
-    print("All TransactionDB tests passed!\\n")
 
 if __name__ == "__main__":
-    test_database()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: System Design (Database Architecture) Completed.")

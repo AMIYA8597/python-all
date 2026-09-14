@@ -1,134 +1,131 @@
 """
-AtCoder Grand Contest (AGC) Practice
-====================================
-
-Overview
---------
-AtCoder Grand Contests are known for their high difficulty, mathematically intensive
-problems, and elegant ad-hoc or constructive solutions. Unlike standard algorithm
-contests, AGC problems often require a deep understanding of underlying properties,
-invariants, or combinatorial logic rather than just knowing complex data structures.
-
-Learning Objectives:
-1. Understand how to approach mathematically heavy and constructive problems.
-2. Learn to identify invariants or parity properties in problem statements.
-3. Master the implementation of efficient, clean solutions to complex logic.
-4. Practice a classic AGC-style problem involving arrays and operations.
-
-Concept Explanation
--------------------
-Consider a common AGC-style problem: "You are given an array. In one operation, you can
-choose an element, and do something to it and its neighbors. Can you reach a target state?"
-To solve such problems, we often look for:
-- Invariants: Things that do not change regardless of the operation.
-- Reversibility: Can we work backwards from the target state?
-- Greedy Choice: Is there a uniquely optimal move at each step?
-
-Below, we simulate a typical AGC-style algorithmic challenge: finding the optimal
-sequence of operations to balance an array using a greedy approach, often seen in
-problems involving sliding windows or prefix sum invariants.
-
-Basic to Professional Implementation
-------------------------------------
-We implement a solver for an array balancing problem. The problem requires us to
-make all elements equal to the median using the minimum number of increment/decrement
-operations, a classic mathematical property.
+# ==============================================================================
+# LABORATORY: COMPETITIVE PROGRAMMING (ATCODER GRAND CONTEST)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# AtCoder Grand Contest (AGC) contains the most mathematically rigorous and 
+# punishing ad-hoc problems in the world. 
+# 
+# AGC problems rarely require complex data structures like Segment Trees. 
+# Instead, they describe a simple physical process: "You have an array. You can 
+# choose any two adjacent numbers and replace them with their sum. Can you 
+# reach target array X?"
+#
+# Standard BFS/DFS will instantly TLE (State Space Explosion). 
+# DP is useless because the state transitions are chaotic.
+#
+# To solve an AGC problem, you must discover a "Mathematical Invariant" — a 
+# property of the system that is physically impossible to change, no matter 
+# what operations you perform. 
+#
+# If the starting array and the target array have different Invariants, the 
+# answer is mathematically "NO" in O(1) time. No search required!
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand Mathematical Invariants.
+# - Solve a classic AGC-style Ad-Hoc Array Transformation problem.
+#
+# ==============================================================================
 """
 
-from typing import List
-import statistics
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-def solve_agc_median_balance_basic(arr: List[int]) -> int:
-    """
-    Basic implementation of finding minimum operations to make all elements equal.
-    Each operation is an increment or decrement by 1.
-    
-    Time Complexity: O(N log N) due to sorting for the median.
-    Space Complexity: O(1) beyond the input array.
-    """
-    if not arr:
-        return 0
-    arr.sort()
-    median = arr[len(arr) // 2]
-    
-    operations = 0
-    for num in arr:
-        operations += abs(num - median)
-    return operations
 
-def solve_agc_median_balance_pro(arr: List[int]) -> int:
+# ==============================================================================
+# 3. MATHEMATICAL INVARIANTS (ARRAY TRANSFORMATION)
+# ==============================================================================
+def can_transform_array(start: list[int], target: list[int]) -> bool:
     """
-    Professional implementation: Handles edge cases, uses type hints, and 
-    optimizes readability and safety.
+    Problem: You are given an array `start`. In one operation, you can choose 
+    any two adjacent elements `a` and `b`, and replace them with `(a + b)`. 
+    You can do this infinitely many times. Can you transform `start` into `target`?
     
-    In a real AGC context, this might be a sub-problem for a larger 2D grid
-    or tree structure, but the core logic remains essential.
+    Time Complexity: O(N)
+    Space Complexity: O(1)
     """
-    if not arr:
-        return 0
+    # 1. THE INVARIANT:
+    # If you take [3, 4] and replace it with [7], what happened to the total sum?
+    # Start: 3 + 4 = 7.
+    # End: 7.
+    # The total sum of the array is an INVARIANT! No matter how many operations 
+    # you perform, you can never, ever change the total sum of the array.
+    if sum(start) != sum(target):
+        return False
         
-    # Using quickselect (O(N)) for median finding would be optimal,
-    # but for simplicity and robust standard library usage, we use sort.
-    sorted_arr = sorted(arr)
-    n = len(sorted_arr)
-    median = sorted_arr[n // 2]
-    
-    # Calculate sum of absolute differences efficiently
-    # Can also be done using prefix sums if multiple queries are needed
-    return sum(abs(x - median) for x in sorted_arr)
-
-
-# --- Advanced Concept: Constructive Algorithms ---
-def solve_agc_constructive_permutation(n: int) -> List[int]:
-    """
-    Constructive problem: Construct a permutation of 1 to N such that 
-    the absolute difference between adjacent elements is strictly alternating
-    between large and small, a common AGC constructive pattern.
-    
-    Example for N=5: [1, 5, 2, 4, 3]
-    """
-    result = []
-    left, right = 1, n
-    
-    while left <= right:
-        result.append(left)
-        left += 1
-        if left > right:
-            break
-        result.append(right)
-        right -= 1
+    # 2. THE MONOTONICITY:
+    # Because we are replacing two positive numbers with their sum, the array 
+    # can only SHRINK in length. If `target` is longer than `start`, it's impossible!
+    if len(target) > len(start):
+        return False
         
-    return result
+    # 3. TWO POINTER GREEDY MATCHING:
+    # Since we can only merge *adjacent* elements, we can iterate through the 
+    # target array and greedily gobble up elements from the start array until 
+    # they perfectly match the target element!
+    p_start = 0
+    
+    for t_val in target:
+        current_sum = 0
+        
+        # Greedily gobble adjacent elements from the start array
+        while p_start < len(start) and current_sum < t_val:
+            current_sum += start[p_start]
+            p_start += 1
+            
+        # Did we perfectly hit the target value?
+        if current_sum != t_val:
+            # We overshot it! Because all numbers are positive, there is no way 
+            # to "un-sum" or subtract. It is mathematically impossible.
+            return False
+            
+    # If we made it through the entire target array without failing, it's True!
+    return True
 
+def demonstrate_invariants():
+    section_header("AGC Ad-Hoc (Mathematical Invariants)")
+    
+    start = [1, 2, 3, 4, 5, 6]
+    target = [3, 7, 11]
+    
+    print(f"Start Array : {start}")
+    print(f"Target Array: {target}")
+    
+    # Simulation:
+    # [1+2, 3+4, 5+6] -> [3, 7, 11]. It's perfectly valid!
+    ans = can_transform_array(start, target)
+    
+    print(f"\nCan we reach the target? {ans}")
+    print("Why? Because (1+2)=3, (3+4)=7, and (5+6)=11. The invariants perfectly aligned!")
+    
+    bad_target = [3, 8, 10]
+    print(f"\nCan we reach {bad_target}? {can_transform_array(start, bad_target)}")
+    print("Why? To make 8, we gobble (3+4)=7, which is too small. We gobble (3+4+5)=12, ")
+    print("which is too big. We missed 8, so it is mathematically impossible.")
+
+
+def run_all_labs():
+    demonstrate_invariants()
+
+
+# ==============================================================================
+# 4. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. What is a "Mathematical Invariant" in the context of Game Theory and Array Transformations?
+   Answer: An Invariant is a core property of a system that is mathematically immune to the allowed operations. If a problem allows you to swap any two elements, the "Sum of the Array" is an invariant. If a problem allows you to multiply a number by -1, the "Absolute Value" is an invariant. By identifying the invariant, you can completely bypass simulating the operations. If the starting state and the target state have different invariants, you instantly output "NO" in $O(1)$ time, avoiding an $O(2^N)$ DFS trap.
+
+2. In the `can_transform_array` function, why does the Two-Pointer greedy matching guarantee the correct answer without needing to backtrack?
+   Answer: Because the operations are strictly additive and the numbers are strictly positive! If you are trying to reach a target of `7`, and you add `3 + 4`, you hit `7`. Is there any alternate universe where it was a better idea to NOT merge `3` and `4`? No! Because you are forced to merge *adjacent* elements, and the target *requires* a `7` in that exact physical slot, you have no other choice. If you overshoot (`3 + 5 = 8`), there are no negative numbers available to bring the sum back down to `7`. The system is Monotonically Increasing. Therefore, greedy left-to-right matching is mathematically deterministic; there are no branching realities that require backtracking!
+
+3. If the array contained NEGATIVE numbers, would the Greedy Two-Pointer algorithm still work?
+   Answer: Absolutely not! The greedy algorithm relies on the fact that `current_sum` strictly increases. If `current_sum < t_val`, we know for a fact we MUST add the next number. But if negative numbers exist, adding the next number might actually *decrease* the sum! If we overshoot the target (`8 > 7`), we can't instantly return False, because the very next number might be `-1`, bringing us perfectly back to `7`. The introduction of negative numbers destroys the Monotonicity of the prefix sum, shattering the greedy proof and forcing the problem into a much harder DP or Graph Search domain.
+"""
 
 if __name__ == "__main__":
-    # Tests and Assertions
-    print("Testing AGC Median Balance...")
-    arr = [1, 5, 2, 9, 3]
-    # Sorted: 1, 2, 3, 5, 9 -> Median is 3
-    # Ops: |1-3| + |2-3| + |3-3| + |5-3| + |9-3| = 2 + 1 + 0 + 2 + 6 = 11
-    assert solve_agc_median_balance_pro(arr) == 11, "Basic test failed"
-    assert solve_agc_median_balance_pro([]) == 0, "Empty array test failed"
-    
-    print("Testing AGC Constructive Permutation...")
-    perm = solve_agc_constructive_permutation(5)
-    assert perm == [1, 5, 2, 4, 3], f"Expected [1, 5, 2, 4, 3], got {perm}"
-    print("All tests passed!")
-
-"""
-Complexity Analysis:
-- `solve_agc_median_balance_pro`: 
-  Time Complexity: O(N log N) for sorting.
-  Space Complexity: O(N) for the sorted copy.
-- `solve_agc_constructive_permutation`:
-  Time Complexity: O(N) to construct the array.
-  Space Complexity: O(N) to store the result.
-
-Common Mistakes:
-- Choosing the mean instead of the median for minimizing absolute differences.
-- In constructive algorithms, failing to verify parity constraints for odd/even N.
-
-Interview Challenge:
-How would you solve the median balance problem if you were only allowed to operate
-on contiguous subsegments instead of individual elements? (Hint: Consider the difference array).
-"""
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: AtCoder Grand Contest Completed.")

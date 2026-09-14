@@ -1,121 +1,152 @@
 """
-Optimization and Verification in Python
-
-Learning Objectives:
-1. Identify common performance anti-patterns in Python.
-2. Apply optimizations (e.g., algorithmic improvements, choosing right data structures).
-3. Verify that optimizations do not break functionality.
-4. Write testable, optimized code.
-
-Concept Explanation:
-Optimization is the process of modifying code to work more efficiently or use fewer resources.
-However, "Premature optimization is the root of all evil" (Donald Knuth). Only optimize
-after identifying bottlenecks via profiling. Crucially, any optimization must be verified
-to ensure the logic remains correct.
-
-Imports:
-- timeit: For verifying performance gains.
-- unittest: For verifying correctness.
+# ==============================================================================
+# LABORATORY: PROFILING & OPTIMIZATION (VERIFICATION OF OPTIMIZATION)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer notices a Financial Calculation takes 20 seconds. They 
+# rewrite the algorithm using advanced Bitwise math and NumPy arrays. It now 
+# runs in 0.5 seconds! They deploy to Production. The next day, the company 
+# loses $50,000 because the "optimized" math rounded floating points incorrectly 
+# under specific edge cases. The developer optimized the code, but broke the logic.
+#
+# A senior software engineer follows the absolute mathematical rule: "Make it work. 
+# Make it right. Make it fast." Before optimizing a slow algorithm, they write 
+# an exhaustive, parameterized Unit Test suite (The Oracle). They then rewrite 
+# the algorithm. Finally, they run the Optimized Code against the Slow Code. 
+# If the mathematical outputs of the Fast Algorithm do not perfectly match the 
+# Slow Algorithm across 100,000 edge cases, the optimization is violently rejected.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Optimization Verification (The Oracle Pattern).
+# - Execute algorithmic regression testing.
+# - Architect safety guardrails for aggressive optimization.
+#
+# ==============================================================================
 """
 
-import timeit
-import unittest
-from typing import List, Set, Any
-
-# ==========================================
-# Basic Implementation: Unoptimized Code
-# ==========================================
-
-def find_duplicates_unoptimized(items: List[int]) -> List[int]:
-    """Finds duplicates using an O(n^2) approach."""
-    duplicates = []
-    for i in range(len(items)):
-        for j in range(i + 1, len(items)):
-            if items[i] == items[j] and items[i] not in duplicates:
-                duplicates.append(items[i])
-    return duplicates
-
-# ==========================================
-# Intermediate Implementation: Optimized Code
-# ==========================================
-
-def find_duplicates_optimized(items: List[int]) -> List[int]:
-    """Finds duplicates using an O(n) approach with sets."""
-    seen: Set[int] = set()
-    duplicates: Set[int] = set()
-    for item in items:
-        if item in seen:
-            duplicates.add(item)
-        else:
-            seen.add(item)
-    return list(duplicates)
-
-# ==========================================
-# Advanced Implementation: Verification & Benchmarking
-# ==========================================
-
-class TestOptimizationVerification(unittest.TestCase):
-    """Verifies that the optimized function produces the same results."""
-    
-    def test_find_duplicates(self) -> None:
-        test_cases = [
-            ([1, 2, 3, 2, 1, 5, 6, 5], [1, 2, 5]),
-            ([1, 2, 3, 4], []),
-            ([], []),
-            ([1, 1, 1, 1], [1])
-        ]
-        
-        for data, expected in test_cases:
-            with self.subTest(data=data):
-                # Sort results because sets do not guarantee order
-                unopt_res = sorted(find_duplicates_unoptimized(data))
-                opt_res = sorted(find_duplicates_optimized(data))
-                expected_sorted = sorted(expected)
-                
-                self.assertEqual(unopt_res, expected_sorted)
-                self.assertEqual(opt_res, expected_sorted)
-
-def verify_performance() -> None:
-    """Benchmarks unoptimized vs optimized to prove the gain."""
-    setup_code = """
-from __main__ import find_duplicates_unoptimized, find_duplicates_optimized
+import time
 import random
-data = [random.randint(1, 100) for _ in range(500)]
-    """
-    
-    time_unopt = timeit.timeit("find_duplicates_unoptimized(data)", setup=setup_code, number=100)
-    time_opt = timeit.timeit("find_duplicates_optimized(data)", setup=setup_code, number=100)
-    
-    print(f"Unoptimized time: {time_unopt:.4f}s")
-    print(f"Optimized time:   {time_opt:.4f}s")
-    if time_opt > 0:
-        print(f"Speedup: {time_unopt / time_opt:.2f}x")
 
-# ==========================================
-# Edge Cases & Interview Challenge
-# ==========================================
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
+
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (THE ALGORITHMS)
+# ==============================================================================
+class MathematicalAlgorithms:
+    
+    @staticmethod
+    def calculate_unique_sum_slow(data: list) -> int:
+        """
+        The baseline algorithm. It is O(N^2) and extremely slow.
+        HOWEVER, we mathematically trust that it is 100% accurate.
+        This is our "Test Oracle".
+        """
+        unique_numbers = []
+        for x in data:
+            if x not in unique_numbers: # O(N) lookup inside an O(N) loop!
+                unique_numbers.append(x)
+        return sum(unique_numbers)
+
+    @staticmethod
+    def calculate_unique_sum_fast(data: list) -> int:
+        """
+        The "Optimized" algorithm. It uses a Hash Set for O(1) lookups.
+        But wait! A junior developer accidentally wrote a bug in here!
+        (They forgot to handle negative numbers in their 'custom' logic).
+        """
+        unique_set = set()
+        total = 0
+        for x in data:
+            # THE BUG: The 'optimization' accidentally skips negative numbers!
+            if x >= 0 and x not in unique_set: 
+                unique_set.add(x)
+                total += x
+        return total
+
+
+# ==============================================================================
+# 4. THE VERIFICATION ARCHITECTURE (THE ORACLE)
+# ==============================================================================
+class VerificationEngine:
+    
+    @staticmethod
+    def run_regression_suite():
+        print("  [INIT] Booting Regression Verification Engine...")
+        
+        # We generate 1,000 random test cases to bombard both algorithms!
+        print("  [EXECUTION] Bombarding both algorithms with random permutations...")
+        
+        test_cases_passed = 0
+        test_cases_failed = 0
+        
+        for i in range(1, 1001):
+            # Generate a random list of integers (including negatives!)
+            random_data = [random.randint(-50, 50) for _ in range(100)]
+            
+            # 1. Execute the Slow (Trusted) Code
+            trusted_result = MathematicalAlgorithms.calculate_unique_sum_slow(random_data)
+            
+            # 2. Execute the Fast (Untrusted) Code
+            fast_result = MathematicalAlgorithms.calculate_unique_sum_fast(random_data)
+            
+            # 3. THE MATHEMATICAL ASSERTION
+            if trusted_result != fast_result:
+                test_cases_failed += 1
+                if test_cases_failed == 1:
+                    print(f"\n  [FATAL ERROR TRAPPED] Optimization Regression Detected!")
+                    print(f"  -> Input Data: {random_data[:5]}... (truncated)")
+                    print(f"  -> Trusted Output: {trusted_result}")
+                    print(f"  -> Optimized Output: {fast_result}")
+            else:
+                test_cases_passed += 1
+                
+        print(f"\n  [VERIFICATION REPORT]")
+        print(f"  -> Passed: {test_cases_passed}")
+        print(f"  -> Failed: {test_cases_failed}")
+        
+        if test_cases_failed > 0:
+            print("  -> [REJECTED] The optimization broke the business logic. Merge blocked.")
+
+
+# ==============================================================================
+# 5. MATHEMATICAL PROOF (THE SIMULATION)
+# ==============================================================================
+def demonstrate_verification():
+    section_header("Profiling & Optimization: The Test Oracle")
+    
+    VerificationEngine.run_regression_suite()
+    
+    print("\n  [ARCHITECTURE PROOF]")
+    print("  The junior developer thought they optimized the algorithm. If they had ")
+    print("  relied only on `cProfile`, they would have deployed broken math to ")
+    print("  production. By utilizing the 'Slow Code' as a Test Oracle, we mathematically ")
+    print("  proved the 'Fast Code' was corrupt, saving the system from a fatal bug.")
+
+
+def run_all_labs():
+    demonstrate_verification()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Edge Cases:
-1. Large Datasets: The unoptimized O(n^2) function will hang or take unacceptably
-   long on very large lists, highlighting the need for algorithmic optimization.
-2. Memory Overhead: The optimized version uses extra memory (O(n) space for the `seen`
-   and `duplicates` sets) to achieve O(n) time. This is a classic time-memory trade-off.
+ACTIVE RECALL:
+1. Interviewer: "What is a 'Test Oracle' in the context of Algorithm Optimization?"
+   Senior Answer: "The Absolute Source of Truth. When you rewrite a complex algorithm (e.g., rewriting a Python parser in C++ for speed), you must verify the new C++ code is mathematically flawless. The 'Test Oracle' is the original, un-optimized, slow Python code. You do not manually write assertions. You write a script that generates $1,000,000$ randomized inputs, feeds them into both the Slow Code and the Fast Code simultaneously, and asserts that `slow_output == fast_output`. The slow code becomes the automatic, mathematically perfect judge of the fast code's correctness."
 
-Interview Challenge:
-Question: How would you optimize the `find_duplicates` function if memory was extremely
-constrained and you couldn't use extra sets/dictionaries, but the input list could be modified?
-Hint: Sort the list first (O(n log n) time, O(1) space), then iterate through comparing
-adjacent elements.
+2. Interviewer: "Why does Donald Knuth famously state that 'Premature optimization is the root of all evil'?"
+   Senior Answer: "Architectural Complexity vs ROI. When developers optimize code, they usually introduce advanced caching, bitwise math, or complex concurrency. These patterns mathematically destroy code readability and drastically increase the probability of logical bugs. If a developer optimizes a function that only accounts for $0.01\\%$ of the application's execution time, they have introduced massive architectural complexity for zero Return on Investment. You must *first* write clean, slow, readable code. You only optimize *after* a Profiler mathematically proves a specific function is a bottleneck."
+
+3. Interviewer: "When optimizing floating-point math for performance, why might the Test Oracle reject the fast algorithm even if the logic seems flawless?"
+   Senior Answer: "IEEE 754 Non-Associativity. Standard mathematical addition is associative: $(a + b) + c = a + (b + c)$. However, due to floating-point precision limits (IEEE 754), this is mathematically false in computer science. If the 'Slow Code' sums a list of $10,000$ floats linearly, and the 'Fast Code' uses Multiprocessing to sum chunks of the list in parallel and combine them, the order of addition is mutated. The Fast Code will output a number that is $0.00000000001$ different from the Slow Code. The strict `assert slow == fast` will violently fail. The architect must use `math.isclose()` to account for mathematically inevitable floating-point drift caused by optimization."
 """
 
 if __name__ == "__main__":
-    print("--- Optimization and Verification ---")
-    print("1. Running Correctness Verification:")
-    
-    # Run unittest suite programmatically
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestOptimizationVerification)
-    unittest.TextTestRunner(verbosity=2).run(suite)
-    
-    print("\n2. Running Performance Verification:")
-    verify_performance()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Profiling & Optimization (Verification) Completed.")

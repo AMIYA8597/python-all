@@ -1,387 +1,198 @@
 """
-================================================================================
-Sweep Line Algorithms in Computational Geometry
-================================================================================
-
-This module provides a textbook-grade, interactive lesson on the Sweep Line
-algorithm—a powerful algorithmic paradigm in Computational Geometry. 
-
---------------------------------------------------------------------------------
-1. INTRODUCTION & MATHEMATICAL BACKGROUND
---------------------------------------------------------------------------------
-The "Sweep Line" (or "Plane Sweep") technique involves an imaginary line (often 
-vertical) that moves ("sweeps") across the plane from left to right (or top to 
-bottom). As the sweep line moves, it stops at certain predefined "event points",
-updating a data structure that maintains the state of the system at the current
-sweep line position.
-
-Key Components of a Sweep Line Algorithm:
-1. **Event Queue**: A priority queue or sorted list containing the points where 
-   the sweep line must pause. These are typically the x-coordinates of the objects 
-   being processed.
-2. **Active State Structure**: A dynamic data structure (like a Balanced Binary 
-   Search Tree) that maintains the set of active objects intersecting the sweep 
-   line.
-
-Common problems solved using Sweep Line:
-- Closest Pair of Points in a 2D plane: O(N log N)
-- Line Segment Intersection (Bentley-Ottmann): O((N + K) log N), K = intersections
-- Area/Perimeter of Union of Rectangles: O(N log N)
-- Convex Hull (e.g., Graham Scan utilizes a pseudo-sweep angularly/x-coordinate)
-
---------------------------------------------------------------------------------
-2. ALGORITHMIC ANALYSIS (BIG-O)
---------------------------------------------------------------------------------
-Time Complexity: 
-Generally dominated by sorting the events O(N log N) and updating the active state 
-O(log N) for each of the O(N) events. 
-Overall: O(N log N).
-
-Space Complexity:
-- Event Queue: O(N) memory to store event points.
-- Active State: O(N) memory at most for currently active segments/points.
-Overall: O(N).
-
---------------------------------------------------------------------------------
-3. REAL-WORLD APPLICATIONS
---------------------------------------------------------------------------------
-1. Computer Graphics: Rendering polygons, visibility determination, and clipping.
-2. Geographic Information Systems (GIS): Map overlays, finding intersecting roads.
-3. VLSI Design: Circuit board routing, detecting overlapping wires/components.
-4. Collision Detection: Broad-phase collision detection in 2D physics engines.
-
-================================================================================
+# ==============================================================================
+# LABORATORY: COMPETITIVE PROGRAMMING (SWEEP LINE ALGORITHMS)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# You are given 100,000 intervals (e.g., flight departure and arrival times). 
+# You need to find the maximum number of airplanes in the air at the exact same time.
+#
+# If you create an array of every single minute in the day and increment the 
+# count for every minute of a flight (`arr[start:end] += 1`), and the timeline 
+# stretches for $10^9$ seconds, you will run out of memory and trigger a Time 
+# Limit Exceeded (TLE) crash.
+#
+# You must use a "Sweep Line" algorithm.
+# A Sweep Line algorithm does not simulate the passage of time second-by-second. 
+# It jumps INSTANTLY from one significant Event (a takeoff) to the next significant 
+# Event (a landing). It reduces a $10^9$ timeline into an $O(N \log N)$ algorithm!
+#
+# This same logic extends to 2D Geometry. How do you find the total Area of 
+# 100 overlapping rectangles? You sweep a vertical line horizontally across the 
+# rectangles, processing "Left Edges" and "Right Edges" as Events!
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand Event-Driven Architecture.
+# - Solve 1D Meeting Rooms (Max Overlap).
+# - Understand the blueprint for 2D Area of Overlapping Rectangles.
+#
+# ==============================================================================
 """
 
-import math
-from typing import List, Tuple, Optional, Set
-from dataclasses import dataclass
-from operator import attrgetter
-import bisect
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
 
 # ==============================================================================
-# ALGORITHM 1: CLOSEST PAIR OF POINTS
+# 3. 1D SWEEP LINE (MEETING ROOMS / MAX OVERLAP)
 # ==============================================================================
-# Mathematical Concept: Given N points, find the pair with the smallest Euclidean
-# distance. Naive approach is O(N^2). Sweep line solves this in O(N log N).
-
-@dataclass(frozen=True)
-class Point:
+def max_overlapping_intervals(intervals: list[list[int]]) -> int:
     """
-    Represents a 2D point.
-    """
-    x: float
-    y: float
-
-    def distance_to(self, other: 'Point') -> float:
-        """
-        Calculates the Euclidean distance to another point.
-        d = sqrt((x2 - x1)^2 + (y2 - y1)^2)
-        """
-        return math.hypot(self.x - other.x, self.y - other.y)
-
-def closest_pair_sweep_line(points: List[Point]) -> Tuple[float, Optional[Tuple[Point, Point]]]:
-    """
-    Find the closest pair of points in a 2D plane using a Sweep Line approach.
-    
+    Finds the maximum number of overlapping intervals at any point in time.
     Time Complexity: O(N log N)
     Space Complexity: O(N)
-    
-    Parameters:
-        points (List[Point]): A list of 2D points.
-        
-    Returns:
-        Tuple[float, Optional[Tuple[Point, Point]]]: Minimum distance and the pair of points.
     """
-    if len(points) < 2:
-        return float('inf'), None
+    events = []
+    
+    # 1. Deconstruct intervals into individual "Events"
+    for start, end in intervals:
+        # +1 means an interval STARTED (We need another room!)
+        events.append((start, +1))
+        # -1 means an interval ENDED (A room freed up!)
+        events.append((end, -1))
+        
+    # 2. Sort the Events by Time!
+    # If a start and end happen at the EXACT SAME TIME (e.g., [1, 2] and [2, 3]),
+    # should they overlap? Usually, no. 
+    # Because we used -1 for ending and +1 for starting, Python's default tuple 
+    # sorting will sort the -1 BEFORE the +1 if the times are identical!
+    # This automatically processes the "Landing" before the "Takeoff", perfectly 
+    # preventing artificial overlaps.
+    events.sort()
+    
+    max_overlap = 0
+    current_overlap = 0
+    
+    # 3. Sweep the Line across the sorted events
+    for time, delta in events:
+        current_overlap += delta
+        max_overlap = max(max_overlap, current_overlap)
+        
+    return max_overlap
 
-    # Step 1: Sort points by x-coordinate (the event points)
-    # This takes O(N log N) time.
-    sorted_points = sorted(points, key=lambda p: (p.x, p.y))
+def demonstrate_1d_sweepline():
+    section_header("1D Sweep Line (Maximum Overlap)")
     
-    min_dist = float('inf')
-    best_pair = None
+    intervals = [[1, 5], [2, 6], [8, 10], [5, 8], [3, 4]]
+    print(f"Intervals (Start, End): {intervals}")
     
-    # Active set of points, sorted by y-coordinate.
-    # In Python, we can simulate this with a sorted list (bisect) or a balanced BST.
-    # We use a standard list and bisect for simplicity and efficiency in small ranges.
-    active_set: List[Point] = []
+    max_rooms = max_overlapping_intervals(intervals)
     
-    left = 0
-    
-    for i in range(len(sorted_points)):
-        current_point = sorted_points[i]
-        
-        # Remove points from the active set that are further left than current_point.x - min_dist.
-        # This keeps the active set size small (at most 6 points in the band theoretically).
-        while left < i and (current_point.x - sorted_points[left].x) >= min_dist:
-            # We must find and remove the left point from the active set.
-            # Since active_set is sorted by y, we use a linear search to remove (or binary search).
-            # Note: For strict O(N log N) worst-case, active_set must be a balanced BST.
-            # Python's list removal takes O(K), but K is bounded.
-            remove_p = sorted_points[left]
-            # Find and remove
-            for j in range(len(active_set)):
-                if active_set[j] == remove_p:
-                    active_set.pop(j)
-                    break
-            left += 1
-            
-        # Check points in the active set whose y-coordinates are within [current_point.y - min_dist, current_point.y + min_dist]
-        # We can use binary search to find the lower bound.
-        # To use bisect, we create dummy points or just extract y.
-        # Here we just iterate through the active set, which is small due to the mathematical properties of the grid.
-        
-        # Instead of strict binary search for simplicity, we just filter.
-        # A true implementation would binary search by Y.
-        y_lower = current_point.y - min_dist
-        y_upper = current_point.y + min_dist
-        
-        # We iterate in reverse to check the closest y's first
-        for active_p in active_set:
-            if active_p.y < y_lower:
-                continue
-            if active_p.y > y_upper:
-                # Since active_set is sorted by y, we can break early if we exceed the upper bound.
-                # Actually, our active set isn't guaranteed perfectly sorted by y here unless we maintain it.
-                pass
-                
-            dist = current_point.distance_to(active_p)
-            if dist < min_dist:
-                min_dist = dist
-                best_pair = (active_p, current_point)
-                
-        # Insert current point into active set, maintaining sorted order by Y
-        # O(N) insertion for list, but bounded.
-        active_set.append(current_point)
-        active_set.sort(key=lambda p: p.y)
-
-    return min_dist, best_pair
+    print(f"\nMaximum Overlap: {max_rooms}")
+    print("Expected: 3 (Because intervals [1, 5], [2, 6], and [3, 4] all overlap around time 3.5)")
 
 
 # ==============================================================================
-# ALGORITHM 2: INTERSECTION OF ORTHOGONAL LINE SEGMENTS
+# 4. 2D SWEEP LINE (AREA OF RECTANGLES)
 # ==============================================================================
-# Mathematical Concept: Given horizontal and vertical line segments, find all points 
-# where a horizontal segment crosses a vertical segment. 
-# Using a sweep line, we move left to right.
-# - Left endpoint of horizontal: Insert its Y into active set.
-# - Right endpoint of horizontal: Remove its Y from active set.
-# - Vertical segment: Query the active set for Ys between bottom and top endpoints.
-
-@dataclass
-class Segment:
+def area_of_rectangles(rectangles: list[list[int]]) -> int:
     """
-    Represents an orthogonal line segment (either purely horizontal or purely vertical).
-    """
-    x1: float
-    y1: float
-    x2: float
-    y2: float
+    Calculates the total Area covered by a list of intersecting rectangles.
+    Rectangles are given as: [x1, y1, x2, y2] (bottom-left and top-right).
     
-    def is_horizontal(self) -> bool:
-        return self.y1 == self.y2
+    Time Complexity: O(N^2) for basic implementation. 
+    (Can be optimized to O(N log N) with a Segment Tree).
+    """
+    # 1. Deconstruct into Vertical Line Events!
+    events = []
+    for x1, y1, x2, y2 in rectangles:
+        # Event: (X_coordinate, Edge_Type, Bottom_Y, Top_Y)
+        # Type +1 = Left Edge of a rectangle (Entering)
+        events.append((x1, 1, y1, y2))
+        # Type -1 = Right Edge of a rectangle (Leaving)
+        events.append((x2, -1, y1, y2))
         
-    def is_vertical(self) -> bool:
-        return self.x1 == self.x2
+    events.sort()
+    
+    def calculate_active_y_length(active_intervals: list[tuple[int, int]]) -> int:
+        """Helper to find the total length of Y segments currently active."""
+        if not active_intervals: return 0
         
-    def normalize(self):
-        """ Ensure coordinates go left-to-right, bottom-to-top. """
-        if self.x1 > self.x2:
-            self.x1, self.x2 = self.x2, self.x1
-        if self.y1 > self.y2:
-            self.y1, self.y2 = self.y2, self.y1
-
-class EventType:
-    LEFT_ENDPOINT = 0
-    VERTICAL_SEG = 1
-    RIGHT_ENDPOINT = 2
-
-@dataclass
-class Event:
-    x: float
-    type: int
-    segment: Segment
-
-def find_orthogonal_intersections(segments: List[Segment]) -> List[Point]:
-    """
-    Finds all intersections between horizontal and vertical segments.
-    Time Complexity: O((N + K) log N) where K is number of intersections.
-    Space Complexity: O(N)
-    """
-    events: List[Event] = []
-    
-    # Pre-process segments
-    for seg in segments:
-        seg.normalize()
-        if seg.is_horizontal():
-            events.append(Event(seg.x1, EventType.LEFT_ENDPOINT, seg))
-            events.append(Event(seg.x2, EventType.RIGHT_ENDPOINT, seg))
-        elif seg.is_vertical():
-            events.append(Event(seg.x1, EventType.VERTICAL_SEG, seg))
-            
-    # Sort events by X coordinate.
-    # If X is same, process LEFT before VERTICAL before RIGHT to catch boundary intersections.
-    events.sort(key=lambda e: (e.x, e.type))
-    
-    intersections = []
-    # Active horizontal segments, sorted by Y
-    # Represented as a simple list for educational purposes.
-    active_y: List[float] = []
-    
-    for event in events:
-        if event.type == EventType.LEFT_ENDPOINT:
-            # Insert y into active structure
-            bisect.insort(active_y, event.segment.y1)
-        elif event.type == EventType.RIGHT_ENDPOINT:
-            # Remove y from active structure
-            # Binary search to find and remove
-            idx = bisect.bisect_left(active_y, event.segment.y1)
-            if idx < len(active_y) and active_y[idx] == event.segment.y1:
-                active_y.pop(idx)
-        elif event.type == EventType.VERTICAL_SEG:
-            # Query all active Ys that fall between the vertical segment's bottom and top
-            y_bottom = event.segment.y1
-            y_top = event.segment.y2
-            
-            # Find range
-            start_idx = bisect.bisect_left(active_y, y_bottom)
-            end_idx = bisect.bisect_right(active_y, y_top)
-            
-            for i in range(start_idx, end_idx):
-                intersections.append(Point(event.x, active_y[i]))
-                
-    return intersections
-
-# ==============================================================================
-# ALGORITHM 3: AREA OF UNION OF RECTANGLES
-# ==============================================================================
-# Problem: Given N rectangles aligned with axes, compute total area of their union.
-# Technique: Sweep line left to right. Maintain the total length of the sweep line
-# that is currently covered by rectangles. Area += length_covered * delta_X.
-
-@dataclass
-class Rectangle:
-    x_min: float
-    y_min: float
-    x_max: float
-    y_max: float
-
-@dataclass
-class RectEvent:
-    x: float
-    is_left: bool
-    y_min: float
-    y_max: float
-
-def union_area_rectangles(rectangles: List[Rectangle]) -> float:
-    """
-    Computes the total area covered by the union of axes-aligned rectangles.
-    Time Complexity: O(N^2) with simple active list, O(N log N) with Segment Tree.
-    Space Complexity: O(N)
-    """
-    events: List[RectEvent] = []
-    
-    for r in rectangles:
-        events.append(RectEvent(r.x_min, True, r.y_min, r.y_max))
-        events.append(RectEvent(r.x_max, False, r.y_min, r.y_max))
+        # Sort active intervals by bottom Y
+        active_intervals.sort()
         
-    events.sort(key=lambda e: e.x)
-    
-    def compute_covered_length(active_intervals: List[Tuple[float, float]]) -> float:
-        if not active_intervals:
-            return 0.0
-        # Sort intervals by start
-        active_intervals.sort(key=lambda intv: intv[0])
-        covered = 0.0
-        current_start, current_end = active_intervals[0]
+        length = 0
+        current_bottom = active_intervals[0][0]
+        current_top = active_intervals[0][1]
         
-        for start, end in active_intervals[1:]:
-            if start <= current_end:
-                current_end = max(current_end, end)
+        for y1, y2 in active_intervals[1:]:
+            if y1 <= current_top:
+                # They overlap, just extend the current top
+                current_top = max(current_top, y2)
             else:
-                covered += (current_end - current_start)
-                current_start = start
-                current_end = end
+                # They are disconnected. Tally the current block and start a new one!
+                length += (current_top - current_bottom)
+                current_bottom = y1
+                current_top = y2
                 
-        covered += (current_end - current_start)
-        return covered
+        length += (current_top - current_bottom)
+        return length
 
-    total_area = 0.0
+    total_area = 0
     active_intervals = []
-    last_x = 0.0
+    last_x = events[0][0]
     
-    for i, event in enumerate(events):
-        if i > 0:
-            delta_x = event.x - last_x
-            covered_y = compute_covered_length(active_intervals)
-            total_area += delta_x * covered_y
-            
-        if event.is_left:
-            active_intervals.append((event.y_min, event.y_max))
+    # 2. Sweep the Vertical Line from Left to Right
+    for x, edge_type, y1, y2 in events:
+        
+        # Calculate the area generated since the last vertical event
+        delta_x = x - last_x
+        active_y = calculate_active_y_length(active_intervals)
+        
+        total_area += delta_x * active_y
+        
+        # Update active intervals
+        if edge_type == 1:
+            active_intervals.append((y1, y2))
         else:
-            active_intervals.remove((event.y_min, event.y_max))
+            active_intervals.remove((y1, y2))
             
-        last_x = event.x
+        last_x = x
         
     return total_area
 
-# ==============================================================================
-# MAIN TEST CASES
-# ==============================================================================
-if __name__ == '__main__':
-    print("="*60)
-    print("SWEEP LINE ALGORITHMS - INTERACTIVE TEST SUITE")
-    print("="*60)
+def demonstrate_2d_sweepline():
+    section_header("2D Sweep Line (Area of Union of Rectangles)")
     
-    # ---------------------------------------------------------
-    # Test 1: Closest Pair of Points
-    # ---------------------------------------------------------
-    print("\n[1] Testing Closest Pair of Points...")
-    points = [
-        Point(2, 3), Point(12, 30), Point(40, 50),
-        Point(5, 1), Point(12, 10), Point(3, 4)
-    ]
-    min_d, pair = closest_pair_sweep_line(points)
-    print(f"Points: {points}")
-    if pair:
-        print(f"Closest Pair: ({pair[0].x}, {pair[0].y}) and ({pair[1].x}, {pair[1].y})")
-        print(f"Distance: {min_d:.4f}")
-    assert math.isclose(min_d, 1.41421356), "Closest pair test failed!"
-    print("-> Closest pair test PASSED.")
-
-    # ---------------------------------------------------------
-    # Test 2: Orthogonal Segments Intersection
-    # ---------------------------------------------------------
-    print("\n[2] Testing Orthogonal Segments Intersection...")
-    segments = [
-        Segment(1, 2, 5, 2),   # Horizontal
-        Segment(3, 1, 3, 4),   # Vertical (intersects at 3,2)
-        Segment(2, 5, 6, 5),   # Horizontal
-        Segment(5, 0, 5, 6)    # Vertical (intersects horizontal 1 at 5,2 and horizontal 2 at 5,5)
-    ]
-    intersections = find_orthogonal_intersections(segments)
-    print(f"Found {len(intersections)} intersections:")
-    for pt in intersections:
-        print(f"  Intersection at: ({pt.x}, {pt.y})")
-    assert len(intersections) == 3, "Intersection test failed!"
-    print("-> Orthogonal intersection test PASSED.")
-
-    # ---------------------------------------------------------
-    # Test 3: Area of Union of Rectangles
-    # ---------------------------------------------------------
-    print("\n[3] Testing Area of Union of Rectangles...")
+    # Two overlapping rectangles
+    # Rect 1: x1=0, y1=0, x2=4, y2=4 (Area 16)
+    # Rect 2: x1=2, y1=2, x2=6, y2=6 (Area 16)
+    # Overlap: 2x2 = Area 4. Total Area = 16 + 16 - 4 = 28.
     rectangles = [
-        Rectangle(0, 0, 2, 2),  # Area = 4
-        Rectangle(1, 1, 3, 3)   # Area = 4, Overlap = 1 -> Total Union = 7
+        [0, 0, 4, 4],
+        [2, 2, 6, 6]
     ]
-    area = union_area_rectangles(rectangles)
-    print(f"Rectangles: {rectangles}")
-    print(f"Total Union Area: {area}")
-    assert math.isclose(area, 7.0), "Rectangle union area test failed!"
-    print("-> Rectangle union area test PASSED.")
     
-    print("\n" + "="*60)
-    print("ALL TESTS PASSED SUCCESSFULLY!")
-    print("="*60)
+    print(f"Rectangles: {rectangles}")
+    
+    area = area_of_rectangles(rectangles)
+    
+    print(f"\nTotal Area of Union: {area}")
+    print("Expected: 28")
+
+
+def run_all_labs():
+    demonstrate_1d_sweepline()
+    demonstrate_2d_sweepline()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. In a 1D Sweep Line processing time intervals, what is the exact behavior of Python's `sort()` when an Interval Start Time and an Interval End Time land on the exact same second?
+   Answer: Python sorts tuples element by element. It first checks the Time. If the Time is identical, it checks the Delta. Because we assigned `-1` to End Events (Leaving) and `+1` to Start Events (Entering), Python mathematically sorts `-1` before `+1`. The algorithm will explicitly subtract a room from the overlap count *before* adding a new room. This mathematically guarantees that intervals like `[1, 2]` and `[2, 3]` do NOT trigger an overlap at Time 2, saving you from writing messy edge-case `if` statements.
+
+2. Explain the fundamental philosophy of a Sweep Line algorithm. Why does it avoid Time Limit Exceeded (TLE) errors?
+   Answer: A naive algorithm simulates continuous space or time. If a flight takes off at Second 1 and lands at Second 1,000,000, a naive loop iterates 1,000,000 times, doing absolutely nothing of value in the middle. A Sweep Line is strictly "Event-Driven". It ignores the empty space. It extracts only the Start and End points, sorts them, and "teleports" directly from one meaningful event to the next. The timeline is collapsed from an unbounded length of $O(T)$ down strictly to $O(N \log N)$ where $N$ is the number of intervals, mathematically immunizing the algorithm against massive time scales.
+
+3. How could you optimize the 2D Sweep Line Area algorithm from $O(N^2)$ to $O(N \log N)$?
+   Answer: In the $O(N^2)$ implementation, every time the vertical line moves horizontally to a new event, we recalculate the length of the Active Y-Intervals by sorting them, which takes $O(N \log N)$ for *every single step*. To optimize this to $O(N \log N)$ globally, we replace the `active_intervals` list with a 1D Segment Tree (or Lazy Segment Tree). When a Left Edge arrives, we perform a Range Update (`+1`) on the Y-axis. When a Right Edge arrives, we perform a Range Update (`-1`). The Segment Tree's root node instantly tracks the total length of Y-segments $>0$ in exactly $O(\log N)$ time per step!
+"""
+
+if __name__ == "__main__":
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Sweep Line Algorithms Completed.")

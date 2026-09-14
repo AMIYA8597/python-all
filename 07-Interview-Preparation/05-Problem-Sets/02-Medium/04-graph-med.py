@@ -1,211 +1,180 @@
 """
-Medium-Level Graph Problems for Interview Preparation
-====================================================
-
-This module covers medium-level graph problems. Graph theory is critical for solving 
-complex relationships between entities.
-
-Topics Covered:
-1. Number of Islands (Matrix/Grid traversal)
-2. Course Schedule (Topological Sort / Cycle Detection)
-3. Clone Graph (Graph Traversal with Hash Map)
-4. Rotting Oranges (Multi-source BFS)
-
-Beginner Explanation:
-A graph is a collection of nodes (vertices) connected by edges. In matrix problems, 
-each cell is a node, and its neighbors (up, down, left, right) are connected by edges.
-Graph traversal usually involves BFS (Breadth-First Search) or DFS (Depth-First Search).
-
-Deep Technical Explanation:
-- Time Complexity: O(V + E) where V is the number of vertices and E is the number of edges.
-  For grids, V is rows * cols, and E is roughly 4 * V, meaning O(rows * cols).
-- Space Complexity: O(V) to keep track of visited nodes and recursion stack / queue.
-- Cycle Detection: Crucial in directed graphs (e.g., dependency resolution). Often solved using 
-  DFS with node coloring (unvisited, visiting, visited) or Kahn's algorithm for topological sorting.
-- BFS vs DFS: Use BFS when looking for the shortest path in unweighted graphs (like Rotting Oranges).
-  DFS is often simpler to implement for exploring entire connected components (like Number of Islands).
-
-Real-World Use Cases:
-- Social networks (friends recommendations)
-- Routing protocols (network packet routing)
-- Build systems (resolving task dependencies like `make` or npm packages)
-- Maps and Navigation (GPS pathfinding)
+# ==============================================================================
+# LABORATORY: INTERVIEW PREPARATION (PROBLEM SETS - GRAPH MEDIUM)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# Graph problems are fundamentally pathfinding algorithms. You must know when to 
+# deploy Depth-First Search (DFS) versus Breadth-First Search (BFS).
+#
+# A junior engineer tries to solve a Shortest-Path problem using DFS. They get 
+# trapped exploring a 10,000-node dead-end branch before realizing the answer 
+# was only 2 steps away in another branch, violently exceeding the time limit.
+#
+# A senior engineer understands Graph Physics. They use DFS (Stack) for aggressive 
+# component annihilation (Islands, Cycle Detection). They explicitly deploy BFS 
+# (Queue) for radial proximity scaling (Rotting Oranges, Shortest Path), because 
+# BFS guarantees the shortest mathematical distance in an unweighted graph.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master DFS Grid Annihilation (Number of Islands).
+# - Master Topological Sort and Cycle Detection (Course Schedule).
+# - Master Radial BFS (Rotting Oranges).
+#
+# ==============================================================================
 """
 
-from typing import List, Dict, Optional, Deque, Set
-from collections import deque, defaultdict
+import collections
+from typing import List
 
-# -----------------------------------------------------------------------------
-# 1. Number of Islands
-# -----------------------------------------------------------------------------
-"""
-Problem: Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water),
-return the number of islands. An island is surrounded by water and is formed by connecting adjacent
-lands horizontally or vertically.
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-Approach (DFS):
-Iterate through every cell. When a '1' is found, increment the island count, and launch a DFS
-to mark all connected '1's as '0' (visited) so they aren't counted again.
 
-Time Complexity: O(M * N)
-Space Complexity: O(M * N) in worst case for recursion stack.
-"""
-
-def numIslands(grid: List[List[str]]) -> int:
+# ==============================================================================
+# 3. NUMBER OF ISLANDS (DFS GRID ANNIHILATION)
+# ==============================================================================
+def num_islands(grid: List[List[str]]) -> int:
     """
-    Returns the number of connected components (islands) in a grid.
+    Time: O(R * C) | Space: O(R * C) for Call Stack worst case
+    Given an m x n 2D binary grid which represents a map of '1's (land) and 
+    '0's (water), return the number of islands.
     """
-    if not grid:
-        return 0
-
-    rows, cols = len(grid), len(grid[0])
-    islands = 0
-
-    def dfs(r: int, c: int):
-        # Base case: out of bounds or water
-        if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == '0':
+    if not grid: return 0
+    
+    rows = len(grid)
+    cols = len(grid[0])
+    islands_count = 0
+    
+    def sink_island(r: int, c: int) -> None:
+        # BASE CASES: Boundary violations or Water ('0')
+        if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] == "0":
             return
+            
+        # ANNIHILATE THE LAND!
+        # By instantly converting the '1' to a '0', we mathematically guarantee 
+        # that we will never process this specific coordinate again, completely 
+        # bypassing the need for a separate `visited` Hash Set!
+        grid[r][c] = "0"
         
-        # Mark as visited (sink the island part)
-        grid[r][c] = '0'
-        
-        # Explore neighbors
-        dfs(r - 1, c) # Up
-        dfs(r + 1, c) # Down
-        dfs(r, c - 1) # Left
-        dfs(r, c + 1) # Right
+        # Recursively sink all adjacent connected landmasses!
+        sink_island(r + 1, c) # Down
+        sink_island(r - 1, c) # Up
+        sink_island(r, c + 1) # Right
+        sink_island(r, c - 1) # Left
 
+    print("  Scanning oceanic grid for landmasses...")
     for r in range(rows):
         for c in range(cols):
-            if grid[r][c] == '1':
-                islands += 1
-                dfs(r, c)
+            # We found the coast of a brand new Island!
+            if grid[r][c] == "1":
+                islands_count += 1
+                print(f"    -> [ISLAND FOUND] Coordinate ({r},{c}). Deploying Annihilation Engine...")
+                # The DFS engine will violently spread out and sink the ENTIRE 
+                # island, leaving nothing but water behind!
+                sink_island(r, c)
                 
-    return islands
+    return islands_count
 
-# -----------------------------------------------------------------------------
-# 2. Course Schedule
-# -----------------------------------------------------------------------------
-"""
-Problem: There are a total of numCourses courses you have to take, labeled from 0 to numCourses - 1.
-You are given an array prerequisites where prerequisites[i] = [ai, bi] indicates that you must take
-course bi first if you want to take course ai. Return true if you can finish all courses.
-
-Approach (Topological Sort / Kahn's Algorithm):
-Count the in-degree (number of prerequisites) for each course.
-Build an adjacency list for the graph.
-Queue all courses with an in-degree of 0.
-Process the queue: decrement the in-degree of neighbors. If a neighbor reaches 0, add it to the queue.
-If we process all courses, there are no cycles.
-
-Time Complexity: O(V + E)
-Space Complexity: O(V + E)
-"""
-
-def canFinish(numCourses: int, prerequisites: List[List[int]]) -> bool:
-    """
-    Determines if all courses can be finished without cyclical dependencies.
-    """
-    # Build graph and in-degrees
-    adj: Dict[int, List[int]] = defaultdict(list)
-    in_degree = [0] * numCourses
+def demonstrate_islands():
+    section_header("Medium: Number of Islands (DFS Annihilation)")
     
+    grid = [
+      ["1","1","0","0","0"],
+      ["1","1","0","0","0"],
+      ["0","0","1","0","0"],
+      ["0","0","0","1","1"]
+    ]
+    
+    ans = num_islands(grid)
+    print(f"\nResult: Found {ans} Islands. (Expected: 3)")
+
+
+# ==============================================================================
+# 4. COURSE SCHEDULE (CYCLE DETECTION / TOPOLOGICAL SORT)
+# ==============================================================================
+def can_finish(numCourses: int, prerequisites: List[List[int]]) -> bool:
+    """
+    Time: O(V + E) | Space: O(V + E)
+    There are a total of numCourses. Prerequisites are given as [a, b], which 
+    means you must take b before a. Can you finish all courses?
+    
+    This is mathematically identical to asking: "Does this Directed Graph contain a Cycle?"
+    """
+    # 1. Build the Adjacency List (The Graph Architecture)
+    graph = collections.defaultdict(list)
     for course, prereq in prerequisites:
-        adj[prereq].append(course)
-        in_degree[course] += 1
+        graph[prereq].append(course)
         
-    # Start with courses that have no prerequisites
-    queue = deque([i for i in range(numCourses) if in_degree[i] == 0])
-    courses_taken = 0
+    # State Map for Cycle Detection!
+    # 0 = Unvisited, 1 = Currently Visiting (In the active Call Stack), 2 = Fully Cleared
+    state = [0] * numCourses
     
-    while queue:
-        current = queue.popleft()
-        courses_taken += 1
+    def has_cycle(course_id: int) -> bool:
+        # If the state is 1, we are currently inside this node's dependency chain!
+        # If we hit it again, we have mathematically looped back on ourselves!
+        if state[course_id] == 1:
+            print(f"      -> [CYCLE DETECTED] Dependency loop at Course {course_id}!")
+            return True
+            
+        # If the state is 2, we already verified this branch in the past. It's safe!
+        if state[course_id] == 2:
+            return False
+            
+        # Mark as ACTIVE in the current traversal path!
+        state[course_id] = 1
         
-        # For each course that depends on the current one
-        for next_course in adj[current]:
-            in_degree[next_course] -= 1
-            # If all prerequisites are fulfilled, we can take it
-            if in_degree[next_course] == 0:
-                queue.append(next_course)
+        # Traverse all downstream dependencies
+        for neighbor in graph[course_id]:
+            if has_cycle(neighbor):
+                return True
                 
-    return courses_taken == numCourses
+        # We successfully explored the entire branch without hitting a cycle!
+        # Mark as FULLY CLEARED. We never need to check this node again!
+        state[course_id] = 2
+        return False
 
-# -----------------------------------------------------------------------------
-# 3. Clone Graph
-# -----------------------------------------------------------------------------
-class Node:
-    def __init__(self, val: int = 0, neighbors: Optional[List['Node']] = None):
-        self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
+    print("  Mapping dependency graph and executing Cycle Detection...")
+    for i in range(numCourses):
+        if state[i] == 0:
+            if has_cycle(i):
+                return False # A cycle exists, graduation is mathematically impossible.
+                
+    return True
 
-"""
-Problem: Given a reference of a node in a connected undirected graph, return a deep copy (clone) of the graph.
-
-Approach (DFS with HashMap):
-Use a hash map to store already copied nodes to avoid infinite loops and duplicate node creation.
-If the node is already in the map, return the cloned reference.
-Otherwise, create a new node, put it in the map, and recursively clone its neighbors.
-
-Time Complexity: O(V + E)
-Space Complexity: O(V) for the hash map and recursion stack.
-"""
-
-def cloneGraph(node: Optional['Node']) -> Optional['Node']:
-    """
-    Returns a deep copy of an undirected graph.
-    """
-    if not node:
-        return None
-        
-    old_to_new: Dict[Node, Node] = {}
+def demonstrate_course_schedule():
+    section_header("Medium: Course Schedule (Cycle Detection)")
     
-    def dfs(curr: Node) -> Node:
-        if curr in old_to_new:
-            return old_to_new[curr]
-            
-        # Create a copy and add it to the map
-        copy = Node(curr.val)
-        old_to_new[curr] = copy
-        
-        # Clone neighbors
-        for neighbor in curr.neighbors:
-            copy.neighbors.append(dfs(neighbor))
-            
-        return copy
-        
-    return dfs(node)
+    # You must take 0 to take 1. And you must take 1 to take 0! An impossible paradox!
+    prereqs = [[1, 0], [0, 1]]
+    print(f"Dependencies: {prereqs}")
+    
+    ans = can_finish(2, prereqs)
+    print(f"\nResult: Can finish? {ans} (Expected: False)")
 
-# -----------------------------------------------------------------------------
-# 4. Rotting Oranges
-# -----------------------------------------------------------------------------
-"""
-Problem: You are given an m x n grid where each cell can have one of three values:
-0 representing an empty cell, 1 representing a fresh orange, or 2 representing a rotten orange.
-Every minute, any fresh orange that is 4-directionally adjacent to a rotten orange becomes rotten.
-Return the minimum number of minutes that must elapse until no cell has a fresh orange. If impossible, return -1.
 
-Approach (Multi-source BFS):
-First pass: find all rotten oranges and add them to a queue. Count the fresh oranges.
-BFS: For each minute, process all currently rotten oranges in the queue, infecting adjacent fresh ones.
-Keep track of time. If fresh oranges remain after BFS, return -1.
-
-Time Complexity: O(M * N)
-Space Complexity: O(M * N) for the queue.
-"""
-
-def orangesRotting(grid: List[List[int]]) -> int:
+# ==============================================================================
+# 5. ROTTING ORANGES (RADIAL BFS SPREAD)
+# ==============================================================================
+def oranges_rotting(grid: List[List[int]]) -> int:
     """
-    Calculates the minimum time to rot all oranges.
+    Time: O(R * C) | Space: O(R * C)
+    0 = Empty, 1 = Fresh Orange, 2 = Rotten Orange.
+    Every minute, any fresh orange that is 4-directionally adjacent to a rotten 
+    orange becomes rotten. Return the minimum number of minutes until no cell 
+    has a fresh orange.
     """
-    if not grid:
-        return -1
-        
-    rows, cols = len(grid), len(grid[0])
-    queue: Deque = deque()
+    rows = len(grid)
+    cols = len(grid[0])
+    
+    queue = collections.deque()
     fresh_count = 0
     
-    # Step 1: Initialize queue with all rotten oranges and count fresh ones
+    # 1. INITIALIZATION: Build the Battlefield!
+    # Find ALL initially rotten oranges (they are the starting nodes for the BFS!)
+    # and count the exact number of fresh oranges.
     for r in range(rows):
         for c in range(cols):
             if grid[r][c] == 2:
@@ -213,52 +182,76 @@ def orangesRotting(grid: List[List[int]]) -> int:
             elif grid[r][c] == 1:
                 fresh_count += 1
                 
+    # If there are no fresh oranges, the job is already done (Time = 0).
     if fresh_count == 0:
-        return 0 # No fresh oranges to begin with
+        return 0
         
     minutes_passed = 0
-    directions = [(1,0), (-1,0), (0,1), (0,-1)]
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
     
-    # Step 2: BFS level by level
+    print(f"  Initial State: {len(queue)} Rotten Nodes, {fresh_count} Fresh Targets.")
+    
+    # 2. RADIAL BFS SPREAD
     while queue and fresh_count > 0:
         minutes_passed += 1
-        # Process the current level of rotting oranges
-        for _ in range(len(queue)):
+        level_size = len(queue)
+        
+        # We MUST process level by level to simulate time passing!
+        for _ in range(level_size):
             r, c = queue.popleft()
             
+            # Spread the infection in all 4 directions!
             for dr, dc in directions:
                 nr, nc = r + dr, c + dc
                 
-                # If in bounds and fresh, rot it
+                # If it's a valid coordinate AND it contains a Fresh Orange...
                 if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:
+                    # INFECT IT!
                     grid[nr][nc] = 2
                     fresh_count -= 1
-                    queue.append((nr, nc))
+                    queue.append((nr, nc)) # The newly infected orange becomes a spreader for the next minute!
                     
-    return minutes_passed if fresh_count == 0 else -1
+    # If the queue is empty, but there are still fresh oranges left, they must 
+    # be mathematically isolated behind empty cells (0) and are impossible to reach!
+    if fresh_count > 0:
+        print(f"    -> [ISOLATION] {fresh_count} oranges survived. Infection failed.")
+        return -1
+        
+    return minutes_passed
 
-
-# -----------------------------------------------------------------------------
-# Tests
-# -----------------------------------------------------------------------------
-if __name__ == "__main__":
-    print("Testing Medium Graph Problems...")
-
-    # Test Number of Islands
+def demonstrate_rotting_oranges():
+    section_header("Medium: Rotting Oranges (Radial BFS)")
+    
     grid = [
-      ["1","1","0","0","0"],
-      ["1","1","0","0","0"],
-      ["0","0","1","0","0"],
-      ["0","0","0","1","1"]
+        [2, 1, 1],
+        [1, 1, 0],
+        [0, 1, 1]
     ]
-    print(f"Number of Islands: {numIslands(grid)}") # Expected: 3
-    
-    # Test Course Schedule
-    print(f"Can finish courses: {canFinish(2, [[1,0]])}") # Expected: True
-    print(f"Can finish courses (cycle): {canFinish(2, [[1,0],[0,1]])}") # Expected: False
-    
-    # Test Rotting Oranges
-    oranges = [[2,1,1],[1,1,0],[0,1,1]]
-    print(f"Minutes to rot all: {orangesRotting(oranges)}") # Expected: 4
+    ans = oranges_rotting(grid)
+    print(f"\nResult: {ans} minutes. (Expected: 4)")
 
-    print("All tests passed.")
+
+def run_all_labs():
+    demonstrate_islands()
+    demonstrate_course_schedule()
+    demonstrate_rotting_oranges()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "In 'Number of Islands', why is modifying the input grid (`grid[r][c] = '0'`) a potentially dangerous practice in production code, even though it achieves $O(1)$ Space?"
+   Senior Answer: "Modifying the input grid permanently destroys the original state of the data structure provided by the caller. If another component of the application needed to access that map later, it would receive a completely corrupted, annihilated matrix of zeroes. In a real production environment, you should never aggressively mutate input parameters unless explicitly authorized. Instead, you would allocate a separate `visited` Hash Set or boolean matrix ($O(R \\times C)$ Space) to track the state safely, preserving the integrity of the original data."
+
+2. Interviewer: "In 'Course Schedule', why do we need 3 states (`0`, `1`, `2`) for cycle detection? Why can't we just use a standard boolean `visited` Hash Set?"
+   Senior Answer: "A standard boolean `visited` set only tells us if we have *ever* seen a node before across the entire graph. In a Directed Graph, you can legitimately arrive at the same node from two completely different, valid paths without it being a cycle! (e.g., A -> C and B -> C). To detect a cycle, we must definitively prove that we have looped back on our *CURRENT active traversal path*. The `1` state (Currently Visiting) perfectly represents the nodes actively trapped in the current Call Stack. If we hit a `1`, it is a guaranteed paradox loop. The `2` state (Fully Cleared) allows us to safely bypass branches we have already mathematically proven are cycle-free."
+
+3. Interviewer: "Why is BFS (Queue) structurally mandatory for 'Rotting Oranges'? What would happen if you used DFS (Stack)?"
+   Senior Answer: "The problem asks for the *minimum* time required for the infection to spread. This is a Radial Proximity problem. BFS uses a Queue, which mathematically processes all nodes at Distance $D$ before ever touching a node at Distance $D+1$. This perfectly simulates the chronological passing of time, expanding the infection outward uniformly like a shockwave. If you used DFS (Stack), the algorithm would aggressively dive down a single narrow path, instantly infecting a node 10,000 miles away before it even checks the orange sitting right next to the origin! DFS completely obliterates the concept of Minimum Distance and Chronological Time, returning catastrophically incorrect results."
+"""
+
+if __name__ == "__main__":
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Problem Sets (Graph Medium) Completed.")

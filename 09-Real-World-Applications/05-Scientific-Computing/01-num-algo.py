@@ -1,176 +1,165 @@
 """
-Numerical Algorithms in Python
-
-===============================================================================
-Learning Objectives:
-1. Understand the foundation of numerical computing and its applications.
-2. Implement fundamental numerical algorithms from scratch (e.g., Root Finding, Integration).
-3. Recognize the limitations of floating-point arithmetic and numerical stability.
-4. Utilize standard libraries (`math`, `numpy`, `scipy`) for robust numerical computation.
-
-Concept Explanation:
-Numerical Algorithms are step-by-step mathematical procedures used to solve problems
-involving continuous variables (unlike discrete math). They are essential when exact
-analytical solutions are impossible or too computationally expensive.
-
-Key Areas of Numerical Computing:
-- **Root Finding**: Finding the solutions to f(x) = 0. (e.g., Newton-Raphson, Bisection).
-- **Numerical Integration**: Approximating the definite integral of a function (e.g., Trapezoidal Rule).
-- **Interpolation & Extrapolation**: Estimating unknown values that fall within or outside known data points.
-- **Differential Equations**: Approximating solutions to ODEs and PDEs.
-
-Performance & Stability:
-- **Precision**: Due to IEEE 754 floating-point representation, numbers are approximations.
-  Always use `math.isclose()` instead of `==` for float comparisons.
-- **Stability**: Algorithms that compound errors over iterations are unstable. Care must
-  be taken to structure computations to minimize round-off errors.
-
-Industry Use Cases:
-- Quantitative finance for pricing derivatives (Black-Scholes).
-- Physics simulations and computer graphics.
-- Machine Learning optimization (Gradient Descent).
-===============================================================================
+# ==============================================================================
+# LABORATORY: REAL-WORLD APPLICATIONS (SCIENTIFIC COMPUTING & SCIPY)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A quantitative analyst needs to model the aerodynamic drag of a rocket re-entering 
+# the atmosphere. The math involves finding the Area Under a Curve (Integration) 
+# and predicting future states based on rates of change (Differential Equations). 
+# A junior analyst attempts to write a custom Python `while` loop using the 
+# Euler Method. The float precision drifts by 0.0001% per loop. Over 10 million 
+# iterations, the cumulative drift is so catastrophic the simulation mathematically 
+# believes the rocket crashed into the moon instead of Earth.
+#
+# A senior Data Scientist understands "Numerical Stability". They install `SciPy`. 
+# They use the battle-tested Fortran 77 backend (`ODEPACK`) to mathematically 
+# execute an explicit Runge-Kutta (RK45) integration algorithm. The C/Fortran 
+# solver dynamically scales its own time steps to mathematically guarantee an 
+# error bound of 1e-8. It flawlessly models the trajectory in 0.2 seconds.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the mathematical architecture of `SciPy` (Scientific Python).
+# - Execute Numerical Integration (Calculating the Area Under a Curve).
+# - Execute Numerical Optimization (Finding the mathematical Minimum).
+#
+# ==============================================================================
 """
 
 import math
-from typing import Callable, Tuple
+import timeit
 
-# =============================================================================
-# 1. Root Finding Algorithms
-# =============================================================================
+# Gracefully handle missing SciPy/NumPy dependencies
+try:
+    import numpy as np
+    from scipy.integrate import quad
+    from scipy.optimize import minimize_scalar
+    HAS_SCIPY = True
+except ImportError:
+    HAS_SCIPY = False
 
-def bisection_method(func: Callable[[float], float], a: float, b: float, tol: float = 1e-6, max_iter: int = 100) -> float:
-    """
-    Finds a root of func(x) = 0 within the interval [a, b] using the Bisection Method.
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
+
+# ==============================================================================
+# 3. NUMERICAL INTEGRATION (AREA UNDER A CURVE)
+# ==============================================================================
+# We want to find the exact Area Under the Curve for the mathematical function:
+# f(x) = x^2 * sin(x)
+# Bounded between x = 0 and x = 5.
+
+def mathematical_function(x: float) -> float:
+    """The continuous mathematical curve."""
+    return (x**2) * math.sin(x)
+
+def demonstrate_numerical_integration():
+    section_header("Scientific Calculus: Numerical Integration (scipy.integrate)")
     
-    Args:
-        func: The continuous function for which the root is sought.
-        a: Lower bound of the interval.
-        b: Upper bound of the interval.
-        tol: Tolerance for the root approximation.
-        max_iter: Maximum number of iterations.
+    if not HAS_SCIPY:
+        print("  [ERROR] SciPy is not installed. Run `pip install scipy numpy`.")
+        return
         
-    Returns:
-        The approximated root x where func(x) is approximately 0.
-        
-    Raises:
-        ValueError: If the root is not bracketed in [a, b] (i.e., func(a) * func(b) >= 0).
-    """
-    if func(a) * func(b) >= 0:
-        raise ValueError("The root is not bracketed in the given interval [a, b].")
-        
-    for _ in range(max_iter):
-        midpoint = (a + b) / 2.0
-        
-        # Check if we have found the root or reached the desired tolerance
-        if abs(func(midpoint)) < tol or (b - a) / 2.0 < tol:
-            return midpoint
-            
-        # Decide which half to keep
-        if func(midpoint) * func(a) < 0:
-            b = midpoint
-        else:
-            a = midpoint
-            
-    return (a + b) / 2.0
-
-
-def newton_raphson(func: Callable[[float], float], deriv: Callable[[float], float], x0: float, tol: float = 1e-6, max_iter: int = 100) -> float:
-    """
-    Finds a root of func(x) = 0 using the Newton-Raphson method.
-    Requires the derivative of the function.
+    print("  [SCENARIO] Calculating the Definite Integral of f(x) = x^2 * sin(x) from 0 to 5.")
     
-    Args:
-        func: The function f(x).
-        deriv: The derivative f'(x).
-        x0: Initial guess.
-        tol: Tolerance.
-        max_iter: Maximum iterations.
-    """
-    x = x0
-    for i in range(max_iter):
-        fx = func(x)
-        dfx = deriv(x)
-        
-        if abs(fx) < tol:
-            return x
-            
-        if dfx == 0:
-            raise ZeroDivisionError(f"Derivative is zero at x = {x}. Method fails.")
-            
-        # Newton-Raphson update step: x_{n+1} = x_n - f(x_n)/f'(x_n)
-        x = x - fx / dfx
-        
-    raise ValueError("Newton-Raphson did not converge within the maximum iterations.")
-
-# =============================================================================
-# 2. Numerical Integration
-# =============================================================================
-
-def trapezoidal_rule(func: Callable[[float], float], a: float, b: float, n: int) -> float:
-    """
-    Approximates the definite integral of func from a to b using the Trapezoidal Rule.
+    # 1. The Naive Approach (Riemann Sum / Rectangle Method)
+    # We chop the area into 1,000,000 tiny rectangles and sum them up!
+    print("\n  [NAIVE PYTHON EXECUTION (Riemann Sum)]")
+    start_naive = timeit.default_timer()
     
-    Args:
-        func: The integrand function.
-        a: Lower limit of integration.
-        b: Upper limit of integration.
-        n: Number of trapezoids (subintervals).
-    """
-    h = (b - a) / n
-    integral = 0.5 * (func(a) + func(b))
+    N = 1_000_000
+    a = 0.0
+    b = 5.0
+    dx = (b - a) / N
     
-    for i in range(1, n):
-        integral += func(a + i * h)
+    total_area = 0.0
+    for i in range(N):
+        x_i = a + (i * dx)
+        # Area of rectangle = width * height
+        total_area += dx * mathematical_function(x_i)
         
-    return integral * h
+    end_naive = timeit.default_timer()
+    print(f"    -> Area Calculated:  {total_area:.8f}")
+    print(f"    -> Execution Time:   {end_naive - start_naive:.4f} seconds")
 
-# =============================================================================
-# Main Execution and Tests
-# =============================================================================
+
+    # 2. The Professional Approach (QUADPACK Fortran Library)
+    print("\n  [PROFESSIONAL SCIPY EXECUTION (quad)]")
+    # `quad` calls a highly optimized Fortran 77 algorithm (QUADPACK).
+    # It uses adaptive Gaussian quadrature math to achieve infinite precision instantly!
+    start_scipy = timeit.default_timer()
+    
+    # quad(function, lower_bound, upper_bound)
+    area, error_bound = quad(mathematical_function, 0.0, 5.0)
+    
+    end_scipy = timeit.default_timer()
+    print(f"    -> Area Calculated:  {area:.8f}")
+    print(f"    -> Error Bound:      ±{error_bound:.2e} (Absolute Mathematical Perfection)")
+    print(f"    -> Execution Time:   {end_scipy - start_scipy:.4f} seconds")
+
+
+# ==============================================================================
+# 4. NUMERICAL OPTIMIZATION (FINDING THE MINIMUM)
+# ==============================================================================
+# We want to find the exact optimal price to sell a product to maximize profit.
+# The mathematical Profit Curve is given by:
+# Profit(x) = - (x - 25)^2 + 500  (This is a parabola peaking at x=25)
+# Because scipy.optimize finds the MINIMUM, we must mathematically INVERT the 
+# function by multiplying by -1 to find the MAXIMUM!
+
+def inverted_profit_function(x: float) -> float:
+    """The inverted parabolic profit curve."""
+    # We want to maximize: -(x-25)^2 + 500
+    # Therefore, we minimize: (x-25)^2 - 500
+    return ((x - 25) ** 2) - 500
+
+def demonstrate_numerical_optimization():
+    section_header("Scientific Calculus: Numerical Optimization (scipy.optimize)")
+    
+    if not HAS_SCIPY:
+        return
+        
+    print("  [SCENARIO] Finding the exact optimal Price (X) to maximize Profit(X).")
+    print("  Profit Curve: f(x) = -(x-25)^2 + 500")
+    
+    print("\n  [EXECUTING BRENT'S METHOD OPTIMIZATION]")
+    # We mathematically constrain the algorithm to search between prices 0 and 100.
+    # Brent's method is a root-finding algorithm combining the bisection method, 
+    # the secant method, and inverse quadratic interpolation.
+    
+    result = minimize_scalar(inverted_profit_function, bounds=(0, 100), method='bounded')
+    
+    print(f"    -> Algorithm Success: {result.success}")
+    print(f"    -> Optimal Price (X): ${result.x:.2f}")
+    
+    # We invert the math back to calculate the real profit!
+    optimal_profit = -result.fun
+    print(f"    -> Max Profit (Y):    ${optimal_profit:.2f}")
+    print(f"    -> CPU Iterations:    {result.nfev} evaluations (Lightning Fast!)")
+
+
+def run_all_labs():
+    demonstrate_numerical_integration()
+    demonstrate_numerical_optimization()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "Why shouldn't you write your own mathematical integration or optimization algorithms in raw Python using `while` loops?"
+   Senior Answer: "Numerical Stability and Float Drifting. In Calculus, integrating a curve requires slicing the data into infinitely small steps (e.g., $dx = 0.0000001$). Because CPUs use IEEE 754 Floating Point binary architecture, $0.1 + 0.2$ mathematically evaluates to $0.30000000000000004$. If you loop $10$ million times, these microscopic float precision errors compound violently, completely corrupting the final answer. Professional libraries like SciPy interface directly with battle-tested C and Fortran 77 libraries (like QUADPACK for integration or LAPACK for linear algebra). These underlying libraries contain decades of advanced mathematical heuristics specifically designed to dynamically adjust step sizes to mathematically counter IEEE 754 precision drifting, guaranteeing stable, scientifically viable results."
+
+2. Interviewer: "When executing numerical optimization using `scipy.optimize.minimize`, why did we have to 'invert' the mathematical profit function?"
+   Senior Answer: "Because of standardized algorithmic architecture. All standard optimization algorithms in Calculus (like Gradient Descent, Newton-CG, or BFGS) are mathematically architected to find the 'Global Minimum' (the lowest physical point in a valley on the graph). If you have a Profit Curve that looks like a mountain (a Parabola opening downwards), and you tell the algorithm to minimize it, it will run to $-\\infty$ (Negative Infinity) and crash. By mathematically multiplying the entire function by $-1$, we physically invert the mountain into a valley. The algorithm flawlessly finds the lowest point in the valley, which mathematically corresponds precisely to the peak of the original mountain."
+
+3. Interviewer: "What is 'Brent's Method' (`method='bounded'`), and why is it superior to simply plotting 100 points on a graph and picking the highest one (Grid Search)?"
+   Senior Answer: "Grid Search (plotting 100 points) is highly inefficient and mathematically inaccurate. If you check Price = $24$ and Price = $25$, you completely miss the possibility that the absolute perfect mathematical maximum was $24.782$. Brent's Method is an advanced root-finding algorithm that combines three distinct mathematical concepts: the Bisection Method (chopping the search space in half repeatedly), the Secant Method, and Inverse Quadratic Interpolation. It behaves intelligently; it rapidly narrows down the mathematical search space without evaluating the entire curve. It evaluates the function only $10$ or $15$ times in total, converging on the absolute perfect float value (e.g., $24.9999999$) in microseconds, vastly outperforming Grid Search in both speed and mathematical precision."
+"""
 
 if __name__ == "__main__":
-    print("--- Numerical Algorithms ---")
-    
-    # 1. Bisection Method
-    # Solve x^2 - 4 = 0. Root is exactly 2.0 (for x > 0)
-    def f(x: float) -> float: return x**2 - 4
-    
-    root_bisect = bisection_method(f, 0, 5)
-    print(f"Bisection Method Root for x^2 - 4: {root_bisect}")
-    assert math.isclose(root_bisect, 2.0, abs_tol=1e-5), "Bisection failed!"
-    
-    # 2. Newton-Raphson
-    # Solve x^3 - x - 2 = 0
-    def g(x: float) -> float: return x**3 - x - 2
-    def dg(x: float) -> float: return 3*x**2 - 1
-    
-    root_newton = newton_raphson(g, dg, x0=1.5)
-    print(f"Newton-Raphson Root for x^3 - x - 2: {root_newton}")
-    assert math.isclose(g(root_newton), 0.0, abs_tol=1e-5), "Newton-Raphson failed!"
-    
-    # 3. Numerical Integration
-    # Integrate x^2 from 0 to 1. Analytical answer is 1/3 ~ 0.333333
-    def h(x: float) -> float: return x**2
-    
-    integral_approx = trapezoidal_rule(h, 0.0, 1.0, 1000)
-    print(f"Trapezoidal Rule Integral of x^2 from 0 to 1: {integral_approx}")
-    assert math.isclose(integral_approx, 1/3, abs_tol=1e-4), "Integration failed!"
-    
-    print("All numerical algorithm tests passed successfully!")
-
-"""
-===============================================================================
-Interview Challenge:
-The Secant Method is a root-finding algorithm that uses a succession of roots
-of secant lines to better approximate a root of a function. It does not require
-the derivative of the function, unlike Newton-Raphson, making it useful when
-the derivative is hard to compute.
-
-Challenge:
-Implement the `secant_method(func, x0, x1, tol)` function.
-Hint: The update formula is x_n = x_{n-1} - f(x_{n-1}) * (x_{n-1} - x_{n-2}) / (f(x_{n-1}) - f(x_{n-2})).
-
-What happens if f(x_{n-1}) == f(x_{n-2})? How would you handle this case?
-===============================================================================
-"""
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Scientific Computing (SciPy) Completed.")

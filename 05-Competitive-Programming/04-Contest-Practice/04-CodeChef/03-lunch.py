@@ -1,127 +1,156 @@
-\"\"\"
-Module: CodeChef Lunchtime Contest Practice
-=========================================
-Why it exists:
-In Competitive Programming, CodeChef "Lunchtime" is a popular contest format. 
-This module explores a classic CP problem typically seen in such contests, focusing 
-on Greedy Algorithms and Array Manipulation. 
+"""
+# ==============================================================================
+# LABORATORY: COMPETITIVE PROGRAMMING (CODECHEF LUNCHTIME)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# The CodeChef Lunchtime is a fast-paced sprint that often acts as a bridge 
+# between Easy algorithms and Hard algorithms. 
+# 
+# One of the most infamous "Medium-Hard" patterns is Dynamic Programming on Trees 
+# (Tree DP).
+#
+# Imagine you are the CEO of a company. You are throwing a party. You want to 
+# invite employees to maximize the "Fun Rating" of the party. However, there is 
+# a strict rule: You CANNOT invite an employee AND their direct manager. 
+# (This mathematically prevents any two adjacent nodes in the corporate hierarchy 
+# tree from being selected).
+#
+# This is the "Maximum Independent Set on a Tree" problem.
+# You cannot use a 1D DP array (`dp[i]`) because a tree is not a line. 
+# You must execute a Post-Order Depth-First Search (DFS) that calculates the 
+# DP states from the bottom (the interns) all the way up to the root (the CEO)!
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand the architecture of Tree DP.
+# - Solve the Maximum Independent Set on a Tree.
+# - Manage State Transitions passing UP the recursion stack.
+#
+# ==============================================================================
+"""
 
-Learning Objectives:
-1. Understand how to break down a typical CodeChef problem statement.
-2. Learn how to write optimized I/O for Python in CP.
-3. Apply Greedy strategies and basic Data Structures to achieve optimal Time Complexity.
+import sys
 
-Concept Explanation:
---------------------
-Problem Statement (Hypothetical typical problem):
-Given an array of integers representing the tastiness of lunch items, you are allowed 
-to pair adjacent items and replace them with their sum, but you can only do this at most `K` times.
-Your goal is to maximize the sum of the absolute values of the remaining items.
+# Increase recursion depth for massive trees
+sys.setrecursionlimit(200000)
 
-Basic Approach:
-Iterate over the array, try all combinations of pairings, and find the maximum sum.
-Time Complexity: Exponential O(2^N) - TLE (Time Limit Exceeded).
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-Professional Approach:
-Use dynamic programming or a greedy strategy depending on exact constraints. 
-For our educational example, we'll implement a classic "Maximum Subarray Sum with a twist" 
-or a "Greedy Pairing" to demonstrate O(N) or O(N log N) logic. 
-Let's implement a problem where we want to maximize the sum after some operations.
 
-To make it concrete: 
-Given an array `A` of `N` integers and an integer `K`. You can negate at most `K` 
-elements in the array. Maximize the sum of the array.
-
-Time Complexity: O(N log N) to sort, or O(N) using a heap for optimal tracking.
-Space Complexity: O(1) beyond the input array.
-\"\"\"
-
-import heapq
-from typing import List
-
-def maximize_sum_basic(arr: List[int], k: int) -> int:
-    \"\"\"
-    Basic approach: Sort the array, negate negative numbers up to K times.
-    If K is still > 0 and odd, negate the smallest absolute value.
+# ==============================================================================
+# 3. TREE DP (MAXIMUM INDEPENDENT SET)
+# ==============================================================================
+def max_party_fun(n: int, fun_ratings: list[int], edges: list[tuple[int, int]]) -> int:
+    """
+    Solves the Maximum Independent Set on a Tree using DFS DP.
+    Time Complexity: O(N)
+    Space Complexity: O(N) for recursion stack and DP array.
+    """
+    if n == 0: return 0
+    if n == 1: return fun_ratings[0]
     
-    Time Complexity: O(N log N)
-    Space Complexity: O(1) or O(N) depending on sorting.
-    \"\"\"
-    if not arr:
-        return 0
-    
-    arr_sorted = sorted(arr)
-    i = 0
-    while k > 0 and i < len(arr_sorted) and arr_sorted[i] < 0:
-        arr_sorted[i] = -arr_sorted[i]
-        k -= 1
-        i += 1
+    # 1. Build the Adjacency List
+    graph = [[] for _ in range(n)]
+    for u, v in edges:
+        graph[u].append(v)
+        graph[v].append(u)
         
-    if k > 0 and k % 2 == 1:
-        # We need to flip the smallest absolute value
-        min_idx = 0
-        for j in range(1, len(arr_sorted)):
-            if arr_sorted[j] < arr_sorted[min_idx]:
-                min_idx = j
-        arr_sorted[min_idx] = -arr_sorted[min_idx]
+    # 2. The 2D DP Array!
+    # dp[node][0] = Maximum fun in the subtree rooted at `node`, IF we DO NOT invite `node`.
+    # dp[node][1] = Maximum fun in the subtree rooted at `node`, IF we DO invite `node`.
+    dp = [[0, 0] for _ in range(n)]
+    
+    def dfs(current: int, parent: int) -> None:
+        """
+        Post-Order DFS. We calculate the children FIRST, and mathematically 
+        pull their answers UP to the parent!
+        """
+        # Base Case Setup:
+        # If we DO NOT invite the current node, we get 0 fun from them.
+        dp[current][0] = 0
+        # If we DO invite the current node, we instantly get their fun rating!
+        dp[current][1] = fun_ratings[current]
         
-    return sum(arr_sorted)
+        # Traverse all children
+        for neighbor in graph[current]:
+            if neighbor != parent:
+                # 1. Recursively calculate the DP values for the child subtree!
+                dfs(neighbor, current)
+                
+                # 2. State Transition Phase! (The child's data is now perfectly calculated).
+                
+                # Universe A: We DO NOT invite the current node (`current`).
+                # Because `current` is NOT going, there is absolutely no restriction 
+                # on the child! The child can go, or not go. We greedily take 
+                # whatever is mathematically highest from the child's subtree!
+                dp[current][0] += max(dp[neighbor][0], dp[neighbor][1])
+                
+                # Universe B: We DO invite the current node (`current`).
+                # Because `current` IS going, the child is MATHEMATICALLY FORBIDDEN 
+                # from going. We are strictly forced to use the child's [0] state!
+                dp[current][1] += dp[neighbor][0]
 
-def maximize_sum_pro(arr: List[int], k: int) -> int:
-    \"\"\"
-    Professional approach using a min-heap.
-    Heapify takes O(N). Extract-min and insert takes O(log N).
-    Total Time Complexity: O(N + K log N). 
-    This is faster than O(N log N) when K is much smaller than N.
-    \"\"\"
-    if not arr:
-        return 0
-        
-    # Copy array to avoid mutating input
-    heap = arr.copy()
-    heapq.heapify(heap)
+    # Start the DFS from an arbitrary root (e.g., node 0), with -1 as its parent.
+    dfs(0, -1)
     
-    for _ in range(k):
-        smallest = heapq.heappop(heap)
-        if smallest >= 0:
-            # If the smallest is positive and we still have flips, 
-            # if remaining K is even, it cancels out.
-            # If remaining K is odd, flip this smallest once.
-            # Wait, popping and pushing just negates it. Let's do it directly.
-            heapq.heappush(heap, -smallest)
-        else:
-            heapq.heappush(heap, -smallest)
-            
-    return sum(heap)
+    # The final answer is strictly the maximum of the two possible universes at the Root!
+    return max(dp[0][0], dp[0][1])
 
-# ---------------------------------------------------------
-# Example Usage and Tests
-# ---------------------------------------------------------
-def main():
-    arr = [2, -3, -1, 5, -4]
-    k = 2
-    # Expected: [-4, -3] negated -> [4, 3, -1, 2, 5] -> Sum = 13
+def demonstrate_tree_dp():
+    section_header("Tree DP (Maximum Independent Set)")
     
-    assert maximize_sum_basic(arr, k) == 13, "Basic approach failed"
-    assert maximize_sum_pro(arr, k) == 13, "Pro approach failed"
+    # Corporate Hierarchy:
+    #      0 (CEO, Fun: 10)
+    #     / \
+    #    1   2 (Managers, Fun: 20, 20)
+    #   /     \
+    #  3       4 (Interns, Fun: 50, 50)
     
-    arr2 = [4, 2, 3]
-    k2 = 1
-    # Expected: flip 2 -> [4, -2, 3] -> Sum = 5
-    assert maximize_sum_pro(arr2, k2) == 5
+    n = 5
+    fun_ratings = [10, 20, 20, 50, 50]
+    edges = [
+        (0, 1),
+        (0, 2),
+        (1, 3),
+        (2, 4)
+    ]
     
-    print("CodeChef Lunchtime Practice Tests Passed!")
+    print("Corporate Hierarchy Tree built.")
+    print(f"Fun Ratings: {fun_ratings}")
+    print("Rule: You CANNOT invite a manager and their direct subordinate.")
+    
+    ans = max_party_fun(n, fun_ratings, edges)
+    
+    print(f"\nAbsolute Maximum Fun: {ans}")
+    print("Why? If we invite the CEO (10), we cannot invite the Managers.")
+    print("We then invite the Interns (50+50). Total = 110.")
+    print("If we didn't invite the CEO, we could invite the Managers (20+20 = 40), ")
+    print("but we lose the Interns. 40 < 110.")
+    print("The Post-Order DFS flawlessly evaluated all branches in O(N) time!")
+
+
+def run_all_labs():
+    demonstrate_tree_dp()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. In Tree DP, why is a Post-Order DFS required instead of a Pre-Order DFS?
+   Answer: Pre-Order DFS evaluates the Parent *before* the Children. If you attempt to calculate the maximum fun of the CEO before you have calculated the fun of the Managers and Interns, you have absolutely zero mathematical data to base your decision on. You are guessing. Post-Order DFS dives straight to the absolute bottom of the tree (the leaf nodes) first. It perfectly calculates the states for the leaves, and passes those hard mathematical answers UP the tree to their parents. The Parent waits until all of its children have returned valid DP states, allowing the Parent to instantly compute its own state using $O(1)$ math.
+
+2. In the State Transition equation, explain the logic behind `dp[current][0] += max(dp[child][0], dp[child][1])`.
+   Answer: `dp[current][0]` represents the universe where the current node is physically ABSENT from the party. The fundamental rule of the problem is: "You cannot invite two *adjacent* nodes." Because the current node is absent, that adjacency rule is completely deactivated for the child! The child is mathematically free to attend or not attend. To maximize our overall fun, we greedily look at the child's two possible universes (`dp[child][0]` and `dp[child][1]`) and physically take whichever number is higher. We then add this maximum to our current running total.
+
+3. Why do we maintain a `parent` parameter in the DFS signature `def dfs(current: int, parent: int)`?
+   Answer: In a mathematically rigorous Graph Adjacency List, edges are bidirectional. If Node 0 is connected to Node 1, `graph[0]` contains `1`, and `graph[1]` contains `0`. When the DFS moves from Node 0 down to Node 1, it will loop through all of Node 1's neighbors. One of those neighbors is Node 0! If it recursively calls `dfs(0)`, the code will instantly enter an infinite loop, ping-ponging between 0 and 1 until the Stack Overflow crashes the program. By explicitly passing `parent = 0`, the loop `if neighbor != parent:` mathematically prevents the DFS from ever walking backwards up the tree it just came down!
+"""
 
 if __name__ == "__main__":
-    main()
-
-\"\"\"
-Interview Challenge:
---------------------
-Q: How would you solve this if you were NOT allowed to sort or use a heap, 
-and the values of array elements were bounded strictly between -100 and 100?
-A: Use Counting Sort! Since the range is small (-100 to 100), we can create 
-a frequency array of size 201. We can then iterate from -100 to 0, flipping 
-frequencies up to K times. This reduces the time complexity to O(N + Range), 
-which is practically O(N).
-\"\"\"
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: CodeChef Lunchtime Completed.")

@@ -1,120 +1,123 @@
 """
-Codeforces Div 3 Contest Practice
-==================================
-
-What is this?
-This module focuses on problems commonly found in Codeforces Division 3 contests. 
-Div 3 contests are designed for beginners and intermediate programmers, focusing on 
-fundamental algorithms, basic math, greedy approaches, string manipulation, and ad-hoc logic.
-
-Why does it exist?
-Codeforces is the premier competitive programming platform. Div 3 helps build a strong 
-foundation in translating mathematical and logical ideas into code rapidly and without bugs.
-It teaches resilience against edge cases.
-
-Industry Use Cases:
-- Rapid prototyping of business logic
-- Data parsing and sanitization (string manipulation)
-- Basic optimization problems (greedy algorithms) in supply chain or scheduling
-
-Learning Objectives:
-- Master fast input/output in Python for competitive programming.
-- Develop intuition for greedy algorithms and when they are optimal.
-- Handle edge cases in ad-hoc problems effectively.
-- Understand parity, basic number theory, and modular arithmetic.
-
-Concept Explanation:
-Beginner: Ad-hoc problems require simulating a process exactly as described. Greedy 
-problems require finding a local optimum at each step that leads to a global optimum.
-
-Advanced: Even in "simple" problems, performance matters. Python's default `input()` 
-is slow. Using `sys.stdin.read` is crucial. Furthermore, identifying that a problem 
-requires O(1) mathematical calculation instead of O(N) simulation separates the winners.
-
-Example Problem: Maximize the Minimum
-Given an array, we can perform operations to balance it. We want to maximize the minimum element.
+# ==============================================================================
+# LABORATORY: COMPETITIVE PROGRAMMING (CODEFORCES DIV-3)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# Codeforces is the undisputed king of Competitive Programming. 
+# While LeetCode gives you clean function signatures (`def solve(nums):`), 
+# Codeforces forces you to read raw text from Standard Input (stdin) and print 
+# raw text to Standard Output (stdout).
+#
+# Codeforces Division 3 contests are designed for beginners. The first two 
+# problems (A and B) are almost always "Greedy Math" or "Implementation" problems.
+# They don't require advanced data structures; they require logical deduction 
+# and extremely fast, bug-free typing.
+#
+# In this lab, we will simulate a classic Div-3 Problem A: "Given N, find if 
+# you can split it into two EVEN numbers." (The famous Watermelon problem).
+# We will also simulate standard Codeforces I/O boilerplate.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master standard Python Fast I/O for Codeforces.
+# - Understand the structure of "Multiple Test Cases" (T).
+# - Master O(1) Greedy Math deduction.
+#
+# ==============================================================================
 """
 
 import sys
-from typing import List
 
-# ---------------------------------------------------------------------------
-# BASIC IMPLEMENTATION (Simulation - may Time Out)
-# ---------------------------------------------------------------------------
-def solve_basic(arr: List[int], k: int) -> int:
-    """
-    Simulate adding 1 to the minimum element k times.
-    Time Complexity: O(K * N) where K is operations, N is array size.
-    Space Complexity: O(1)
-    """
-    if not arr:
-        return 0
-    arr_copy = arr.copy()
-    for _ in range(k):
-        min_idx = arr_copy.index(min(arr_copy))
-        arr_copy[min_idx] += 1
-    return min(arr_copy)
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-# ---------------------------------------------------------------------------
-# PROFESSIONAL IMPLEMENTATION (Math / Greedy - O(N log N) or O(N))
-# ---------------------------------------------------------------------------
-def solve_optimized(arr: List[int], k: int) -> int:
+
+# ==============================================================================
+# 3. CODEFORCES FAST I/O BOILERPLATE
+# ==============================================================================
+def fast_io_example():
     """
-    Optimized approach using sorting and filling the 'valleys'.
-    Time Complexity: O(N log N) due to sorting.
-    Space Complexity: O(1) or O(N) depending on sort implementation.
+    Codeforces problems can have 10^5 test cases.
+    If you use standard `input()` and `print()`, Python will Time Limit Exceed (TLE).
+    You MUST use `sys.stdin.read` to aggressively buffer all input into memory at once!
     """
-    if not arr:
-        return 0
-    n = len(arr)
-    arr.sort()
+    # This is a simulated string of what the raw Standard Input looks like.
+    # The first number '3' means there are 3 test cases.
+    # The following numbers are the test cases: 8, 2, 11.
+    mock_stdin = "3\n8\n2\n11\n"
     
-    for i in range(1, n):
-        # Number of elements at the current minimum level
-        count = i 
-        # Difference in height to the next level
-        diff = arr[i] - arr[i-1] 
+    print("Raw Codeforces Input:")
+    print(mock_stdin.strip())
+    
+    # 1. Read everything at once and split by whitespace!
+    # In a real contest, this would be: data = sys.stdin.read().split()
+    data = mock_stdin.split()
+    
+    if not data:
+        return
         
-        if diff == 0:
-            continue
-            
-        cost = count * diff
+    # 2. The first token is ALWAYS the number of test cases (T)
+    T = int(data[0])
+    
+    results = []
+    
+    # 3. Process each test case
+    for i in range(1, T + 1):
+        weight = int(data[i])
         
-        if k >= cost:
-            k -= cost
+        # ----------------------------------------------------------------------
+        # PROBLEM: THE WATERMELON (Div-3 Problem A)
+        # You have a watermelon of weight W. Can you divide it into two parts 
+        # such that BOTH parts weigh an strictly EVEN number of kilos?
+        # (The parts do NOT have to be equal. E.g., 8 can be 2 and 6).
+        # ----------------------------------------------------------------------
+        
+        # O(1) Math Deduction:
+        # For a number to be split into two EVEN numbers, the number itself MUST be even.
+        # (Even + Even = Even).
+        # Is that it? No! There is a mathematical edge case.
+        # What if W = 2? The only way to split 2 is 1 + 1. 
+        # But 1 is an ODD number! Therefore, 2 fails. 
+        # The true mathematical condition is: W must be EVEN, AND W must be > 2.
+        
+        if weight % 2 == 0 and weight > 2:
+            results.append("YES")
         else:
-            # Cannot reach the next level, distribute remaining k evenly
-            return arr[i-1] + k // count
+            results.append("NO")
             
-    # If we leveled the whole array and still have k left
-    return arr[-1] + k // n
+    # 4. Print all results joined by newlines!
+    # In a real contest, this would be: sys.stdout.write('\n'.join(results) + '\n')
+    print("\nCodeforces Output:")
+    print('\n'.join(results))
 
-# ---------------------------------------------------------------------------
-# COMMON MISTAKES & PERFORMANCE CONSIDERATIONS
-# ---------------------------------------------------------------------------
-# 1. Fast I/O: Python's `input()` is too slow for 10^5 inputs. 
-#    Use `sys.stdin.read().split()` to read all tokens into memory instantly.
-# 2. Integer Overflow: Python handles arbitrarily large integers, but operations
-#    on very large numbers take O(digits) time. However, in C++/Java, overflow
-#    is a major bug source.
-# 3. Off-by-one errors: Highly common in greedy and string manipulation.
+def demonstrate_div3():
+    section_header("Codeforces Div-3 (Math & I/O)")
+    fast_io_example()
+    print("\nNotice how the edge case '2' mathematically fails because it splits into 1+1.")
+    print("Div-3 problems are entirely about finding these hidden mathematical traps!")
 
-# ---------------------------------------------------------------------------
-# INTERVIEW QUESTIONS & EXERCISES
-# ---------------------------------------------------------------------------
-# Q1: Why is sorting the array useful in the optimized approach?
-# A1: It groups the smallest elements together, allowing us to mathematically 
-#     calculate how many operations it takes to level them up to the next smallest 
-#     element, reducing O(K) steps into O(1) mathematical jumps.
-#
-# Exercise: Implement a solution using a Min-Heap (heapq). 
-# Compare its performance to the sorting approach.
+
+def run_all_labs():
+    demonstrate_div3()
+
+
+# ==============================================================================
+# 4. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Why is `sys.stdin.read().split()` strictly mandatory for Python in Codeforces, instead of using a `for` loop with `input()`?
+   Answer: The Python `input()` function is incredibly slow. Every time you call it, Python flushes buffers, checks for trailing carriage returns (`\r\n` on Windows vs `\n` on Linux), and allocates a new string object. If a problem has 200,000 test cases, calling `input()` 200,000 times introduces massive I/O overhead, easily adding 1.5 seconds to your execution time and guaranteeing a Time Limit Exceeded (TLE) crash. By using `sys.stdin.read().split()`, Python makes a single C-level system call to pull the entire 5MB text file into memory in 0.01 seconds, completely eliminating I/O bottlenecks.
+
+2. In Div-3 Problem A (Watermelon), why is $O(1)$ mathematical deduction required instead of a `for` loop that checks all combinations?
+   Answer: In this specific problem, $W \le 100$, so a `for` loop checking `for i in range(2, W): if i%2==0 and (W-i)%2==0:` would pass instantly. However, Div-3 Problems almost always have "Hard" variants where $W \le 10^{18}$. If you train your brain to write `for` loops for simple math problems, you will instantly fail when the constraints are raised. Competitive Programming demands that you always search for the $O(1)$ mathematical truth (e.g., Even + Even = Even, therefore W must be Even and $>2$).
+
+3. What does it mean when a Codeforces problem explicitly states $\sum N \le 2 \cdot 10^5$?
+   Answer: This is a crucial constraint! A problem might have $T = 10^5$ test cases. For each test case, you are given an array of size $N$. If the maximum value of $N$ is $2 \cdot 10^5$, you might panic, thinking: "If I process $10^5$ arrays of size $200,000$, my total operations will be $20 \text{ Billion}$, which is a TLE!" However, the $\sum N$ constraint mathematically guarantees that the *SUM* of all $N$s across ALL test cases combined will never exceed $200,000$. This instantly proves that an $O(N)$ or $O(N \log N)$ algorithm will pass effortlessly!
+"""
 
 if __name__ == "__main__":
-    arr = [1, 2, 4]
-    k = 5
-    # Basic: [1,2,4] -> min is 1. +1 -> [2,2,4]. min is 2. +2 -> [3,3,4]. min is 3. +2 -> [4,4,4]. Ans: 4.
-    assert solve_basic(arr, k) == 4, "Basic implementation failed"
-    assert solve_optimized(arr.copy(), k) == 4, "Optimized implementation failed"
-    
-    print("All Codeforces Div 3 tests passed successfully.")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Codeforces Div-3 Completed.")

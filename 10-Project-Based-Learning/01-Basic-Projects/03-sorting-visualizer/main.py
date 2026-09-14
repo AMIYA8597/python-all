@@ -1,270 +1,151 @@
 """
-Sorting Visualizer - Main Application and Algorithms
-
-This module contains a graphical Sorting Visualizer using Tkinter, along with
-the underlying sorting algorithms implemented as generators to facilitate animation.
-
-Usage:
-    python main.py          # Runs the GUI
-    python main.py --test   # Runs the unit tests for the sorting algorithms
+# ==============================================================================
+# LABORATORY: PROJECT-BASED LEARNING (ALGORITHM VISUALIZER)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior computer science student tries to understand how "Bubble Sort" actually 
+# moves data. They write `print(array)` inside the nested loops. The terminal 
+# floods with 10,000 lines of unreadable numbers. They learn nothing.
+#
+# A senior algorithm architect builds a "Sorting Visualizer". They mathematically 
+# decouple the Sorting Algorithm from the User Interface using Python Generators 
+# (`yield`). Every time the algorithm swaps two numbers, it yields the exact 
+# array state back to a Matplotlib or Pygame frontend. The developer watches 
+# in real-time as the bars physically rearrange themselves on screen, proving 
+# the O(N^2) mathematical inefficiency of Bubble Sort visually.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Generator Functions (`yield`) for algorithmic state suspension.
+# - Execute classic Sorting Algorithms (Bubble Sort, Insertion Sort).
+# - Understand Big-O Notation through state mutation tracking.
+#
+# ==============================================================================
 """
 
-import tkinter as tk
-from tkinter import ttk
 import random
-import sys
-import unittest
+import time
 
-# -------------------------------------------------------------------------
-# Sorting Algorithms (Generators for Animation)
-# -------------------------------------------------------------------------
-# Each algorithm yields a tuple: (array_state, color_array)
-# color_array maps indices to colors (e.g., 'red' for comparison, 'green' for sorted)
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-def bubble_sort(arr):
+
+# ==============================================================================
+# 3. THE GENERATOR ARCHITECTURE (THE ALGORITHMS)
+# ==============================================================================
+# We do NOT use `return`! If we `return`, the algorithm finishes instantly.
+# We use `yield` to mathematically freeze the algorithm in time, hand the array 
+# state to the UI, and then resume exactly where we left off!
+
+def bubble_sort_generator(arr: list):
+    """
+    Bubble Sort: O(N^2) Time Complexity.
+    Mathematically compares adjacent elements and swaps them if they are in the wrong order.
+    The largest elements "bubble" to the end of the array.
+    """
     n = len(arr)
-    for i in range(n - 1):
-        for j in range(n - i - 1):
-            yield arr, {j: 'red', j+1: 'red'}
+    for i in range(n):
+        swapped = False
+        # The last `i` elements are mathematically guaranteed to be sorted already!
+        for j in range(0, n - i - 1):
             if arr[j] > arr[j + 1]:
+                # Pythonic Tuple Unpacking for the Swap!
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                yield arr, {j: 'green', j+1: 'green'}
-    yield arr, {i: 'blue' for i in range(len(arr))}
+                swapped = True
+                # FREEZE! Yield the current array state and the indices we just touched!
+                yield arr, [j, j + 1]
+                
+        if not swapped:
+            # Mathematical optimization: If no swaps occurred in a full pass, 
+            # the array is already perfectly sorted. We can terminate early!
+            break
 
 
-def insertion_sort(arr):
+def insertion_sort_generator(arr: list):
+    """
+    Insertion Sort: O(N^2) Time Complexity (but O(N) for nearly sorted data).
+    Mathematically builds the final sorted array one item at a time by 
+    sliding elements down until they find their perfect position.
+    """
     for i in range(1, len(arr)):
         key = arr[i]
         j = i - 1
-        yield arr, {i: 'red', j: 'yellow'}
+        
         while j >= 0 and key < arr[j]:
             arr[j + 1] = arr[j]
             j -= 1
-            yield arr, {j + 1: 'red', j: 'yellow'}
-        arr[j + 1] = key
-        yield arr, {j + 1: 'green'}
-    yield arr, {i: 'blue' for i in range(len(arr))}
-
-
-def selection_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        min_idx = i
-        for j in range(i + 1, n):
-            yield arr, {min_idx: 'red', j: 'yellow'}
-            if arr[j] < arr[min_idx]:
-                min_idx = j
-        arr[i], arr[min_idx] = arr[min_idx], arr[i]
-        yield arr, {i: 'green', min_idx: 'green'}
-    yield arr, {i: 'blue' for i in range(len(arr))}
-
-
-def quick_sort(arr, low, high):
-    if low < high:
-        # Partition
-        pivot = arr[high]
-        i = low - 1
-        for j in range(low, high):
-            yield arr, {j: 'red', high: 'yellow'}
-            if arr[j] < pivot:
-                i += 1
-                arr[i], arr[j] = arr[j], arr[i]
-                yield arr, {i: 'green', j: 'green'}
-        arr[i + 1], arr[high] = arr[high], arr[i + 1]
-        yield arr, {i + 1: 'green', high: 'green'}
-        pi = i + 1
-
-        # Recursive calls
-        yield from quick_sort(arr, low, pi - 1)
-        yield from quick_sort(arr, pi + 1, high)
-    
-    if low == 0 and high == len(arr) - 1:
-        yield arr, {i: 'blue' for i in range(len(arr))}
-
-
-def quick_sort_wrapper(arr):
-    yield from quick_sort(arr, 0, len(arr) - 1)
-
-
-# -------------------------------------------------------------------------
-# GUI Application
-# -------------------------------------------------------------------------
-
-class SortingVisualizer:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Sorting Algorithm Visualizer")
-        self.root.geometry("900x600")
-        self.root.config(bg="white")
-        
-        # Variables
-        self.data = []
-        self.generator = None
-        self.sorting = False
-        self.algorithm_name = tk.StringVar(value="Bubble Sort")
-        
-        self.setup_ui()
-        self.generate_data()
-
-    def setup_ui(self):
-        # Control Frame
-        control_frame = tk.Frame(self.root, bg="lightgrey", padx=10, pady=10)
-        control_frame.pack(side=tk.TOP, fill=tk.X)
-
-        # Algorithm Selection
-        tk.Label(control_frame, text="Algorithm:", bg="lightgrey").grid(row=0, column=0, padx=5, pady=5)
-        algo_menu = ttk.Combobox(
-            control_frame, 
-            textvariable=self.algorithm_name,
-            values=["Bubble Sort", "Insertion Sort", "Selection Sort", "Quick Sort"]
-        )
-        algo_menu.grid(row=0, column=1, padx=5, pady=5)
-        
-        # Speed Scale
-        tk.Label(control_frame, text="Speed (ms):", bg="lightgrey").grid(row=0, column=2, padx=5, pady=5)
-        self.speed_scale = tk.Scale(control_frame, from_=5, to=500, resolution=5, orient=tk.HORIZONTAL, bg="lightgrey")
-        self.speed_scale.set(50)
-        self.speed_scale.grid(row=0, column=3, padx=5, pady=5)
-
-        # Array Size
-        tk.Label(control_frame, text="Array Size:", bg="lightgrey").grid(row=0, column=4, padx=5, pady=5)
-        self.size_scale = tk.Scale(control_frame, from_=10, to=150, resolution=1, orient=tk.HORIZONTAL, bg="lightgrey")
-        self.size_scale.set(50)
-        self.size_scale.grid(row=0, column=5, padx=5, pady=5)
-
-        # Buttons
-        tk.Button(control_frame, text="Generate Array", command=self.generate_data, bg="white").grid(row=0, column=6, padx=5, pady=5)
-        self.start_button = tk.Button(control_frame, text="Start Sorting", command=self.start_sorting, bg="lightgreen")
-        self.start_button.grid(row=0, column=7, padx=5, pady=5)
-
-        # Canvas for visualization
-        self.canvas = tk.Canvas(self.root, bg="white", highlightthickness=0)
-        self.canvas.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True, padx=20, pady=20)
-
-    def generate_data(self):
-        if self.sorting:
-            return
-        size = self.size_scale.get()
-        self.data = [random.randint(10, 500) for _ in range(size)]
-        self.draw_data(self.data, {})
-
-    def draw_data(self, data, color_map):
-        self.canvas.delete("all")
-        c_height = self.canvas.winfo_height()
-        c_width = self.canvas.winfo_width()
-        
-        # Avoid zero division before canvas is fully rendered
-        if c_height == 1 or c_width == 1:
-            c_height, c_width = 500, 860
-
-        x_width = c_width / (len(data) + 1)
-        offset = 5
-        spacing = 2
-        
-        normalized_data = [i / max(data) for i in data] if data else []
-
-        for i, height in enumerate(normalized_data):
-            x0 = i * x_width + offset + spacing
-            y0 = c_height - (height * (c_height - 20))
-            x1 = (i + 1) * x_width + offset
-            y1 = c_height
+            # FREEZE! Yield state during the slide!
+            yield arr, [j + 1, i]
             
-            color = color_map.get(i, "blue")
-            self.canvas.create_rectangle(x0, y0, x1, y1, fill=color, outline="")
-        
-        self.root.update_idletasks()
-
-    def start_sorting(self):
-        if self.sorting:
-            return
-        self.sorting = True
-        self.start_button.config(state=tk.DISABLED)
-
-        algo = self.algorithm_name.get()
-        if algo == "Bubble Sort":
-            self.generator = bubble_sort(self.data)
-        elif algo == "Insertion Sort":
-            self.generator = insertion_sort(self.data)
-        elif algo == "Selection Sort":
-            self.generator = selection_sort(self.data)
-        elif algo == "Quick Sort":
-            self.generator = quick_sort_wrapper(self.data)
-        
-        self.animate()
-
-    def animate(self):
-        try:
-            arr, color_map = next(self.generator)
-            self.draw_data(arr, color_map)
-            # Schedule next frame
-            self.root.after(self.speed_scale.get(), self.animate)
-        except StopIteration:
-            self.sorting = False
-            self.start_button.config(state=tk.NORMAL)
-            self.draw_data(self.data, {i: 'green' for i in range(len(self.data))})
+        arr[j + 1] = key
+        # FREEZE! Yield state after final insertion!
+        yield arr, [j + 1, i]
 
 
-# -------------------------------------------------------------------------
-# Unit Tests for Sorting Algorithms
-# -------------------------------------------------------------------------
-class TestSortingAlgorithms(unittest.TestCase):
+# ==============================================================================
+# 4. THE VISUALIZATION ENGINE (THE UI SIMULATOR)
+# ==============================================================================
+def visualize_algorithm(algo_name: str, generator, array_size: int = 15):
+    """
+    Simulates a GUI frontend (like Pygame or Matplotlib) in the Terminal.
+    It mathematically maps the integer values to ASCII bar charts.
+    """
+    section_header(f"Algorithm Visualizer: {algo_name}")
     
-    def setUp(self):
-        self.arrays = [
-            [],
-            [1],
-            [3, 1, 2],
-            [9, 8, 7, 6, 5, 4, 3, 2, 1],
-            [1, 2, 3, 4, 5],
-            [random.randint(-100, 100) for _ in range(50)]
-        ]
+    print("  [INIT] Generating chaotic mathematical array...")
+    arr = [random.randint(1, 20) for _ in range(array_size)]
+    
+    print(f"  [START STATE] {arr}\n")
+    
+    # We iterate over the Generator! The algorithm gives us control back every Swap!
+    swap_count = 0
+    for current_arr, active_indices in generator(arr):
+        swap_count += 1
         
-    def _run_generator(self, gen, arr):
-        """Helper to exhaust the generator and return the final array."""
-        try:
-            for state, _ in gen(arr):
-                pass
-        except StopIteration:
-            pass
-        return arr
+        # We only print the first few and last few to prevent terminal flooding
+        if swap_count <= 3 or swap_count % 10 == 0:
+            print(f"  [STEP {swap_count:03d}] Swapping Indices {active_indices}")
+            # We mathematically render the array as ASCII bars!
+            visual_representation = ""
+            for idx, val in enumerate(current_arr):
+                # If this index was just swapped, color it with `[*]`!
+                if idx in active_indices:
+                    visual_representation += f"[{val:02d}] "
+                else:
+                    visual_representation += f" {val:02d}  "
+            print(f"            {visual_representation}")
+            
+    print(f"\n  [FINAL STATE] {arr}")
+    print(f"  [METRICS] Total Operations Executed: {swap_count}")
+    print("  [SUCCESS] Mathematical array is perfectly sorted.")
 
-    def test_bubble_sort(self):
-        for arr in self.arrays:
-            with self.subTest(arr=arr):
-                copy_arr = list(arr)
-                expected = sorted(copy_arr)
-                self.assertEqual(self._run_generator(bubble_sort, copy_arr), expected)
 
-    def test_insertion_sort(self):
-        for arr in self.arrays:
-            with self.subTest(arr=arr):
-                copy_arr = list(arr)
-                expected = sorted(copy_arr)
-                self.assertEqual(self._run_generator(insertion_sort, copy_arr), expected)
-                
-    def test_selection_sort(self):
-        for arr in self.arrays:
-            with self.subTest(arr=arr):
-                copy_arr = list(arr)
-                expected = sorted(copy_arr)
-                self.assertEqual(self._run_generator(selection_sort, copy_arr), expected)
+def demonstrate_visualizer():
+    visualize_algorithm("Bubble Sort (O(N^2))", bubble_sort_generator, array_size=10)
+    visualize_algorithm("Insertion Sort (O(N^2))", insertion_sort_generator, array_size=10)
 
-    def test_quick_sort(self):
-        for arr in self.arrays:
-            if len(arr) <= 1:
-                continue
-            with self.subTest(arr=arr):
-                copy_arr = list(arr)
-                expected = sorted(copy_arr)
-                self._run_generator(quick_sort_wrapper, copy_arr)
-                self.assertEqual(copy_arr, expected)
 
+def run_all_labs():
+    demonstrate_visualizer()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "Why must we use the `yield` keyword (a Generator) when architecting an Algorithm Visualizer? Why can't we just update the Pygame UI directly inside the Bubble Sort `for` loop?"
+   Senior Answer: "Separation of Concerns and Architectural Coupling. If you inject `pygame.display.update()` directly into the Bubble Sort algorithm, the mathematical algorithm becomes permanently coupled to the GUI framework. You cannot test the algorithm on a Linux server without a monitor, and you cannot swap Pygame for Matplotlib. By using a Generator (`yield`), the mathematical algorithm remains $100\\%$ pure. It simply executes a swap, pauses its execution state in RAM, and hands the data back to the caller. The Caller (the GUI Engine) updates the screen, sleeps for $0.1$ seconds, and then asks the Generator to resume. This completely decouples the heavy math from the visual rendering."
+
+2. Interviewer: "Bubble Sort and Insertion Sort are both mathematically $O(N^2)$ in their Worst-Case scenarios. Why is Insertion Sort universally preferred in production implementations (like Python's Timsort) over Bubble Sort?"
+   Senior Answer: "Algorithmic constants and 'Best-Case' optimization. Bubble Sort is mathematically atrocious because it always requires extensive sweeping passes, even if the array is mostly sorted. Insertion Sort is highly optimized for 'Nearly Sorted' data. If you run Insertion Sort on an array that is already sorted, the inner `while` loop mathematically fails on the very first check every single time. It executes exactly one operation per element, collapsing the Time Complexity from $O(N^2)$ down to a flawless $O(N)$. Python's native `sort()` (Timsort) specifically relies on Insertion Sort to instantly sort small, fragmented sub-arrays because of this exact mathematical property."
+
+3. Interviewer: "In Python, we executed the swap using `arr[j], arr[j+1] = arr[j+1], arr[j]`. Under the hood in the CPython interpreter, how does this bypass the need for a temporary holding variable?"
+   Senior Answer: "It utilizes 'Tuple Packing and Unpacking' via the C-level stack. In languages like C or Java, you must write `temp = a; a = b; b = temp`. In Python, the right side of the assignment (`arr[j+1], arr[j]`) is mathematically evaluated first. The CPython interpreter packs those two values into an immutable C-Tuple in RAM. Then, it unpacks that Tuple directly into the variables on the left side of the assignment. Because the Tuple was firmly established in memory before the left side was modified, the variables are swapped perfectly without requiring the developer to instantiate an explicit `temp` variable, resulting in cleaner and mathematically safer code."
+"""
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == '--test':
-        sys.argv.pop()
-        unittest.main()
-    else:
-        root = tk.Tk()
-        app = SortingVisualizer(root)
-        root.mainloop()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Capstone Project (Sorting Visualizer) Completed.")

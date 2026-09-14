@@ -1,138 +1,175 @@
 """
-Unit Testing Best Practices - Educational Script
-
-Learning Objectives:
-1. Understand the Arrange-Act-Assert (AAA) pattern.
-2. Learn how to write Independent, Repeatable, and Fast tests (FIRST principles).
-3. Discover the importance of descriptive test names.
-4. Understand Test-Driven Development (TDD) concepts.
-5. Learn how to measure and interpret Code Coverage.
-
-Concept Explanation:
-Writing tests is not just about executing code; it's about documenting behavior,
-preventing regressions, and designing better APIs. Good tests are readable,
-maintainable, and reliable.
-
-Key Principles:
-- F.I.R.S.T.: Fast, Isolated, Repeatable, Self-validating, Timely.
-- A.A.A.: Arrange (setup), Act (execute), Assert (verify).
-- Single Responsibility: A test should verify one specific behavior.
+# ==============================================================================
+# LABORATORY: TESTING AND DEBUGGING (UNIT TESTING BEST PRACTICES)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer writes a test called `test_everything()`. It is 250 lines 
+# long. It initializes the database, creates a user, buys a product, refunds 
+# the product, and asserts 45 different variables. When the test fails on 
+# line 112, the entire pipeline crashes, and nobody knows if the failure was 
+# caused by the checkout system, the refund system, or a database timeout. 
+# The test is a "God Test" and is mathematically impossible to maintain.
+#
+# A senior testing engineer architects their suite using strict "Best Practices". 
+# They use the AAA Pattern (Arrange, Act, Assert). They ensure a single test 
+# has exactly ONE mathematical reason to fail (Single Responsibility Principle). 
+# They use explicit, declarative test names (`test_refund_fails_when_receipt_invalid`).
+# When a test fails in CI/CD, the engineer knows exactly what broke without 
+# even looking at the code.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the AAA Pattern (Arrange, Act, Assert).
+# - Execute explicit, deterministic Test Naming Conventions.
+# - Understand the anti-pattern of "God Tests" and Test Interdependence.
+#
+# ==============================================================================
 """
 
 import unittest
-from typing import List, Optional
 
-# --- The Code Under Test ---
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-class Order:
-    """Represents a customer order."""
-    def __init__(self, order_id: str) -> None:
-        self.order_id = order_id
-        self.items: List[dict] = [] # type: ignore
-        self.status = "pending"
+
+# ==============================================================================
+# 3. THE BUSINESS LOGIC
+# ==============================================================================
+class SubscriptionService:
+    def __init__(self):
+        self.active_users = []
         
-    def add_item(self, name: str, price: float, quantity: int = 1) -> None:
-        if price < 0:
-            raise ValueError("Price cannot be negative")
-        if quantity <= 0:
-            raise ValueError("Quantity must be positive")
-        self.items.append({"name": name, "price": price, "quantity": quantity})
-        
-    def calculate_total(self) -> float:
-        return sum(item["price"] * item["quantity"] for item in self.items)
-        
-    def checkout(self) -> None:
-        if not self.items:
-            raise ValueError("Cannot checkout an empty order")
-        self.status = "completed"
+    def upgrade_to_pro(self, user_id: str, payment_status: str) -> bool:
+        if not user_id:
+            raise ValueError("User ID cannot be empty.")
+            
+        if payment_status == "DECLINED":
+            return False
+            
+        if user_id not in self.active_users:
+            self.active_users.append(user_id)
+            return True
+            
+        return False # Already a pro user
 
-# --- Basic Implementation: Bad vs Good Tests ---
 
-class TestOrderBadPractices(unittest.TestCase):
-    """Examples of how NOT to write tests."""
+# ==============================================================================
+# 4. THE JUNIOR ANTI-PATTERN (THE GOD TEST)
+# ==============================================================================
+class BadTestSubscriptionService(unittest.TestCase):
+    """
+    ANTI-PATTERN WARNING! 
+    This is how you write terrible tests that developers hate maintaining.
+    """
+    def test_stuff(self): # BAD: Vague name
+        # Doing 5 things at once
+        svc = SubscriptionService()
+        
+        # Test 1
+        res = svc.upgrade_to_pro("user1", "PAID")
+        self.assertTrue(res)
+        self.assertIn("user1", svc.active_users)
+        
+        # Test 2
+        res2 = svc.upgrade_to_pro("user1", "PAID")
+        self.assertFalse(res2) # Should fail because already pro
+        
+        # Test 3
+        res3 = svc.upgrade_to_pro("user2", "DECLINED")
+        self.assertFalse(res3)
+        self.assertNotIn("user2", svc.active_users)
+        
+        # If Test 2 fails, Test 3 never runs! The developer is blind to Test 3's status!
+
+
+# ==============================================================================
+# 5. THE SENIOR ARCHITECTURE (AAA PATTERN & ISOLATION)
+# ==============================================================================
+class TestSubscriptionService(unittest.TestCase):
+    """
+    ARCHITECTURAL PURITY.
+    Every single test validates exactly ONE path of execution.
+    """
     
-    def test_order(self) -> None: # Bad: Vague name
-        # Bad: Multiple responsibilities in one test
-        o = Order("123")
-        o.add_item("Apple", 1.0)
-        self.assertEqual(o.calculate_total(), 1.0)
-        o.add_item("Banana", 2.0, 2)
-        self.assertEqual(o.calculate_total(), 5.0)
-        o.checkout()
-        self.assertEqual(o.status, "completed")
+    def test_upgrade_adds_user_when_payment_succeeds(self):
+        """Standard success path."""
+        # --- ARRANGE (Setup the exact mathematical state) ---
+        service = SubscriptionService()
+        target_user = "usr_999"
+        
+        # --- ACT (Execute the exact function under test) ---
+        result = service.upgrade_to_pro(target_user, "PAID")
+        
+        # --- ASSERT (Mathematically prove the state mutated correctly) ---
+        self.assertTrue(result, "Service should return True on successful upgrade.")
+        self.assertIn(target_user, service.active_users, "User ID was not added to the active list.")
 
-class TestOrderGoodPractices(unittest.TestCase):
-    """Examples of good testing practices following AAA and FIRST."""
+    def test_upgrade_fails_when_payment_declined(self):
+        """Negative path execution."""
+        # ARRANGE
+        service = SubscriptionService()
+        target_user = "usr_888"
+        
+        # ACT
+        result = service.upgrade_to_pro(target_user, "DECLINED")
+        
+        # ASSERT
+        self.assertFalse(result, "Service should return False when payment is declined.")
+        self.assertNotIn(target_user, service.active_users, "User was illegally granted Pro status on a declined card.")
+
+    def test_upgrade_returns_false_for_existing_pro_user(self):
+        """Edge case execution (Idempotency)."""
+        # ARRANGE
+        service = SubscriptionService()
+        service.active_users.append("usr_777") # Pre-populate the state!
+        
+        # ACT
+        result = service.upgrade_to_pro("usr_777", "PAID")
+        
+        # ASSERT
+        self.assertFalse(result, "Service should return False if user is already upgraded.")
+        # Ensure it wasn't added twice
+        self.assertEqual(service.active_users.count("usr_777"), 1)
+
+
+# ==============================================================================
+# 6. MATHEMATICAL PROOF (THE TEST RUNNER)
+# ==============================================================================
+def demonstrate_best_practices():
+    section_header("Unit Testing: AAA Pattern Best Practices")
     
-    def test_calculate_total_with_multiple_items_returns_correct_sum(self) -> None:
-        """Good: Descriptive name, Single responsibility, AAA pattern."""
-        # Arrange
-        order = Order("123")
-        order.add_item("Apple", 1.5, 2)
-        order.add_item("Banana", 2.0, 1)
-        
-        # Act
-        total = order.calculate_total()
-        
-        # Assert
-        self.assertEqual(total, 5.0)
-        
-    def test_checkout_empty_order_raises_value_error(self) -> None:
-        """Test for expected failures explicitly."""
-        # Arrange
-        order = Order("123")
-        
-        # Act & Assert
-        with self.assertRaisesRegex(ValueError, "empty order"):
-            order.checkout()
+    print("  [EXECUTION] Booting Test Runner for the Architecturally Pure Suite...")
+    
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestSubscriptionService)
+    test_result = unittest.TextTestRunner(verbosity=2).run(suite)
+    
+    print("\n  [ARCHITECTURE PROOF]")
+    print(f"  Tests Run: {test_result.testsRun}")
+    if test_result.wasSuccessful():
+        print("  -> [FLAWLESS] The AAA Pattern produced granular, deterministic validations.")
 
-    def test_checkout_valid_order_updates_status(self) -> None:
-        # Arrange
-        order = Order("123")
-        order.add_item("Apple", 1.0)
-        
-        # Act
-        order.checkout()
-        
-        # Assert
-        self.assertEqual(order.status, "completed")
 
-# --- Intermediate Implementation: Test Data Builders (Factory Pattern) ---
-# For complex objects, use helper functions to create test data, keeping tests clean.
+def run_all_labs():
+    demonstrate_best_practices()
 
-def create_valid_order_with_items(order_id: str = "test-1") -> Order:
-    """Helper method to construct an order for testing."""
-    order = Order(order_id)
-    order.add_item("Item1", 10.0, 1)
-    order.add_item("Item2", 5.0, 2)
-    return order
 
-class TestOrderWithFactory(unittest.TestCase):
-    def test_calculate_total_uses_factory(self) -> None:
-        order = create_valid_order_with_items()
-        self.assertEqual(order.calculate_total(), 20.0)
+# ==============================================================================
+# 7. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "What is the AAA Pattern, and why does visually separating its blocks inside the test function matter architecturally?"
+   Senior Answer: "Arrange, Act, Assert. It is the absolute foundational architecture of a clean Unit Test. 'Arrange' sets up the mock data, instantiates the class, and prepares the exact state. 'Act' is mathematically restricted to a *single* line of code: the invocation of the function being tested. 'Assert' executes the validation checks. Visually separating these blocks (often with whitespace or comments) forces the developer to maintain test purity. If the 'Act' phase requires $10$ lines of code, the developer instantly realizes their underlying Business Logic is tightly coupled and architecturally flawed, prompting a refactor of the actual application."
 
-# --- Performance Analysis ---
-# Fast tests encourage frequent execution.
-# Avoid network calls, file I/O, or database queries in unit tests; mock them instead.
-# If a test requires heavy setup, consider if the class is doing too much (violation of Single Responsibility Principle).
+2. Interviewer: "Why is the 'God Test' anti-pattern (`test_everything`) so destructive to CI/CD pipelines?"
+   Senior Answer: "Test Fragility and Masking. A 'God Test' violates the Single Responsibility Principle by asserting $20$ different behaviors sequentially. In Python `unittest`, the exact millisecond an `assert` fails, an Exception is thrown, and the entire test function halts permanently. If Assertion $\#3$ fails, Assertions $4$ through $20$ are completely bypassed and never execute. The CI/CD pipeline fails, but the developer is mathematically blind to the status of the remaining $17$ assertions. By splitting the God Test into $20$ independent AAA tests, the CI/CD pipeline evaluates every single assertion independently, providing a granular, $100\\%$ complete health report of the system, even if $5$ of the tests fail simultaneously."
 
-# --- Edge Cases ---
-# Always test boundary conditions: zero, negative numbers, empty strings, max values.
-# Example: Adding an item with quantity 0 or negative price.
-
-class TestOrderEdgeCases(unittest.TestCase):
-    def test_add_item_negative_price_raises_error(self) -> None:
-        order = Order("123")
-        with self.assertRaises(ValueError):
-            order.add_item("Apple", -1.0)
-
-# --- Interview Challenge ---
-# Challenge: How do you achieve 100% test coverage, and is it a good metric?
-# Answer: Coverage measures the percentage of code lines executed during tests.
-# While high coverage is good, 100% doesn't guarantee the absence of bugs.
-# It doesn't measure if the *logic* is correct or if all *edge cases* are handled.
-# Aim for meaningful tests over just hitting coverage numbers.
+3. Interviewer: "What is 'TDD' (Test-Driven Development), and how does it alter the mathematical flow of software engineering?"
+   Senior Answer: "Red, Green, Refactor. Standard development writes the business logic first, and the test second (or never). TDD mathematically inverts this. You are forced to write the Unit Test *before* the business logic exists. The test attempts to run and violently fails (Red). You then write the absolute minimum amount of production code required to make the test pass (Green). Finally, you optimize the code without fear of breaking it (Refactor). TDD guarantees $100\\%$ test coverage, but more importantly, it forces the developer to design the function's API from the perspective of the *consumer*, resulting in highly modular, loosely coupled architecture."
+"""
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Testing and Debugging (Best Practices) Completed.")

@@ -1,130 +1,152 @@
 """
-Caching and Profiling in Python
-
-Learning Objectives:
-1. Understand the concept of memoization and caching.
-2. Use `functools.lru_cache` to cache function results.
-3. Profile cache performance (hits, misses, maxsize).
-4. Implement a custom cache decorator.
-
-Concept Explanation:
-Caching stores the results of expensive function calls and returns the cached result when
-the same inputs occur again. `functools.lru_cache` provides a Least Recently Used cache.
-Profiling the cache helps determine if caching is effective (high hit rate) or if the cache
-size needs tuning.
-
-Imports:
-- functools: For lru_cache.
-- time: For measuring execution time.
+# ==============================================================================
+# LABORATORY: PROFILING & OPTIMIZATION (MEMOIZATION & CACHING)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer writes a recursive function to calculate the Fibonacci 
+# sequence. To calculate `fib(40)`, the function mathematically branches into 
+# 331,160,281 separate function calls. The CPU runs at 100% capacity for 45 
+# seconds. The developer thinks Python is just a "slow language."
+#
+# A senior software engineer understands "Memoization". They realize that 
+# `fib(38)` is being calculated millions of times redundantly. They inject the 
+# `@lru_cache` decorator from the `functools` library. The CPython interpreter 
+# intercepts the function call, executes it once, and caches the result in a 
+# Hash Table in RAM. The next time `fib(38)` is requested, the CPU bypasses 
+# the calculation and returns the answer in O(1) time. The execution time 
+# violently collapses from 45.0 seconds to 0.0001 seconds.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Algorithmic Memoization (Time-Space Tradeoff).
+# - Execute caching via `@functools.lru_cache`.
+# - Architect deterministic Cache Eviction Policies (LRU).
+#
+# ==============================================================================
 """
 
-from functools import lru_cache
 import time
-from typing import Callable, Any, Dict, Tuple
+import functools
 
-# ==========================================
-# Basic Implementation: Uncached vs. lru_cache
-# ==========================================
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-def fibonacci_uncached(n: int) -> int:
-    """Calculates Fibonacci numbers without caching."""
-    if n < 2:
-        return n
-    return fibonacci_uncached(n - 1) + fibonacci_uncached(n - 2)
 
-@lru_cache(maxsize=128)
-def fibonacci_cached(n: int) -> int:
-    """Calculates Fibonacci numbers with LRU caching."""
-    if n < 2:
-        return n
-    return fibonacci_cached(n - 1) + fibonacci_cached(n - 2)
-
-# ==========================================
-# Intermediate Implementation: Profiling lru_cache
-# ==========================================
-
-def profile_lru_cache() -> None:
-    """Profiles the built-in lru_cache performance."""
-    print("Calculating fibonacci(35) uncached...")
-    start = time.perf_counter()
-    # Uncached takes a long time, we do 30 to keep it reasonable
-    fibonacci_uncached(30) 
-    print(f"Uncached time: {time.perf_counter() - start:.4f}s")
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (THE BOTTLENECK)
+# ==============================================================================
+class MathematicalEngine:
     
-    print("Calculating fibonacci(30) cached (first run)...")
-    start = time.perf_counter()
-    fibonacci_cached(30)
-    print(f"Cached time (misses): {time.perf_counter() - start:.6f}s")
-    
-    print("Calculating fibonacci(30) cached (second run)...")
-    start = time.perf_counter()
-    fibonacci_cached(30)
-    print(f"Cached time (hits): {time.perf_counter() - start:.6f}s")
-    
-    # View cache statistics
-    print(f"Cache Info: {fibonacci_cached.cache_info()}")
+    @staticmethod
+    def fibonacci_slow(n: int) -> int:
+        """
+        The Junior Approach: Pure Recursion.
+        Time Complexity: O(2^n) - Exponential Disaster.
+        """
+        if n < 2:
+            return n
+        return MathematicalEngine.fibonacci_slow(n - 1) + MathematicalEngine.fibonacci_slow(n - 2)
 
-# ==========================================
-# Advanced Implementation: Custom Cache with Stats
-# ==========================================
+    @staticmethod
+    @functools.lru_cache(maxsize=128)
+    def fibonacci_fast(n: int) -> int:
+        """
+        The Senior Approach: Memoized Recursion.
+        Time Complexity: O(n) - Linear Speed.
+        Space Complexity: O(n) - We trade RAM for CPU!
+        """
+        if n < 2:
+            return n
+        return MathematicalEngine.fibonacci_fast(n - 1) + MathematicalEngine.fibonacci_fast(n - 2)
 
-def custom_cache_with_stats(func: Callable) -> Callable:
-    """A custom cache decorator that tracks hits and misses."""
-    cache: Dict[Tuple[Any, ...], Any] = {}
-    stats = {"hits": 0, "misses": 0}
-    
-    def wrapper(*args: Any) -> Any:
-        if args in cache:
-            stats["hits"] += 1
-            return cache[args]
+
+# ==============================================================================
+# 4. THE CACHE ARCHITECTURE SIMULATOR
+# ==============================================================================
+class CustomCacheSimulator:
+    """
+    Simulates exactly what `@lru_cache` is doing mathematically under the hood.
+    """
+    def __init__(self):
+        # The Cache is just a standard Python Dictionary (Hash Table)!
+        self.cache = {}
+        self.cache_hits = 0
+        self.cache_misses = 0
         
-        stats["misses"] += 1
-        result = func(*args)
-        cache[args] = result
+    def execute(self, arg: int):
+        # 1. We mathematically check the cache before touching the CPU!
+        if arg in self.cache:
+            self.cache_hits += 1
+            return self.cache[arg]
+            
+        # 2. CACHE MISS! We must pay the CPU penalty.
+        self.cache_misses += 1
+        
+        # Simulate heavy CPU math
+        time.sleep(0.1) 
+        result = arg * 2
+        
+        # 3. We store the result in RAM so we never have to calculate it again!
+        self.cache[arg] = result
         return result
-        
-    wrapper.cache_stats = stats # type: ignore
-    return wrapper
 
-@custom_cache_with_stats
-def expensive_computation(x: int, y: int) -> int:
-    """Simulates an expensive computation."""
-    time.sleep(0.1) # Simulate work
-    return x * y
 
-# ==========================================
-# Edge Cases & Interview Challenge
-# ==========================================
+# ==============================================================================
+# 5. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_caching():
+    section_header("Profiling & Optimization: Caching (Memoization)")
+    
+    # We will calculate Fibonacci 35. 
+    # (Without caching, this takes ~2-4 seconds depending on CPU)
+    target = 35
+    
+    print(f"  [EXECUTION] Calculating Fibonacci({target}) using O(2^n) recursion...")
+    start_slow = time.time()
+    res1 = MathematicalEngine.fibonacci_slow(target)
+    time_slow = time.time() - start_slow
+    print(f"  -> Result: {res1} | Time: {time_slow:.4f} seconds")
+    
+    print(f"\n  [EXECUTION] Calculating Fibonacci({target}) using O(N) @lru_cache...")
+    start_fast = time.time()
+    res2 = MathematicalEngine.fibonacci_fast(target)
+    time_fast = time.time() - start_fast
+    
+    # We can mathematically inspect the cache performance!
+    cache_info = MathematicalEngine.fibonacci_fast.cache_info()
+    
+    print(f"  -> Result: {res2} | Time: {time_fast:.6f} seconds")
+    print(f"  -> [CACHE STATS] Hits: {cache_info.hits} | Misses: {cache_info.misses}")
+    
+    if time_fast > 0:
+        speedup = time_slow / time_fast
+        print(f"\n  [ARCHITECTURE PROOF]")
+        print(f"  The `@lru_cache` decorator mathematically trapped the function calls,")
+        print(f"  returning the result {speedup:,.0f}x faster. We effectively traded ")
+        print(f"  Bytes of RAM to save Seconds of CPU time.")
 
+
+def run_all_labs():
+    demonstrate_caching()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Edge Cases:
-1. Unhashable arguments: lru_cache requires arguments to be hashable (e.g., lists/dicts fail).
-2. Memory constraints: An unbounded cache (maxsize=None) can consume all memory.
+ACTIVE RECALL:
+1. Interviewer: "What is 'Memoization', and how does it relate to the Time-Space Tradeoff in Computer Science?"
+   Senior Answer: "Caching Deterministic Output. Memoization is the algorithmic act of storing the result of an expensive function call in memory so that subsequent calls with the exact same arguments can bypass the CPU. It is the ultimate manifestation of the Time-Space Tradeoff. We are mathematically sacrificing Space (RAM, to store the Hash Table of results) in order to drastically reduce Time (CPU cycles). This only works if the function is 'Deterministic' (or 'Pure')—meaning an input of $X$ will mathematically always return an output of $Y$."
 
-Interview Challenge:
-Question: Implement an LRU Cache class from scratch without using functools.
-Hint: Use a combination of a hash map (dict) and a doubly linked list, or take advantage
-of Python 3.7+ dicts which maintain insertion order.
+2. Interviewer: "Why does the decorator `@lru_cache(maxsize=128)` specify a `maxsize`, and what does 'LRU' stand for?"
+   Senior Answer: "Least Recently Used (Cache Eviction Policy). If you run a web server for a year and cache every single Database query, your RAM will mathematically hit 100% and the server will crash (OOM). A Cache Eviction Policy is mandatory. 'LRU' is an algorithm. When the cache hits the `maxsize` limit (e.g., $128$ items), the Python interpreter looks at the historical access patterns. It mathematically identifies the item that was accessed the furthest back in time (the Least Recently Used), deletes it from the Hash Table to free up RAM, and inserts the new item. This guarantees memory stability while maintaining high hit rates for popular data."
+
+3. Interviewer: "If `@lru_cache` is so powerful, why don't we put it on every single function in the codebase?"
+   Senior Answer: "Impure Functions and Unhashable Types. You cannot cache an 'Impure' function. If a function is `get_current_time()`, caching it is mathematically catastrophic because it will return the exact same time forever. If a function reads from a Database, caching it might return stale data if another user updated the Database. Furthermore, Python's cache relies on dictionaries, which require Hashable keys. If a function accepts a Mutable List as an argument (`def process(data: list)`), Python cannot hash the list. The interpreter will violently throw a `TypeError: unhashable type: 'list'`, preventing the cache from working."
 """
-
-def test_cache() -> None:
-    """Tests the custom cache decorator."""
-    assert expensive_computation(2, 3) == 6
-    assert expensive_computation.cache_stats["misses"] == 1 # type: ignore
-    assert expensive_computation(2, 3) == 6
-    assert expensive_computation.cache_stats["hits"] == 1 # type: ignore
-    print("Cache tests passed.")
 
 if __name__ == "__main__":
-    print("--- Caching and Profiling ---")
-    print("1. Profiling built-in lru_cache:")
-    profile_lru_cache()
-    
-    print("\n2. Custom Cache with Stats:")
-    expensive_computation(5, 5)
-    expensive_computation(5, 5) # Hit
-    expensive_computation(10, 10) # Miss
-    print(f"Custom cache stats: {expensive_computation.cache_stats}") # type: ignore
-    
-    print("\n3. Running Tests:")
-    test_cache()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Profiling & Optimization (Caching) Completed.")

@@ -1,137 +1,150 @@
 """
-System Design: Memory Optimization in Python
-============================================
-
-Learning Objectives:
-1. Understand how Python manages memory under the hood (reference counting, garbage collection).
-2. Learn techniques to reduce the memory footprint of Python objects.
-3. Master the use of `__slots__` to optimize memory usage of classes.
-4. Understand String Interning and Flyweight design patterns for memory efficiency.
-5. Learn how to use generators and memory views for large data processing.
-
-Concept Explanation:
---------------------
-Python is a high-level language with automatic memory management. Every object in Python has an overhead (at least 28 bytes for an integer in CPython 64-bit, and dictionaries for class instance attributes). 
-When designing systems that load millions of objects (e.g., ORM models, data ingestion pipelines, games), this overhead can lead to excessive memory consumption and frequent garbage collection pauses (OOM errors or latency spikes).
-
-Techniques:
-- `__slots__`: Prevents the creation of a per-instance `__dict__` and `__weakref__`, significantly reducing memory.
-- Generators: Yield items one by one instead of loading everything into memory (Lists vs Generators).
-- String Interning: Reusing the same string objects in memory.
-- `array` module / `memoryview`: Using contiguous typed arrays instead of lists of generic Python objects.
-
-Industry Use Cases:
--------------------
-- High-frequency trading systems where low latency (less GC) and caching are required.
-- Data science pipelines loading massive CSVs/JSONs.
-- Game servers tracking millions of entities (players, NPCs, items).
-
-Basic Implementation:
----------------------
+# ==============================================================================
+# LABORATORY: SYSTEM DESIGN (MEMORY OPTIMIZATION & INTERNALS)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# You are building a data processing pipeline that loads 10 Million User 
+# profiles from a CSV into RAM to perform analysis.
+#
+# A junior engineer writes a standard Python `class User:` and instantiates 
+# 10 Million objects. Suddenly, the server crashes with an Out-Of-Memory (OOM) 
+# error! 
+#
+# Why? Because in Python, every single object dynamically stores its attributes 
+# in an internal Dictionary (`__dict__`). Dictionaries are hash tables. Hash 
+# tables pre-allocate massive chunks of empty memory to prevent hash collisions. 
+# Your "small" User object actually consumes 300 bytes of RAM. 
+# 10 Million * 300 bytes = 3 Gigabytes of pure overhead!
+#
+# By using advanced memory optimization techniques like `__slots__`, Generators, 
+# or moving from Arrays of Objects (AoS) to Structures of Arrays (SoA) via 
+# NumPy, you can mathematically reduce that 3 GB overhead down to 40 MB!
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Python `__slots__` to destroy `__dict__` overhead.
+# - Understand Generators (Lazy Evaluation) to bypass O(N) memory allocation.
+# - Understand Garbage Collection (Reference Counting).
+#
+# ==============================================================================
 """
+
 import sys
-import gc
-from typing import List, Generator, Any, Tuple
+import tracemalloc
 
-# 1. Basic vs Optimized Class (using __slots__)
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-class PointBasic:
-    """A simple point class with a __dict__ for attributes."""
-    def __init__(self, x: float, y: float):
-        self.x = x
-        self.y = y
 
-class PointOptimized:
-    """A memory-optimized point class using __slots__."""
-    __slots__ = ['x', 'y']
+# ==============================================================================
+# 3. PYTHON __slots__ (DESTROYING DICTIONARY OVERHEAD)
+# ==============================================================================
+class HeavyUser:
+    """Standard Python Class. Dynamically uses __dict__."""
+    def __init__(self, id, name, age):
+        self.id = id
+        self.name = name
+        self.age = age
+
+class LightUser:
+    """
+    Optimized Python Class using __slots__.
+    By strictly declaring the allowed attributes in advance, Python completely 
+    deletes the underlying __dict__ hash table, storing the attributes in a 
+    hyper-compact C-level array!
+    """
+    __slots__ = ['id', 'name', 'age']
     
-    def __init__(self, x: float, y: float):
-        self.x = x
-        self.y = y
+    def __init__(self, id, name, age):
+        self.id = id
+        self.name = name
+        self.age = age
 
-
-# 2. Generator for Large Data Processing
-
-def load_data_basic(num_items: int) -> List[int]:
-    """Loads all items into memory at once."""
-    return [i for i in range(num_items)]
-
-def load_data_optimized(num_items: int) -> Generator[int, None, None]:
-    """Yields items one by one, keeping memory footprint O(1)."""
-    for i in range(num_items):
-        yield i
-
-
-# Professional Implementation
-# ---------------------------
-# Let's implement a system that caches repeating strings (Flyweight pattern / Manual Interning)
-# and uses __slots__ to represent a massive log of events.
-
-class Event:
-    __slots__ = ['timestamp', 'event_type', 'user_id']
+def demonstrate_slots():
+    section_header("Memory Optimization (__slots__)")
     
-    def __init__(self, timestamp: int, event_type: str, user_id: int):
-        self.timestamp = timestamp
-        self.event_type = event_type
-        self.user_id = user_id
-
-class EventProcessor:
-    def __init__(self):
-        self.event_type_cache = {}
-        self.events: List[Event] = []
-        
-    def add_event(self, timestamp: int, raw_event_type: str, user_id: int):
-        # String interning/flyweight: avoid duplicating identical strings in memory
-        if raw_event_type not in self.event_type_cache:
-            # sys.intern() can also be used for exact string interning in Python
-            self.event_type_cache[raw_event_type] = sys.intern(raw_event_type)
-            
-        interned_type = self.event_type_cache[raw_event_type]
-        self.events.append(Event(timestamp, interned_type, user_id))
-
-
-def compare_memory():
-    # Comparing Point classes
-    p_basic = PointBasic(1.0, 2.0)
-    p_opt = PointOptimized(1.0, 2.0)
+    heavy = HeavyUser(1, "Alice", 25)
+    light = LightUser(1, "Alice", 25)
     
-    # __dict__ overhead
-    dict_size = sys.getsizeof(p_basic.__dict__) if hasattr(p_basic, '__dict__') else 0
-    basic_size = sys.getsizeof(p_basic) + dict_size
-    opt_size = sys.getsizeof(p_opt)
+    # Measuring exact memory footprint
+    size_heavy = sys.getsizeof(heavy) + sys.getsizeof(heavy.__dict__)
+    size_light = sys.getsizeof(light)
     
-    return basic_size, opt_size
+    print("Memory Footprint of a single Instance:")
+    print(f"  HeavyUser (Standard) : {size_heavy} bytes")
+    print(f"  LightUser (__slots__): {size_light} bytes")
+    
+    savings = ((size_heavy - size_light) / size_heavy) * 100
+    print(f"\nUsing __slots__ reduced RAM usage by {savings:.1f}%!")
+    print("For 10 Million users, you just saved hundreds of Megabytes of RAM.")
 
-# Complexity Analysis:
-# Time Complexity: O(1) for object creation in both cases.
-# Space Complexity: O(N * (sizeof(object) + sizeof(__dict__))) vs O(N * sizeof(object)).
-# With `__slots__`, we save approximately 100-200 bytes per object. For 1 million objects, this is 100-200 MBs.
 
-# Common Mistakes:
-# 1. Inheriting from a class without __slots__ will implicitly create a __dict__ for the subclass, negating the benefits.
-# 2. Adding properties to __slots__ that are not used, wasting memory.
-# 3. Over-optimizing small scripts where development time is more valuable than a few MBs of RAM.
+# ==============================================================================
+# 4. GENERATORS (LAZY EVALUATION)
+# ==============================================================================
+def load_massive_dataset_list(n: int) -> list[int]:
+    """Eager Evaluation: Forces all N elements to exist in RAM simultaneously."""
+    dataset = []
+    for i in range(n):
+        dataset.append(i * 2)
+    return dataset
 
-# Interview Challenge:
-# Q: How does Python's Garbage Collection work, and how can you optimize a system that is experiencing GC pauses?
-# A: Python uses Reference Counting primarily, supplemented by a Generational Garbage Collector to detect cyclic references. 
-# To optimize GC pauses: 1. Reduce the total number of objects created (e.g., Object Pooling). 2. Break cyclic references manually or using `weakref`. 3. Tune GC thresholds (`gc.set_threshold()`) or disable GC temporarily during critical paths if you know cycles aren't being formed.
+def load_massive_dataset_generator(n: int):
+    """
+    Lazy Evaluation (Generator): 
+    The `yield` keyword mathematically pauses the function, returning ONE element.
+    It does NOT allocate an array. It only calculates the next element when requested!
+    """
+    for i in range(n):
+        yield i * 2
+
+def demonstrate_generators():
+    section_header("Memory Optimization (Generators vs Lists)")
+    
+    n = 1_000_000 # 1 Million items
+    
+    print("Task: Process a dataset of 1 Million elements.")
+    
+    # Measure RAM usage for List
+    tracemalloc.start()
+    eager_list = load_massive_dataset_list(n)
+    current, peak_list = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+    
+    # Measure RAM usage for Generator
+    tracemalloc.start()
+    lazy_gen = load_massive_dataset_generator(n)
+    current, peak_gen = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+    
+    print(f"\nRAM Spiked (Eager List) : {peak_list / 1_000_000:.2f} MB")
+    print(f"RAM Spiked (Generator)  : {peak_gen / 1_000_000:.6f} MB")
+    
+    print("\nGenerators process infinite data using strictly O(1) RAM!")
+
+
+def run_all_labs():
+    demonstrate_slots()
+    demonstrate_generators()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. If `__slots__` reduces RAM by 60%, why doesn't Python use it by default for every class?
+   Answer: Python is fundamentally a "Dynamic" language. The core philosophy of Python allows you to write `obj.new_attribute = "Hello"` anywhere in your code, at runtime, dynamically injecting new properties into an object. This is only possible because of the underlying `__dict__` hash table! If Python enforced `__slots__` by default, it would mathematically freeze the structure of the class at creation time, violently rejecting any dynamic attribute assignment, turning Python into a rigid, statically-typed language (like Java or C++). You must explicitly opt-in to `__slots__` when you know your class structure is perfectly fixed and you need scale.
+
+2. Explain how the `yield` keyword mathematically bypasses $O(N)$ memory limits.
+   Answer: In a standard function with `return [array]`, the CPU physically calculates all $N$ elements, requests $N$ slots of memory from the RAM (malloc), fills them, and hands the massive block of memory to you. `yield` creates a Generator Object (a State Machine). When you loop over a Generator, it calculates *exactly one* element, hands it to you, and physically pauses its execution state. Once you process that element, it is Garbage Collected. The CPU then resumes the Generator to calculate the *next* single element. Because only 1 element exists in RAM at any given millisecond, it requires strictly $O(1)$ memory, regardless of whether $N$ is 10 or 10 Trillion!
+
+3. How does Python's core Garbage Collector (Reference Counting) work, and what is a "Reference Cycle" memory leak?
+   Answer: Every object in Python has a hidden integer called a Reference Count. If variable `A = Object`, the count is 1. If `B = A`, the count is 2. When `B` goes out of scope, the count drops to 1. When `A` goes out of scope, the count drops to 0! The very millisecond the count hits 0, CPython violently deallocates the object from RAM. It is instant and deterministic. However, if Object 1 points to Object 2, and Object 2 points back to Object 1 (a Circular Linked List), their Reference Counts will NEVER mathematically reach 0, even if the main program abandons them! This causes a silent Memory Leak. Python runs a secondary, slower "Tracing GC" periodically in the background specifically to hunt down and destroy these isolated cyclical islands.
+"""
 
 if __name__ == "__main__":
-    print("Running Memory Optimization Tests...")
-    
-    # Test __slots__ memory savings
-    basic_mem, opt_mem = compare_memory()
-    print(f"Basic Point memory size: ~{basic_mem} bytes")
-    print(f"Optimized Point memory size: ~{opt_mem} bytes")
-    assert opt_mem < basic_mem, "Optimized version should use less memory."
-    
-    # Test Flyweight/Interning
-    processor = EventProcessor()
-    for i in range(1000):
-        processor.add_event(1600000000 + i, "USER_LOGIN", i)
-        
-    # All events should point to the exact same string object in memory
-    assert processor.events[0].event_type is processor.events[999].event_type
-    
-    print("All tests passed successfully.")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: System Design (Memory Optimization) Completed.")

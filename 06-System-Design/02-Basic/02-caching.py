@@ -1,219 +1,201 @@
 """
-## A. Concept Name
-Caching in System Design
-
-## B. Problem Statement
-Databases are often the bottleneck in web applications due to slow disk I/O. Without caching, repeated requests for the same data waste resources and increase latency.
-
-## C. Solution / Strategy
-Caching is the technique of storing copies of frequently accessed data in a temporary, high-speed storage layer (usually RAM). This ensures future requests for that data are served significantly faster, reducing latency, database load, and improving scalability.
-
-## D. Caching Strategies
-1. Cache-Aside (Lazy Loading): The application first checks the cache. If a cache miss occurs, it queries the database, updates the cache, and returns the data.
-2. Write-Through: Data is written to the cache and the database simultaneously.
-3. Write-Behind (Write-Back): Data is written to the cache and asynchronously synced to the database.
-
-## E. Eviction Policies
-- LRU (Least Recently Used): Discards the least recently accessed items first.
-- LFU (Least Frequently Used): Discards items accessed least often.
-- TTL (Time-To-Live): Items automatically expire after a certain time.
-
-## F. Learning Objectives
-1. Understand the purpose and mechanics of a cache.
-2. Implement an LRU cache from scratch using a doubly linked list and a hash map for O(1) operations.
-3. Incorporate TTL (Time-To-Live) support into the cache.
-
-## X. Project Connection
-Caching is used extensively in industry for user session management, storing frequent database query results (like product catalogs), powering Content Delivery Networks (CDNs) for static assets, rate limiting, and web page fragment caching.
+# ==============================================================================
+# LABORATORY: SYSTEM DESIGN (CACHE EVICTION & LRU)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# In the previous lab, we built a Cache-Aside mechanism. It was fast.
+# But there is a fatal physical reality: A SQL Database uses Hard Drives (SSD/HDD), 
+# which can easily store 10,000 GB of data. 
+# A Cache (Redis/Memcached) uses pure RAM. RAM is incredibly expensive. You 
+# might only have 16 GB of RAM available.
+#
+# What happens when you try to cache 17 GB of data into 16 GB of RAM?
+# The server crashes with an Out-Of-Memory (OOM) error.
+#
+# To prevent this, Caches MUST have an "Eviction Policy". When the cache is 
+# mathematically full, it must intelligently delete old data to make room for 
+# new data.
+#
+# The most famous algorithm in the world for this is LRU (Least Recently Used). 
+# It deletes whatever data has not been touched in the longest amount of time.
+# To implement LRU in strict O(1) time, you cannot use a simple array. You MUST 
+# combine a Hash Map with a Doubly Linked List!
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Understand Cache Eviction limits.
+# - Master the architecture of the O(1) LRU Cache (Hash Map + Doubly Linked List).
+# - Differentiate Write-Through vs Write-Back caching.
+#
+# ==============================================================================
 """
 
-import time
-from typing import Generic, TypeVar, Dict, Optional, Any
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-K = TypeVar('K')
-V = TypeVar('V')
 
-# ============================================================================
-# Basic Concept: Simple Dictionary Cache (Naïve)
-# ============================================================================
-class NaiveCache(Generic[K, V]):
-    def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.cache: Dict[K, V] = {}
-        
-    def get(self, key: K) -> Optional[V]:
-        return self.cache.get(key)
-        
-    def put(self, key: K, value: V) -> None:
-        if len(self.cache) >= self.capacity and key not in self.cache:
-            # Naive eviction: just remove a random key (first one from iterator)
-            first_key = next(iter(self.cache))
-            del self.cache[first_key]
-        self.cache[key] = value
-
-# ============================================================================
-# Professional Implementation: LRU Cache with TTL
-# ============================================================================
-class Node(Generic[K, V]):
-    """Doubly Linked List Node for LRU Cache."""
-    def __init__(self, key: K, value: V, ttl_seconds: Optional[float] = None):
+# ==============================================================================
+# 3. LRU CACHE (LEAST RECENTLY USED) O(1)
+# ==============================================================================
+class ListNode:
+    """A Node in our Doubly Linked List."""
+    def __init__(self, key: int, value: int):
         self.key = key
         self.value = value
-        self.expiry_time = time.time() + ttl_seconds if ttl_seconds else float('inf')
-        self.prev: Optional['Node[K, V]'] = None
-        self.next: Optional['Node[K, V]'] = None
+        self.prev = None
+        self.next = None
 
-    def is_expired(self) -> bool:
-        """Check if the node has expired based on its TTL."""
-        return time.time() > self.expiry_time
-
-
-class LRUCache(Generic[K, V]):
+class LRUCache:
     """
-    A professional-grade Least Recently Used (LRU) Cache with TTL support.
-    Achieves O(1) time complexity for both `get` and `put` operations by combining
-    a Hash Map and a Doubly Linked List.
+    Combines a Hash Map (for O(1) lookups) with a Doubly Linked List (for O(1) 
+    order manipulation) to achieve an unbreakable O(1) Eviction engine.
     """
     def __init__(self, capacity: int):
-        if capacity <= 0:
-            raise ValueError("Capacity must be greater than 0")
         self.capacity = capacity
-        self.cache: Dict[K, Node[K, V]] = {}
+        # Hash Map: Key -> ListNode pointer
+        self.cache = {}
         
-        # Dummy head and tail to simplify edge cases during insertion and deletion
-        self.head = Node(key=None, value=None)  # type: ignore
-        self.tail = Node(key=None, value=None)  # type: ignore
+        # Dummy Head and Tail to avoid complex Edge Case null-checks
+        self.head = ListNode(-1, -1)
+        self.tail = ListNode(-1, -1)
         self.head.next = self.tail
         self.tail.prev = self.head
 
-    def _remove_node(self, node: Node[K, V]) -> None:
-        """Remove a node from the doubly linked list."""
-        prev_node = node.prev
-        next_node = node.next
-        if prev_node and next_node:
-            prev_node.next = next_node
-            next_node.prev = prev_node
-
-    def _add_node_to_front(self, node: Node[K, V]) -> None:
-        """Add a node right after the dummy head (most recently used position)."""
+    def _add_node_to_front(self, node: ListNode) -> None:
+        """Always insert new or recently used nodes right after the Dummy Head!"""
         node.prev = self.head
         node.next = self.head.next
-        if self.head.next:
-            self.head.next.prev = node
+        
+        # Wire the surrounding nodes to point to our new node
+        self.head.next.prev = node
         self.head.next = node
 
-    def _evict_lru(self) -> None:
-        """Evict the least recently used item (the one right before the dummy tail)."""
-        lru_node = self.tail.prev
-        if lru_node and lru_node != self.head:
-            self._remove_node(lru_node)
-            del self.cache[lru_node.key]
-
-    def _cleanup_expired(self) -> None:
-        """Lazy cleanup of expired items. 
-        In a production system, this could also be driven by a background thread.
-        """
-        # We only check lazily on access for simplicity in this implementation.
-        pass
-
-    def get(self, key: K) -> Optional[V]:
-        """
-        Retrieve an item from the cache.
-        If found and not expired, moves it to the front and returns the value.
-        If expired, removes it and returns None.
-        Time Complexity: O(1)
-        """
-        if key not in self.cache:
-            return None
+    def _remove_node(self, node: ListNode) -> None:
+        """Rips a node out of the Linked List in O(1) time."""
+        prev_node = node.prev
+        next_node = node.next
         
-        node = self.cache[key]
-        if node.is_expired():
-            self._remove_node(node)
-            del self.cache[key]
-            return None
-            
-        # Move accessed node to front (most recently used)
+        # Stitch the surrounding nodes together, bypassing the target node!
+        prev_node.next = next_node
+        next_node.prev = prev_node
+
+    def _move_to_front(self, node: ListNode) -> None:
+        """When a node is accessed, it must be violently moved to the front!"""
         self._remove_node(node)
         self._add_node_to_front(node)
+
+    def _pop_tail(self) -> ListNode:
+        """The absolute oldest, least recently used node is right before the Dummy Tail."""
+        lru_node = self.tail.prev
+        self._remove_node(lru_node)
+        return lru_node
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+            
+        node = self.cache[key]
+        # Because we accessed it, it is no longer the "Least Recently Used"!
+        # Move it to the front of the line!
+        self._move_to_front(node)
         return node.value
 
-    def put(self, key: K, value: V, ttl_seconds: Optional[float] = None) -> None:
-        """
-        Add or update an item in the cache.
-        If capacity is reached, evicts the least recently used item.
-        Time Complexity: O(1)
-        """
+    def put(self, key: int, value: int) -> None:
         if key in self.cache:
-            # Update existing node
+            # It already exists! Update the value and move to front!
             node = self.cache[key]
-            self._remove_node(node)
             node.value = value
-            node.expiry_time = time.time() + ttl_seconds if ttl_seconds else float('inf')
-            self._add_node_to_front(node)
+            self._move_to_front(node)
         else:
-            if len(self.cache) >= self.capacity:
-                self._evict_lru()
-            
-            new_node = Node(key, value, ttl_seconds)
+            # It's a brand new piece of data!
+            new_node = ListNode(key, value)
             self.cache[key] = new_node
             self._add_node_to_front(new_node)
+            
+            # THE EVICTION TRIGGER!
+            # Did we just exceed our physical RAM capacity?
+            if len(self.cache) > self.capacity:
+                # We must evict the Least Recently Used node (The Tail!)
+                evicted_node = self._pop_tail()
+                # We MUST also delete it from the Hash Map!
+                del self.cache[evicted_node.key]
+
+def demonstrate_lru_cache():
+    section_header("LRU Cache Architecture")
+    
+    # We only have enough RAM for exactly 2 items!
+    cache = LRUCache(2)
+    print("LRU Cache initialized with Capacity = 2")
+    
+    print("\nAction: put(1, 100)")
+    cache.put(1, 100)
+    print("Action: put(2, 200)")
+    cache.put(2, 200)
+    
+    # State: [2, 1]. 2 is the most recent.
+    
+    print(f"\nAction: get(1) -> Returns: {cache.get(1)}")
+    # By GETTING 1, 1 is violently moved to the front! 
+    # State: [1, 2]. 2 is now the Least Recently Used!
+    print("[Internal Engine]: Key 1 was moved to the front. Key 2 is now the LRU at the back!")
+    
+    print("\nAction: put(3, 300) -> CACHE IS FULL! EVICTION TRIGGERED!")
+    cache.put(3, 300)
+    # State: [3, 1]. 2 was evicted!
+    
+    print(f"Action: get(2) -> Returns: {cache.get(2)}")
+    print("Why -1? Because Key 2 was evicted to make room for Key 3!")
 
 
-# ============================================================================
-# Advanced Concepts & Interview Focus
-# ============================================================================
+# ==============================================================================
+# 4. WRITE-THROUGH VS WRITE-BACK
+# ==============================================================================
+def write_through_strategy(cache, database, key, value):
+    """
+    Write-Through:
+    When the user saves data, we write it to the Cache AND the Database simultaneously.
+    Pro: Data is 100% mathematically consistent. If the Cache crashes, no data is lost.
+    Con: It is SLOW. The user must wait for the slow SQL disk write to finish.
+    """
+    cache.put(key, value)      # Fast (RAM)
+    database.write(key, value) # Slow (Disk)
+    return "Saved Successfully (Slow but Safe!)"
+
+def write_back_strategy(cache, database, key, value):
+    """
+    Write-Back:
+    When the user saves data, we ONLY write it to the Cache! We immediately return Success!
+    A background asynchronous thread eventually writes the Cache data to the Database.
+    Pro: Blindingly FAST. User experiences 0ms latency.
+    Con: DANGEROUS. If the Cache server loses power before the background thread runs, 
+         the data is permanently destroyed.
+    """
+    cache.put(key, value) # Fast (RAM)
+    # Async process takes over later...
+    return "Saved Successfully (Instant but Dangerous!)"
+
+
+def run_all_labs():
+    demonstrate_lru_cache()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Common Interview Questions:
-1. How does an LRU Cache achieve O(1) time complexity?
-   Answer: By using a Hash Map for O(1) key lookups to find the node, and a Doubly 
-   Linked List to allow O(1) node removal and insertion (moving the accessed node to the front).
+ACTIVE RECALL:
+1. Why is a Hash Map alone mathematically insufficient to build an LRU Cache?
+   Answer: A standard Hash Map provides $O(1)$ lookup time, but Hash Maps completely lack the concept of chronologically ordered "Time". They cannot track *when* an item was accessed relative to other items. To find the "Least Recently Used" item in a pure Hash Map, you would have to attach a timestamp to every entry, and then write an $O(N)$ `for` loop to scan the entire Map and find the oldest timestamp. By fusing the Hash Map with a Doubly Linked List, the List mathematically tracks the chronological order (Head = Newest, Tail = Oldest). The Hash Map stores direct pointers to the List Nodes, allowing $O(1)$ teleportation into the middle of the List to pull nodes to the front.
 
-2. How would you handle a distributed cache (e.g., Redis, Memcached)?
-   Answer: Instead of in-memory on a single machine, we'd use consistent hashing to 
-   distribute keys across multiple cache nodes. Network latency becomes a factor.
+2. In the LRU Doubly Linked List, why do we initialize a "Dummy Head" and a "Dummy Tail"?
+   Answer: Edge Case Elimination! If the Linked List is completely empty, and you try to insert the first node, you have to write complex `if head is None: head = node; tail = node` logic. If you delete the last node, you have to handle `head = None`. This creates spaghetti code prone to Null Pointer Exceptions. By initializing a Dummy Head and a Dummy Tail that are permanently glued to the ends of the list, the list is *never* physically empty. Every real node you insert is mathematically guaranteed to have a valid `prev` and `next` node. You never have to write a single `if node is None:` check in your $O(1)$ removal logic!
 
-3. What are the pitfalls of Write-Through caching?
-   Answer: Every write operation involves writing to both cache and DB, increasing write 
-   latency. However, read latency is extremely low and data consistency is guaranteed.
-
-Complexity Analysis:
-- Space Complexity: O(N) where N is the capacity of the cache (Hash Map + Doubly Linked List nodes).
-- Time Complexity: O(1) for both `get()` and `put()` operations.
-
-Security/Performance Considerations:
-- Memory leaks: An unbounded cache will consume all memory. Always enforce a capacity limit.
-- Cache Stampede (Thundering Herd): When a popular cache key expires, multiple requests might hit 
-  the database simultaneously. Mitigation: Use distributed locking or probabilistic early expiration.
+3. Compare Write-Through and Write-Back caching strategies. When would you use Write-Back?
+   Answer: Write-Through writes to both the Cache (RAM) and the Database (Disk) synchronously. The user waits for the Disk. This guarantees strict Consistency and durability (e.g., Banking transactions). Write-Back writes ONLY to the Cache (RAM), immediately tells the user "Success!", and syncs to Disk later in the background. Write-Back is incredibly fast but risks catastrophic data loss if the RAM loses power. You use Write-Back for extremely high-volume, low-criticality systems—for example, updating a YouTube video's View Count. If a server crashes and we permanently lose 50 views out of 10 Million, no one cares, and the server handled the massive burst of traffic efficiently.
 """
-
-# ============================================================================
-# Tests / Example Usage
-# ============================================================================
-def test_lru_cache() -> None:
-    print("Testing LRU Cache...")
-    cache: LRUCache[str, str] = LRUCache(capacity=3)
-    
-    cache.put("A", "Alpha")
-    cache.put("B", "Bravo")
-    cache.put("C", "Charlie")
-    
-    # State: A, B, C (C is MRU, A is LRU)
-    assert cache.get("A") == "Alpha", "A should be in cache"
-    # State: B, C, A (A is MRU, B is LRU)
-    
-    cache.put("D", "Delta")
-    # State: C, A, D (D is MRU, C is LRU, B should be evicted)
-    
-    assert cache.get("B") is None, "B should have been evicted"
-    assert cache.get("C") == "Charlie", "C should be in cache"
-    
-    # TTL Test
-    cache.put("E", "Echo", ttl_seconds=0.5)
-    assert cache.get("E") == "Echo", "E should be in cache"
-    time.sleep(0.6)
-    assert cache.get("E") is None, "E should have expired"
-    
-    print("All LRU Cache tests passed!\\n")
 
 if __name__ == "__main__":
-    test_lru_cache()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: System Design (Cache Eviction) Completed.")

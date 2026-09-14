@@ -1,197 +1,188 @@
 """
-Professional Tic-Tac-Toe Implementation
-=======================================
-
-This module contains a production-grade implementation of Tic-Tac-Toe,
-featuring Object-Oriented design, type hinting, and an unbeatable AI 
-using the Minimax algorithm.
-
-Please see the README.md for architectural details and conceptual explanations.
+# ==============================================================================
+# LABORATORY: PROJECT-BASED LEARNING (STATE MACHINE ARCHITECTURE)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer builds a text-based RPG. They write a 1,000-line `while` 
+# loop containing a massive block of nested `if/elif` statements checking 
+# the player's health, inventory, and location. When they try to add a new 
+# enemy, they accidentally place an `if` inside the wrong block, mathematically 
+# allowing the player to fight the dragon while simultaneously sleeping in the inn.
+#
+# A senior software architect builds an RPG using a "Finite State Machine" (FSM). 
+# They mathematically isolate every location (Town, Forest, Boss) into an 
+# independent, object-oriented "State" class. The main Game Loop does not contain 
+# a single `if/elif` statement. It merely asks the current active State what to do, 
+# and transitions flawlessly. If they want to add a new dungeon, they write a new 
+# standalone Class and inject it into the Engine without touching the core routing.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Finite State Machine (FSM) architecture.
+# - Execute Polymorphic routing (bypassing `if/elif` logic).
+# - Understand the architecture of a continuous "Game Loop".
+#
+# ==============================================================================
 """
 
-import math
-from typing import List, Optional, Tuple
 from abc import ABC, abstractmethod
+import time
+import sys
+
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
 
-class Board:
+# ==============================================================================
+# 3. THE PLAYER STATE (THE PAYLOAD)
+# ==============================================================================
+# The Player object acts as a global payload passed between States.
+class Player:
+    def __init__(self, name: str):
+        self.name = name
+        self.hp = 100
+        self.gold = 0
+        self.is_alive = True
+
+
+# ==============================================================================
+# 4. THE FINITE STATE MACHINE (FSM) ARCHITECTURE
+# ==============================================================================
+class GameState(ABC):
     """
-    Represents the Tic-Tac-Toe playing board.
-    Handles board state, move validation, and win detection.
+    THE ABSTRACT BASE CLASS (The Strategy Interface).
+    Every single location in the game MUST inherit from this and implement `run`.
+    The `run` method MUST mathematically return the String name of the NEXT state!
     """
-    def __init__(self) -> None:
-        # Initialize an empty 3x3 board with spaces
-        self.state: List[str] = [' ' for _ in range(9)]
-
-    def display(self) -> None:
-        """Prints the current board state to the console."""
-        print("\n")
-        for row in range(3):
-            print(f" {self.state[row*3]} | {self.state[row*3+1]} | {self.state[row*3+2]} ")
-            if row < 2:
-                print("---+---+---")
-        print("\n")
-
-    def make_move(self, position: int, symbol: str) -> bool:
-        """
-        Attempts to place a symbol on the board.
-        Returns True if successful, False if the position is invalid/occupied.
-        """
-        if 0 <= position < 9 and self.state[position] == ' ':
-            self.state[position] = symbol
-            return True
-        return False
-
-    def get_available_moves(self) -> List[int]:
-        """Returns a list of indices that are currently empty."""
-        return [i for i, cell in enumerate(self.state) if cell == ' ']
-
-    def has_winner(self, symbol: str) -> bool:
-        """Checks if the given symbol has achieved a winning combination."""
-        winning_combinations = [
-            (0, 1, 2), (3, 4, 5), (6, 7, 8),  # Rows
-            (0, 3, 6), (1, 4, 7), (2, 5, 8),  # Columns
-            (0, 4, 8), (2, 4, 6)              # Diagonals
-        ]
-        return any(all(self.state[pos] == symbol for pos in combo) for combo in winning_combinations)
-
-    def is_full(self) -> bool:
-        """Checks if the board is completely filled."""
-        return ' ' not in self.state
-
-    def copy(self) -> 'Board':
-        """Returns a deep copy of the board (useful for AI simulations)."""
-        new_board = Board()
-        new_board.state = self.state.copy()
-        return new_board
-
-
-class Player(ABC):
-    """Abstract base class representing a generic player."""
-    def __init__(self, symbol: str):
-        self.symbol = symbol
-
     @abstractmethod
-    def get_move(self, board: Board) -> int:
-        """Determine the next move based on the board state."""
+    def run(self, player: Player) -> str:
         pass
 
 
-class HumanPlayer(Player):
-    """Represents a human player interacting via standard IO."""
-    def get_move(self, board: Board) -> int:
-        valid_move = False
-        move = -1
-        while not valid_move:
-            try:
-                user_input = input(f"Player {self.symbol}, enter your move (1-9): ")
-                # Adjust for 0-indexed internal board representation
-                move = int(user_input) - 1
-                if move in board.get_available_moves():
-                    valid_move = True
-                else:
-                    print("Invalid move. Cell is either occupied or out of range. Try again.")
-            except ValueError:
-                print("Invalid input. Please enter a number between 1 and 9.")
-        return move
-
-
-class AIPlayer(Player):
-    """Represents an AI opponent utilizing the Minimax algorithm."""
-    
-    def __init__(self, symbol: str):
-        super().__init__(symbol)
-        self.opponent_symbol = 'O' if symbol == 'X' else 'X'
-
-    def get_move(self, board: Board) -> int:
-        print(f"AI ({self.symbol}) is thinking...")
-        best_score = -math.inf
-        best_move = -1
+class MainMenuState(GameState):
+    def run(self, player: Player) -> str:
+        print("\n  [MAIN MENU]")
+        print("  1. Start Adventure")
+        print("  2. Exit Game")
         
-        for move in board.get_available_moves():
-            board.make_move(move, self.symbol)
-            score = self.minimax(board, 0, False)
-            board.state[move] = ' '  # Undo move
-            
-            if score > best_score:
-                best_score = score
-                best_move = move
-                
-        return best_move
+        # In a real game, this would be an `input()`.
+        # We hardcode the simulation to prevent the CI/CD pipeline from freezing!
+        print("  > Auto-selecting '1'...")
+        time.sleep(0.5)
+        
+        return "TOWN" # Mathematically transitions to the Town state!
 
-    def minimax(self, board: Board, depth: int, is_maximizing: bool) -> float:
+
+class TownState(GameState):
+    def run(self, player: Player) -> str:
+        print(f"\n  [TOWN SQUARE] HP: {player.hp} | Gold: {player.gold}")
+        print("  You are safe in the town. Where will you go?")
+        print("  1. Go to the Dark Forest")
+        print("  2. Sleep at the Inn (-10 Gold)")
+        
+        print("  > Auto-selecting '1' (Dark Forest)...")
+        time.sleep(0.5)
+        
+        return "FOREST"
+
+
+class ForestState(GameState):
+    def run(self, player: Player) -> str:
+        print(f"\n  [DARK FOREST] HP: {player.hp} | Gold: {player.gold}")
+        print("  A Goblin ambushes you!")
+        
+        print("  > Mathematically simulating combat...")
+        player.hp -= 30
+        player.gold += 50
+        
+        if player.hp <= 0:
+            player.is_alive = False
+            print("  [DEATH] You were slain by the Goblin.")
+            return "GAME_OVER"
+            
+        print(f"  [VICTORY] You killed the Goblin! Looted 50 Gold. You took 30 damage.")
+        time.sleep(0.5)
+        
+        # We mathematically loop back to the Town!
+        print("  > Retreating to Town...")
+        return "TOWN"
+
+
+class GameOverState(GameState):
+    def run(self, player: Player) -> str:
+        print("\n  [GAME OVER]")
+        print(f"  Final Stats -> Name: {player.name} | Gold: {player.gold}")
+        return "QUIT"
+
+
+# ==============================================================================
+# 5. THE GAME ENGINE (THE ROUTER)
+# ==============================================================================
+class GameEngine:
+    def __init__(self):
+        # The FSM Registry! The engine has NO IDEA what these states actually do.
+        self.states = {
+            "MENU": MainMenuState(),
+            "TOWN": TownState(),
+            "FOREST": ForestState(),
+            "GAME_OVER": GameOverState()
+        }
+        self.current_state = "MENU"
+        self.player = Player("Hero")
+
+    def execute_game_loop(self):
         """
-        The Minimax algorithm.
-        Returns a score representing the desirability of the board state.
+        THE INFINITE GAME LOOP.
+        Notice there are absolutely zero `if/elif` statements checking where 
+        the player is! This is architectural perfection.
         """
-        # Base cases: Terminal states
-        if board.has_winner(self.symbol):
-            return 10 - depth  # Prefer faster wins
-        if board.has_winner(self.opponent_symbol):
-            return depth - 10  # Penalize faster losses
-        if board.is_full():
-            return 0
-
-        if is_maximizing:
-            best_score = -math.inf
-            for move in board.get_available_moves():
-                board.make_move(move, self.symbol)
-                score = self.minimax(board, depth + 1, False)
-                board.state[move] = ' '
-                best_score = max(score, best_score)
-            return best_score
-        else:
-            best_score = math.inf
-            for move in board.get_available_moves():
-                board.make_move(move, self.opponent_symbol)
-                score = self.minimax(board, depth + 1, True)
-                board.state[move] = ' '
-                best_score = min(score, best_score)
-            return best_score
-
-
-class TicTacToeGame:
-    """Orchestrates the game loop and state transitions."""
-    def __init__(self, player1: Player, player2: Player):
-        self.board = Board()
-        self.players = [player1, player2]
-        self.current_player_index = 0
-
-    def play(self) -> None:
-        print("Welcome to Professional Tic-Tac-Toe!")
-        print("Positions are mapped 1-9 starting from top-left to bottom-right.")
+        section_header("FSM Execution: The Infinite Game Loop")
         
-        self.board.display()
+        # Limit the simulation to prevent an infinite loop in the lab
+        turn_limit = 5
+        current_turn = 0
         
-        while True:
-            current_player = self.players[self.current_player_index]
+        while self.current_state != "QUIT" and current_turn < turn_limit:
+            # 1. We dynamically grab the current mathematical State object!
+            active_state_object = self.states.get(self.current_state)
             
-            # 1. Get and apply move
-            move = current_player.get_move(self.board)
-            self.board.make_move(move, current_player.symbol)
-            self.board.display()
-            
-            # 2. Check for win
-            if self.board.has_winner(current_player.symbol):
-                print(f"🎉 Player {current_player.symbol} wins! 🎉")
+            if not active_state_object:
+                print(f"  [CRITICAL ERROR] State '{self.current_state}' does not exist!")
                 break
                 
-            # 3. Check for draw
-            if self.board.is_full():
-                print("It's a draw! 🤝")
-                break
-                
-            # 4. Switch turns
-            self.current_player_index = 1 - self.current_player_index
+            # 2. We blindly execute the state and receive the pointer to the NEXT state!
+            # The Engine does not care if it's the Forest, the Town, or a Boss fight.
+            next_state_string = active_state_object.run(self.player)
+            
+            # 3. We mathematically shift the FSM!
+            self.current_state = next_state_string
+            current_turn += 1
+            
+        print("\n  [SHUTDOWN] Game Engine Terminated cleanly.")
 
 
-# -----------------------------------------------------------------------------
-# Test Harness / Main Guard
-# -----------------------------------------------------------------------------
+def run_all_labs():
+    engine = GameEngine()
+    engine.execute_game_loop()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "Why did we mathematically force every GameState class to return a String (the next state) instead of just hardcoding `engine.current_state = 'TOWN'` inside the Forest class?"
+   Senior Answer: "Architectural Coupling and Dependency Injection. If the `ForestState` class reaches out and modifies `engine.current_state` directly, the Forest becomes permanently coupled to the specific global `engine` object. You cannot mathematically Unit Test the Forest in isolation, because you would have to boot up the entire Game Engine just to test combat. By returning a pure String, the Forest class acts as a mathematically isolated function ($f(x) \\rightarrow y$). The Game Engine handles the routing, and the State handles the logic, achieving perfect Separation of Concerns."
+
+2. Interviewer: "How does the Finite State Machine (FSM) architecture mathematically prevent the classic bug where a player opens their inventory while simultaneously fighting a dragon?"
+   Senior Answer: "Mutual Exclusion. In a massive, monolithic `while` loop that relies on boolean flags (`if in_combat: ... if inventory_open: ...`), it is mathematically trivial for a developer to accidentally trigger two flags simultaneously, allowing code blocks to execute concurrently. An FSM mathematically guarantees absolute Mutual Exclusion. The `current_state` variable can only hold exactly one pointer at any given millisecond. If `current_state = 'DRAGON_COMBAT'`, the code inside the `INVENTORY` state physically cannot be executed, rendering race conditions and concurrent overlap bugs mathematically impossible."
+
+3. Interviewer: "What is the architectural purpose of the 'Infinite Game Loop' (`while True:`) in game development, and why doesn't it instantly crash the CPU at $100\\%$ utilization?"
+   Senior Answer: "Every video game on earth, from Pong to Cyberpunk 2077, runs inside a single infinite `while` loop. The loop handles three mathematical phases: 1) Process User Input, 2) Update Physics/State, 3) Render the Screen. If left unconstrained, this loop will execute millions of times per second, maxing out a CPU core at $100\\%$ and rendering $5,000$ Frames Per Second, instantly melting the GPU. Game Engines prevent this by calculating a 'Delta Time' at the end of every loop. If the math finished in $2$ milliseconds, but the game is capped at $60$ FPS (which requires exactly $16.6$ milliseconds per frame), the engine mathematically commands the OS to `sleep` the thread for the remaining $14.6$ milliseconds. This drops CPU utilization to near $0\\%$, keeping the hardware cool while maintaining a flawless 60 FPS lock."
+"""
+
 if __name__ == "__main__":
-    # You can change these to two HumanPlayers or two AIPlayers!
-    p1 = HumanPlayer("X")
-    p2 = AIPlayer("O")
-    
-    game = TicTacToeGame(p1, p2)
-    game.play()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Capstone Project (Game State Machine) Completed.")

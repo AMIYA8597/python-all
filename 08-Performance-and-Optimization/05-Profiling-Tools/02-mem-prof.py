@@ -1,114 +1,127 @@
 """
-Profiling Tools: Memory Profiler
-
-Learning Objectives:
-1. Understand line-by-line memory profiling.
-2. Use the external `memory_profiler` library.
-3. Visualize memory consumption over the lifespan of a function.
-4. Identify which specific line causes memory spikes.
-
-Concept Explanation:
-While `tracemalloc` tracks block allocations, `memory_profiler` tracks the OS 
-RSS (Resident Set Size) memory line-by-line. It is slower than normal execution 
-but provides an incredibly detailed view of where RAM is consumed and released 
-within a single function.
-
-Requires: `pip install memory_profiler`
+# ==============================================================================
+# LABORATORY: PERFORMANCE AND OPTIMIZATION (LINE-BY-LINE MEMORY PROFILING)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# `tracemalloc` is incredible for finding memory leaks across a massive application, 
+# but it requires manual differential snapshots. Sometimes, an engineer knows 
+# exactly *which* function is crashing the server with an OOM (Out-Of-Memory) error, 
+# but they have no idea *which line* inside the 500-line function is the culprit.
+#
+# A senior engineer installs the `memory_profiler` library. By simply adding an 
+# `@profile` decorator to the suspect function, they generate a mathematical, 
+# line-by-line breakdown showing the exact Megabyte consumption of every single 
+# variable assignment, instantly identifying the massive List Comprehension that 
+# is devouring 4 Gigabytes of RAM.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master line-by-line memory profiling using `memory_profiler`.
+# - Prove the memory behavior of List Comprehensions vs Generator Expressions.
+# - Understand the extreme performance overhead of line-by-line profiling.
+#
+# ==============================================================================
 """
 
-# Try to import the profiler. If not installed, we'll mock it so the script runs.
+import sys
+
+# We gracefully handle the absence of the third-party memory_profiler library!
 try:
     from memory_profiler import profile
+    HAS_MEM_PROF = True
 except ImportError:
-    print("Warning: memory_profiler not installed. Profiling will be mocked.")
+    HAS_MEM_PROF = False
+    # Create a dummy decorator so the code doesn't crash if it's missing!
     def profile(func):
         return func
 
-import time
-from typing import List
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-# --- Basic Implementation ---
-@profile
-def create_large_lists() -> List[int]:
-    """Function demonstrating memory growth and shrinkage."""
-    print("Step 1: Creating array 1")
-    arr1 = [1] * (10 ** 6)  # Approx 8MB
-    time.sleep(0.1)
-    
-    print("Step 2: Creating array 2")
-    arr2 = [2] * (2 * 10 ** 6) # Approx 16MB
-    time.sleep(0.1)
-    
-    print("Step 3: Deleting array 1")
-    del arr1
-    time.sleep(0.1)
-    
-    return arr2
 
-# --- Intermediate Implementation ---
-# To run memory_profiler from the command line on this file:
-# python -m memory_profiler 02-mem-prof.py
+# ==============================================================================
+# 3. THE TARGET SCRIPT: THE MEMORY HOG
+# ==============================================================================
+# By adding the @profile decorator, the memory_profiler hooks into the C-API.
+# It mathematically queries the Operating System for the process's RAM usage 
+# BEFORE and AFTER every single line of code in this function!
 
 @profile
-def memory_leak_simulation() -> None:
-    """Simulate a subtle memory leak."""
-    cache = []
-    for i in range(5):
-        # Local data that should be garbage collected
-        local_data = [i] * 100_000
-        # Oops, we append it to an external cache! Memory leak!
-        cache.append(local_data)
+def memory_intensive_function():
+    """
+    We will mathematically prove the difference between creating a physical list 
+    in RAM, and creating a lazy generator.
+    """
+    # 1. Base State
+    base_string = "Hello World!"
+    
+    # 2. Massive Allocation (The RAM Spike!)
+    # A list comprehension immediately evaluates and physically constructs 
+    # all 5,000,000 strings in RAM simultaneously!
+    massive_list = [f"Data_{i}" * 10 for i in range(5_000_000)]
+    
+    # 3. Deletion (The RAM Drop!)
+    # We explicitly free the memory to prove the profiler can track deallocations!
+    del massive_list
+    
+    # 4. Lazy Allocation (Zero RAM Spike!)
+    # A Generator Expression `(...)` creates a mathematical rule, not physical data. 
+    # It takes up almost zero bytes, regardless of the 5,000,000 iterations!
+    lazy_generator = (f"Data_{i}" * 10 for i in range(5_000_000))
+    
+    return base_string
+
+
+# ==============================================================================
+# 4. EXECUTING THE PROFILER
+# ==============================================================================
+def demonstrate_memory_profiler():
+    section_header("Line-by-Line Memory Profiling (@profile)")
+    
+    if not HAS_MEM_PROF:
+        print("  [ERROR] `memory_profiler` is not installed.")
+        print("  Run `pip install memory_profiler` to execute this lab!")
+        print("  (We will simulate the expected output below instead.)")
+        print("\n  [SIMULATED OUTPUT]")
+        print("  Line #    Mem usage    Increment  Occurrences   Line Contents")
+        print("  =============================================================")
+        print("      46     40.2 MiB     40.2 MiB           1   @profile")
+        print("      47                                         def memory_intensive_function():")
+        print("      52     40.2 MiB      0.0 MiB           1       base_string = 'Hello World!'")
+        print("      57    420.5 MiB    380.3 MiB           1       massive_list = [f'Data_{i}' * 10 for i in range(5_000_000)]")
+        print("      61     40.2 MiB   -380.3 MiB           1       del massive_list")
+        print("      66     40.2 MiB      0.0 MiB           1       lazy_generator = (f'Data_{i}' * 10 for i in range(5_000_000))")
+        print("      68     40.2 MiB      0.0 MiB           1       return base_string")
+        return
         
-# --- Advanced Implementation / Performance Analysis ---
-"""
-Output of memory_profiler looks like this:
-Line #    Mem usage    Increment  Occurrences   Line Contents
-=============================================================
-    28     40.0 MiB     40.0 MiB           1   @profile
-    29                                         def create_large_lists():
-    ...
-    31     47.6 MiB      7.6 MiB           1       arr1 = [1] * (10 ** 6)
-    ...
-    35     62.9 MiB     15.3 MiB           1       arr2 = [2] * (2 * 10 ** 6)
-    ...
-    38     55.3 MiB     -7.6 MiB           1       del arr1
+    print("  [EXECUTION] Running the Memory Profiler...")
+    print("  (This will take slightly longer than normal due to Profiler overhead!)")
+    print("  The report will print automatically to stdout!\n")
     
-Increment column is the most important: it shows how much memory that specific 
-line ADDED (+) or FREED (-).
+    memory_intensive_function()
+
+
+def run_all_labs():
+    demonstrate_memory_profiler()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "How does `memory_profiler` mathematically track memory line-by-line, and why is this technique considered catastrophically slow?"
+   Senior Answer: "The `memory_profiler` leverages Python's `sys.settrace()` facility. It injects a callback function that is triggered *before every single line of bytecode* is executed. Inside this callback, it executes an OS-level system call (like reading `/proc/self/stat` on Linux) to ask the Operating System exactly how many Megabytes the Python Process is currently consuming. Making an OS Kernel System Call after *every single line of code* is mathematically devastating to performance. A function that normally takes 0.1 seconds to execute might take 15.0 seconds when run under `memory_profiler`. It is an extreme diagnostic tool, never to be used in production."
+
+2. Interviewer: "In the profile output, what is the mathematical difference between the 'Mem usage' column and the 'Increment' column?"
+   Senior Answer: "The 'Mem usage' column displays the *Total Absolute RAM* consumed by the entire Python OS Process at the exact moment that line finished executing (e.g., $420$ MiB). The 'Increment' column is the mathematical delta. It subtracts the Mem usage of the *previous* line from the current line, showing exactly how much RAM that specific line of code allocated (e.g., $+380$ MiB) or freed (e.g., $-380$ MiB). The Increment column is what engineers actually look at to instantly identify the line causing the OOM crash."
+
+3. Interviewer: "If the 'massive_list' caused a 380 MiB RAM spike, why did the 'lazy_generator' (which looped the exact same 5,000,000 times) show an Increment of 0.0 MiB?"
+   Senior Answer: "Because of Eager vs. Lazy Evaluation. A List Comprehension `[...]` forces the CPU to physically calculate all 5,000,000 strings and permanently lock them into RAM simultaneously, demanding 380 MiB of space. A Generator Expression `(...)` calculates absolutely nothing. It physically allocates a tiny state machine (a generator object) in RAM (usually $\\approx 120$ bytes) that mathematically remembers the *instructions* on how to build the strings. The strings are only materialized into RAM one by one, if and only if the generator is iterated over (e.g., using `next()`), resulting in a constant $O(1)$ memory footprint regardless of N."
 """
 
-# --- Edge Cases ---
-def garbage_collection_delay():
-    """
-    Python's Garbage Collector doesn't immediately return memory to the OS.
-    If you `del` a list, `memory_profiler` might not show an immediate drop 
-    in RSS memory because Python keeps the arena allocated for future use.
-    Forcing `gc.collect()` sometimes clarifies the profiling output.
-    """
-    import gc
-    gc.collect()
-
-# --- Interview Challenge ---
-"""
-Challenge: What is the difference between `tracemalloc` and `memory_profiler`?
-Answer: `tracemalloc` tracks Python's internal memory allocations (mallocs).
-`memory_profiler` queries the Operating System for the process's total RSS memory 
-usage at each line. Therefore, `memory_profiler` includes overhead from C extensions 
-and the Python interpreter itself.
-"""
-
-# --- Tests ---
-def run_tests():
-    res = create_large_lists()
-    assert len(res) == 2000000
-    print("\nAll tests passed.")
-
-if __name__ == '__main__':
-    print("--- Performance Analysis: memory_profiler ---")
-    create_large_lists()
-    memory_leak_simulation()
-    run_tests()
-    
-    print("\nTip: To see the actual line-by-line profile, run:")
-    print("pip install memory_profiler")
-    print("python -m memory_profiler 02-mem-prof.py")
+if __name__ == "__main__":
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Profiling (Memory Profiler) Completed.")

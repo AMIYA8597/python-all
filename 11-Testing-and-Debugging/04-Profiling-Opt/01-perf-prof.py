@@ -1,130 +1,172 @@
 """
-Performance Profiling in Python
-
-Learning Objectives:
-1. Understand how to measure execution time of Python code.
-2. Learn to use the built-in `cProfile` module for detailed performance analysis.
-3. Learn to use the `timeit` module for micro-benchmarking.
-4. Identify bottlenecks in code using profiling data.
-
-Concept Explanation:
-Performance profiling is the process of measuring the execution time of different parts
-of a program to identify bottlenecks. Python provides built-in tools like `cProfile` 
-(a C-extension with reasonable overhead suitable for most profiling) and `timeit` 
-(for measuring small snippets of code accurately).
-
-Imports:
-- cProfile: For profiling the execution of entire functions or scripts.
-- pstats: For formatting and analyzing profiling results.
-- timeit: For accurate timing of small code blocks.
-- time: For basic manual timing.
+# ==============================================================================
+# LABORATORY: PROFILING & OPTIMIZATION (LINE PROFILER)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer uses `cProfile` and determines that the `process_data()` 
+# function takes 5 seconds to run. But `process_data()` is a 100-line function! 
+# `cProfile` mathematically cannot tell you *which line* inside the function is 
+# slow. The developer guesses that the database query is slow, spends a day 
+# optimizing SQL, and the function still takes 5 seconds.
+#
+# A senior software engineer uses `@profile` from the `line_profiler` library. 
+# They execute a micro-level static analysis pass on the bytecode. The line 
+# profiler prints the exact execution time for every single line of code in the 
+# function. It mathematically proves that the SQL query took 0.001 seconds, but 
+# a rogue `for` loop executing an `append()` 10 million times took 4.999 seconds. 
+# They replace the loop with a List Comprehension, and the function drops to 
+# 0.5 seconds immediately.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master granular execution tracking via `line_profiler`.
+# - Execute algorithmic optimization (List Comprehensions vs `append`).
+# - Architect micro-benchmarking pipelines.
+#
+# ==============================================================================
 """
 
-import cProfile
-import pstats
 import time
 import timeit
-import io
-from typing import List, Callable, Any
 
-# ==========================================
-# Basic Implementation: Manual Timing
-# ==========================================
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-def basic_manual_timing(func: Callable, *args: Any, **kwargs: Any) -> Any:
-    """Measures execution time using the time module."""
-    start_time = time.perf_counter()
-    result = func(*args, **kwargs)
-    end_time = time.perf_counter()
-    print(f"Function {func.__name__} took {end_time - start_time:.6f} seconds.")
-    return result
 
-# ==========================================
-# Intermediate Implementation: Using cProfile
-# ==========================================
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (THE BOTTLENECK)
+# ==============================================================================
+# In a real environment, you run `kernprof -l -v script.py` and put the 
+# @profile decorator on the function you want to measure.
 
-def profile_function(func: Callable) -> Callable:
-    """A decorator that uses cProfile to profile a function."""
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
-        profiler = cProfile.Profile()
-        profiler.enable()
-        result = func(*args, **kwargs)
-        profiler.disable()
-        
-        s = io.StringIO()
-        sortby = 'cumulative'
-        ps = pstats.Stats(profiler, stream=s).sort_stats(sortby)
-        ps.print_stats(10) # Print top 10 lines
-        print(s.getvalue())
-        
-        return result
-    return wrapper
-
-# Sample functions to profile
-def slow_function(n: int) -> List[int]:
-    """A deliberately slow function to demonstrate profiling."""
-    result = []
-    for i in range(n):
-        # Inefficient way to build a list
-        result.insert(0, i)
-    return result
-
-def fast_function(n: int) -> List[int]:
-    """A faster alternative to slow_function."""
-    return [i for i in range(n - 1, -1, -1)]
-
-@profile_function
-def run_workload() -> None:
-    """Runs workloads to be profiled."""
-    slow_function(10000)
-    fast_function(10000)
-
-# ==========================================
-# Advanced Implementation: Micro-benchmarking with timeit
-# ==========================================
-
-def micro_benchmark() -> None:
-    """Uses timeit to compare two small code snippets."""
-    setup_code = ""
-    stmt_slow = "[i for i in range(1000)]"
-    stmt_fast = "list(range(1000))"
+class DataOptimizer:
     
-    time_slow = timeit.timeit(stmt=stmt_slow, setup=setup_code, number=10000)
-    time_fast = timeit.timeit(stmt=stmt_fast, setup=setup_code, number=10000)
+    # @profile (Requires line_profiler installed)
+    @staticmethod
+    def process_data_slow(data: list) -> list:
+        """
+        The Junior Approach.
+        This function contains a massive, hidden performance bottleneck.
+        """
+        results = []
+        
+        # Line A: Basic math (Extremely Fast)
+        x = 100 * 50
+        
+        # Line B: The Bottleneck! (Extremely Slow)
+        for item in data:
+            # Calling `.append()` on a list inside a massive loop forces Python
+            # to do millions of dictionary lookups and function pointer evaluations.
+            results.append(item * 2 + x)
+            
+        return results
+
+    # @profile
+    @staticmethod
+    def process_data_fast(data: list) -> list:
+        """
+        The Senior Approach (List Comprehension).
+        By moving the logic into a List Comprehension, Python bypasses the 
+        `.append()` lookup and executes the loop directly in highly optimized C-code.
+        """
+        x = 100 * 50
+        
+        # Line B: The Optimization!
+        return [item * 2 + x for item in data]
+
+
+# ==============================================================================
+# 4. THE LINE PROFILER SIMULATOR
+# ==============================================================================
+class LineProfilerSimulator:
+    """
+    Simulates the exact output of the `line_profiler` library.
+    It shows you exactly how a senior engineer reads the terminal output.
+    """
+    @staticmethod
+    def display_mock_output():
+        print("  [INIT] Executing kernprof (Line Profiler)...\n")
+        
+        output = """
+        Timer unit: 1e-06 s
+
+        Total time: 1.25 s
+        File: main.py
+        Function: process_data_slow at line 42
+
+        Line #      Hits         Time  Per Hit   % Time  Line Contents
+        ==============================================================
+            42                                           @profile
+            43                                           def process_data_slow(data: list) -> list:
+            44         1          2.0      2.0      0.0      results = []
+            45         1          1.0      1.0      0.0      x = 100 * 50
+            46   1000001     250000.0      0.2     20.0      for item in data:
+            47   1000000    1000000.0      1.0     80.0          results.append(item * 2 + x)
+            48         1          1.0      1.0      0.0      return results
+        """
+        print(output)
+        
+        print("  [ANALYSIS]")
+        print("  Notice the `% Time` column. It mathematically proves that 80% of the ")
+        print("  CPU's time was spent purely evaluating the `.append()` function.")
+
+
+# ==============================================================================
+# 5. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_optimization():
+    section_header("Profiling & Optimization: Line Profiler")
     
-    print(f"List comprehension time: {time_slow:.4f}s")
-    print(f"list() constructor time: {time_fast:.4f}s")
+    LineProfilerSimulator.display_mock_output()
+    
+    print("\n  [EXECUTION] Running live benchmark on 5,000,000 items to prove the optimization...")
+    
+    # We generate a massive dataset!
+    massive_dataset = list(range(5_000_000))
+    
+    # BENCHMARK 1: The Slow Loop
+    print("  -> Testing `for loop` with `.append()`...")
+    start_slow = timeit.default_timer()
+    DataOptimizer.process_data_slow(massive_dataset)
+    time_slow = timeit.default_timer() - start_slow
+    
+    # BENCHMARK 2: The List Comprehension
+    print("  -> Testing List Comprehension...")
+    start_fast = timeit.default_timer()
+    DataOptimizer.process_data_fast(massive_dataset)
+    time_fast = timeit.default_timer() - start_fast
+    
+    print("\n  [ARCHITECTURE PROOF]")
+    print(f"  Slow Time: {time_slow:.4f} seconds")
+    print(f"  Fast Time: {time_fast:.4f} seconds")
+    
+    if time_fast > 0:
+        speedup = time_slow / time_fast
+        print(f"  -> [FLAWLESS] The List Comprehension was mathematically {speedup:.1f}x faster!")
+        print("  By eliminating the `append` function call overhead, we reclaimed massive CPU cycles.")
 
-# ==========================================
-# Edge Cases & Interview Challenge
-# ==========================================
 
+def run_all_labs():
+    demonstrate_optimization()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Edge Cases:
-1. Profiling very fast functions: Overhead of cProfile might dominate. Use timeit instead.
-2. Multi-threaded code: cProfile tracks time per thread; can be tricky to analyze overall performance.
+ACTIVE RECALL:
+1. Interviewer: "Why does calling `results.append()` inside a loop execute so much slower than writing a List Comprehension `[x for x in data]`?"
+   Senior Answer: "Global/Attribute Lookup Overhead. In Python, everything is a dictionary under the hood. When the interpreter sees `results.append()`, it must execute a mathematically expensive `getattr()` call. It hashes the string 'append', searches the `results` object's dictionary for that key, extracts the C-function pointer, and *then* executes the math. If the loop runs $5$ million times, Python wastes CPU cycles doing $5$ million dictionary lookups for a method that never changes. A List Comprehension mathematically bypasses this entirely. The CPython interpreter compiles it into a specialized bytecode instruction (`LIST_APPEND`), which pushes the data directly into the C-array without ever executing a Python-level attribute lookup."
 
-Interview Challenge:
-Question: Given a function that processes a large dataset, how would you determine if the bottleneck is CPU bound or I/O bound using Python tools?
-Hint: Compare time.perf_counter() (wall-clock time) and time.process_time() (CPU time).
+2. Interviewer: "If `line_profiler` gives us such granular, line-by-line data, why don't we just use it everywhere instead of `cProfile`?"
+   Senior Answer: "Massive Tracing Overhead. `cProfile` only intercepts the interpreter at the exact moment a function is entered or exited. `line_profiler` is mathematically invasive; it forces the CPython interpreter to halt and record a timestamp before executing *every single line of code*. If you run `line_profiler` on an entire application, the application will run $10\\times$ to $50\\times$ slower, making it impossible to benchmark realistically. The architectural workflow is: Use `cProfile` to quickly find the $1$ broken function out of $1,000$. Then, apply `@profile` *only* to that single broken function to find the exact broken line."
+
+3. Interviewer: "In our benchmark, we moved `x = 100 * 50` outside the loop. Why is this mathematically important for performance?"
+   Senior Answer: "Loop Invariant Code Motion. If you put `100 * 50` inside the loop, the CPU will mathematically calculate $5000$ over and over again, $5$ million times. A smart C++ compiler (like GCC or LLVM) will detect this 'Loop Invariant' and automatically move the calculation outside the loop during compilation. However, CPython does *not* do aggressive static optimization; it interprets the bytecode exactly as written. Therefore, the Python developer must manually execute 'Loop Invariant Code Motion', hoisting static calculations out of the loop to prevent millions of wasted CPU cycles."
 """
-
-def test_performance_profiling() -> None:
-    """Tests the profiling functions."""
-    result = basic_manual_timing(fast_function, 1000)
-    assert len(result) == 1000
-    print("All tests passed!")
 
 if __name__ == "__main__":
-    print("--- Performance Profiling ---")
-    print("1. Manual Timing:")
-    basic_manual_timing(slow_function, 5000)
-    
-    print("\n2. cProfile Decorator:")
-    run_workload()
-    
-    print("\n3. timeit Micro-benchmarking:")
-    micro_benchmark()
-    
-    print("\n4. Running Tests:")
-    test_performance_profiling()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Profiling & Optimization (Line Profiler) Completed.")
