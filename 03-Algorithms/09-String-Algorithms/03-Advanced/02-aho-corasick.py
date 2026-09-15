@@ -1,3 +1,4 @@
+from collections import defaultdict
 """
 # ==============================================================================
 # LABORATORY: AHO-CORASICK AUTOMATON (MULTI-PATTERN SEARCH)
@@ -127,7 +128,6 @@ class AhoCorasickAutomaton:
         Step 3: The Single-Pass Scan. O(N + Z).
         Returns a dictionary mapping Pattern -> List of Starting Indices.
         """
-        results = defaultdict(list)
         from collections import defaultdict # Local import for safety
         results = defaultdict(list)
         

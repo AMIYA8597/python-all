@@ -1,3 +1,5 @@
+import sys
+sys.set_int_max_str_digits(0)
 """
 # ==============================================================================
 # LABORATORY: FIBONACCI (THE O(LOG N) MATRIX EXPONENTIATION MIRACLE)

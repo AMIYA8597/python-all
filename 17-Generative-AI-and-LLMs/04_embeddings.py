@@ -1,221 +1,130 @@
 """
-# Embeddings and Vector Search: Beginner to Professional
-
-## 1. What is an Embedding?
-An embedding is a list of numbers (a vector) that captures the "meaning" of a piece of text (or image, or audio). 
-Instead of comparing exact words (like searching for "fast" in a database), we compare the *meaning* of words.
-
-## 2. Why does it exist?
-Traditional databases use lexical search (keyword matching like BM25 or SQL `LIKE`). 
-If a user searches for "automobile", a traditional database will completely miss a document that only says "car".
-Embeddings solve this. Because "automobile" and "car" have similar *meanings*, their embedding vectors will be mathematically close to each other in vector space.
-
-## 3. Intuition & Real-World Analogy
-Imagine a massive 3D library where books are organized purely by concept.
-- X-axis: How "technological" vs "biological" the book is.
-- Y-axis: How "historical" vs "futuristic" the book is.
-- Z-axis: How "positive" vs "negative" the tone is.
-
-A book about "Apple iPhones" might be at coordinate (0.9, 0.5, 0.2).
-A book about "Samsung Galaxys" might be at (0.85, 0.5, 0.2).
-Because their coordinates are close, we instantly know they are similar, without even reading the titles. 
-Real embedding models (like OpenAI's `text-embedding-3-small`) just use 1,536 dimensions instead of 3.
-
-## 4. Formal Definition: Cosine Similarity
-To find out how close two vectors are, we measure the angle between them. 
-* Angle is 0° (Cosine = 1.0): Identical meaning.
-* Angle is 90° (Cosine = 0.0): Unrelated.
-* Angle is 180° (Cosine = -1.0): Opposite meaning.
-
-$$ \text{Cosine Similarity} = \frac{A \cdot B}{||A|| \times ||B||} $$
-
-## 5. When to use / When NOT to use
-**Use Embeddings for:** Semantic search, clustering documents, classification features, RAG (Retrieval-Augmented Generation).
-**Do NOT use Embeddings for:** Exact ID lookups, highly specific keyword matching (e.g., searching for a specific error code like "ERR_404_X"). For the best of both worlds, modern systems use **Hybrid Search** (Keyword + Semantic).
-
----
+# ==============================================================================
+# LABORATORY: GENERATIVE AI (VECTOR EMBEDDINGS & COSINE SIMILARITY)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer tries to build a Search Engine using Keyword matching (SQL 
+# `LIKE '%apple%'`). If a user searches for "Macbook", the system returns zero 
+# results because the exact string "apple" was not found.
+#
+# A senior AI engineer builds a Semantic Search Engine. They run the database 
+# through an Embedding Model, converting every text snippet into a 1536-dimensional 
+# Float Vector. They convert the user's search query ("Macbook") into a vector. 
+# They mathematically calculate the Cosine Similarity (the angle between the vectors). 
+# Because "Macbook" and "Apple" mathematically point in the exact same geometric 
+# direction in 1536-dimensional space, the search perfectly retrieves the result.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master High-Dimensional Vector mathematics.
+# - Execute Cosine Similarity distance calculations.
+# - Architect Semantic Clustering logic.
+#
+# ==============================================================================
 """
 
-import math
-from typing import List, Dict, Tuple
+import numpy as np
 
-# ============================================================================
-# 1. CORE MATHEMATICS: COSINE SIMILARITY
-# ============================================================================
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-def cosine_similarity(vec1: List[float], vec2: List[float]) -> float:
-    """
-    Calculates the cosine similarity between two vectors from scratch.
-    In production, use `numpy.dot(v1, v2) / (numpy.linalg.norm(v1) * numpy.linalg.norm(v2))`
-    """
-    if len(vec1) != len(vec2):
-        raise ValueError("Vectors must have the same dimensionality.")
-        
-    dot_product = sum(a * b for a, b in zip(vec1, vec2))
+
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (COSINE SIMILARITY)
+# ==============================================================================
+class EmbeddingSimulator:
     
-    # ||A|| (Magnitude of vector 1)
-    magnitude_vec1 = math.sqrt(sum(a * a for a in vec1))
-    # ||B|| (Magnitude of vector 2)
-    magnitude_vec2 = math.sqrt(sum(b * b for b in vec2))
-    
-    if magnitude_vec1 == 0 or magnitude_vec2 == 0:
-        return 0.0
+    @staticmethod
+    def cosine_similarity(vector_a: np.ndarray, vector_b: np.ndarray) -> float:
+        """
+        [SECURE] Cosine Similarity Formula.
+        Calculates the cosine of the angle between two multi-dimensional vectors.
+        Formula: (A dot B) / (||A|| * ||B||)
+        Result ranges from -1.0 (Opposite) to 1.0 (Identical).
+        """
+        dot_product = np.dot(vector_a, vector_b)
         
-    return dot_product / (magnitude_vec1 * magnitude_vec2)
-
-
-# ============================================================================
-# 2. EDUCATIONAL MOCK EMBEDDING MODEL
-# ============================================================================
-
-class EducationalEmbeddingModel:
-    """
-    A simulated embedding model mapping sentences to a 3D vector space.
-    Dimensions represent:
-    [ Tech/Nature,  Feline/Canine,  Action/Static ]
-    """
-    def __init__(self):
-        self.embeddings = {
-            # Animals (Nature: Positive)
-            "The quick brown fox":      [0.9, -0.8,  0.8],  # Nature, Feline-ish, High Action
-            "A fast orange fox":        [0.8, -0.7,  0.9],
-            "The lazy dog":             [0.9,  0.9, -0.8],  # Nature, Canine, Static
-            "A sleeping puppy":         [0.8,  0.8, -0.9],
+        # Calculate the Magnitude (Length) of each vector using the Pythagorean theorem
+        norm_a = np.linalg.norm(vector_a)
+        norm_b = np.linalg.norm(vector_b)
+        
+        # Prevent division by zero
+        if norm_a == 0.0 or norm_b == 0.0:
+            return 0.0
             
-            # Technology (Tech: Negative)
-            "Latest smartphone specs":  [-0.9,  0.0,  0.2],
-            "New mobile phone features":[-0.8,  0.1,  0.3],
-            
-            # Outlier
-            "A robotic dog running":    [-0.5,  0.8,  0.8]   # Tech, Canine, Action
+        similarity = dot_product / (norm_a * norm_b)
+        return similarity
+
+    def simulate_semantic_search(self):
+        print("  [INIT] Simulating 5-Dimensional Semantic Word Embeddings...")
+        
+        # In a real model (like text-embedding-ada-002), these would be length 1536!
+        # Here we manually construct 5-D vectors to prove the geometry.
+        # Dimensions conceptually represent: [Tech, Fruit, Animal, Royal, Vehicle]
+        
+        embeddings = {
+            "apple_company": np.array([0.9, 0.1, 0.0, 0.0, 0.0]),
+            "macbook":       np.array([0.95, 0.0, 0.0, 0.0, 0.1]),
+            "apple_fruit":   np.array([0.0, 0.9, 0.0, 0.0, 0.0]),
+            "banana":        np.array([0.0, 0.95, 0.0, 0.0, 0.0]),
+            "king":          np.array([0.0, 0.0, 0.0, 0.9, 0.0]),
+            "queen":         np.array([0.0, 0.0, 0.0, 0.95, 0.0])
         }
         
-    def embed(self, text: str) -> List[float]:
-        """In reality, this passes text through a Transformer to get a vector."""
-        if text not in self.embeddings:
-            raise KeyError(f"Text not found in mock embeddings: '{text}'")
-        return self.embeddings[text]
+        print("\n  [EXECUTION] Calculating Semantic Distances (Cosine Similarity)...")
+        
+        # Test 1: Similar Tech Concepts
+        sim_tech = self.cosine_similarity(embeddings["apple_company"], embeddings["macbook"])
+        print(f"  -> Similarity ('Apple Company' vs 'Macbook'):  {sim_tech:.4f}  (High!)")
+        
+        # Test 2: Similar Fruit Concepts
+        sim_fruit = self.cosine_similarity(embeddings["apple_fruit"], embeddings["banana"])
+        print(f"  -> Similarity ('Apple Fruit' vs 'Banana'):     {sim_fruit:.4f}  (High!)")
+        
+        # Test 3: The Disambiguation Test (Lexical vs Semantic)
+        sim_lexical = self.cosine_similarity(embeddings["apple_company"], embeddings["apple_fruit"])
+        print(f"  -> Similarity ('Apple Company' vs 'Apple Fruit'): {sim_lexical:.4f}  (Low!)")
+        
+        # Test 4: Completely Unrelated Concepts
+        sim_random = self.cosine_similarity(embeddings["macbook"], embeddings["queen"])
+        print(f"  -> Similarity ('Macbook' vs 'Queen'):          {sim_random:.4f}  (Zero!)")
+        
+        print("\n  -> [MATHEMATICAL PROOF] The lexical string 'apple' means nothing to the ")
+        print("     mathematics. The vectors successfully disambiguated the Tech Company ")
+        print("     from the Fruit based purely on their geometric direction in space.")
 
 
-# ============================================================================
-# 3. VECTOR DATABASE IMPLEMENTATION
-# ============================================================================
-
-class SimpleVectorDB:
-    """
-    An in-memory Vector Database using Exact K-Nearest Neighbors (KNN).
+# ==============================================================================
+# 4. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_embeddings():
+    section_header("Generative AI: Vector Embeddings")
     
-    Note on Production scaling:
-    This uses a "Brute Force" search (O(N) time).
-    Production databases (Pinecone, Milvus, FAISS) use Approximate Nearest Neighbors (ANN)
-    algorithms like HNSW (Hierarchical Navigable Small World) to achieve O(log N) search time.
-    """
-    def __init__(self):
-        self.collection: List[Dict] = []
-        
-    def add(self, doc_id: str, text: str, vector: List[float]):
-        """Ingests a document and its vector embedding into the DB."""
-        self.collection.append({"id": doc_id, "text": text, "vector": vector})
-        
-    def search(self, query_vector: List[float], top_k: int = 2) -> List[Tuple[str, float]]:
-        """Scans ALL vectors, calculates similarity, and returns the top K matches."""
-        results = []
-        for item in self.collection:
-            sim = cosine_similarity(query_vector, item["vector"])
-            results.append((item["text"], sim))
-            
-        # Sort descending by similarity score
-        results.sort(key=lambda x: x[1], reverse=True)
-        return results[:top_k]
+    sim = EmbeddingSimulator()
+    sim.simulate_semantic_search()
 
 
-# ============================================================================
-# DEBUGGING EXERCISE: Find the Bug!
-# ============================================================================
-def buggy_euclidean_distance(vec1: List[float], vec2: List[float]) -> float:
-    """
-    Euclidean distance is another way to measure vector closeness.
-    BUG: What is wrong with this implementation?
-    """
-    dist = 0
-    for a, b in zip(vec1, vec2):
-        dist += (a - b)
-    return math.sqrt(dist) 
-    # Solution: We must square the difference before adding! 
-    # Should be: dist += (a - b) ** 2
-    # Without squaring, negative and positive differences cancel each other out.
+def run_all_labs():
+    demonstrate_embeddings()
 
-# ============================================================================
-# ACTIVE RECALL & INTERVIEW PREPARATION
-# ============================================================================
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-Q: What is the difference between Cosine Similarity and Euclidean Distance?
-A: Euclidean distance measures the straight-line distance between two points. 
-   Cosine similarity measures the ANGLE between them. Cosine similarity is generally 
-   preferred in NLP because it ignores the magnitude (length) of the vector, 
-   focusing purely on the directional "meaning".
+ACTIVE RECALL:
+1. Interviewer: "Why do we use Cosine Similarity instead of Euclidean Distance to measure semantic similarity between two Embeddings?"
+   Senior Answer: "Magnitude Independence. Euclidean Distance (the straight-line physical distance between two points in space) is heavily influenced by the *magnitude* (length) of the vectors. If a document mentions the word 'Dog' $50$ times, its vector will be physically very long. If another document mentions 'Dog' $2$ times, its vector is physically short. Their Euclidean distance will be massive, implying they are unrelated. However, Cosine Similarity strictly measures the *angle* between the two vectors, completely ignoring their length. Because both vectors point in the exact same geometric direction (the 'Dog' semantic cluster), Cosine Similarity will evaluate to $1.0$ (perfect match). In NLP, we care about the direction of meaning, not the frequency magnitude."
 
-Q: If you double the length of a vector, how does its Cosine Similarity to another vector change?
-A: It does not change. Cosine similarity normalizes magnitude. The angle remains identical.
+2. Interviewer: "What is the computational bottleneck of a Vector Database, and how does HNSW (Hierarchical Navigable Small World) solve it?"
+   Senior Answer: "The Exhaustive K-Nearest Neighbors (KNN) search. If you have $1$ Billion PDF embeddings in your database, and a user submits a search query, a naive mathematical search (KNN) must calculate the Cosine Similarity against all $1$ Billion vectors ($O(N)$ time complexity). This is physically impossible in real-time. HNSW solves this using an Approximate Nearest Neighbors (ANN) algorithm. It builds a multi-layered graph of vectors. The top layer has very few, highly disconnected nodes (highways). The search starts at the top, quickly jumps to the general geometric neighborhood, and drops down to denser layers until it finds the local cluster. It reduces the time complexity from $O(N)$ to $O(\\log N)$, finding the closest vectors in milliseconds at the cost of a slight loss in perfect accuracy."
 
-Q: Why don't we use exact KNN (like this script) in production for 100 million documents?
-A: Time complexity. Calculating 100 million cosine similarities for a single user query 
-   takes too long. We use Approximate Nearest Neighbors (ANN) indexes like HNSW.
-"""
-
-
-def main():
-    print("=== Semantic Search & Embeddings System ===\n")
-    
-    embedder = EducationalEmbeddingModel()
-    db = SimpleVectorDB()
-    
-    # 1. Ingest Documents
-    print("1. Ingesting documents into Vector DB...")
-    documents = [
-        "The quick brown fox",
-        "The lazy dog",
-        "Latest smartphone specs"
-    ]
-    
-    for i, doc in enumerate(documents):
-        vec = embedder.embed(doc)
-        db.add(doc_id=f"doc_{i}", text=doc, vector=vec)
-        print(f"   [+] Added: '{doc}' -> {vec}")
-        
-    # 2. Perform Semantic Search
-    queries = [
-        "A fast orange fox",
-        "New mobile phone features",
-        "A sleeping puppy"
-    ]
-    
-    print("\n2. Querying Vector DB...")
-    for query in queries:
-        query_vec = embedder.embed(query)
-        print(f"\n   Query: '{query}' -> {query_vec}")
-        
-        results = db.search(query_vec, top_k=1)
-        match_text, score = results[0]
-        
-        print(f"   -> Top Match: '{match_text}' (Score: {score:.4f})")
-
-    print("\n[Concept Check]: Notice how 'A fast orange fox' perfectly matched 'The quick brown fox'")
-    print("even though they share almost no exact words! This is the power of Embeddings.")
-
-# ============================================================================
-# MEMORY ANCHOR
-# ============================================================================
-"""
-## MEMORY ANCHOR
-### One sentence to remember
-Embeddings map concepts into a multi-dimensional space where mathematically close vectors represent semantically similar meanings.
-
-### Three things not to confuse
-1. Keyword Search vs Vector Search: Keyword finds exact words; Vector finds meanings.
-2. Cross-Encoder vs Bi-Encoder: Bi-Encoders (used here) embed documents independently for fast retrieval. Cross-Encoders compare two strings directly (slower, but more accurate for reranking).
-3. KNN vs ANN: KNN is 100% accurate but slow O(N). ANN is fast O(log N) but slightly approximate.
+3. Interviewer: "What is the 'Curse of Dimensionality' in relation to 1536-dimensional embeddings?"
+   Senior Answer: "Distance Homogenization. In low-dimensional space (2D or 3D), points can be 'close' or 'far away'. But as the number of mathematical dimensions expands to $1500+$, the geometric volume of the space explodes exponentially. In this ultra-high-dimensional space, the mathematical distance between *any* two random points approaches a uniform constant. Everything becomes roughly equidistant from everything else. This makes separating clusters extremely difficult for algorithms. Embedding models solve this by intentionally mapping concepts into very tight, hyper-specific narrow cones within that massive space, forcing semantic differentiation despite the geometric curse."
 """
 
 if __name__ == "__main__":
-    main()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Generative AI (Embeddings) Completed.")

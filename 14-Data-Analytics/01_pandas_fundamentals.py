@@ -1,157 +1,148 @@
 """
-# 01 - Data Analytics: NumPy & Pandas Masterclass
-
-## A. Concept Name
-Vectorized Data Manipulation with NumPy and Pandas.
-
-## B. One-Sentence Definition
-Pandas is a high-performance, in-memory data manipulation library built on top of NumPy that allows AI engineers to clean, transform, and analyze tabular data using fast, vectorized C-operations instead of slow Python loops.
-
-## C. Why Does This Exist?
-In raw Python, looping over 1,000,000 rows to multiply two columns takes seconds. In Pandas/NumPy, it takes milliseconds. 
-AI models require perfectly clean, numerically encoded tabular data (Tensors/Matrices). Pandas is the bridge between dirty real-world data (CSVs, Excel files with missing values and typos) and pristine matrices ready for Machine Learning.
-
-## D. Intuition & Real-World Analogy
-Think of Pandas as Excel on steroids without a graphical interface.
-- A **Series** is a single column in Excel.
-- A **DataFrame** is the entire spreadsheet.
-- **Vectorization** is like writing a formula `=A1*B1` and dragging it all the way down the column. Instead of calculating one by one, the computer's CPU processes chunks of data simultaneously.
-
-## E. Core Mechanics & Mathematical Concepts
-
-### 1. Broadcasting (NumPy Core)
-When you do `df['Age'] + 10`, you are adding a scalar (10) to a vector (Age). Instead of throwing an error, NumPy "broadcasts" the 10 across every element instantly in C.
-
-### 2. .loc vs .iloc (The Indexing Rules)
-- `.loc[row_label, col_label]`: Accesses by the ACTUAL NAME (Label). Inclusive of the end boundary `[0:5]` includes 5.
-- `.iloc[row_index, col_index]`: Accesses by the INTEGER POSITION (0-indexed). Exclusive of the end boundary `[0:5]` stops at 4.
-
-### 3. The Split-Apply-Combine Pattern (GroupBy)
-The mathematical foundation of analytics.
-1. **Split**: Break the data into groups (e.g., by Department).
-2. **Apply**: Calculate a metric for each group (e.g., Mean Salary).
-3. **Combine**: Stitch the results back into a new DataFrame.
-
-## F. Common Mistakes & Anti-Patterns (CRITICAL)
-1. **Using `.iterrows()`**: NEVER DO THIS. Iterating through a DataFrame row-by-row in Python is 1000x slower than using a vectorized operation or `.apply()`. If you write a `for` loop to modify a DataFrame, you are doing it wrong.
-2. **SettingWithCopyWarning**: `df[df['Age'] > 25]['Status'] = 'Adult'`. This causes a massive warning in Pandas because you are modifying a *temporary view* of the data, not the original data. 
-   **Fix**: Always use `.loc` to set values: `df.loc[df['Age'] > 25, 'Status'] = 'Adult'`.
-
-## G. Interview Connection
-**Q: "How do you handle missing (NaN) values in a dataset?"**
-A: "Depending on the context, I can drop them using `.dropna()` if the dataset is large and the missing rows are few. Otherwise, I impute them using `.fillna()`, replacing them with the mean, median, or a specific constant. For time-series, I might use forward-fill or backward-fill interpolation."
-
-## H. Implementation & Guided Practice
+# ==============================================================================
+# LABORATORY: DATA ANALYTICS (PANDAS & VECTORIZATION)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior data analyst loads a massive CSV with 5,000,000 rows containing 
+# stock prices. They use a standard Python `for` loop, iterating row-by-row 
+# to calculate a 10% tax on every price. Because Python is an interpreted 
+# language, the CPU mathematically evaluates the type of the variable 5 million 
+# times. The script takes 45 seconds to execute.
+#
+# A senior data engineer uses Pandas and NumPy. They understand that a Pandas 
+# DataFrame is mathematically backed by contiguous C-arrays in RAM. They execute 
+# a "Vectorized Operation" (`df['tax'] = df['price'] * 0.10`). The Python 
+# interpreter completely bypasses the `for` loop and delegates the math directly 
+# to highly optimized C-code utilizing CPU SIMD (Single Instruction, Multiple Data) 
+# architecture. The script takes 0.05 seconds. 
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Pandas DataFrames and Series.
+# - Execute Vectorized Mathematics to achieve O(1) Python overhead.
+# - Architect Data Selection (`.loc`, `.iloc`) and Boolean Masking.
+#
+# ==============================================================================
 """
 
 import pandas as pd
 import numpy as np
 import time
 
-def demonstrate_vectorization_vs_loops():
-    print("--- 1. The Power of Vectorization (NO LOOPS!) ---")
-    
-    # Create a DataFrame with 1,000,000 rows
-    print("Generating 1,000,000 rows of data...")
-    df = pd.DataFrame({
-        'Price': np.random.uniform(10, 100, 1000000),
-        'Quantity': np.random.randint(1, 10, 1000000)
-    })
-    
-    # Anti-Pattern: Using a Python loop (Iterrows)
-    print("\nCalculating Total Sales (Price * Quantity)...")
-    start = time.time()
-    totals = []
-    # NOTE: We only do 50,000 rows for the loop so the script doesn't take forever
-    for index, row in df.head(50000).iterrows():
-        totals.append(row['Price'] * row['Quantity'])
-    loop_time = time.time() - start
-    print(f"Anti-Pattern (.iterrows on just 50K rows) took: {loop_time:.4f} seconds")
-    
-    # Best Practice: Vectorization
-    start = time.time()
-    # This runs in C via NumPy, instantly calculating all 1,000,000 rows!
-    df['Total_Sales'] = df['Price'] * df['Quantity']
-    vector_time = time.time() - start
-    print(f"Best Practice (Vectorization on ALL 1M rows) took: {vector_time:.4f} seconds")
-    print(f"Vectorization is infinitely faster. NEVER USE FOR LOOPS IN PANDAS.")
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
 
-def demonstrate_loc_and_iloc():
-    print("\n--- 2. .loc vs .iloc (Indexing Mastery) ---")
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (THE DATA PIPELINE)
+# ==============================================================================
+class DataAnalyticsEngine:
     
-    # Setting a custom index (string labels instead of 0, 1, 2)
-    data = {
-        'Name': ['Alice', 'Bob', 'Charlie', 'David'],
-        'Age': [25, 30, 35, 40],
-        'Department': ['HR', 'IT', 'IT', 'Sales']
-    }
-    df = pd.DataFrame(data, index=['ID101', 'ID102', 'ID103', 'ID104'])
-    print("DataFrame with Custom String Index:")
-    print(df)
-    
-    # ILOC: Integer position (Python standard, exclusive end)
-    print("\n.iloc[0:2] (Gets rows 0 and 1):")
-    print(df.iloc[0:2])
-    
-    # LOC: Label name (Pandas specific, INCLUSIVE end)
-    print("\n.loc['ID101':'ID103'] (Gets 101, 102, AND 103):")
-    print(df.loc['ID101':'ID103'])
-    
-    # THE SETTING WITH COPY FIX
-    # Anti-pattern (will cause warning in some pandas versions):
-    # df[df['Age'] > 30]['Department'] = 'Senior' 
-    
-    # Correct way to update data based on a condition:
-    df.loc[df['Age'] > 30, 'Department'] = 'Exec'
-    print("\nAfter updating Dept for Age > 30 using .loc:")
-    print(df)
+    def __init__(self, size: int = 1_000_000):
+        self.size = size
+        self.df = None
+        self._generate_mock_data()
+        
+    def _generate_mock_data(self):
+        """Generates a massive dataset in RAM for mathematical testing."""
+        print(f"  [INIT] Allocating Pandas DataFrame with {self.size:,} rows...")
+        # We use NumPy to generate fast random data!
+        data = {
+            'id': np.arange(self.size),
+            'price': np.random.uniform(10.0, 500.0, self.size),
+            'quantity': np.random.randint(1, 100, self.size),
+            'category': np.random.choice(['Tech', 'Clothing', 'Food', 'Books'], self.size)
+        }
+        self.df = pd.DataFrame(data)
+        print("  [SUCCESS] Dataset generated and loaded into contiguous C-memory.")
 
 
-def demonstrate_missing_data_and_groupby():
-    print("\n--- 3. Missing Data & The Split-Apply-Combine Pattern ---")
-    
-    df = pd.DataFrame({
-        'City': ['NY', 'NY', 'LA', 'LA', 'SF', 'SF'],
-        'Store': ['A', 'B', 'C', 'D', 'E', 'F'],
-        'Revenue': [1000, np.nan, 2000, 2500, np.nan, 3000] # Missing data!
-    })
-    print("Raw Data with NaNs:")
-    print(df)
-    
-    # 1. Impute missing data
-    # We will fill missing revenue with the MEAN revenue of the entire company
-    mean_rev = df['Revenue'].mean()
-    df['Revenue'] = df['Revenue'].fillna(mean_rev)
-    print(f"\nAfter filling NaNs with Mean ({mean_rev}):")
-    print(df)
-    
-    # 2. GroupBy (Split-Apply-Combine)
-    print("\nTotal Revenue per City (GroupBy):")
-    city_rev = df.groupby('City')['Revenue'].sum().reset_index()
-    print(city_rev)
-    
-    # Multiple Aggregations
-    print("\nMultiple Aggregations per City:")
-    agg_stats = df.groupby('City').agg({
-        'Revenue': ['sum', 'mean', 'count']
-    })
-    print(agg_stats)
+    # --------------------------------------------------------------------------
+    # THE ANTI-PATTERN: ITERATION (THE LOOP OF DEATH)
+    # --------------------------------------------------------------------------
+    def calculate_revenue_slow(self):
+        """
+        [WARNING] THIS IS CATASTROPHICALLY SLOW.
+        Iterating over a DataFrame with `iterrows()` completely destroys 
+        the C-level optimizations.
+        """
+        print("\n  [EXECUTION] Calculating Revenue via O(N) Python iteration (`iterrows`).")
+        start = time.time()
+        
+        # NOTE: We only do 10,000 rows, otherwise we would be here all day!
+        small_df = self.df.head(10_000).copy()
+        
+        total_revenue = []
+        for index, row in small_df.iterrows():
+            total_revenue.append(row['price'] * row['quantity'])
+            
+        small_df['revenue'] = total_revenue
+        
+        elapsed = time.time() - start
+        print(f"  -> Processed 10,000 rows in: {elapsed:.4f} seconds.")
 
 
-## I. Active Recall Questions
+    # --------------------------------------------------------------------------
+    # THE ARCHITECTURAL PATTERN: VECTORIZATION
+    # --------------------------------------------------------------------------
+    def calculate_revenue_fast(self):
+        """
+        [SECURE] Vectorized Execution.
+        We multiply the entire column at once. The math happens in C!
+        """
+        print(f"\n  [EXECUTION] Calculating Revenue via Vectorization for ALL {self.size:,} rows.")
+        start = time.time()
+        
+        # This is a Vectorized Operation!
+        self.df['revenue'] = self.df['price'] * self.df['quantity']
+        
+        elapsed = time.time() - start
+        print(f"  -> Processed {self.size:,} rows in: {elapsed:.4f} seconds!")
+
+
+# ==============================================================================
+# 4. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_pandas():
+    section_header("Data Analytics: Pandas Vectorization")
+    
+    # We will simulate 2 Million rows!
+    engine = DataAnalyticsEngine(size=2_000_000)
+    
+    # Run the bad code (only on a subset)
+    engine.calculate_revenue_slow()
+    
+    # Run the good code (on everything)
+    engine.calculate_revenue_fast()
+    
+    print("\n  [ARCHITECTURE PROOF]")
+    print("  The Python `for` loop took significantly longer to process 10,000 rows ")
+    print("  than the Vectorized operation took to process 2,000,000 rows. By ")
+    print("  thinking in 'Columns' instead of 'Rows', the Data Engineer mathematically ")
+    print("  unlocked the raw speed of the CPU's C-architecture.")
+
+
+def run_all_labs():
+    demonstrate_pandas()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-1. Why is `.iloc[0:3]` different from `.loc[0:3]`?
-   *Answer: `.iloc` is integer-based and exclusive at the end, so it gets indices 0, 1, 2. `.loc` is label-based and inclusive at the end, so it looks for the exact labels '0', '1', '2', and '3' and returns all four.*
-2. How does Pandas achieve its massive speed compared to standard Python?
-   *Answer: Under the hood, Pandas stores data in contiguous C-arrays (via NumPy) and performs operations using highly optimized, compiled C code (Vectorization) rather than interpreting Python loops line-by-line.*
-3. What is the correct way to change the values of a column for rows that meet a specific condition?
-   *Answer: Use `.loc`. Example: `df.loc[df['Score'] < 50, 'Status'] = 'Fail'`.*
+ACTIVE RECALL:
+1. Interviewer: "What is 'Vectorization' in Pandas, and why is it mathematically faster than a standard Python `for` loop?"
+   Senior Answer: "Bypassing the Interpreter. In a standard Python loop, the interpreter must dynamically check the data type of the variable on every single iteration (e.g., 'Is this an integer? A float?'). This creates massive CPU overhead. Pandas Series are backed by NumPy arrays, which are homogeneous, contiguous blocks of C-memory. When you execute `df['A'] * df['B']`, Pandas delegates the operation to pre-compiled C code. The C compiler utilizes CPU SIMD (Single Instruction, Multiple Data) to execute the math on chunks of memory simultaneously, achieving speeds $100x$ to $1000x$ faster than interpreted Python."
+
+2. Interviewer: "Explain the architectural difference between `.loc[]` and `.iloc[]` when querying a DataFrame."
+   Senior Answer: "Label vs Integer-Position Indexing. `.loc[]` is mathematically designed to query the explicit *Labels* of the index. If your index consists of Dates (e.g., '2024-01-01'), you use `.loc['2024-01-01']`. It is inclusive on both ends of a slice (`.loc['A':'C']` returns A, B, and C). In contrast, `.iloc[]` strictly uses integer positions (0-based memory offsets), exactly like a standard Python list. You use `.iloc[0:5]` to grab the physical first 5 rows, regardless of what the index labels are. It is exclusive on the upper bound."
+
+3. Interviewer: "If a DataFrame requires 10 Gigabytes of RAM, how can you aggressively optimize its memory footprint without deleting data?"
+   Senior Answer: "Downcasting Data Types. By default, Pandas loads integers as `int64` and decimals as `float64`, consuming 8 bytes per cell. If an 'Age' column ranges from $0$ to $100$, allocating an 8-byte `int64` (which can store numbers up to $9$ Quintillion) is a mathematical disaster. By executing `pd.to_numeric(df['Age'], downcast='integer')`, the column is mathematically squashed into an `int8` (1 byte), reducing RAM consumption by $87\\%$. Furthermore, converting string columns with low cardinality (e.g., 'Gender' or 'Country') into Pandas `category` types replaces massive strings with tiny integer pointers under the hood, instantly saving Gigabytes of RAM."
 """
 
 if __name__ == "__main__":
-    print("========== PANDAS & NUMPY MASTERCLASS ==========\n")
-    demonstrate_vectorization_vs_loops()
-    demonstrate_loc_and_iloc()
-    demonstrate_missing_data_and_groupby()
-    print("\n========== MASTERCLASS COMPLETE ==========")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Data Analytics (Pandas Basics) Completed.")

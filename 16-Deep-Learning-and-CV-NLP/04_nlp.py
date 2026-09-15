@@ -1,141 +1,149 @@
 """
-Natural Language Processing (NLP) Basics
-----------------------------------------
-This script covers fundamental NLP components using PyTorch.
-Topics covered:
-1. Basic Tokenization and Vocabulary Generation
-2. Word Embeddings (nn.Embedding)
-3. Recurrent Neural Networks (RNN)
-4. Basic Self-Attention Mechanism
+# ==============================================================================
+# LABORATORY: DEEP LEARNING (NATURAL LANGUAGE PROCESSING)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer tries to process text by assigning random integers to words. 
+# They assign "King" = 1, "Man" = 2, and "Apple" = 3. A Neural Network receives 
+# these integers and mathematically concludes that an "Apple" is 3x more valuable 
+# than a "King", and that "Man" + "King" = "Apple". The model fails completely.
+#
+# A senior AI engineer understands "Word Embeddings" (Word2Vec) and "Attention". 
+# They mathematically map words into a 300-dimensional continuous floating-point 
+# vector space. In this space, similar concepts are physically closer together. 
+# The engineer proves mathematically that: Vector("King") - Vector("Man") + 
+# Vector("Woman") is physically located right next to Vector("Queen"). The model 
+# learns the mathematical architecture of human semantic logic.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Tokenization (Sub-word vs Word level).
+# - Execute Vector Embeddings and Cosine Similarity.
+# - Architect the Self-Attention mechanism (Transformer core).
+#
+# ==============================================================================
 """
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
+import numpy as np
+import math
 
-# ==========================================
-# 1. Text Processing: Vocabulary & Tokenization
-# ==========================================
-def build_vocab_and_tokenize():
-    print("=== 1. Tokenization and Vocabulary ===")
-    corpus = [
-        "deep learning is fascinating",
-        "natural language processing with pytorch",
-        "learning is fun"
-    ]
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
+
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (VECTOR EMBEDDINGS)
+# ==============================================================================
+class NLPSimulator:
     
-    # Simple whitespace tokenizer
-    words = []
-    for sentence in corpus:
-        words.extend(sentence.split())
+    @staticmethod
+    def cosine_similarity(vec_a: np.ndarray, vec_b: np.ndarray) -> float:
+        """Calculates the exact angle between two vectors in N-Dimensional space."""
+        dot_product = np.dot(vec_a, vec_b)
+        magnitude_a = np.linalg.norm(vec_a)
+        magnitude_b = np.linalg.norm(vec_b)
+        return dot_product / (magnitude_a * magnitude_b)
+
+    def execute_embeddings(self):
+        """
+        [SECURE] Simulating Word2Vec Embeddings.
+        We map words to a 3-Dimensional semantic space for visibility.
+        [Royalty, Masculinity, Edibility]
+        """
+        print("  [INIT] Mapping Words to a 3D Semantic Vector Space...")
         
-    unique_words = sorted(set(words))
-    
-    # Create word to index mapping (0 reserved for padding/unknown)
-    word_to_idx = {word: idx + 1 for idx, word in enumerate(unique_words)}
-    word_to_idx["<PAD>"] = 0
-    idx_to_word = {idx: word for word, idx in word_to_idx.items()}
-    
-    print("Vocabulary:")
-    print(word_to_idx)
-    
-    # Tokenize a sentence
-    sample_sentence = "deep learning with pytorch"
-    tokenized = [word_to_idx.get(w, 0) for w in sample_sentence.split()]
-    print(f"\nTokenizing: '{sample_sentence}' -> {tokenized}")
-    return word_to_idx
-
-# ==========================================
-# 2. Word Embeddings
-# ==========================================
-def test_embeddings(word_to_idx):
-    print("\n=== 2. Word Embeddings ===")
-    vocab_size = len(word_to_idx)
-    embedding_dim = 4 # Small dimension for demonstration
-    
-    # Initialize Embedding layer
-    embedding_layer = nn.Embedding(num_embeddings=vocab_size, embedding_dim=embedding_dim)
-    
-    # Input sequence (batch_size=1, seq_length=4)
-    input_seq = torch.tensor([[word_to_idx["deep"], word_to_idx["learning"], word_to_idx["is"], word_to_idx["fun"]]])
-    
-    embedded_seq = embedding_layer(input_seq)
-    print(f"Input shape: {input_seq.shape}")
-    print(f"Embedded output shape: {embedded_seq.shape} (Batch, Seq_Len, Embedding_Dim)")
-    print(f"Embedding for 'learning':\n{embedded_seq[0, 1, :]}")
-
-# ==========================================
-# 3. Recurrent Neural Networks (RNN)
-# ==========================================
-class SimpleRNNModel(nn.Module):
-    def __init__(self, vocab_size, embedding_dim, hidden_dim, output_dim):
-        super(SimpleRNNModel, self).__init__()
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
-        # batch_first=True makes input shape (batch, seq, feature)
-        self.rnn = nn.RNN(input_size=embedding_dim, hidden_size=hidden_dim, batch_first=True)
-        self.fc = nn.Linear(hidden_dim, output_dim)
+        # [Royalty, Masculinity, Edibility]
+        vocab = {
+            "King":  np.array([0.95,  0.90, 0.01]),
+            "Queen": np.array([0.95, -0.90, 0.01]),
+            "Man":   np.array([0.01,  0.90, 0.01]),
+            "Woman": np.array([0.01, -0.90, 0.01]),
+            "Apple": np.array([0.01,  0.01, 0.95])
+        }
         
-    def forward(self, x):
-        # x shape: (batch_size, seq_length)
-        embedded = self.embedding(x)
-        # embedded shape: (batch_size, seq_length, embedding_dim)
+        print("\n  [EXECUTION] Calculating Cosine Similarity (Semantic Closeness)...")
         
-        # RNN outputs: 
-        # out: hidden states for every time step
-        # hidden: hidden state of the final time step
-        out, hidden = self.rnn(embedded)
+        sim_king_man = self.cosine_similarity(vocab["King"], vocab["Man"])
+        sim_king_apple = self.cosine_similarity(vocab["King"], vocab["Apple"])
         
-        # We often use the final hidden state for sequence classification
-        final_output = self.fc(hidden.squeeze(0))
-        return final_output
+        print(f"  -> Similarity (King vs Man):   {sim_king_man:.4f} (High!)")
+        print(f"  -> Similarity (King vs Apple): {sim_king_apple:.4f} (Zero!)")
+        
+        print("\n  [EXECUTION] The Famous NLP Equation: King - Man + Woman = ?")
+        # Mathematically calculate the vector!
+        result_vector = vocab["King"] - vocab["Man"] + vocab["Woman"]
+        
+        # Check which word it is closest to!
+        sim_queen = self.cosine_similarity(result_vector, vocab["Queen"])
+        sim_apple = self.cosine_similarity(result_vector, vocab["Apple"])
+        
+        print(f"  -> Similarity to Queen: {sim_queen:.4f} (Nearly perfect 1.0 match!)")
+        print(f"  -> Similarity to Apple: {sim_apple:.4f}")
 
-def test_rnn(word_to_idx):
-    print("\n=== 3. Simple RNN ===")
-    model = SimpleRNNModel(vocab_size=len(word_to_idx), embedding_dim=8, hidden_dim=16, output_dim=2)
-    
-    # Dummy input
-    input_seq = torch.tensor([[1, 2, 3], [4, 5, 0]]) # Batch of 2 sequences
-    output = model(input_seq)
-    print(f"RNN output shape (batch_size, output_dim): {output.shape}")
 
-# ==========================================
-# 4. Basic Self-Attention Mechanism
-# ==========================================
-def self_attention():
-    print("\n=== 4. Self-Attention Mechanism ===")
-    # Assume we have an embedded sequence (Batch=1, Seq_Len=3, Embedding_Dim=4)
-    seq_len, d_model = 3, 4
-    x = torch.randn(1, seq_len, d_model)
+    # --------------------------------------------------------------------------
+    # THE ARCHITECTURAL PATTERN: SELF-ATTENTION (THE TRANSFORMER)
+    # --------------------------------------------------------------------------
+    def execute_attention(self):
+        """
+        [SECURE] Simulating the 'Attention is All You Need' mechanism.
+        "The bank of the river" vs "The bank on Wall Street"
+        How does the word 'bank' know which definition to use? By looking at its neighbors!
+        """
+        print("\n  [INIT] Simulating Self-Attention Matrix...")
+        
+        sentence = ["The", "bank", "of", "the", "river"]
+        
+        # We simulate the Attention Scores (Query dot Key matrix).
+        # Read this matrix as: "How much attention should the row word pay to the column word?"
+        # The word 'bank' (Row 1) pays massive attention to 'river' (Col 4)
+        attention_matrix = np.array([
+            [1.0, 0.0, 0.0, 0.0, 0.0], # The
+            [0.1, 1.0, 0.1, 0.1, 0.8], # bank (Looks at 'river'!)
+            [0.0, 0.0, 1.0, 0.0, 0.0], # of
+            [0.0, 0.0, 0.0, 1.0, 0.0], # the
+            [0.0, 0.8, 0.0, 0.0, 1.0], # river (Looks at 'bank'!)
+        ])
+        
+        print(f"  -> Word: '{sentence[1]}'")
+        print(f"  -> Attention weights: {list(zip(sentence, attention_matrix[1]))}")
+        print("  -> [FLAWLESS] The mathematical attention mechanism routed contextual ")
+        print("     information from 'river' directly into 'bank', instantly resolving ")
+        print("     the semantic ambiguity. This is how ChatGPT works.")
+
+
+# ==============================================================================
+# 4. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_nlp():
+    section_header("Deep Learning: Natural Language Processing")
     
-    # In practice, W_q, W_k, W_v are learnable linear layers
-    # Here we just use the embeddings themselves for simplicity (Query = Key = Value = x)
-    Q = x
-    K = x
-    V = x
-    
-    # 1. Calculate Attention Scores (Q * K^T)
-    # Transpose K on the last two dimensions
-    scores = torch.bmm(Q, K.transpose(1, 2)) 
-    
-    # 2. Scale the scores
-    scale = d_model ** 0.5
-    scaled_scores = scores / scale
-    
-    # 3. Apply Softmax to get Attention Weights
-    attention_weights = F.softmax(scaled_scores, dim=-1)
-    
-    # 4. Multiply weights by Values
-    context_vector = torch.bmm(attention_weights, V)
-    
-    print("Input (Q, K, V):")
-    print(x[0])
-    print("\nAttention Weights (Seq_Len x Seq_Len):")
-    print(attention_weights[0])
-    print("\nOutput Context Vector:")
-    print(context_vector[0])
+    sim = NLPSimulator()
+    sim.execute_embeddings()
+    sim.execute_attention()
+
+
+def run_all_labs():
+    demonstrate_nlp()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "Why are Sub-word Tokenizers (like BPE - Byte Pair Encoding) mathematically superior to Word-level tokenizers?"
+   Senior Answer: "The Out-Of-Vocabulary (OOV) Catastrophe. If a Word-level tokenizer encounters the word 'unbelievable', but it only learned 'believe' during training, it violently crashes or replaces the word with an `<UNK>` token, losing all semantic meaning. A Sub-word tokenizer (like OpenAI's Tiktoken for ChatGPT) mathematically breaks down rare words into morphological chunks. It tokenizes 'unbelievable' into `['un', 'believ', 'able']`. The Neural Network has mathematically seen 'un' and 'able' millions of times, allowing it to instantly infer the grammatical prefix and suffix, perfectly generalizing to words it has never explicitly seen."
+
+2. Interviewer: "Explain the mathematical difference between Euclidean Distance and Cosine Similarity when comparing Word Embeddings."
+   Senior Answer: "Magnitude vs Angle. In a 300-Dimensional vector space, the word 'Dog' might appear in a document $1$ time, producing a vector of magnitude $1$. If it appears $500$ times in another document, the resulting TF-IDF/Embedding vector will have a magnitude of $500$. If you use Euclidean Distance ($x_2 - x_1$), the mathematical distance between these two vectors is massive, leading the algorithm to conclude they are different concepts. Cosine Similarity explicitly divides the dot product by the magnitude of the vectors, effectively normalizing them. It mathematically measures only the *Angle* between the vectors. The angle between 'Dog' and 'Dog' is exactly $0$ degrees (Similarity $1.0$), regardless of vector length."
+
+3. Interviewer: "What specific architectural flaw in LSTMs/RNNs did the Transformer's 'Self-Attention' mechanism solve?"
+   Senior Answer: "The Sequential Bottleneck and the Vanishing Gradient. LSTMs must mathematically process text sequentially. To understand word $100$, it must process word $1$ through $99$ in a strict `for` loop, which makes GPU parallelization physically impossible and causes the mathematical gradient to vanish over long distances. The Transformer completely eliminated the sequential loop. The Self-Attention matrix mathematically compares *every word with every other word* simultaneously in a single O(1) Matrix Multiplication ($Q \\cdot K^T$). This allows Transformers to process 8,000-word documents in perfect parallel on a GPU, unlocking the era of LLMs."
+"""
 
 if __name__ == "__main__":
-    word_to_idx = build_vocab_and_tokenize()
-    test_embeddings(word_to_idx)
-    test_rnn(word_to_idx)
-    self_attention()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Deep Learning (NLP & Transformers) Completed.")

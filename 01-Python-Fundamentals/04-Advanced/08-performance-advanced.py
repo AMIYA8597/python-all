@@ -1,3 +1,4 @@
+import time
 """
 # ==============================================================================
 # LABORATORY: ADVANCED PERFORMANCE & MEMORY OPTIMIZATION

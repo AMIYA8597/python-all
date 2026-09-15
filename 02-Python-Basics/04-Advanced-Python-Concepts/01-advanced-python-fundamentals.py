@@ -1016,11 +1016,11 @@ class Animal:
     def speak(self):
         raise NotImplementedError
 
-class Dog(Animal):
+class FactoryDog(Animal):
     def speak(self):
         return "Woof!"
 
-class Cat(Animal):
+class FactoryCat(Animal):
     def speak(self):
         return "Meow!"
 
@@ -1028,15 +1028,14 @@ class AnimalFactory:
     """Factory for creating animals."""
     
     _animals = {
-        'dog': Dog,
-        'cat': Cat
+        'dog': FactoryDog,
+        'cat': FactoryCat
     }
     
     @classmethod
-    def create_animal(cls, animal_type):
-        animal_class = cls._animals.get(animal_type.lower())
-        if animal_class:
-            return animal_class()
+    def create_animal(cls, animal_type: str) -> Animal:
+        if animal_type.lower() in cls._animals:
+            return cls._animals[animal_type.lower()]()
         raise ValueError(f"Unknown animal type: {animal_type}")
 
 # Observer Pattern

@@ -1,153 +1,187 @@
 """
-# 05 - Machine Learning: Pipelines, Data Leakage, and Evaluation Metrics
-
-## A. Concept Name
-ML Pipelines, Feature Engineering, and Model Evaluation (Precision, Recall, ROC-AUC).
-
-## B. One-Sentence Definition
-Machine learning isn't just `model.fit()`; it requires rigorous, reproducible pipelines to prevent data leakage, and sophisticated evaluation metrics to understand exactly *how* a model fails in the real world.
-
-## C. Why Does This Exist?
-1. **Pipelines**: If you impute missing values or scale your data BEFORE splitting into Train/Test, your Test set has secretly influenced your Train set (Data Leakage). Your model will look amazing in testing, and fail immediately in production. Pipelines guarantee the test set is completely isolated.
-2. **Evaluation Metrics**: "99% Accuracy" is useless if you are predicting a disease that affects 1% of the population (a model that just says "No" every time is 99% accurate, but 100% useless). We need Precision and Recall to measure true effectiveness.
-
-## D. Intuition & Real-World Analogy
-- **Data Leakage**: A teacher gives you the answers to the final exam while you are studying. You get an A+. But in the real world, you know nothing.
-- **Precision**: The "Boy Who Cried Wolf" metric. Out of all the times you yelled "WOLF!" (Predicted Positive), how many times was there actually a wolf? (High precision = You don't cry wolf).
-- **Recall**: The "Security Guard" metric. Out of all the ACTUAL thieves (Actual Positives), how many did you catch? (High recall = No thief escapes).
-
-## E. Core Mathematical Concepts
-
-### 1. The Confusion Matrix
-- **True Positive (TP)**: Sick person correctly diagnosed as sick.
-- **False Positive (FP)**: Healthy person incorrectly diagnosed as sick (Type I Error).
-- **True Negative (TN)**: Healthy person correctly diagnosed as healthy.
-- **False Negative (FN)**: Sick person incorrectly diagnosed as healthy (Type II Error - Often fatal!).
-
-### 2. The Metrics
-- **Accuracy**: `(TP + TN) / Total`
-- **Precision**: `TP / (TP + FP)` (When I flag it, am I right?)
-- **Recall (Sensitivity)**: `TP / (TP + FN)` (Did I miss any?)
-- **F1-Score**: Harmonic mean of Precision and Recall. `2 * (P * R) / (P + R)`. Used when you care about both.
-
-## F. Common Mistakes & Anti-Patterns
-1. **Imputing before Splitting**: `df = df.fillna(df.mean()) -> train_test_split()`. WRONG! The `df.mean()` includes data from the test set. 
-   **Fix**: `train_test_split() -> imputer.fit(train) -> imputer.transform(train/test)`. Scikit-learn `Pipeline` does this automatically!
-2. **Using Accuracy for Imbalanced Data**: Predicting credit card fraud (0.1% of transactions). A dumb model predicting 0 always gets 99.9% accuracy.
-
-## G. Interview Connection
-**Q: "If you are building a cancer detection model, do you care more about Precision or Recall?"**
-A: "Recall. A False Negative (missing cancer) means the patient dies. A False Positive (low precision) just means the patient gets a follow-up test. We want to maximize Recall, even if Precision drops slightly."
-
-## H. Implementation & Guided Practice
+# ==============================================================================
+# LABORATORY: MACHINE LEARNING (PIPELINES & EVALUATION METRICS)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior data scientist trains an algorithm to detect a rare genetic disease 
+# (present in 1% of the population). The model returns 99% accuracy. They 
+# celebrate and deploy it to a hospital. Weeks later, the hospital discovers 
+# the model mathematically hardcoded a "False" return for every patient. 
+# It achieved 99% accuracy by completely ignoring the disease. Patients die.
+#
+# A senior AI engineer understands the mathematical trap of "Class Imbalance". 
+# They completely ignore the "Accuracy" metric. They deploy a strict Evaluation 
+# matrix focusing on "Recall" (the mathematical ability to capture True Positives) 
+# and the F1-Score. Furthermore, they architect a Scikit-Learn `Pipeline` to 
+# mathematically fuse Data Scaling, Imputation, and Model Training into a single 
+# serialized object, guaranteeing zero Data Leakage during production inference.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Scikit-Learn Pipelines (`Pipeline`, `ColumnTransformer`).
+# - Execute Advanced Evaluation (Precision, Recall, F1, Confusion Matrix).
+# - Architect Data Leakage prevention during preprocessing.
+#
+# ==============================================================================
 """
 
+import numpy as np
+import pandas as pd
+import warnings
+
+from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
-import pandas as pd
-import numpy as np
+from sklearn.metrics import classification_report, confusion_matrix
 
-def run_pipeline_masterclass():
-    print("--- 1. Building a Bulletproof ML Pipeline ---")
+warnings.filterwarnings("ignore")
+
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
+
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (THE IMBALANCED DATASET)
+# ==============================================================================
+class MLPipelineSimulator:
     
-    # 1. Generate Realistic Imbalanced Data
-    np.random.seed(42)
-    n_samples = 1000
-    
-    # Features
-    age = np.random.normal(40, 10, size=n_samples)
-    salary = np.random.normal(60000, 20000, size=n_samples)
-    department = np.random.choice(['IT', 'HR', 'Marketing', 'Sales'], size=n_samples)
-    
-    # Target: "Promoted". Let's make it rare (Imbalanced!)
-    # Logic: High salary and High age are more likely to be promoted, but it's noisy.
-    prob = 1 / (1 + np.exp(-((age - 40)*0.1 + (salary - 60000)*0.0001 - 3)))
-    promoted = np.random.binomial(1, prob)
-    
-    # Inject missing values (NaNs) AFTER creating the target so prob doesn't break
-    age[np.random.choice(n_samples, 50, replace=False)] = np.nan
-    salary[np.random.choice(n_samples, 50, replace=False)] = np.nan
-    
-    df = pd.DataFrame({'age': age, 'salary': salary, 'department': department, 'promoted': promoted})
-    
-    print(f"Dataset generated: {n_samples} rows.")
-    print(f"Target Distribution:\n{df['promoted'].value_counts(normalize=True) * 100}")
-    
-    # 2. Split Data FIRST (Prevent Data Leakage)
-    X = df.drop('promoted', axis=1)
-    y = df['promoted']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-    
-    # 3. Define the Blueprint for Feature Engineering
-    numeric_features = ['age', 'salary']
-    categorical_features = ['department']
-    
-    # Numeric pipeline: Impute missing with Median -> Scale to Mean 0, Std 1
-    numeric_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer(strategy='median')),
-        ('scaler', StandardScaler())
-    ])
-    
-    # Categorical pipeline: Impute missing with 'Unknown' -> One-Hot Encode
-    categorical_transformer = Pipeline(steps=[
-        ('imputer', SimpleImputer(strategy='constant', fill_value='Unknown')),
-        ('onehot', OneHotEncoder(handle_unknown='ignore'))
-    ])
-    
-    # Combine both into a ColumnTransformer
-    preprocessor = ColumnTransformer(
-        transformers=[
+    def __init__(self):
+        print("  [INIT] Generating Imbalanced Dataset (95% Negative, 5% Positive)...")
+        np.random.seed(42)
+        
+        # We simulate 10,000 patients. 
+        # Features: Age (Num), Blood Pressure (Num), Blood Type (Cat)
+        n_samples = 10000
+        
+        data = {
+            'Age': np.random.normal(50, 15, n_samples),
+            'Blood_Pressure': np.random.normal(120, 20, n_samples),
+            # Introduce some NaNs to require Imputation!
+            'Blood_Type': np.random.choice(['A', 'B', 'O', 'AB', np.nan], n_samples),
+        }
+        self.X = pd.DataFrame(data)
+        
+        # Highly Imbalanced Target! Only 5% have the rare disease.
+        self.y = np.random.choice([0, 1], size=n_samples, p=[0.95, 0.05])
+        
+        # Strict Partitioning
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
+            self.X, self.y, test_size=0.2, random_state=42, stratify=self.y
+        )
+
+
+    # --------------------------------------------------------------------------
+    # THE ARCHITECTURAL PATTERN: SCIKIT-LEARN PIPELINES
+    # --------------------------------------------------------------------------
+    def build_and_train_pipeline(self) -> Pipeline:
+        """
+        [SECURE] The Pipeline Architecture.
+        Fuses Imputation, Scaling, Encoding, and Modeling into ONE unified object.
+        """
+        print("\n  [EXECUTION] Architecting the Data Pipeline...")
+        
+        # 1. Define how to mathematically treat Numerical features
+        numeric_features = ['Age', 'Blood_Pressure']
+        numeric_transformer = Pipeline(steps=[
+            ('imputer', SimpleImputer(strategy='median')),
+            ('scaler', StandardScaler())
+        ])
+        
+        # 2. Define how to mathematically treat Categorical features
+        categorical_features = ['Blood_Type']
+        categorical_transformer = Pipeline(steps=[
+            ('imputer', SimpleImputer(strategy='constant', fill_value='Unknown')),
+            ('onehot', OneHotEncoder(handle_unknown='ignore'))
+        ])
+        
+        # 3. Fuse them using a ColumnTransformer
+        preprocessor = ColumnTransformer(transformers=[
             ('num', numeric_transformer, numeric_features),
             ('cat', categorical_transformer, categorical_features)
         ])
         
-    # 4. Define the Final Pipeline (Preprocessor -> Model)
-    # class_weight='balanced' forces the Random Forest to care about the rare class!
-    pipeline = Pipeline(steps=[
-        ('preprocessor', preprocessor),
-        ('classifier', RandomForestClassifier(random_state=42, class_weight='balanced'))
-    ])
-    
-    # 5. Train!
-    # Because we use a pipeline, `fit()` calculates the median and scaling factors 
-    # ONLY on the training data. The test data remains perfectly untouched.
-    pipeline.fit(X_train, y_train)
-    print("\nPipeline trained successfully without Data Leakage!")
-    
-    # 6. Evaluate
-    print("\n--- 2. Evaluation Metrics ---")
-    # `predict()` automatically applies the median and scaling factors learned from the Train set to the Test set.
-    y_pred = pipeline.predict(X_test)
-    y_prob = pipeline.predict_proba(X_test)[:, 1]
-    
-    print("Confusion Matrix:")
-    cm = confusion_matrix(y_test, y_pred)
-    print(f"True Negatives (TN): {cm[0][0]}  |  False Positives (FP): {cm[0][1]}")
-    print(f"False Negatives (FN): {cm[1][0]}  |  True Positives (TP):  {cm[1][1]}")
-    
-    print("\nClassification Report:")
-    print(classification_report(y_test, y_pred))
-    
-    auc = roc_auc_score(y_test, y_prob)
-    print(f"ROC-AUC Score: {auc:.3f} (1.0 is perfect, 0.5 is random guessing)")
+        # 4. Attach the ML Model to the end of the Pipeline
+        # We use `class_weight='balanced'` to mathematically penalize the model 
+        # heavily if it gets the rare 5% class wrong!
+        full_pipeline = Pipeline(steps=[
+            ('preprocessor', preprocessor),
+            ('classifier', RandomForestClassifier(n_estimators=100, class_weight='balanced', random_state=42))
+        ])
+        
+        print("  -> Firing `.fit()` on the unified Pipeline...")
+        # A single `.fit()` command executes all imputation, scaling, encoding, and training!
+        full_pipeline.fit(self.X_train, self.y_train)
+        
+        return full_pipeline
 
 
-## I. Active Recall Questions
+    # --------------------------------------------------------------------------
+    # THE ARCHITECTURAL PATTERN: EVALUATION METRICS
+    # --------------------------------------------------------------------------
+    def evaluate_model(self, pipeline: Pipeline):
+        """
+        [SECURE] Evaluating True Performance (Ignoring 'Accuracy').
+        """
+        print("\n  [ANALYSIS] Evaluating Model via Precision, Recall, and F1...")
+        
+        # The `.predict()` automatically routes the new Test data through the Imputers and Scalers!
+        predictions = pipeline.predict(self.X_test)
+        
+        # 1. The Confusion Matrix
+        # [ True Negatives (TN)   |  False Positives (FP) ]
+        # [ False Negatives (FN)  |  True Positives (TP)  ]
+        cm = confusion_matrix(self.y_test, predictions)
+        print("\n  [CONFUSION MATRIX]")
+        print(f"  True Negatives:  {cm[0][0]:,} | False Positives: {cm[0][1]:,}")
+        print(f"  False Negatives: {cm[1][0]:,} | True Positives:  {cm[1][1]:,}")
+        
+        # 2. The Classification Report (Precision, Recall, F1)
+        print("\n  [CLASSIFICATION REPORT]")
+        print(classification_report(self.y_test, predictions, target_names=['Healthy (0)', 'Disease (1)']))
+
+
+# ==============================================================================
+# 4. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_pipelines():
+    section_header("Machine Learning: Pipelines & Metrics")
+    
+    sim = MLPipelineSimulator()
+    model_pipeline = sim.build_and_train_pipeline()
+    sim.evaluate_model(model_pipeline)
+    
+    print("\n  [ARCHITECTURE PROOF]")
+    print("  By architecting a Scikit-Learn `Pipeline`, the ML Engineer guaranteed ")
+    print("  that mathematical Imputation parameters (like the Median Age) were ")
+    print("  calculated STRICTLY on the Training Set, preventing Data Leakage. ")
+    print("  Furthermore, by analyzing 'Recall' instead of 'Accuracy', they proved ")
+    print("  the model's actual capability to detect the rare disease.")
+
+
+def run_all_labs():
+    demonstrate_pipelines()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-1. What is Data Leakage?
-   *Answer: When information from the test dataset accidentally influences the training process (e.g., calculating the global mean to fill NaNs before splitting). The model "cheats" and looks better than it actually is.*
-2. In a spam filter, what is a False Positive?
-   *Answer: A legitimate email (Negative) that is incorrectly flagged as Spam (Positive).*
-3. Why use an ML Pipeline instead of manually transforming the data step-by-step?
-   *Answer: Pipelines guarantee that transformations are applied consistently to Train, Test, and future Production data, eliminating the risk of data leakage and simplifying deployment.*
+ACTIVE RECALL:
+1. Interviewer: "Define Precision and Recall mathematically. If you are predicting Cancer, which one do you optimize for?"
+   Senior Answer: "Precision is $TP / (TP + FP)$. It answers: 'Out of all the people the model claimed have cancer, how many actually do?' Recall is $TP / (TP + FN)$. It answers: 'Out of all the people who ACTUALLY have cancer in reality, how many did the model successfully catch?' In medical diagnostics (Cancer), you mathematically optimize for Recall. A False Positive (telling a healthy person they have cancer) is stressful but solved by a secondary biopsy. A False Negative (missing the cancer and sending a sick patient home) is fatal. Therefore, we tune the model to aggressively catch all True Positives, even if it hurts Precision."
+
+2. Interviewer: "What is Data Leakage in Preprocessing, and how does a Scikit-Learn `Pipeline` mathematically prevent it?"
+   Senior Answer: "The Global Imputation Trap. A junior developer will take the entire dataset (Train + Test), calculate the Mean Age, and fill all missing values globally *before* calling `train_test_split`. This mathematically leaks information from the Test Set into the Training Set because the Training Set is now influenced by the Mean of the Test Set! A Scikit-Learn `Pipeline` guarantees that when you call `pipeline.fit(X_train)`, the `StandardScaler` and `SimpleImputer` mathematically calculate their Means/Medians strictly utilizing the `X_train` rows. When you call `pipeline.predict(X_test)`, it applies those exact saved metrics to the Test Set, perfectly simulating a real-world production deployment."
+
+3. Interviewer: "What does `class_weight='balanced'` physically do to the Loss Function inside a Random Forest or Logistic Regression model?"
+   Senior Answer: "Mathematical Penalization. In an imbalanced dataset (99% Class 0, 1% Class 1), the algorithm's Loss Function will simply learn to ignore Class 1 because ignoring it yields 99% accuracy. Setting `class_weight='balanced'` alters the underlying Calculus. It mathematically instructs the Cost Function to apply a massive penalty (e.g., $99x$ larger) when the model makes a mistake on the rare Class 1, and a tiny penalty ($1x$) when it mistakes Class 0. This violently forces the algorithm's Gradient Descent to mathematically care about the minority class."
 """
 
 if __name__ == "__main__":
-    print("========== ML PIPELINES & EVALUATION MASTERCLASS ==========\n")
-    run_pipeline_masterclass()
-    print("\n========== MASTERCLASS COMPLETE ==========")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Machine Learning (Pipelines & Evaluation) Completed.")

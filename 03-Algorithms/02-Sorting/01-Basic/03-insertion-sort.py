@@ -525,24 +525,14 @@ def online_stream_insertion(stream_data: Sequence[T]) -> List[T]:
 # 4. DELIBERATELY BUGGY IMPLEMENTATIONS & DEBUGGING COMMENTARY
 # ==============================================================================
 
-def insertion_sort_buggy_swap_and_instability(arr: List[Any]) -> List[Any]:
+def insertion_sort_buggy_swap_and_instability(arr: List[Any], key=lambda x: x) -> List[Any]:
     """
     BUGGY IMPLEMENTATION #1: Inefficient Swapping and Broken Stability.
-    
-    Flaws:
-    1. Condition `arr[j] >= arr[j + 1]` uses `>=` instead of `>`, which swaps
-       equal elements, destroying sorting stability.
-    2. Performs repeated tuple swaps instead of shifts, causing 2x memory writes.
-    
-    Diagnostic Analysis:
-    - Input: [('A', 1), ('B', 1)]
-    - Result: [('B', 1), ('A', 1)] (Relative order inverted!)
-    - Fix: Change condition to strictly greater (`>`) and replace swaps with shifts.
     """
     for i in range(1, len(arr)):
         j = i - 1
-        while j >= 0 and arr[j] >= arr[j + 1]:  # <- BUG: '>=' breaks stability!
-            arr[j], arr[j + 1] = arr[j + 1], arr[j]  # <- Inefficient swap
+        while j >= 0 and key(arr[j]) >= key(arr[j + 1]):
+            arr[j], arr[j + 1] = arr[j + 1], arr[j]
             j -= 1
     return arr
 
@@ -666,7 +656,7 @@ def run_tests() -> None:
     # 9. Buggy Implementations Verification
     # Buggy #1 demonstrates stability failure
     unstable_items = [("First", 10), ("Second", 10)]
-    insertion_sort_buggy_swap_and_instability(unstable_items)
+    insertion_sort_buggy_swap_and_instability(unstable_items, key=lambda x: x[1])
     assert unstable_items == [("Second", 10), ("First", 10)], "Buggy #1 was expected to invert stability"
     
     # Buggy #2 demonstrates off-by-one boundary failure

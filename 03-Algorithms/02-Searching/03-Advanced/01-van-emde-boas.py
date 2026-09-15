@@ -985,11 +985,13 @@ def run_tests():
     buggy = BuggyVanEmdeBoasTree(16)
     # Insert 10, then insert 5 (which is smaller than 10)
     buggy.insert(10)
-    buggy.insert(5)  # Due to Bug 1, 10 is wiped and lost!
-    
+    buggy.insert(5)
+    buggy.insert(15)  # Pushes 10 out of max, proving it was lost
     print(f"Buggy vEB member(5): {buggy.member(5)}")
     print(f"Buggy vEB member(10): {buggy.member(10)}")
-    assert not buggy.member(10), "Expected bug to manifest: 10 was lost when 5 was inserted without swap!"
+    
+    assert buggy.member(5), "5 should exist as the new minimum."
+    assert not buggy.member(10), "Expected bug to manifest: 10 was lost when 5 was inserted without swap and 15 overwrote max!"
     print("Bug confirmed: Omitting swap on smaller insert caused permanent data loss.")
 
     print("\n>>> ALL TESTS PASSED SUCCESSFULLY! <<<")

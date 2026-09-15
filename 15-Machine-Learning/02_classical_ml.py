@@ -1,194 +1,151 @@
 """
-# Classical Machine Learning: The Foundation of AI
-
-## A. Concept Name
-Classical Machine Learning (Linear Regression, Logistic Regression, Decision Trees)
-
-## B. One-Sentence Definition
-Classical Machine Learning involves algorithms that learn patterns from structured data using statistical and mathematical optimization, rather than relying on deep neural networks.
-
-## C. Why Does This Exist? (What problem does it solve?)
-Before Deep Learning, we still needed systems to make predictions (e.g., house prices) and classifications (e.g., spam vs. not spam). Classical ML solves these problems with high interpretability, low computational cost, and excellent performance on tabular data.
-
-## D. Intuition & Real-Life Analogy
-Imagine trying to draw a straight line through a scatter plot of house sizes vs. prices. 
-- **Linear Regression** is you adjusting the ruler until the line fits the dots best.
-- **Logistic Regression** is you drawing a line to separate red dots (spam) from blue dots (not spam).
-- **Decision Trees** are like a flowchart or a game of "20 Questions" (e.g., "Is size > 2000 sqft? Yes -> Is location = City? No -> Price = $300k").
-
-## E. Mental Model
-```text
-Data (X) + Labels (y)  ---> [ ML ALGORITHM ] ---> Trained Model
-                                   | (Optimization / Loss Minimization)
-New Data (X_new)       ---> [ TRAINED MODEL] ---> Predictions (y_pred)
-```
-Unlike traditional programming where you write the rules, in ML, you provide the answers and the data, and the algorithm *figures out the rules*.
-
-## F. Formal Technical Explanation
-- **Linear Regression:** Models the relationship between features and continuous target by fitting a linear equation. `y = w*x + b`. It minimizes the Mean Squared Error (MSE).
-- **Logistic Regression:** Despite the name, it's for *classification*. It squashes the linear output through a Sigmoid function `1 / (1 + e^-z)` to output a probability between 0 and 1. It minimizes Log Loss (Cross-Entropy).
-- **Decision Trees:** Recursively splits the data space into regions based on feature thresholds that maximize Information Gain (or minimize Gini Impurity).
-
-## G. Mathematical Foundation
-**Linear Regression Loss (MSE):**  
-`J(w, b) = 1/N * sum( (y_actual - (w*x + b))^2 )`
-To train the model, we use Calculus (Gradient Descent) to find the derivatives of J with respect to `w` and `b`, and update them to find the minimum error.
-
-## H. Complexity Analysis
-- **Decision Tree Training Time:** O(N * M * log N) where N is samples, M is features.
-- **Linear Regression Inference Time:** O(M) (Just a dot product of weights and features). Extremely fast.
-
-## I. Common Mistakes & Pitfalls
-- **Feature Scaling:** Linear models (especially with regularization like Ridge/Lasso) require features to be scaled (e.g., StandardScaler). Decision Trees do *not* care about scaling.
-- **Overfitting Trees:** A Decision Tree with no `max_depth` will grow until every leaf has 1 sample. It will memorize the training data and fail on new data (Overfitting).
-
-## J. Common Confusions
-- *Linear vs Logistic:* Linear outputs a continuous number (Price: $150,000). Logistic outputs a probability (Probability of Spam: 0.85), which is then mapped to a class (Spam).
-- *Parameter vs Hyperparameter:* Parameters (`w`, `b`) are learned by the algorithm during training. Hyperparameters (`max_depth` in trees, `learning_rate`) are set by YOU before training.
-
-## K. When To Use It
-- Linear/Logistic Regression: When you need a simple, extremely fast, highly interpretable baseline.
-- Decision Trees: When you have non-linear tabular data and you need to easily explain *why* a decision was made to stakeholders.
-
-## L. When NOT To Use It
-- Do not use Classical ML for unstructured data (images, audio, raw text). Use Deep Learning.
-- Do not use a single Decision Tree for highly critical predictions; they are unstable. Use Ensembles (Random Forests, XGBoost).
-
-## M. Trade-offs
-- **Interpretability vs Performance:** Linear models are highly interpretable but struggle with complex patterns. Deep learning is a black box but handles complex patterns.
-
-## N. Debugging Tips
-- `ValueError: Expected 2D array, got 1D array instead`: Scikit-learn expects X to be a matrix (rows=samples, cols=features). If you have one feature, use `X.reshape(-1, 1)`.
-- Model has 99% accuracy on train, 50% on test: You are severely overfitting. Limit `max_depth` or use regularization.
-
-## O. Memory Hook
-"Linear predicts the amount. Logistic predicts the category. Trees ask 20 questions."
-
-## P. Active Recall Questions
-1. Why is Logistic Regression used for classification if it has "regression" in the name?
-2. How does a Decision Tree decide where to split the data?
-3. What is the difference between a parameter and a hyperparameter?
-
-## Q. Interview Questions & Answers
-**Q: What does the 'fit' method actually do under the hood in Linear Regression?**
-A: It calculates the optimal weights (`w`) and bias (`b`) that minimize a loss function (like Mean Squared Error) across the training dataset. This can be done via iterative optimization (Gradient Descent) or analytically via the Normal Equation.
-
-## R. Project Connections
-- **Finance:** Logistic regression is used as the baseline model for credit scoring.
-- **E-commerce:** Linear regression predicts future inventory demand based on historical sales.
+# ==============================================================================
+# LABORATORY: MACHINE LEARNING (CLASSICAL ML & SCIKIT-LEARN)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior data scientist wants to predict house prices. They load the entire 
+# dataset into `RandomForestRegressor`, call `.fit()`, and then call `.score()` 
+# on the exact same dataset. The model returns 99.9% accuracy. They celebrate 
+# and deploy to production. The next day, the model is completely wrong on every 
+# single real-world prediction. The company loses millions.
+#
+# A senior AI engineer understands "Overfitting" and "Data Leakage". They strictly 
+# mathematically partition the data into a Train Set and a Test Set. They use 
+# K-Fold Cross Validation. They realize the model merely memorized the training 
+# data (100% accuracy) but failed mathematically to generalize to unseen data 
+# (40% test accuracy). They adjust the architectural hyper-parameters to prevent 
+# memorization, saving the system.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Scikit-Learn Estimator API (`fit`, `predict`, `transform`).
+# - Execute strict Train/Test splits to prevent Data Leakage.
+# - Architect classification (Logistic Regression) vs regression (Random Forest).
+#
+# ==============================================================================
 """
 
 import numpy as np
-from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.datasets import make_regression, make_classification
+import warnings
+
+# We import mock models from sklearn to simulate the API
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, accuracy_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Suppress sklearn warnings for clean terminal output
+warnings.filterwarnings("ignore")
+
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
+
 
 # ==============================================================================
-# 1. EDUCATIONAL FROM-SCRATCH IMPLEMENTATION (Linear Regression via Gradient Descent)
+# 3. THE BUSINESS LOGIC (THE DATASET)
 # ==============================================================================
-class FromScratchLinearRegression:
-    def __init__(self, learning_rate=0.01, epochs=1000):
-        self.lr = learning_rate
-        self.epochs = epochs
-        self.weights = None
-        self.bias = None
-
-    def fit(self, X, y):
-        n_samples, n_features = X.shape
-        self.weights = np.zeros(n_features)
-        self.bias = 0
-
-        # Gradient Descent Optimization
-        for _ in range(self.epochs):
-            # y_pred = X.w + b
-            y_predicted = np.dot(X, self.weights) + self.bias
-            
-            # Compute Gradients
-            # dw = (1/N) * sum(2 * x_i * (y_pred_i - y_i))
-            dw = (1 / n_samples) * np.dot(X.T, (y_predicted - y))
-            db = (1 / n_samples) * np.sum(y_predicted - y)
-
-            # Update Parameters
-            self.weights -= self.lr * dw
-            self.bias -= self.lr * db
-
-    def predict(self, X):
-        return np.dot(X, self.weights) + self.bias
-
-# ==============================================================================
-# 2. INDUSTRY-STANDARD LIBRARY IMPLEMENTATION (Scikit-Learn)
-# ==============================================================================
-def run_sklearn_pipeline():
-    print("\n--- Industry Standard: Scikit-Learn ---")
+class ClassicalMLSimulator:
     
-    # 1. Prepare Data
-    X_reg, y_reg = make_regression(n_samples=200, n_features=1, noise=15, random_state=42)
-    X_train, X_test, y_train, y_test = train_test_split(X_reg, y_reg, test_size=0.2, random_state=42)
-    
-    # 2. Train Model
-    model = LinearRegression()
-    model.fit(X_train, y_train)
-    
-    # 3. Predict & Evaluate
-    predictions = model.predict(X_test)
-    mse = mean_squared_error(y_test, predictions)
-    print(f"Linear Regression MSE: {mse:.2f}")
+    def __init__(self):
+        # Features (X): e.g., Age, Income, Credit Score
+        # Target (y): e.g., Did they default on the loan? (1 = Yes, 0 = No)
+        np.random.seed(42)
+        print("  [INIT] Generating Synthetic Banking Dataset (1,000 customers)...")
+        
+        self.X = np.random.rand(1000, 3) * 100 
+        # Create a non-linear target variable to make it interesting
+        self.y = (self.X[:, 0] + self.X[:, 1] > 100).astype(int)
 
-    # Logistic Regression Example
-    X_clf, y_clf = make_classification(n_samples=200, n_features=2, n_redundant=0, random_state=42)
-    Xc_train, Xc_test, yc_train, yc_test = train_test_split(X_clf, y_clf, test_size=0.2, random_state=42)
-    
-    clf = LogisticRegression()
-    clf.fit(Xc_train, yc_train)
-    acc = accuracy_score(yc_test, clf.predict(Xc_test))
-    print(f"Logistic Regression Accuracy: {acc * 100:.2f}%")
 
-# ==============================================================================
-# 3. DELIBERATELY BUGGY IMPLEMENTATION
-# ==============================================================================
-def buggy_ml_pipeline():
-    """
-    BUGGY VERSION - Demonstrates Data Leakage
-    """
-    print("\n--- Buggy Pipeline (Data Leakage) ---")
-    X, y = make_classification(n_samples=100, n_features=5, random_state=42)
-    
-    # BUG: Normalizing the ENTIRE dataset before splitting.
-    # The test set information (mean/std) "leaks" into the training set.
-    # In reality, you must fit the scaler ONLY on X_train.
-    from sklearn.preprocessing import StandardScaler
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X) # <-- LEAKAGE HERE
-    
-    X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
-    
-    model = DecisionTreeClassifier(random_state=42)
-    model.fit(X_train, y_train)
-    print("Model trained, but evaluation metrics are overly optimistic due to leakage!")
+    # --------------------------------------------------------------------------
+    # THE ANTI-PATTERN: DATA LEAKAGE (TESTING ON TRAINING DATA)
+    # --------------------------------------------------------------------------
+    def execute_junior_workflow(self):
+        """
+        [WARNING] THIS IS CATASTROPHICALLY FLAWED.
+        Training and testing on the exact same data leads to Overfitting illusions.
+        """
+        print("\n  [EXECUTION] Junior Workflow (Data Leakage)...")
+        
+        # A Random Forest is extremely powerful. It can literally memorize the data.
+        model = RandomForestClassifier(n_estimators=100, max_depth=None)
+        
+        # Train on ALL data
+        model.fit(self.X, self.y)
+        
+        # Predict on ALL data (The exact same data it just memorized!)
+        predictions = model.predict(self.X)
+        accuracy = accuracy_score(self.y, predictions)
+        
+        print(f"  -> Model Accuracy: {accuracy * 100:.2f}%")
+        print("  -> [FATAL ERROR] The model achieved 100% because it memorized the answers!")
+
+
+    # --------------------------------------------------------------------------
+    # THE ARCHITECTURAL PATTERN: TRAIN/TEST SPLIT
+    # --------------------------------------------------------------------------
+    def execute_senior_workflow(self):
+        """
+        [SECURE] Train/Test Split.
+        We mathematically lock away 20% of the data. The model NEVER sees it during training.
+        """
+        print("\n  [EXECUTION] Senior Workflow (Train/Test Partitioning)...")
+        
+        # 1. Partition the Data
+        X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=42)
+        print(f"  -> Training Data Shape: {X_train.shape}")
+        print(f"  -> Unseen Test Data Shape: {X_test.shape}")
+        
+        # 2. Train the Model (ONLY on the Training Set!)
+        model = LogisticRegression()
+        model.fit(X_train, y_train)
+        
+        # 3. Test the Model (On the mathematically quarantined Test Set!)
+        predictions = model.predict(X_test)
+        accuracy = accuracy_score(y_test, predictions)
+        
+        print(f"  -> True Generalization Accuracy: {accuracy * 100:.2f}%")
+        print("  -> [FLAWLESS] The model proved it can predict unseen mathematical realities.")
+
 
 # ==============================================================================
-# 4. TESTING & VALIDATION
+# 4. MATHEMATICAL PROOF (THE BENCHMARK)
 # ==============================================================================
-def run_tests():
-    print("--- Running Tests ---")
-    # Generate simple linear data: y = 2x + 1
-    X = np.array([[1], [2], [3], [4]])
-    y = np.array([3, 5, 7, 9])
+def demonstrate_ml():
+    section_header("Machine Learning: Scikit-Learn API")
     
-    # Test Custom From-Scratch Model
-    custom_model = FromScratchLinearRegression(learning_rate=0.05, epochs=500)
-    custom_model.fit(X, y)
+    sim = ClassicalMLSimulator()
+    sim.execute_junior_workflow()
+    sim.execute_senior_workflow()
     
-    # Predict for x = 5 (should be approx 11)
-    pred = custom_model.predict(np.array([[5]]))
-    
-    # Assert prediction is very close to 11
-    assert abs(pred[0] - 11.0) < 0.5, f"Custom model failed, predicted {pred[0]}"
-    print("From-Scratch Gradient Descent passed!")
+    print("\n  [ARCHITECTURE PROOF]")
+    print("  By mathematically quarantining a Test Set, the Senior Engineer ")
+    print("  prevented Data Leakage. They proved the model learned the underlying ")
+    print("  mathematical patterns (Generalization) rather than simply memorizing ")
+    print("  the training examples (Overfitting).")
+
+
+def run_all_labs():
+    demonstrate_ml()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "What is 'Overfitting' in Machine Learning, and how does a Random Forest physically do it?"
+   Senior Answer: "Memorization vs Generalization. Overfitting occurs when a model learns the mathematical 'noise' of the training data rather than the underlying pattern. A Random Forest is a collection of Decision Trees. If you do not mathematically restrict the `max_depth` of a Decision Tree, it will literally continue splitting branches until every single training example is perfectly isolated in its own leaf node. It has essentially built a massive `if-else` lookup table of the training set. When a new, unseen data point arrives in production, the model fails catastrophically because the new point doesn't perfectly match the memorized lookup table."
+
+2. Interviewer: "Explain the architectural difference between Classification and Regression."
+   Senior Answer: "Discrete vs Continuous Mathematical Output. A Classification algorithm (like Logistic Regression or SVM) predicts a discrete categorical label. For example, predicting whether an email is 'Spam' ($1$) or 'Not Spam' ($0$). The output is passed through a Sigmoid or Softmax function to squash the mathematical output into a probability between $0$ and $1$. A Regression algorithm (like Linear Regression) predicts a continuous numerical value. For example, predicting the exact price of a house as $\$450,234.50$. The mathematical loss function for Classification is usually Cross-Entropy, while Regression uses Mean Squared Error (MSE)."
+
+3. Interviewer: "If you have a massive dataset of 10 Million rows, why would you use an ML Algorithm like Logistic Regression instead of a Deep Neural Network?"
+   Senior Answer: "Explainability and Hardware Overhead. A Deep Neural Network is mathematically opaque (a Black Box). It might achieve $98\\%$ accuracy, but if the bank denies a customer a loan, you cannot legally or mathematically explain *why* the neural network denied it. Logistic Regression is a linear equation. You can look at the exact learned weights ($W_1 = 5.4$ for Income, $W_2 = -3.2$ for Debt) and easily explain the decision to stakeholders. Furthermore, Logistic Regression trains in seconds on a standard CPU, whereas a Neural Network requires massive GPU clusters and hours of backpropagation, destroying architectural ROI if the linear model achieves similar accuracy."
+"""
 
 if __name__ == "__main__":
-    run_tests()
-    run_sklearn_pipeline()
-    buggy_ml_pipeline()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Machine Learning (Classical ML) Completed.")

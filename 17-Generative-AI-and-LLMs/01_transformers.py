@@ -1,140 +1,156 @@
 """
-## A. Concept Name
-Transformer Block and Self-Attention Mechanism
-
-## B. Analogy
-Imagine a reading group where instead of reading a book linearly word-by-word (like an RNN), everyone looks at a whole sentence simultaneously. Each person is assigned a word and tries to understand its meaning by paying "attention" to other relevant words in the sentence. Multi-head attention is like having different people analyze the same sentence for different things (e.g., one looks for grammar, another for emotion, another for entities).
-
-## C. Core Mechanism
-1. **Self-Attention**: Computes a weighted sum of `Values`, where the weight is determined by the compatibility (dot product) of a `Query` with a `Key`.
-2. **Multi-Head Attention**: Splits the embedding into multiple heads, performs self-attention in parallel, and concatenates the results.
-3. **Feed-Forward Network**: Applied to each position separately and identically, adding non-linearity.
-4. **Layer Normalization & Residual Connections**: Stabilize training and allow gradients to flow easily through deep networks.
-
-## D. Time & Space Complexity
-- **Time Complexity**: $O(N^2 \cdot d)$ where $N$ is sequence length and $d$ is embedding dimension. The $N^2$ term comes from the attention matrix calculation.
-- **Space Complexity**: $O(N^2 \cdot h)$ to store the attention scores for each head $h$.
-
-## E. Common Pitfalls
-- Forgetting to scale the dot product by $\sqrt{d_k}$. Without this, the dot products can grow large in magnitude, pushing the softmax function into regions where it has extremely small gradients.
-- Incorrectly masking sequences, especially for decoder self-attention where future tokens must be masked.
-
-## X. Project Connection
-This module serves as the foundational building block for modern Generative AI and Large Language Models (LLMs). By understanding this basic Transformer Block, you are equipped to tackle architectures like GPT, BERT, and LLaMA within this learning repository.
+# ==============================================================================
+# LABORATORY: GENERATIVE AI (AUTOREGRESSIVE GENERATION LOOP)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer believes that when they type a prompt into ChatGPT, the 
+# model instantly "thinks" of the entire paragraph and returns it all at once.
+#
+# A senior AI engineer understands "Autoregressive Generation". They know that 
+# ChatGPT is fundamentally a mathematical "Next-Token Predictor". If the prompt 
+# is "The cat sat", the model executes a massive Matrix Multiplication to predict 
+# exactly ONE token: "on". The engineer knows the context window must now physically 
+# append "on" to the input, becoming "The cat sat on". The massive Matrix Multiplication 
+# runs *again from scratch* to predict "the". The loop continues until the model 
+# predicts the special `<EOS>` (End Of Sequence) token.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the Autoregressive Decoding loop.
+# - Execute Context Window appending.
+# - Architect a simulated Next-Token Prediction pipeline.
+#
+# ==============================================================================
 """
 
-import math
+import time
+import random
 
-# Try to import torch, fallback to a mock explanation if not available
-try:
-    import torch
-    import torch.nn as nn
-    import torch.nn.functional as F
-    HAS_TORCH = True
-except ImportError:
-    HAS_TORCH = False
-    print("PyTorch is not installed. This script requires PyTorch to run the actual model code.")
-    print("You can install it using: pip install torch")
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-if HAS_TORCH:
-    class SelfAttention(nn.Module):
+
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (THE LLM SIMULATOR)
+# ==============================================================================
+class LLMSimulator:
+    """
+    Simulates a 1-Billion Parameter Generative Pre-trained Transformer.
+    """
+    def __init__(self):
+        # A tiny simulated vocabulary and transition probabilities
+        # Format: { "context": { "next_word": probability } }
+        self.vocabulary_weights = {
+            "The": {"quick": 0.8, "lazy": 0.2},
+            "The quick": {"brown": 0.9, "red": 0.1},
+            "The quick brown": {"fox": 0.95, "dog": 0.05},
+            "The quick brown fox": {"jumps": 0.7, "sleeps": 0.3},
+            "The quick brown fox jumps": {"over": 0.99},
+            "The quick brown fox jumps over": {"the": 1.0},
+            "The quick brown fox jumps over the": {"lazy": 0.8, "fence": 0.2},
+            "The quick brown fox jumps over the lazy": {"dog": 0.9, "cat": 0.1},
+            "The quick brown fox jumps over the lazy dog": {"<EOS>": 1.0}
+        }
+        
+        self.context_window_limit = 2048 # Maximum tokens it can remember
+
+    def predict_next_token(self, current_context: str) -> str:
         """
-        A simple implementation of Scaled Dot-Product Attention.
+        [SECURE] The core of ChatGPT.
+        Takes the entire current context, pushes it through the Transformer 
+        Matrix Multiplications, and outputs exactly ONE token.
         """
-        def __init__(self, embed_size, heads):
-            super(SelfAttention, self).__init__()
-            self.embed_size = embed_size
-            self.heads = heads
-            self.head_dim = embed_size // heads
+        # Simulate GPU computation time (Forward Pass)
+        time.sleep(0.5) 
+        
+        # If the context is in our simulated weights, pick the highest probability token (Greedy Decoding)
+        if current_context in self.vocabulary_weights:
+            possible_next_tokens = self.vocabulary_weights[current_context]
+            
+            # Find the token with the maximum probability (Simulating Argmax over Softmax)
+            best_token = max(possible_next_tokens, key=possible_next_tokens.get)
+            confidence = possible_next_tokens[best_token]
+            
+            print(f"     [GPU] Forward pass complete. Softmax confidence for '{best_token}': {confidence*100:.1f}%")
+            return best_token
+            
+        return "<EOS>"
 
-            assert (self.head_dim * heads == embed_size), "Embed size needs to be divisible by heads"
 
-            self.values = nn.Linear(self.head_dim, self.head_dim, bias=False)
-            self.keys = nn.Linear(self.head_dim, self.head_dim, bias=False)
-            self.queries = nn.Linear(self.head_dim, self.head_dim, bias=False)
-            self.fc_out = nn.Linear(heads * self.head_dim, embed_size)
-
-        def forward(self, values, keys, query, mask):
-            N = query.shape[0]
-            value_len, key_len, query_len = values.shape[1], keys.shape[1], query.shape[1]
-
-            # Split the embedding into self.heads different pieces
-            values = values.reshape(N, value_len, self.heads, self.head_dim)
-            keys = keys.reshape(N, key_len, self.heads, self.head_dim)
-            queries = query.reshape(N, query_len, self.heads, self.head_dim)
-
-            values = self.values(values)
-            keys = self.keys(keys)
-            queries = self.queries(queries)
-
-            # Einsum does matrix multiplication for query*keys for each training example
-            # with every other training example, don't be confused by einsum
-            # it's just a way to do batch matrix multiplication
-            energy = torch.einsum("nqhd,nkhd->nhqk", [queries, keys])
-
-            if mask is not None:
-                energy = energy.masked_fill(mask == 0, float("-1e20"))
-
-            attention = torch.softmax(energy / (self.embed_size ** (1 / 2)), dim=3)
-
-            out = torch.einsum("nhql,nlhd->nqhd", [attention, values]).reshape(
-                N, query_len, self.heads * self.head_dim
-            )
-
-            out = self.fc_out(out)
-            return out
-
-    class TransformerBlock(nn.Module):
+# ==============================================================================
+# 4. THE ARCHITECTURAL PATTERN: THE AUTOREGRESSIVE LOOP
+# ==============================================================================
+class InferenceEngine:
+    
+    def __init__(self, model: LLMSimulator):
+        self.model = model
+        
+    def generate_text(self, prompt: str, max_tokens: int = 10):
         """
-        A standard Transformer Block with Self-Attention and FeedForward Neural Network.
+        [SECURE] The Autoregressive Generation Loop.
         """
-        def __init__(self, embed_size, heads, dropout, forward_expansion):
-            super(TransformerBlock, self).__init__()
-            self.attention = SelfAttention(embed_size, heads)
-            self.norm1 = nn.LayerNorm(embed_size)
-            self.norm2 = nn.LayerNorm(embed_size)
+        print(f"\n  [USER PROMPT] '{prompt}'")
+        print("  [SYSTEM] Initializing Autoregressive Generation Loop...\n")
+        
+        current_context = prompt
+        generated_tokens = []
+        
+        for step in range(1, max_tokens + 1):
+            print(f"  -> Step {step}: Context Buffer = ['{current_context}']")
+            
+            # 1. Ask the model for exactly ONE token
+            next_token = self.model.predict_next_token(current_context)
+            
+            # 2. Check for the End Of Sequence token
+            if next_token == "<EOS>":
+                print(f"  -> Step {step}: Model generated <EOS>. Halting generation.")
+                break
+                
+            # 3. Append the new token to the Context Window!
+            # THIS is why generating 1,000 words takes longer than generating 10 words.
+            # The context gets longer, making the matrix multiplication heavier every step.
+            current_context = current_context + " " + next_token
+            generated_tokens.append(next_token)
+            
+        print(f"\n  [FINAL OUTPUT] {prompt} " + " ".join(generated_tokens))
+        print("\n  [FLAWLESS] The LLM mathematically constructed the sentence one token ")
+        print("  at a time, perfectly maintaining semantic coherence across the entire loop.")
 
-            self.feed_forward = nn.Sequential(
-                nn.Linear(embed_size, forward_expansion * embed_size),
-                nn.ReLU(),
-                nn.Linear(forward_expansion * embed_size, embed_size),
-            )
-            self.dropout = nn.Dropout(dropout)
 
-        def forward(self, value, key, query, mask):
-            attention = self.attention(value, key, query, mask)
+# ==============================================================================
+# 5. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_autoregressive_generation():
+    section_header("Generative AI: The Autoregressive Loop")
+    
+    model = LLMSimulator()
+    engine = InferenceEngine(model)
+    
+    # Start the generation!
+    engine.generate_text(prompt="The", max_tokens=15)
 
-            # Add skip connection, run through normalization and finally dropout
-            x = self.dropout(self.norm1(attention + query))
-            forward = self.feed_forward(x)
-            out = self.dropout(self.norm2(forward + x))
-            return out
 
-    def main():
-        print("--- Transformer Architecture Basics ---")
-        # Define hyperparams
-        embed_size = 256
-        heads = 8
-        dropout = 0.1
-        forward_expansion = 4
-        
-        # Create a dummy batch of sequences
-        # Batch size = 32, Sequence Length = 10, Embedding Size = 256
-        batch_size = 32
-        seq_length = 10
-        x = torch.randn((batch_size, seq_length, embed_size))
-        
-        print(f"Input shape: {x.shape} (Batch, Seq_Len, Embed_Dim)")
-        
-        # Initialize the block
-        block = TransformerBlock(embed_size, heads, dropout, forward_expansion)
-        
-        # Forward pass (using x as query, key, and value for self-attention)
-        out = block(x, x, x, mask=None)
-        
-        print(f"Output shape: {out.shape} (Matches input shape)")
-        print("Transformer block execution successful! The model processed the sequence in parallel.")
+def run_all_labs():
+    demonstrate_autoregressive_generation()
+
+
+# ==============================================================================
+# 6. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "Why does the generation speed (Tokens Per Second) of an LLM slow down as the generated response gets longer?"
+   Senior Answer: "The $O(N^2)$ Context Window Bottleneck. An LLM is Autoregressive. To generate Token $100$, it must push Tokens $1$ through $99$ through the massive Self-Attention matrix ($Q \\cdot K^T$). The computational complexity of Self-Attention is mathematically $O(N^2)$ with respect to the sequence length. To generate Token $101$, it must push Tokens $1$ through $100$ through the matrix. The physical size of the matrix multiplication grows quadratically with every single step. This is why a $4,000$-token response takes significantly more GPU compute per token at the end of the response than at the beginning."
+
+2. Interviewer: "What is the physical significance of the `<EOS>` (End Of Sequence) token?"
+   Senior Answer: "Mathematical Halting. A Transformer matrix multiplication has no biological concept of 'being finished'. If you put numbers into the matrix, it will output a prediction for the next number infinitely. During pre-training, datasets are physically appended with a special `<EOS>` token at the end of documents. The model mathematically learns the semantic conditions that signify a completed thought, and outputs the `<EOS>` vector. The Inference Engine running the `for` loop contains a hardcoded `if token == '<EOS>': break` statement. Without this token, the model would hallucinate infinitely until it hit the hard max-token limit."
+
+3. Interviewer: "Explain the difference between Pre-Training and Inference in terms of the Context Window."
+   Senior Answer: "Parallel vs Sequential. During Pre-Training, we know the entire document in advance. We can utilize Teacher Forcing and Causal Masking to mathematically train the model on predicting *every single next token in the document simultaneously* in one massive parallel matrix multiplication on the GPU. During Inference (serving the model to users), we do not know the future tokens. We must physically wait for the model to generate Token $N$, append it to RAM, and then execute a brand new forward pass to predict Token $N+1$. Pre-training is perfectly parallelizable; Inference is strictly sequential and autoregressive."
+"""
 
 if __name__ == "__main__":
-    if HAS_TORCH:
-        main()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Generative AI (Autoregressive Loop) Completed.")

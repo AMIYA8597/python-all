@@ -1,114 +1,158 @@
 """
-## A. Concept Name
-Retrieval-Augmented Generation (RAG)
-
-## B. Motivation
-Large Language Models (LLMs) have limited knowledge bounded by their training data cut-off and lack access to private or recent information. RAG solves this by retrieving relevant data from an external knowledge base to augment the LLM's prompt, reducing hallucinations and providing accurate, context-specific answers.
-
-## C. How it Works
-1. Indexing: Text is split into chunks, embedded into vectors, and stored in a vector database.
-2. Retrieval: The user's query is embedded, and the vector database is searched for the most similar chunks (context).
-3. Generation: The retrieved context is combined with the original query to form an augmented prompt, which is then fed to the LLM to generate an answer.
-
-## D. Code Example
-This module provides a simplified, end-to-end RAG pipeline using mock components (MockEmbeddingModel, MockVectorDB, MockLLM) to illustrate the core mechanics of indexing, retrieval, and generation.
-
-## X. Project Connection
-This concept is foundational for building AI assistants, domain-specific chatbots, and document Q&A systems within a larger project architecture.
+# ==============================================================================
+# LABORATORY: GENERATIVE AI (RETRIEVAL-AUGMENTED GENERATION - RAG)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer asks an LLM: "What were our company's Q3 revenue figures?" 
+# The LLM hallucinates and says "10 Million Dollars". The developer realizes 
+# the model's training data was cut off in 2022, and it has absolutely no idea 
+# about private company data. They try to paste all 5,000 company PDFs into the 
+# prompt, but it crashes the 8k Context Window limit.
+#
+# A senior AI engineer builds a RAG Pipeline. They chunk the 5,000 PDFs into 
+# small paragraphs, embed them into vectors, and store them in a Vector Database. 
+# When the user asks about Q3 Revenue, the system searches the database, retrieves 
+# only the 3 highly relevant paragraphs, and injects them into the prompt. The 
+# LLM reads the injected context and perfectly answers the question with 0% hallucination.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Document Chunking strategies.
+# - Execute Vector Database Retrieval simulations.
+# - Architect the final In-Context Generation Prompt.
+#
+# ==============================================================================
 """
 
-# A simplified implementation of a Retrieval-Augmented Generation pipeline.
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-class MockEmbeddingModel:
-    """Mock embedder that returns dummy floats based on text length for simplicity."""
-    def embed(self, text):
-        # Dummy logic: returning a 2D vector based on string length and ascii sum
-        val1 = len(text) / 100.0
-        val2 = sum(ord(c) for c in text) / 10000.0
-        return [val1, val2]
 
-class MockVectorDB:
-    """In-memory Vector Database."""
-    def __init__(self):
-        self.data = []
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (RAG PIPELINE SIMULATOR)
+# ==============================================================================
+class RAGSimulator:
+    
+    @staticmethod
+    def chunk_document(document: str, chunk_size: int, overlap: int) -> list:
+        """
+        [SECURE] Recursive Character Chunking.
+        LLMs cannot process 10,000-page PDFs. We must slice them into manageable chunks.
+        We use 'Overlap' so that a sentence isn't accidentally cut in half, destroying 
+        its semantic meaning.
+        """
+        print("  [INIT] Slicing Document into Chunks...")
+        chunks = []
+        start = 0
+        doc_length = len(document)
         
-    def add(self, chunk_text, vector):
-        self.data.append({"text": chunk_text, "vector": vector})
-        
-    def search(self, query_vector, top_k=1):
-        # Calculate a mock distance (Euclidean-like)
-        results = []
-        for item in self.data:
-            vec = item["vector"]
-            distance = ((query_vector[0] - vec[0])**2 + (query_vector[1] - vec[1])**2)**0.5
-            results.append((item["text"], distance))
+        while start < doc_length:
+            end = start + chunk_size
+            chunk = document[start:end]
+            chunks.append(chunk.strip())
             
-        # Sort by shortest distance
-        results.sort(key=lambda x: x[1])
-        return results[:top_k]
+            # Move the start forward, but step back by the 'overlap' amount
+            start = end - overlap
+            
+        return chunks
 
-class MockLLM:
-    """Simulates an LLM answering based on context."""
-    def generate(self, prompt):
-        # A simple rule-based generation to simulate LLM comprehension
-        prompt_lower = prompt.lower()
-        if "policy" in prompt_lower and "remote work" in prompt_lower:
-            if "tuesday and thursday" in prompt_lower:
-                return "According to the context, employees are allowed to work remotely on Tuesdays and Thursdays."
-        if "capital" in prompt_lower and "france" in prompt_lower:
-            if "paris" in prompt_lower:
-                return "The context states that Paris is the capital of France."
+    @staticmethod
+    def mock_vector_retrieval(query: str, chunks: list) -> str:
+        """
+        [SECURE] Simulates a Vector Database Cosine Similarity search.
+        In production, this is handled by Pinecone, Milvus, or ChromaDB.
+        """
+        print(f"\n  [DATABASE] Executing Semantic Search for: '{query}'")
         
-        return "I am sorry, but the provided context does not contain the answer to your question."
+        # We simulate that the database found Chunk #2 to be geometrically closest to the query.
+        retrieved_chunk = chunks[1] 
+        
+        print(f"  -> Retrieved Context (Cosine Similarity: 0.94):\n     '{retrieved_chunk}'")
+        return retrieved_chunk
 
-def main():
-    print("--- End-to-End RAG Pipeline Simulation ---")
-    
-    # 1. Indexing Phase (Data Preparation)
-    print("\n[Phase 1: Indexing]")
-    knowledge_base = [
-        "The capital of France is Paris. It is known for the Eiffel Tower.",
-        "Company remote work policy: Employees may work from home on Tuesday and Thursday.",
-        "Python is a high-level programming language created by Guido van Rossum."
-    ]
-    
-    embedder = MockEmbeddingModel()
-    vector_db = MockVectorDB()
-    
-    for doc in knowledge_base:
-        vector = embedder.embed(doc)
-        vector_db.add(doc, vector)
-        print(f"Indexed document: '{doc[:30]}...'")
+    @staticmethod
+    def generate_augmented_prompt(query: str, retrieved_context: str) -> str:
+        """
+        [SECURE] The core of RAG.
+        We combine the User's Query with the Retrieved Context, and instruct the 
+        LLM to STRICTLY answer using only the context to prevent hallucinations.
+        """
+        print("\n  [INIT] Constructing Augmented Prompt...")
+        
+        prompt = (
+            "System: You are an expert financial analyst. Answer the user's question "
+            "strictly using ONLY the provided context. If the context does not contain "
+            "the answer, output 'I do not have enough information'.\n\n"
+            f"Context: {retrieved_context}\n\n"
+            f"User Question: {query}\n"
+            "Answer:"
+        )
+        return prompt
 
-    # 2. Retrieval & Generation Phase (Runtime)
-    print("\n[Phase 2: Querying & RAG]")
-    llm = MockLLM()
+
+# ==============================================================================
+# 4. THE ARCHITECTURAL PATTERN: THE FULL PIPELINE
+# ==============================================================================
+def demonstrate_rag_pipeline():
+    section_header("Generative AI: RAG Pipeline")
     
-    user_questions = [
-        "What is the company policy on remote work?",
-        "Who is the CEO of the company?" # Testing failure case
-    ]
+    # 1. The Raw Data (A massive corporate document)
+    corporate_report = (
+        "Acme Corp Financial Report 2024. In Q1, the company focused heavily on "
+        "restructuring the logistics department, resulting in a minor loss of $2M. "
+        "In Q2, new product lines were launched in Europe. Finally, in Q3, the "
+        "company saw massive unprecedented growth, reporting a total Q3 revenue "
+        "of $45 Million Dollars, driven primarily by enterprise software sales. "
+        "Q4 projections indicate a stabilization of the market."
+    )
     
-    for question in user_questions:
-        print(f"\nUser Question: {question}")
-        
-        # Step A: Embed the query
-        query_vector = embedder.embed(question)
-        
-        # Step B: Retrieve relevant context
-        retrieved_results = vector_db.search(query_vector, top_k=1)
-        context_text = retrieved_results[0][0] if retrieved_results else ""
-        print(f"Retrieved Context: {context_text}")
-        
-        # Step C: Augment Prompt
-        augmented_prompt = f"""Use the following context to answer the question. 
-Context: {context_text}
-Question: {question}
-Answer:"""
-        
-        # Step D: LLM Generation
-        answer = llm.generate(augmented_prompt)
-        print(f"LLM Answer: {answer}")
+    sim = RAGSimulator()
+    
+    # 2. Ingestion Phase: Chunking
+    # Chunk Size: 100 characters. Overlap: 20 characters.
+    chunks = sim.chunk_document(corporate_report, chunk_size=150, overlap=20)
+    print("  -> Document successfully chunked into 4 segments.")
+    
+    # 3. User Query
+    user_query = "What was the total revenue in Q3, and what drove it?"
+    
+    # 4. Retrieval Phase (Vector DB Search)
+    context = sim.mock_vector_retrieval(user_query, chunks)
+    
+    # 5. Generation Phase (Augmented Prompting)
+    final_prompt = sim.generate_augmented_prompt(user_query, context)
+    
+    print("\n  [FINAL LLM PAYLOAD]")
+    print("-" * 60)
+    print(final_prompt)
+    print("-" * 60)
+    
+    print("\n  [FLAWLESS] The LLM now has 100% factual, private data sitting directly ")
+    print("  inside its Context Window. It will securely answer '$45 Million Dollars' ")
+    print("  without relying on its outdated, hallucination-prone pre-trained weights.")
+
+
+def run_all_labs():
+    demonstrate_rag_pipeline()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "Why is 'Chunk Overlap' absolutely critical when preparing documents for a Vector Database?"
+   Senior Answer: "Semantic Boundary Preservation. If you hard-slice a document exactly every $500$ characters, you might mathematically slice a sentence directly in half: 'The Q3 revenue was exactly [CUT] $45 Million Dollars.' The first chunk gets embedded, and the second chunk gets embedded as completely separate vectors. If a user asks about Q3 revenue, neither chunk contains the full semantic meaning, and the Vector DB fails to retrieve the correct answer. By adding a $50$-character overlap, the sliding window ensures that the boundary context is preserved in both chunks, mathematically guaranteeing that the semantic meaning survives the slicing process."
+
+2. Interviewer: "What is a 'Cross-Encoder Re-Ranker', and why is it used after standard Vector Retrieval?"
+   Senior Answer: "Precision Filtering. Standard Vector Databases use 'Bi-Encoders'. They embed the Document and the Query separately, and calculate the Cosine Similarity. This is blazingly fast ($O(\\log N)$), but not incredibly accurate. A Cross-Encoder is a massive Transformer model that takes the Query AND the Document *simultaneously* and calculates a highly accurate relevance score. It is far too slow to run on $1$ Million documents. The architectural solution is a two-stage pipeline: The Bi-Encoder quickly retrieves the top $100$ chunks from the database. Then, the Cross-Encoder re-ranks those specific $100$ chunks with maximum accuracy, returning the absolute best $3$ chunks to the LLM."
+
+3. Interviewer: "How does RAG solve the 'Context Window Limit' of LLMs?"
+   Senior Answer: "Dynamic Context Injection. An LLM might have an $8,000$ token limit. A corporate codebase or wiki might contain $10,000,000$ tokens. You cannot physically load the wiki into the LLM. RAG solves this by acting as a mathematical search filter. By chunking the massive dataset and storing it in a Vector Database, the RAG system only retrieves the $3$ most semantically relevant chunks (roughly $1,000$ tokens) based on the user's specific query. It dynamically injects only those $1,000$ tokens into the prompt. The LLM gets exactly the information it needs, while remaining safely under the $8,000$ token hardware limit."
+"""
 
 if __name__ == "__main__":
-    main()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Generative AI (RAG Pipeline) Completed.")

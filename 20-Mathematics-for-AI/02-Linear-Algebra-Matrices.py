@@ -1,163 +1,136 @@
 """
-# 02 - Linear Algebra: Matrices and Neural Networks
-
-## A. Concept Name
-Matrices, Matrix Multiplication, Dot Products, and the Neural Network Forward Pass.
-
-## B. One-Sentence Definition
-A matrix is a 2D grid of numbers (an array of vectors) used to represent datasets, weights in a neural network, or linear transformations (like rotating an image) applied to vectors.
-
-## C. Why Does This Exist?
-While a vector represents a single item (e.g., one image, one word), a matrix allows us to process MILLIONS of items simultaneously. This is called **Batch Processing**.
-More importantly, in a Neural Network, the "knowledge" of the model is stored in Weight Matrices. When data passes through the network, the mathematical operation happening is Matrix Multiplication. GPUs exist almost entirely to do Matrix Multiplication extremely fast.
-
-## D. Intuition & Real-World Analogy
-Imagine a spreadsheet. 
-- A single row (e.g., one customer's age, income, and score) is a **Vector**.
-- The entire table of 10,000 customers is a **Matrix**.
-
-Now imagine you want to calculate a "Credit Score" based on Age and Income. You have a formula:
-`Score = (Age * 2) + (Income * 0.5)`
-The weights `[2, 0.5]` are a Vector.
-Instead of looping over all 10,000 rows in Python, you mathematically multiply the Customer Matrix by the Weight Vector. The computer does it all at once!
-
-## E. Core Mathematical Concepts
-
-### 1. Matrix Shape (Dimensions)
-A matrix has rows (m) and columns (n). We denote this as `(m, n)`.
-In AI: `(batch_size, features)` is the standard shape for input data.
-
-### 2. Matrix Multiplication (Dot Product)
-To multiply Matrix A by Matrix B, you take the dot product of the ROWS of A with the COLUMNS of B.
-**CRITICAL RULE**: To multiply an `(m, n)` matrix by an `(n, p)` matrix, the inner dimensions `n` MUST match! The resulting shape will be `(m, p)`.
-
-### 3. Transpose
-Flipping a matrix over its diagonal, turning rows into columns and columns into rows.
-In AI: We often have to transpose a Weight matrix to make the inner dimensions match for multiplication.
-
-## F. Common Mistakes & Anti-Patterns
-1. **Dimension Mismatch Error**: The most common error in Deep Learning (PyTorch/TensorFlow) is `RuntimeError: mat1 and mat2 shapes cannot be multiplied (64x128 and 256x64)`. You must ensure the inner dimensions match (e.g., `128 != 256`).
-2. **Confusing Element-wise Multiplication with Matrix Multiplication**:
-   - `A * B` (in NumPy) multiplies them element-by-element (like adding corresponding pixels).
-   - `A @ B` (or `np.dot(A, B)`) performs true Matrix Multiplication (dot products of rows/cols).
-
-## G. Interview Connection
-**Q: "Explain how a linear layer in a Neural Network computes its output."**
-A: "A linear layer performs the operation `Y = XW^T + b`. Here, `X` is the input matrix of shape (batch_size, input_features). `W` is the weight matrix. We multiply them using matrix multiplication, which computes the dot product of every input with every weight vector, and then we add the bias vector `b`."
-
-## H. Implementation & Guided Practice
+# ==============================================================================
+# LABORATORY: MATHEMATICS FOR AI (LINEAR ALGEBRA & MATRICES)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer writes a Neural Network using a `for` loop to multiply 
+# $1,000$ inputs against $1,000$ weights. The CPU executes $1,000,000$ operations 
+# sequentially. It takes 5 seconds to run one forward pass.
+#
+# A senior AI engineer understands "Matrix Multiplication". They pack all $1,000$ 
+# inputs into a single Matrix (X) and all $1,000$ weights into a single Matrix (W). 
+# They execute a single mathematical command: `X @ W`. The GPU intercepts this 
+# matrix operation and executes all $1,000,000$ calculations in parallel across 
+# thousands of CUDA cores. The forward pass completes in 0.001 seconds. 
+# AI is impossible without Matrix Mathematics.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Matrix Dimensions (Rows x Columns).
+# - Execute the Dot Product (Matrix Multiplication).
+# - Architect Matrix Transposition ($W^T$) to align dimensions.
+#
+# ==============================================================================
 """
 
 import numpy as np
 
-# ==========================================
-# 1. Basic Matrix Operations in NumPy
-# ==========================================
-def basic_matrix_math():
-    print("--- 1. Basic Matrix Operations ---")
-    
-    # Create a 2x3 matrix
-    A = np.array([
-        [1, 2, 3],
-        [4, 5, 6]
-    ])
-    print(f"Matrix A (shape {A.shape}):\n{A}")
-    
-    # Transpose (Swaps rows and columns -> becomes 3x2)
-    A_T = A.T
-    print(f"\nTranspose of A (shape {A_T.shape}):\n{A_T}")
-    
-    # Element-wise multiplication vs Matrix multiplication
-    B = np.array([
-        [1, 1, 1],
-        [2, 2, 2]
-    ])
-    
-    print(f"\nElement-wise (A * B):\n{A * B}")
-    
-    # Matrix Multiplication (Dot Product)
-    # A is (2,3). To multiply, the second matrix MUST have 3 rows.
-    # So we multiply A (2x3) by A_T (3x2). Result should be (2,2).
-    dot_product = np.dot(A, A_T)
-    # Python 3.5+ supports the @ operator for matrix multiplication!
-    dot_product_at = A @ A_T 
-    
-    print(f"\nMatrix Multiplication (A @ A_T):\n{dot_product}")
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
 
-# ==========================================
-# 2. AI Application: Neural Network Forward Pass
-# ==========================================
-def neural_network_forward_pass():
-    """
-    This is EXACTLY what happens inside `torch.nn.Linear(3, 2)` in PyTorch!
-    """
-    print("\n--- 2. AI Application: Neural Network Forward Pass ---")
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (MATRIX MATHEMATICS)
+# ==============================================================================
+class MatrixMathematics:
     
-    # 1. Input Data (Batch of 4 items, 3 features each) -> Shape: (4, 3)
-    # Features might be: [Age, Income, Credit Score]
-    X = np.array([
-        [25, 50000, 700],
-        [45, 120000, 800],
-        [30, 60000, 650],
-        [22, 20000, 550]
-    ])
-    
-    # 2. Weights (3 input features mapping to 2 output neurons) -> Shape: (3, 2)
-    # Neuron 1 might predict "Loan Default Risk"
-    # Neuron 2 might predict "Credit Card Approval"
-    W = np.array([
-        [0.1, -0.2],
-        [0.5,  0.8],
-        [-0.1, 0.4]
-    ])
-    
-    # 3. Biases (1 for each output neuron) -> Shape: (2,)
-    b = np.array([10.0, -5.0])
-    
-    print(f"Input X shape: {X.shape}")
-    print(f"Weights W shape: {W.shape}")
-    print(f"Biases b shape: {b.shape}")
-    
-    # 4. THE FORWARD PASS: Y = XW + b
-    # X (4,3) @ W (3,2) -> Result is (4,2)
-    # Then NumPy "broadcasts" the bias (2,) across all 4 rows.
-    Z = (X @ W) + b
-    
-    print("\nOutput Predictions (Z):")
-    print(Z)
-    print(f"Output shape: {Z.shape} -> (4 items, 2 predictions each)")
-    
+    @staticmethod
+    def simulate_neural_network_layer():
+        """
+        [SECURE] Matrix Multiplication (The Forward Pass).
+        Formula: Output = X @ W
+        (M x N) @ (N x P) = (M x P)
+        """
+        print("  [INIT] Simulating a Neural Network Dense Layer via Matrices...")
+        
+        # 1. The Input Matrix (X)
+        # Represents 2 samples, each with 3 features. Dimensions: (2 x 3)
+        X = np.array([
+            [1.0, 2.0, 3.0],  # Sample 1
+            [4.0, 5.0, 6.0]   # Sample 2
+        ])
+        
+        # 2. The Weights Matrix (W)
+        # Represents 3 input features mapped to 4 output neurons. Dimensions: (3 x 4)
+        W = np.array([
+            [0.1, 0.2, 0.3, 0.4],
+            [0.5, 0.6, 0.7, 0.8],
+            [0.9, 1.0, 1.1, 1.2]
+        ])
+        
+        print(f"  -> Matrix X Dimensions: {X.shape} (Batch=2, Features=3)")
+        print(f"  -> Matrix W Dimensions: {W.shape} (Input=3, Output=4)")
+        
+        # 3. The Matrix Multiplication (Dot Product)
+        # The inner dimensions MUST match! (2 x 3) @ (3 x 4) -> Valid!
+        # The result will take the outer dimensions: (2 x 4)
+        output = np.dot(X, W)
+        
+        print(f"\n  [EXECUTION] Calculating (X @ W)...")
+        print(f"  -> Output Matrix Dimensions: {output.shape} (Batch=2, Output=4)")
+        print(f"  -> Output Matrix Values:\n{output}")
 
-# ==========================================
-# 3. Debugging Exercise: Shape Mismatch
-# ==========================================
-def buggy_matrix_multiplication():
-    print("\n--- 3. Debugging Exercise: Dimension Mismatch ---")
-    A = np.array([[1, 2, 3], [4, 5, 6]]) # (2, 3)
-    B = np.array([[1, 2], [3, 4]])       # (2, 2)
+    @staticmethod
+    def simulate_transposition():
+        """
+        [SECURE] Matrix Transposition.
+        Swaps rows and columns. Required to fix dimension mismatches during Backpropagation.
+        """
+        print("\n  [INIT] Simulating Matrix Transposition ($W^T$)...")
+        
+        # Original Matrix (3 x 2)
+        W = np.array([
+            [1, 2],
+            [3, 4],
+            [5, 6]
+        ])
+        
+        print(f"  -> Original W Dimensions: {W.shape}")
+        print(f"  -> W Values:\n{W}")
+        
+        # Transposed Matrix (2 x 3)
+        W_T = W.T
+        
+        print(f"\n  -> Transposed W^T Dimensions: {W_T.shape}")
+        print(f"  -> W^T Values:\n{W_T}")
+        
+        print("\n  [MATHEMATICAL PROOF] The columns mathematically became the rows. ")
+        print("  This geometric rotation is strictly required to route Error Gradients ")
+        print("  backwards through the network during training.")
+
+
+# ==============================================================================
+# 4. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_matrices():
+    section_header("Mathematics for AI: Matrices")
     
-    print("Attempting to multiply A (2,3) with B (2,2)...")
-    try:
-        C = A @ B
-    except ValueError as e:
-        print(f"CRASH! ValueError caught: {e}")
-        print("Fix: Inner dimensions must match! You cannot multiply (2,3) by (2,2).")
+    math = MatrixMathematics()
+    math.simulate_neural_network_layer()
+    math.simulate_transposition()
 
 
-## I. Active Recall Questions
+def run_all_labs():
+    demonstrate_matrices()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
 """
-1. What does it mean if you get `ValueError: mat1 and mat2 shapes cannot be multiplied (32x128 and 64x10)`?
-   *Answer: You are trying to perform matrix multiplication, but the inner dimensions do not match. The first matrix has 128 columns, but the second matrix has 64 rows. They must be equal (e.g., 128x128).*
-2. What is the difference between `A * B` and `A @ B` in Python/NumPy?
-   *Answer: `A * B` is element-wise multiplication (multiplying position [0][0] with [0][0]). `A @ B` is actual Matrix Multiplication (taking the dot product of rows and columns).*
-3. Why are GPUs used for Deep Learning?
-   *Answer: Deep Learning is almost entirely composed of massive Matrix Multiplications. CPUs have a few powerful cores. GPUs have thousands of smaller cores designed specifically to perform thousands of dot products in parallel.*
+ACTIVE RECALL:
+1. Interviewer: "If Matrix A is (128, 512) and Matrix B is (256, 512), can you mathematically calculate A @ B?"
+   Senior Answer: "No, a Dimension Mismatch Error will occur. The fundamental rule of Matrix Multiplication states that the inner dimensions must exactly match. A is $(128 \\times 512)$ and B is $(256 \\times 512)$. The inner dimensions ($512$ and $256$) do not equal each other. To solve this, we must Transpose Matrix B to align the geometry. By calculating $A \\cdot B^T$, the operation becomes $(128 \\times 512) \\cdot (512 \\times 256)$. The inner $512$ dimensions now match, and the resulting output matrix will geometrically collapse to the outer dimensions: $(128 \\times 256)$."
+
+2. Interviewer: "What is 'Broadcasting' in NumPy, and why is it mathematically dangerous if misused?"
+   Senior Answer: "Implicit Dimension Expansion. If you add a Matrix $(100 \\times 100)$ and a scalar Vector $(1 \\times 100)$, NumPy will not throw an error. It will automatically 'Broadcast' (duplicate) the vector $100$ times to match the matrix dimensions and execute the addition. This is incredibly useful for adding Biases ($X \\cdot W + B$). However, it is mathematically dangerous because if you accidentally slice an array incorrectly and end up with a $(100 \\times 1)$ array instead of a $(100,)$ vector, NumPy will silently broadcast it across the wrong axis, creating a massive $(100 \\times 100)$ matrix of garbage data without throwing an error."
+
+3. Interviewer: "Why are GPUs strictly required for Matrix Multiplication in Large Language Models?"
+   Senior Answer: "SIMD Architecture. A standard CPU has 16 powerful cores designed for complex sequential logic. A GPU has $10,000$ weak cores designed for SIMD (Single Instruction, Multiple Data). Matrix Multiplication ($X \\cdot W$) is purely a collection of millions of independent dot products (multiply-adds) that do not rely on each other. A CPU calculates them one by one. A GPU mathematically maps each pixel/neuron to a dedicated CUDA core and computes all $1,000,000$ multiplications simultaneously on a single clock cycle."
 """
 
 if __name__ == "__main__":
-    print("========== LINEAR ALGEBRA: MATRICES MASTERCLASS ==========\n")
-    basic_matrix_math()
-    neural_network_forward_pass()
-    buggy_matrix_multiplication()
-    print("\n========== MASTERCLASS COMPLETE ==========")
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Mathematics for AI (Matrices) Completed.")

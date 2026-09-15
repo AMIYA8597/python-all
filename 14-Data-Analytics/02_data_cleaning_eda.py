@@ -1,108 +1,161 @@
 """
-02_data_cleaning_eda.py
-Comprehensive Guide to Data Cleaning & Exploratory Data Analysis (EDA)
-
-## A. Concept Name
-Data Cleaning & Exploratory Data Analysis (EDA)
-
-## B. Motivation
-Raw data is rarely ready for modeling. Data cleaning ensures data quality, while EDA helps us understand patterns, anomalies, and relationships within the dataset before applying complex algorithms.
-
-## C. Real-World Application
-Data scientists spend up to 80% of their time cleaning and exploring data. It is used in analyzing customer churn, preprocessing medical records for diagnosis prediction, and detecting fraud in financial transactions.
-
-## D. Common Pitfalls
-1. Blindly dropping rows with missing values, leading to loss of valuable information.
-2. Ignoring data type conversions (e.g., treating dates as strings).
-3. Removing outliers without investigating their cause—sometimes anomalies are the most important data points.
-
-## E. Best Practices
-1. Always inspect the data (`head()`, `info()`, `describe()`) before modifying it.
-2. Use appropriate imputation strategies (mean/median for numerical, mode for categorical) based on data distribution.
-3. Document every transformation step to maintain a reproducible data pipeline.
-
-## X. Project Connection
-These data cleaning and EDA techniques will be heavily utilized in our final Capstone Project to preprocess raw datasets before feeding them into our predictive machine learning models.
-
-This script covers:
-1. Handling Missing Data (NaN)
-2. Handling Duplicates
-3. Handling Outliers
-4. Data Type Conversions
-5. Descriptive Statistics & EDA Techniques
+# ==============================================================================
+# LABORATORY: DATA ANALYTICS (DATA CLEANING & EDA)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior data scientist trains a Machine Learning model on a dataset containing 
+# missing values (NaN) and extreme outliers (e.g., an employee age of 999). 
+# They deploy the model to Production. It predicts that a 999-year-old employee 
+# requires a $50,000,000 salary. The model is mathematically corrupt.
+#
+# A senior data engineer understands that "Garbage In, Garbage Out" (GIGO) is 
+# an absolute law of physics. Before any math is performed, they execute rigorous 
+# Exploratory Data Analysis (EDA) and Data Cleaning. They mathematically impute 
+# missing values using the Median to resist outlier skew, explicitly drop corrupted 
+# rows, and normalize the distributions. The resulting model is flawlessly accurate.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master Missing Data Handling (`dropna`, `fillna`, Imputation).
+# - Execute Outlier Detection via Interquartile Range (IQR).
+# - Architect Aggregations (`groupby`, `agg`) for EDA.
+#
+# ==============================================================================
 """
+
 import pandas as pd
 import numpy as np
 
-def run_cleaning_eda_tutorial():
-    # Creating a messy dataset
-    data = {
-        'ID': [1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 10],
-        'Name': ['Alice', 'Bob', 'Charlie', 'Charlie', 'David', 'Eva', np.nan, 'Frank', 'Grace', 'Heidi', 'Ivan'],
-        'Age': [25, np.nan, 35, 35, 28, 22, 45, 120, 29, np.nan, 31], # 120 is an outlier
-        'Salary': [70000, 80000, 120000, 120000, 90000, 60000, 150000, 65000, 72000, 85000, np.nan],
-        'Join_Date': ['2020-01-15', '2021-02-20', '2019-05-10', '2019-05-10', '2022-08-01', 
-                      '2023-01-10', '2018-11-22', '2021-07-30', '2020-09-14', '2019-12-01', '2022-03-15']
-    }
-    df = pd.DataFrame(data)
-    
-    print("--- 1. Initial Data Inspection (EDA Basics) ---")
-    print("Data Head:\n", df.head())
-    print("\nData Info:")
-    df.info()
-    print("\nDescriptive Statistics:\n", df.describe())
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-    print("\n--- 2. Handling Duplicates ---")
-    print(f"Number of duplicates: {df.duplicated().sum()}")
-    df = df.drop_duplicates()
-    print(f"Duplicates removed. New shape: {df.shape}")
 
-    print("\n--- 3. Handling Missing Data ---")
-    print("Missing values per column:\n", df.isnull().sum())
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (THE CORRUPT DATASET)
+# ==============================================================================
+class EDASimulator:
     
-    # Approach 1: Fill missing names with 'Unknown'
-    df['Name'] = df['Name'].fillna('Unknown')
-    
-    # Approach 2: Fill missing age with median
-    median_age = df['Age'].median()
-    df['Age'] = df['Age'].fillna(median_age)
-    
-    # Approach 3: Drop rows where Salary is missing
-    df = df.dropna(subset=['Salary'])
-    
-    print("\nAfter handling missing data:\n", df.isnull().sum())
+    def __init__(self):
+        self.df = None
+        self._generate_corrupt_data()
+        
+    def _generate_corrupt_data(self):
+        """Generates a mathematically 'dirty' dataset full of NaNs and Outliers."""
+        print("  [INIT] Generating dirty dataset (NaNs and Outliers)...")
+        data = {
+            'employee_id': [101, 102, 103, 104, 105, 106, 107],
+            'department': ['Engineering', 'Sales', 'Engineering', 'HR', np.nan, 'Sales', 'HR'],
+            'salary': [85000, np.nan, 92000, 55000, 60000, 9999999, 58000], # Notice the outlier!
+            'age': [28, 35, np.nan, 42, 25, 45, -5] # Negative age!
+        }
+        self.df = pd.DataFrame(data)
+        
+        print("\n  [RAW DATA]")
+        print(self.df.to_string())
 
-    print("\n--- 4. Data Type Conversions ---")
-    # Convert Join_Date to datetime
-    df['Join_Date'] = pd.to_datetime(df['Join_Date'])
-    
-    # Extract Year and Month as new features (Feature Engineering)
-    df['Join_Year'] = df['Join_Date'].dt.year
-    print("\nData Types after conversion:\n", df.dtypes)
-    print("\nDataFrame with new Join_Year feature:\n", df[['Name', 'Join_Date', 'Join_Year']].head())
 
-    print("\n--- 5. Handling Outliers ---")
-    # Simple outlier detection using Interquartile Range (IQR) for Age
-    Q1 = df['Age'].quantile(0.25)
-    Q3 = df['Age'].quantile(0.75)
-    IQR = Q3 - Q1
-    lower_bound = Q1 - 1.5 * IQR
-    upper_bound = Q3 + 1.5 * IQR
-    
-    print(f"Age IQR Bounds: [{lower_bound}, {upper_bound}]")
-    
-    # Identifying outliers
-    outliers = df[(df['Age'] < lower_bound) | (df['Age'] > upper_bound)]
-    print("\nOutliers detected in Age:\n", outliers[['Name', 'Age']])
-    
-    # Capping outliers (Winsorization)
-    df.loc[df['Age'] > upper_bound, 'Age'] = upper_bound
-    print("\nMax age after capping:", df['Age'].max())
+    # --------------------------------------------------------------------------
+    # THE CLEANING ARCHITECTURE
+    # --------------------------------------------------------------------------
+    def clean_dataset(self):
+        """
+        Executes a rigorous, step-by-step mathematical cleaning pipeline.
+        """
+        print("\n  [PIPELINE] Executing Data Cleaning...")
+        
+        df_clean = self.df.copy()
+        
+        # 1. Handle Categorical NaNs
+        # We fill missing departments with 'Unknown'
+        df_clean['department'] = df_clean['department'].fillna('Unknown')
+        
+        # 2. Handle Numerical NaNs (Imputation)
+        # We use the MEDIAN because it is mathematically resistant to outliers!
+        # If we used the MEAN, the 9,999,999 salary would destroy the average.
+        median_salary = df_clean['salary'].median()
+        df_clean['salary'] = df_clean['salary'].fillna(median_salary)
+        
+        # 3. Handle Logical Errors
+        # You cannot have a negative age. We mathematically absolute it, or nullify it.
+        # Let's replace negative ages with NaN, then impute.
+        df_clean.loc[df_clean['age'] < 0, 'age'] = np.nan
+        df_clean['age'] = df_clean['age'].fillna(df_clean['age'].median())
+        
+        # 4. Outlier Detection (The IQR Method)
+        # We calculate the 25th (Q1) and 75th (Q3) Percentiles.
+        Q1 = df_clean['salary'].quantile(0.25)
+        Q3 = df_clean['salary'].quantile(0.75)
+        IQR = Q3 - Q1
+        
+        # Define the mathematical bounds
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+        
+        # Filter the DataFrame to ONLY keep safe rows!
+        df_clean = df_clean[(df_clean['salary'] >= lower_bound) & (df_clean['salary'] <= upper_bound)]
+        
+        print("\n  [CLEAN DATA]")
+        print(df_clean.to_string())
+        
+        return df_clean
 
-    print("\n--- 6. Advanced EDA (Correlations) ---")
-    numeric_df = df.select_dtypes(include=[np.number])
-    correlation_matrix = numeric_df.corr()
-    print("\nCorrelation Matrix:\n", correlation_matrix)
+    # --------------------------------------------------------------------------
+    # THE EXPLORATORY DATA ANALYSIS (EDA)
+    # --------------------------------------------------------------------------
+    def perform_eda(self, df_clean: pd.DataFrame):
+        """
+        Executes aggregations to understand the underlying mathematics of the business.
+        """
+        print("\n  [EDA] Executing GroupBy Aggregations...")
+        
+        # We group by Department and calculate Multiple metrics simultaneously!
+        summary = df_clean.groupby('department').agg(
+            employee_count=('employee_id', 'count'),
+            avg_salary=('salary', 'mean'),
+            max_age=('age', 'max')
+        ).reset_index() # Flattens the Multi-Index for easier reading
+        
+        print(summary.to_string())
+
+
+# ==============================================================================
+# 4. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_cleaning():
+    section_header("Data Analytics: Cleaning and EDA")
+    
+    sim = EDASimulator()
+    clean_data = sim.clean_dataset()
+    sim.perform_eda(clean_data)
+    
+    print("\n  [ARCHITECTURE PROOF]")
+    print("  By utilizing mathematical Imputation (Medians) and Statistical Outlier ")
+    print("  Detection (IQR bounds), the Data Engineer successfully sterilized the ")
+    print("  dataset. The final EDA groupings reflect actual business reality rather ")
+    print("  than being corrupted by a $9,999,999 typo.")
+
+
+def run_all_labs():
+    demonstrate_cleaning()
+
+
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "When imputing missing numerical values, why might a Senior Data Scientist choose the Median over the Mean?"
+   Senior Answer: "Mathematical Resistance to Skew. The Mean (average) takes all values, sums them, and divides by $N$. If you have $99$ employees making $\$50,000$ and $1$ CEO making $\$50,000,000$, the Mean salary mathematically skyrockets to $\$549,500$. If you impute missing data with this Mean, you corrupt the dataset. The Median physically sorts the values and picks the exact middle number, which remains completely unaffected by the extreme CEO outlier. Therefore, the Median provides a statistically safer imputation baseline for highly skewed distributions."
+
+2. Interviewer: "Explain the mathematics behind Outlier Detection using the Interquartile Range (IQR)."
+   Senior Answer: "Statistical Bounds. The dataset is mathematically divided into four quartiles. Q1 is the $25th$ percentile, Q3 is the $75th$ percentile. The Interquartile Range (IQR) is the exact distance between Q1 and Q3 ($IQR = Q3 - Q1$), representing the middle $50\\%$ of the data. To identify extreme anomalies, we establish mathematical fences: `Lower Bound = Q1 - (1.5 * IQR)` and `Upper Bound = Q3 + (1.5 * IQR)`. Any data point physically residing outside these fences is statistically classified as an Outlier and removed to prevent model corruption."
+
+3. Interviewer: "What is the difference between `dropna()` and Imputation, and what is the risk of using `dropna()` on a massive dataset?"
+   Senior Answer: "Data Annihilation vs Data Synthesis. `dropna()` completely deletes the entire row if even a single column contains a NaN value. If you have a dataset with $1,000,000$ rows and $100$ columns, and each column has a random $1\\%$ chance of being missing, executing `dropna()` might mathematically wipe out $60\\%$ of your entire dataset, destroying valuable business intelligence. Imputation synthesizes the missing value using algorithms (Mean, Median, Forward-Fill, or KNN ML models), allowing the architect to retain the row and preserve the data in the other $99$ columns."
+"""
 
 if __name__ == "__main__":
-    run_cleaning_eda_tutorial()
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Data Analytics (Cleaning & EDA) Completed.")

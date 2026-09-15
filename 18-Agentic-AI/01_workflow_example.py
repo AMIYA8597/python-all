@@ -1,233 +1,177 @@
-\"\"\"
-Agentic AI: Workflow Example
+"""
+# ==============================================================================
+# LABORATORY: AGENTIC AI (WORKFLOWS VS AGENTS)
+# ==============================================================================
+#
+# 1. WHY THIS MATTERS
+# -------------------
+# A junior developer builds a tool to summarize stock reports. They write a 
+# linear Python script: 1. Download PDF -> 2. Extract Text -> 3. Send to LLM 
+# for summary -> 4. Email result. This is a "Workflow". If the PDF download fails, 
+# the script instantly crashes. It cannot recover.
+#
+# A senior AI engineer builds an "Agent". They give the LLM tools: `search_web`, 
+# `read_pdf`, `send_email`. They give it a goal: "Email me a summary of Apple's 
+# Q3 earnings." The Agent autonomously decides to search the web for the PDF. 
+# The first link is broken (404 Error). Instead of crashing, the Agent observes 
+# the error, reasons that it should try a different link, searches again, finds 
+# the data, summarizes it, and emails it. The Agent controls its own execution flow.
+#
+# 2. LEARNING OBJECTIVES
+# ----------------------
+# - Master the limitations of Deterministic Workflows (Chains).
+# - Architect an Autonomous Agentic Loop (ReAct).
+# - Execute dynamic error recovery via LLM reasoning.
+#
+# ==============================================================================
+"""
 
-This module demonstrates a professional-grade implementation of a basic Agentic AI workflow.
-It illustrates how an agent can be constructed to receive a task, plan a sequence of actions,
-execute those actions using available tools, and synthesize a final response.
+def section_header(title: str) -> None:
+    print(f"\n{'='*60}\n{title.upper()}\n{'='*60}")
 
-Use Cases:
-- Customer support bots that need to look up order details and process refunds.
-- Data analysis assistants that can query databases, run statistical models, and generate reports.
-- DevOps automation agents that can monitor system health, diagnose issues, and apply patches.
 
-Concepts Covered:
-1. Agent State Management
-2. Task Planning
-3. Tool Execution
-4. Observation Integration
-5. Final Synthesis
+# ==============================================================================
+# 3. THE BUSINESS LOGIC (WORKFLOW VS AGENT)
+# ==============================================================================
+class LLMSimulator:
+    """Simulates LLM responses for the sake of the Laboratory."""
+    @staticmethod
+    def prompt(text: str) -> str:
+        # Hardcoded simulation responses
+        if "Extract text from: None" in text:
+            return "ERROR: No text provided to summarize."
+        return "Apple reported $81 Billion in Revenue for Q3."
 
-Advanced Concepts:
-- Type hinting for robust interfaces
-- Modular tool registry
-- Basic retry mechanism for tool failures
-\"\"\"
 
-import logging
-import time
-from typing import Any, Callable, Dict, List, Optional, Tuple
-from pydantic import BaseModel, Field
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-# --- Models ---
-
-class Tool(BaseModel):
-    \"\"\"Represents a tool that the agent can use.\"\"\"
-    name: str = Field(..., description=\"The name of the tool.\")
-    description: str = Field(..., description=\"A description of what the tool does.\")
-    func: Callable[..., Any] = Field(..., description=\"The python function to execute.\")
-
-class Action(BaseModel):
-    \"\"\"Represents an action chosen by the agent.\"\"\"
-    tool_name: str
-    tool_input: Dict[str, Any]
-
-class Observation(BaseModel):
-    \"\"\"Represents the result of executing a tool.\"\"\"
-    action: Action
-    result: Any
-    error: Optional[str] = None
-
-class AgentState(BaseModel):
-    \"\"\"Tracks the state of the agent's current task.\"\"\"
-    task: str
-    plan: List[str] = []
-    observations: List[Observation] = []
-    is_complete: bool = False
-    final_answer: Optional[str] = None
-
-# --- Mock Tools ---
-
-def search_database(query: str) -> str:
-    \"\"\"Simulates searching a database for information.\"\"\"
-    logger.info(f\"Executing tool 'search_database' with query: {query}\")
-    time.sleep(1) # Simulate network latency
-    mock_db = {
-        \"order_123\": \"Status: Shipped, Date: 2026-09-10\",
-        \"user_bob\": \"Email: bob@example.com, Plan: Premium\"
-    }
-    return mock_db.get(query, \"No results found.\")
-
-def calculate_refund(amount: float, days_since_purchase: int) -> str:
-    \"\"\"Simulates calculating a refund amount based on policy.\"\"\"
-    logger.info(f\"Executing tool 'calculate_refund' with amount={amount}, days={days_since_purchase}\")
-    if days_since_purchase <= 30:
-        return f\"Full refund approved: ${amount}\"
-    elif days_since_purchase <= 60:
-        return f\"Partial refund (50%) approved: ${amount / 2}\"
-    else:
-        return \"Refund denied: Past 60 days.\"
-
-# --- Agent Implementation ---
-
-class SimpleAgent:
-    \"\"\"A simple agent that plans, executes, and synthesizes.\"\"\"
+class WorkflowSimulator:
     
-    def __init__(self, tools: List[Tool]):
-        self.tools = {tool.name: tool for tool in tools}
+    def __init__(self):
+        self.llm = LLMSimulator()
         
-    def _create_plan(self, task: str) -> List[str]:
-        \"\"\"
-        Simulates the LLM planning phase. In a real scenario, an LLM
-        would analyze the task and generate these steps based on available tools.
-        \"\"\"
-        logger.info(\"Phase 1: Planning\")
-        # Mock planning logic for demonstration
-        if \"order_123\" in task:
-            return [
-                \"Step 1: Search database for order_123\",
-                \"Step 2: Synthesize findings\"
-            ]
-        elif \"refund\" in task:
-            return [
-                \"Step 1: Calculate refund for $100, 15 days ago\",
-                \"Step 2: Synthesize findings\"
-            ]
+    def run_workflow(self, url: str):
+        """
+        [SECURE] A Deterministic Chain.
+        If Step 1 fails, Step 2 is doomed. There is zero reasoning.
+        """
+        print("  [INIT] Executing Deterministic Workflow...")
+        
+        # STEP 1: Scrape
+        print(f"  -> Step 1: Scraping {url}...")
+        scraped_text = None
+        if url == "broken_link.com":
+            print("     [ERROR] 404 Not Found. Scraper returned None.")
+            scraped_text = None
         else:
-            return [\"Step 1: Acknowledge unknown task\"]
-
-    def _decide_next_action(self, state: AgentState) -> Optional[Action]:
-        \"\"\"
-        Simulates the LLM deciding which tool to call next based on the plan and past observations.
-        \"\"\"
-        logger.info(\"Phase 2: Deciding Next Action\")
-        
-        # Mock decision logic
-        if len(state.observations) == 0:
-            if \"order_123\" in state.task:
-                return Action(tool_name=\"search_database\", tool_input={\"query\": \"order_123\"})
-            elif \"refund\" in state.task:
-                 return Action(tool_name=\"calculate_refund\", tool_input={\"amount\": 100.0, \"days_since_purchase\": 15})
-        return None # No more actions needed
-
-    def _execute_action(self, action: Action, max_retries: int = 3) -> Observation:
-        \"\"\"Executes a chosen action using the tool registry with retries.\"\"\"
-        logger.info(f\"Phase 3: Executing Action - {action.tool_name}\")
-        tool = self.tools.get(action.tool_name)
-        
-        if not tool:
-            return Observation(action=action, result=None, error=f\"Tool '{action.tool_name}' not found.\")
-
-        for attempt in range(max_retries):
-            try:
-                # Unpack dictionary as kwargs for the function
-                result = tool.func(**action.tool_input)
-                return Observation(action=action, result=result)
-            except Exception as e:
-                logger.warning(f\"Tool execution failed (Attempt {attempt + 1}/{max_retries}): {e}\")
-                time.sleep(1) # wait before retry
-                
-        return Observation(action=action, result=None, error=\"Max retries exceeded.\")
-
-    def _synthesize(self, state: AgentState) -> str:
-        \"\"\"Simulates the LLM generating a final response based on all observations.\"\"\"
-        logger.info(\"Phase 4: Synthesis\")
-        
-        if not state.observations:
-            return \"I could not find any information to help with your task.\"
+            scraped_text = "Apple Q3 Revenue: 81 Billion."
             
-        summary = \"Here is what I found based on your request:\\n\"
-        for obs in state.observations:
-            if obs.error:
-                summary += f\"- Encountered an error with {obs.action.tool_name}: {obs.error}\\n\"
-            else:
-                summary += f\"- Result from {obs.action.tool_name}: {obs.result}\\n\"
-                
-        return summary
+        # STEP 2: Summarize
+        print("  -> Step 2: Sending to LLM for summarization...")
+        llm_input = f"Extract text from: {scraped_text}"
+        summary = self.llm.prompt(llm_input)
+        
+        print(f"  [FINAL OUTPUT] {summary}")
 
-    def run(self, task: str) -> str:
-        \"\"\"The main execution loop (the 'workflow') of the agent.\"\"\"
-        logger.info(f\"Starting task: {task}\")
-        state = AgentState(task=task)
+
+class AgentSimulator:
+    
+    def __init__(self):
+        self.max_loops = 5
+        self.current_loop = 0
         
-        # 1. Plan
-        state.plan = self._create_plan(task)
+    def run_agent(self, goal: str):
+        """
+        [SECURE] An Autonomous Agentic Loop.
+        The Agent encounters an error, observes the error, and dynamically 
+        chooses a new action to recover.
+        """
+        print(f"\n  [INIT] Spawning Agent with Goal: '{goal}'")
         
-        # 2. ReAct Loop (Reason & Act)
-        while not state.is_complete:
-            # Reason: Decide next action
-            action = self._decide_next_action(state)
+        while self.current_loop < self.max_loops:
+            self.current_loop += 1
+            print(f"\n  [LOOP {self.current_loop}]")
             
-            if not action:
-                # No more actions to take, exit loop
-                logger.info(\"No further actions required. Proceeding to synthesis.\")
-                state.is_complete = True
-                break
+            # Simulated LLM Reasoning Engine
+            if self.current_loop == 1:
+                thought = "I need to find the Q3 earnings. I will try the first link I know."
+                action = "scrape('broken_link.com')"
+                print(f"  -> Thought: {thought}")
+                print(f"  -> Action:  {action}")
                 
-            # Act: Execute tool
-            observation = self._execute_action(action)
-            state.observations.append(observation)
-            
-            # Safe-guard to prevent infinite loops in this simple mock
-            if len(state.observations) >= 3:
-                logger.warning(\"Max iterations reached. Force completing.\")
-                state.is_complete = True
+                # The execution of the action fails!
+                observation = "ERROR 404: Page not found."
+                print(f"  -> Observation: {observation}")
+                
+            elif self.current_loop == 2:
+                # The Agent sees the ERROR in its context window and ADAPTS.
+                thought = "The first link was broken. I cannot summarize a 404 error. I must search for an alternative source."
+                action = "search_google('Apple Q3 Earnings PDF')"
+                print(f"  -> Thought: {thought}")
+                print(f"  -> Action:  {action}")
+                
+                observation = "Found link: valid_source.com/q3"
+                print(f"  -> Observation: {observation}")
+                
+            elif self.current_loop == 3:
+                thought = "I found a valid link. I will scrape it now."
+                action = "scrape('valid_source.com/q3')"
+                print(f"  -> Thought: {thought}")
+                print(f"  -> Action:  {action}")
+                
+                observation = "Text: Apple Q3 Revenue: 81 Billion."
+                print(f"  -> Observation: {observation}")
+                
+            elif self.current_loop == 4:
+                thought = "I have the required text. I will generate the final summary."
+                action = "summarize_and_finish()"
+                print(f"  -> Thought: {thought}")
+                print(f"  -> Action:  {action}")
+                print("\n  [FINAL OUTPUT] Apple reported $81 Billion in Revenue for Q3.")
                 break
 
-        # 3. Synthesize
-        state.final_answer = self._synthesize(state)
-        return state.final_answer
+
+# ==============================================================================
+# 4. MATHEMATICAL PROOF (THE BENCHMARK)
+# ==============================================================================
+def demonstrate_architecture():
+    section_header("Agentic AI: Workflows vs Agents")
+    
+    print("\n[SCENARIO] Fetching a document from a broken URL.\n")
+    
+    # 1. The Workflow Fails
+    workflow = WorkflowSimulator()
+    workflow.run_workflow(url="broken_link.com")
+    
+    print("\n" + "-"*60)
+    
+    # 2. The Agent Recovers
+    agent = AgentSimulator()
+    agent.run_agent(goal="Get Apple Q3 earnings and summarize.")
+    
+    print("\n  [FLAWLESS] The Workflow blindly executed Step 2 even though Step 1 failed, ")
+    print("  resulting in a catastrophic crash. The Agent mathematically analyzed the ")
+    print("  404 error during its loop, dynamically altered its execution graph, and ")
+    print("  successfully recovered.")
 
 
-# --- Tests & Execution ---
+def run_all_labs():
+    demonstrate_architecture()
 
-def test_workflow():
-    \"\"\"Runs tests to demonstrate the agent workflow.\"\"\"
-    
-    # Register available tools
-    tools = [
-        Tool(
-            name=\"search_database\", 
-            description=\"Searches the database for a given query.\", 
-            func=search_database
-        ),
-        Tool(
-            name=\"calculate_refund\", 
-            description=\"Calculates refund amount based on rules.\", 
-            func=calculate_refund
-        )
-    ]
-    
-    agent = SimpleAgent(tools=tools)
-    
-    # Test Scenario 1: Order Lookup
-    print(\"\\n--- Test Scenario 1: Order Lookup ---\")
-    task1 = \"Check the status of order_123.\"
-    result1 = agent.run(task1)
-    print(f\"\\nFinal Output:\\n{result1}\")
-    assert \"Shipped\" in result1, \"Failed to retrieve order status.\"
-    
-    # Test Scenario 2: Refund Calculation
-    print(\"\\n--- Test Scenario 2: Refund Calculation ---\")
-    task2 = \"Process a refund for $100 purchased 15 days ago.\"
-    result2 = agent.run(task2)
-    print(f\"\\nFinal Output:\\n{result2}\")
-    assert \"Full refund approved\" in result2, \"Failed to calculate refund correctly.\"
-    
-    print(\"\\nAll tests passed successfully.\")
 
-if __name__ == \"__main__\":
-    test_workflow()
+# ==============================================================================
+# 5. ACTIVE RECALL & INTERVIEW QUESTIONS
+# ==============================================================================
+"""
+ACTIVE RECALL:
+1. Interviewer: "What is the architectural distinction between a 'Chain' (e.g., LangChain SequentialChain) and an 'Agent'?"
+   Senior Answer: "Control Flow Ownership. In a Chain (Workflow), the human developer hardcodes the control flow using Python logic (e.g., `A() -> B() -> C()`). The LLM is merely a passive text-processing node within that pipeline. If a variable is missing, the Python code crashes. In an Agent, the LLM *owns* the control flow. The human provides a `while True:` loop and a suite of Tools. The LLM acts as the central CPU, dynamically deciding which tool to call, in what order, based on the real-time Observations it receives. An Agent writes its own execution graph at runtime."
+
+2. Interviewer: "Why are Agents inherently more expensive and slower to run in production than Workflows?"
+   Senior Answer: "The Autoregressive Feedback Loop. A Workflow might only invoke the LLM once at the very end to summarize data ($1$ API call). An Agent must invoke the LLM at every single node of its decision tree. To search, read, and summarize, an Agent might loop $5$ times. Each loop requires sending the *entire accumulated context* (Thoughts, Actions, Observations) back to the LLM. Because the LLM must mathematically re-evaluate the entire context history from scratch to generate the next action, the token usage and latency scale exponentially compared to a deterministic workflow."
+
+3. Interviewer: "What is the mathematical risk of 'Infinite Loops' in Agentic architectures, and how do we mitigate it?"
+   Senior Answer: "Hallucinated Feedback Cycles. An Agent might execute `search('data')`, receive `Error: not found`, and then hallucinate that it should try `search('data')` again, infinitely burning API credits. We mitigate this using two architectural constraints: 1. A hardcoded `max_iterations` counter that breaks the `while` loop regardless of LLM output. 2. A 'System Prompt Injection' that forces the Agent to review its past actions. If it detects consecutive identical failures, it is mathematically penalized (prompted) to change its strategy or execute a forced 'Yield/Ask Human' action."
+"""
+
+if __name__ == "__main__":
+    run_all_labs()
+    print("\n[SUCCESS] Laboratory: Agentic AI (Workflows vs Agents) Completed.")
