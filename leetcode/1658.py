@@ -279,7 +279,7 @@ class Solution:
 
 
 
-        class Solution:
+class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
         total_sum = sum(nums)
         target = total_sum - x
@@ -318,4 +318,3 @@ class Solution:
 
 
 
-            
